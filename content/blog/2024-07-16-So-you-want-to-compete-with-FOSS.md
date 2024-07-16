@@ -102,17 +102,17 @@ don't think that's possible.
 
 This logic is rooted in a deeper notion of ownership over the software, which is
 both subtle and very important. This is a kind of [auteur] theory of software.
-The notion is that the software they build *belongs* to them. They poses a sense
-of ownership over the software, which comes with a set of moral and perhaps
-legal rights to the software, which, importantly, are withheld from any entity
-other than themselves. The "developers" enjoy this special relationship with the
-project -- the "developers" being the special class of person entitled to this
-sense of ownership and the class to whom the up-and-coming source-available
-movements make an appeal, in the sense of "pay the developers" -- and
-third-party entities who work on the source code are merely "contributors",
-though they apply the same skills and labor to the project as the "developers"
-do. The very distinction between "first-party" and "third-party" developers is
-contingent on this "auteur" worldview.
+The notion is that the software they build *belongs* to them. They possess a
+sense of ownership over the software, which comes with a set of moral and
+perhaps legal rights to the software, which, importantly, are withheld from any
+entity other than themselves. The "developers" enjoy this special relationship
+with the project -- the "developers" being the special class of person entitled
+to this sense of ownership and the class to whom the up-and-coming
+source-available movements make an appeal, in the sense of "pay the developers"
+-- and third-party entities who work on the source code are merely
+"contributors", though they apply the same skills and labor to the project as
+the "developers" do. The very distinction between "first-party" and
+"third-party" developers is contingent on this "auteur" worldview.
 
 [auteur]: https://en.wikipedia.org/wiki/Auteur
 
