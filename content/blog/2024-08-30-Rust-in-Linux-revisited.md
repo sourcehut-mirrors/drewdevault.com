@@ -113,7 +113,7 @@ research projects that will build a next-generation OS like Redox. The labor
 pool of serious OS developers badly needs a project like this to make that
 happen.
 
-So my offer for the Rust-for-Linux project is: you're burned out and that's
+So my suggestion for the Rust-for-Linux project is: you're burned out and that's
 awful, I feel for you. It might be fun and rewarding to spend your recovery
 busting out a small prototype Unix kernel and start fleshing out bits and pieces
 of the Linux ABI with your friends. I can tell you from my own experience doing
