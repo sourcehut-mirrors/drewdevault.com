@@ -29,7 +29,7 @@ Neurodivergence (antonymous with "neurotypical") is an umbrella term that
 encompasses a wide variety of human experiences, including autism, ADHD,
 personality disorders, bipolar disorder, and others. The particular claims I've
 heard about Stallman suggest that he is "obviously" autistic, or has [Asperger
-syndrome][1].[^aspberger] The allegation of ableism in my criticisms of Stallman
+syndrome][1].[^asperger] The allegation of ableism in my criticisms of Stallman
 are rooted in this presumption of neurodivergence in Stallman: the argument goes
 that I am putting his awkwardness on display and mocking him for it, that
 calling for the expulsion of someone on the basis of being awkward is ableist,
@@ -37,9 +37,9 @@ and that this has a chilling effect on our community, which is generally thought
 to have a high incidence of neurodivergence. I will respond to this defense of
 Stallman today.
 
-[^aspberger]: It is worth mentioning that Aspberger's syndrome is a
+[^asperger]: It is worth mentioning that Asperger's syndrome is a
     now-discredited diagnosis which has been deprecated in favor of a broader
-    understanding of autism. Hans Aspberger was a Nazi eugenicist who referred
+    understanding of autism. Hans Asperger was a Nazi eugenicist who referred
     children he diagnosed to Am Spiegelgrund clinic, where hundreds of children
     were murdered by Nazi Germany during World War II.
 
