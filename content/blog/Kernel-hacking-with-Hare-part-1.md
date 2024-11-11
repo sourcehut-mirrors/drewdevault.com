@@ -72,7 +72,7 @@ Here's an example of what the code shown in this article is going to produce:
 
 ![A 64 by 64 grid of cells representing a page of physical memory. The first set
 of cells are colored blue; the next set green; then purple; the remainder are
-brown.](https://l.sr.ht/FpGq.png)
+brown.](https://redacted.moe/f/ad558439.png)
 
 This is a single page of physical memory which has been allocated for the
 bootinfo data, where each cell is a byte. The bootinfo structure itself comes

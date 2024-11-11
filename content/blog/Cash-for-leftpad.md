@@ -14,7 +14,7 @@ We need to figure out a way to curb this reckless behavior, but how?
 
 I have an idea. Remember left-pad? That needs to happen more often.
 
-![A LaTeX rendering of an equation which sets a reward (in dollars) to the logarithm of weekly downloads over lines of code in base 10 times one hundred](https://l.sr.ht/Fe7o.svg)
+![A LaTeX rendering of an equation which sets a reward (in dollars) to the logarithm of weekly downloads over lines of code in base 10 times one hundred](https://redacted.moe/f/e2f3d3a4.svg)
 
 I'll pay you cold hard cash to delete your npm module. The exact amount will be
 determined on this equation, which is designed to offer higher payouts for

@@ -34,7 +34,7 @@ was the turn signal lever snapping and becoming slack, which I fixed by pulling
 open the steering column, re-aligning the lever, and tightening an internal
 screw. The more interesting problem, however, was this:
 
-![Picture of a broken latch on the window over the truck bay](https://l.sr.ht/OWVw.jpg)
+![Picture of a broken latch on the window over the truck bay](https://redacted.moe/f/d798184b.jpg)
 
 This plastic part holds an arm in place, which is engaged by a lever in the
 center of the window which folds closed over the truck bay. It's used to hold
@@ -49,27 +49,27 @@ pictures of it from several angles for later reference. I took some notes:
 
 [^1]: Oh man, I've always wanted a caliper, and now I have an excuse!
 
-![Picture of my notes on the measurements of the part](https://l.sr.ht/20eR.jpg)
+![Picture of my notes on the measurements of the part](https://redacted.moe/f/dc939c36.jpg)
 
 Then, I used solvespace to design the following part:
 
-![Screenshot of the replacement part in solvespace](https://l.sr.ht/rVPV.png)
+![Screenshot of the replacement part in solvespace](https://redacted.moe/f/49cc6bba.png)
 
 This was the third iteration &mdash; I printed one version, brought it out to
 the truck to compare with the broken part, made refinements to the design, then
 rinse and repeat. Here's an earlier revision being compared with the broken
 piece:
 
-![A hand holds up a 3D printed part for comparison with the original](https://l.sr.ht/CUPM.jpg)
+![A hand holds up a 3D printed part for comparison with the original](https://redacted.moe/f/7407f94b.jpg)
 
 Finally, I arrived at a design I liked and sent it to the printer.
 
-![Picture of my 3D printer working on the part](https://l.sr.ht/xh9h.jpg)
+![Picture of my 3D printer working on the part](https://redacted.moe/f/e37b2b5a.jpg)
 
 I took some pliers to the remaining plastic bits from the broken part, and sawed
 off the rivets. I attached the replacement with superglue and ta-da!
 
-![Picture of the replacement part in place](https://l.sr.ht/3AGi.jpg)
+![Picture of the replacement part in place](https://redacted.moe/f/681bff34.jpg)
 
 If the glue fails, I'll drill out what's left of the rivets and secure it with
 screws. This may require another revision of the design, which will also give me

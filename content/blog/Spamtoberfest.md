@@ -21,7 +21,7 @@ of Service (DDoS) attack is ongoing, wasting the time of thousands of free
 software maintainers with an onslaught of meaningless spam. Bots are spamming
 [tens of thousands][1] of pull requests like this:
 
-[![Screenshot of a spam pull request on GitHub which adds garbage to the README.md file](https://l.sr.ht/71VU.png)](https://github.com/hundredrabbits/100r.co/pull/39/files)
+[![Screenshot of a spam pull request on GitHub which adds garbage to the README.md file](https://redacted.moe/f/fd88f606.png)](https://github.com/hundredrabbits/100r.co/pull/39/files)
 
 [1]: https://github.com/search?q=amazing+project+is:pr&type=Issues
 
@@ -58,7 +58,7 @@ to maintainers, leaving them to clean up the spam. I've never been impressed
 with Hacktoberfest contributions, even the ones which aren't obviously written
 by a bot:
 
-[![Screenshot of a pull request which needlessly comment a CSS file](https://l.sr.ht/F-sU.png)](https://github.com/whatwg/html/pull/5975/files)
+[![Screenshot of a pull request which needlessly comment a CSS file](https://redacted.moe/f/970f2a31.png)](https://github.com/whatwg/html/pull/5975/files)
 
 Hacktoberfest is, and has always been, about one thing: marketing for Digital
 Ocean.
@@ -84,7 +84,7 @@ like Google Summer of Code do this better. Programs where a marketing department
 spends $5,000 on T-Shirts to flood maintainers with garbage and clothe people in
 ads are doing the opposite: *hurting* open source.
 
-[![Screenshot of a friend's notifications, 9 out of 11 of which are spam](https://l.sr.ht/KoFK.png)](https://l.sr.ht/KoFK.png)
+[![Screenshot of a friend's notifications, 9 out of 11 of which are spam](https://redacted.moe/f/a50f2dfc.png)](https://redacted.moe/f/a50f2dfc.png)
 
 Check out [@shitoberfest on Twitter](https://twitter.com/shitoberfest) for more
 Hacktoberfest garbage.

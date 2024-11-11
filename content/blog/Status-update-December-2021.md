@@ -19,7 +19,7 @@ little tetromino game (audio warning):
 
 [libui]: https://github.com/andlabs/libui
 
-<video src="https://l.sr.ht/PMwA.webm" controls></video>
+<video src="https://redacted.moe/f/182e81ce.webm" controls></video>
 
 I am developing this to flesh out the SDL wrapper and get a feel for game
 development in the new language, but I also intend to take it on as a serious

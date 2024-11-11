@@ -16,7 +16,7 @@ stack traces on assertion failures and such. I understand that someone is
 working on DWARF support as well, so perhaps we'll soon be able to translate
 function name + offset into a file name and line number.
 
-![A redacted screenshot of a kernel showing a simulated page fault](https://l.sr.ht/LHZ2.png)
+![A redacted screenshot of a kernel showing a simulated page fault](https://redacted.moe/f/848da9ff.png)
 
 I also started working on a PNG decoder this weekend, which at the time of
 writing can successfully decode 77 of the 161 PNG test vectors. I am quite

@@ -44,7 +44,7 @@ This is just for English, by the way. I often type in Japanese, which has an
 entirely alien set of nuances. Here's what that looks like on Android (mobile is
 another beast entirely, too!):
 
-<video src="https://l.sr.ht/u274.webm" muted autoplay loop controls>
+<video src="https://redacted.moe/f/2f2f6815.webm" muted autoplay loop controls>
   If you're seeing this, your browser doesn't support HTML5 video, or webm, idk.
 </video>
 

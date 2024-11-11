@@ -18,7 +18,7 @@ Well, like this (click for full size):
 
 [![A mock-up of an application. A4 pages are arranged ad-hoc on a grid.
 Handwritten notes and drawings appear in red across the grid and over the pages.
-A flowchart is shown outside of a page.](https://l.sr.ht/4QOL.png)](https://l.sr.ht/4QOL.png)
+A flowchart is shown outside of a page.](https://redacted.moe/f/920d5d58.png)](https://redacted.moe/f/920d5d58.png)
 
 I don't have the bandwidth to take on a new project of this scope, so I'll
 describe what I think this should look like in the hopes that it will inspire

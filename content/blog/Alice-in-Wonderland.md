@@ -11,7 +11,7 @@ children's hearts, over almost four generations. And it has been stolen from
 those generations, as part of the theft of one of these generations' greatest
 treasures: the public domain.
 
-![](https://l.sr.ht/pMHw.jpg)
+![](https://redacted.moe/f/5e5f11ef.jpg)
 
 I often use this film as an example when arguing about copyright. Almost
 everyone I speak to was born well after the film's release (in fact, this is

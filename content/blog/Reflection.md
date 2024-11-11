@@ -104,8 +104,8 @@ is defined by the <span class="redacted">xxxx</span> specification and cannot be
 overridden by the program, so no further information is necessary. The relevant
 part of the spec is:
 
-!["The precision of 'int' and 'uint' are implementation-defined. 'int' shall be signed, and 'uint' shall be unsigned. Both types shall be at least 32-bits in precision. The precision in bits shall be a power of two."](https://l.sr.ht/Sbcb.png)
-![A table from the specification showing the precision ranges of each integer type](https://l.sr.ht/oZw4.png)
+!["The precision of 'int' and 'uint' are implementation-defined. 'int' shall be signed, and 'uint' shall be unsigned. Both types shall be at least 32-bits in precision. The precision in bits shall be a power of two."](https://redacted.moe/f/9fb3b7e2.png)
+![A table from the specification showing the precision ranges of each integer type](https://redacted.moe/f/f13236c9.png)
 
 More information is provided for more complex types, such as structs.
 

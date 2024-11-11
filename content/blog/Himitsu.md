@@ -55,7 +55,7 @@ ask for the user's consent.
 $ hiq -d proto=web host user password! comment?
 ```
 
-![A screenshot of a GTK+ dialog confirming the operation](https://l.sr.ht/aTfn.png)
+![A screenshot of a GTK+ dialog confirming the operation](https://redacted.moe/f/85eb1b52.png)
 
 ```
 proto=web host=example.org user=jdoe password!=hunter2
@@ -105,7 +105,7 @@ Martijn Braam has written a nice GTK+ frontend called [keyring]:
 There's also a [Firefox add-on] which auto-fills forms for keys with proto=web:
 
 [Firefox add-on]: https://addons.mozilla.org/en-US/firefox/addon/himitsu-integration/
-![Screenshot of himitsu-firefox](https://l.sr.ht/eLcs.png)
+![Screenshot of himitsu-firefox](https://redacted.moe/f/73328356.png)
 
 We also have a package called [himitsu-ssh] which provides an SSH agent:
 

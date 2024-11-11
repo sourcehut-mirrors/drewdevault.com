@@ -18,7 +18,7 @@ detail is knowing when to drop it. My daily workflow involves several open
 terminals, generally one with Vim, another to run builds or daemons, and a third
 which just keeps a shell handy for anything I might ask of it.
 
-[![Screenshot of my workspace](https://l.sr.ht/g_oL.png)](https://l.sr.ht/g_oL.png)
+[![Screenshot of my workspace](https://redacted.moe/f/1bbaf26c.png)](https://redacted.moe/f/1bbaf26c.png)
 
 The shell I keep open allows me to perform complex tasks and answer complex
 questions as I work. I find interesting things with [git grep][git grep],

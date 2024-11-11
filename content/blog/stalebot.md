@@ -12,7 +12,7 @@ course of your work.
 
 This is a terrible, horrible, no good, very bad idea.
 
-![A screenshot of an interaction with this bot](https://l.sr.ht/nNyI.png)
+![A screenshot of an interaction with this bot](https://redacted.moe/f/e2f0d39c.png)
 
 I'm not sure what motivates maintainers to install this on their repository,
 other than the fact that GitHub recommends it to them. Perhaps it's motivated by

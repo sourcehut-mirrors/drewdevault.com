@@ -6,11 +6,11 @@ date: 2021-06-15
 Hiya! Got another status update for you. First, let me share this picture that
 my dad and I took on our recent astronomy trip (click for full res):
 
-[![A long-exposure picture of the night sky. Thousands of stars are visible, as well as the band of the milky way.](https://l.sr.ht/o750.jpg)](https://l.sr.ht/JRTV.jpg)
+[![A long-exposure picture of the night sky. Thousands of stars are visible, as well as the band of the milky way.](https://l.sr.ht/o750.jpg)](https://redacted.moe/f/a3b37775.jpg)
 
 Bonus Venus:
 
-![A bright white circle against a dark background](https://l.sr.ht/NHlj.png)
+![A bright white circle against a dark background](https://redacted.moe/f/6574aa37.png)
 
 So, what's new? With SourceHut, there are a few neat goings-on. For one, thanks
 to Michael Forney putting the finishing touches on the patchset, the

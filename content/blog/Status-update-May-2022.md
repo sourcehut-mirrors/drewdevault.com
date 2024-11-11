@@ -26,7 +26,7 @@ we have entered userspace. Next up is rigging up syscalls and scheduling, then
 we're going to start fleshing out an L4-inspired API and writing some drivers in
 userspace.
 
-![A screenshot showing Helios booting and entering userspace](https://l.sr.ht/COLx.png)
+![A screenshot showing Helios booting and entering userspace](https://redacted.moe/f/2c1f497a.png)
 
 [Helios]: https://sr.ht/~sircmpwn/helios
 

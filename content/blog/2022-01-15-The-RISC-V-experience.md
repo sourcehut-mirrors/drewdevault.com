@@ -79,8 +79,8 @@ raised on GitLab today because I cannot render GitLab properly on this browser.
 SourceHut mostly works, of course, but it's not exactly pleasant &mdash; I still
 haven't found time to improve the SourceHut UI for NetSurf.
 
-<a href="https://l.sr.ht/jJWl.jpg">
-  <img src="https://l.sr.ht/jJWl.jpg" alt="A picture of two computers stacked on on top of the other." style="max-width: 70%" />
+<a href="https://redacted.moe/f/6ad3d811.jpg">
+  <img src="https://redacted.moe/f/6ad3d811.jpg" alt="A picture of two computers stacked on on top of the other." style="max-width: 70%" />
 </a>
 
 <div class="text-center"><small>The lower computer is my typical x86_64

@@ -35,7 +35,7 @@ faults to userspace supervisor processes:
 ![A screenshot of a thread on Helios causing a page fault, then its parent
 thread receives details of the fault and maps a page onto the address of the
 attempted write. The child thread is resumed and is surprised to find that the
-write succeeded (because a page was mapped underneath the write).](https://l.sr.ht/YvMX.png)
+write succeeded (because a page was mapped underneath the write).](https://redacted.moe/f/52ee4c38.png)
 
 ```hare
 @test fn task::pagefault() void = {
@@ -75,9 +75,9 @@ real hardware:
 
 [0]: https://drewdevault.com/2022/10/02/Kernel-hacking-with-Hare-part-2.html
 
-![A picture of a laptop showing 15 passing kernel tests](https://l.sr.ht/RMAS.jpg)
+![A picture of a laptop showing 15 passing kernel tests](https://redacted.moe/f/3a293b79.jpg)
 
-[Here's an ISO](https://l.sr.ht/NwsO.iso) you can boot on your own x86\_64
+[Here's an ISO](https://redacted.moe/f/f95549d6.iso) you can boot on your own x86\_64
 hardware to see if it works for you, too. If you have problems, take a picture
 of the issue, boot Linux and [email me](mailto:sir@cmpwn.com) said picture, the
 output of lscpu, and any other details you deem relevant.
@@ -98,7 +98,7 @@ Consequently, the first Mercury driver is up and running:
 
 [1]: https://git.sr.ht/~sircmpwn/mercury
 
-![Demo of a working serial driver](https://l.sr.ht/PKZ6.png)
+![Demo of a working serial driver](https://redacted.moe/f/4294d07e.png)
 
 This driver includes a simple driver manifest, which is embedded into its ELF
 file and processed by the driver loader to declaratively specify the

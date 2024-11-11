@@ -165,12 +165,12 @@ Discord. Consider that this lacks context and apply your grain of salt
 accordingly.
 
 ![Screenshot of a Discord channel with the initial reaction to this post. A user
-called "slave labor" responds with "no way", "the computer reddit woke up"](https://l.sr.ht/1k-4.png)
+called "slave labor" responds with "no way", "the computer reddit woke up"](https://redacted.moe/f/28580a3a.png)
 
 ![Screenshot of a Discord channel with Vaxry's initial reaction to this post.
 "Really, right as I wanted to take a day off because of health reasons I have to
 reply to this?". Another user responds "wow this is quite... shallow", "almost
-as if it recycles very limited context to get more clicks"](https://l.sr.ht/9hS_.png)
+as if it recycles very limited context to get more clicks"](https://redacted.moe/f/0d233e9f.png)
 
 I apologise to Vaxry for interrupting their rest, and wish them a speedy
 recovery.
@@ -178,7 +178,7 @@ recovery.
 ![Screenshot of a Discord channel. Some notable quotes include "LGBTQ is fucking
 trash anyways" (someone else responds "fuck off" to this) and "for reclaiming
 polymc from the leftoids". The discussion as a whole lacks any sembelance of
-professionalism.](https://l.sr.ht/RwC-.png)
+professionalism.](https://redacted.moe/f/53c4bc32.png)
 
 [Here](https://paste.sr.ht/~sircmpwn/093af570609ec87e987af6cc69c59e9624c2b280)
 is a plain text log which includes some additional discussion.

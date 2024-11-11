@@ -110,7 +110,7 @@ The grammar for this looks like the following:[^caveat]
 
 [^caveat]: Disregard the second case of "append-values"; it's not relevant here.
 
-![A screenshot of the language spec showing the grammar for append expressions.](https://l.sr.ht/NinS.png)
+![A screenshot of the language spec showing the grammar for append expressions.](https://redacted.moe/f/d37abdd8.png)
 
 So, the proposed "append(x, \[0...\], 10)" expression is *parsed* like this:
 
@@ -136,7 +136,7 @@ append(x, [0...], 10);  // New feature
 
 The grammar for this is much better:
 
-![A screenshot of the revised grammar for this design.](https://l.sr.ht/s5qI.png)
+![A screenshot of the revised grammar for this design.](https://redacted.moe/f/b0e56d79.png)
 
 Now we can distinguish between these cases while parsing, so the first example
 is parsed as:
@@ -191,10 +191,10 @@ neatly solves all of our problems. We have arrived at design which:
 I daresay that, in addition to fulfilling the desired new feature, we have
 improved the other cases as well. The final grammar for this is the following:
 
-![Formal grammar showing the final state of the design proposal](https://l.sr.ht/2nF0.png)
+![Formal grammar showing the final state of the design proposal](https://redacted.moe/f/1d400f58.png)
 
 If you're curious to see more, I've extracted the relevant page of the
-specification for you to read: [download it here](https://l.sr.ht/eeta.pdf). I
+specification for you to read: [download it here](https://redacted.moe/f/9c48d5d4.pdf). I
 hope you found that interesting and insightful!
 
 *Note: Much of these details are subject to change, and we have future

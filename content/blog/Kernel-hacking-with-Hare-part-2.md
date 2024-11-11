@@ -25,7 +25,7 @@ kernel.
 [0]: https://git.sr.ht/~sircmpwn/helios
 [1]: https://git.sr.ht/~sircmpwn/helios/tree/master/item/vulcan
 
-![A picture of a laptop running Helios and showing the results of the Vulcan test suite](https://l.sr.ht/JIya.jpg)
+![A picture of a laptop running Helios and showing the results of the Vulcan test suite](https://redacted.moe/f/a8018226.jpg)
 
 While I don't anticipate multi-threaded processes playing a huge role in the
 complete Ares system in the future, they do have a place. In the long term, I

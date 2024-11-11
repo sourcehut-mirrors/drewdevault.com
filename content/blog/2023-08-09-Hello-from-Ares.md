@@ -11,7 +11,7 @@ since I gave that talk on Helios at [FOSDEM] in February.
 [Ares OS]: https://ares-os.org
 [FOSDEM]: https://spacepub.space/w/wpKXfhqqr7FajEAf4B2Vc2
 
-![A picture of my ThinkPad while I was editing this blog post](https://l.sr.ht/Rx-V.jpg)
+![A picture of my ThinkPad while I was editing this blog post](https://redacted.moe/f/68a47ef3.jpg)
 
 The talk I gave at FOSDEM was no doubt impressive, but it was a bit of a party
 trick. The system was running on a Raspberry Pi with one process which included

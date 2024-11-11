@@ -13,7 +13,7 @@ it today.
 [Hare]: https://harelang.org
 [seL4]: https://sel4.systems
 
-![A picture of a ThinkPad running Helios, demonstrating userspace memory allocation](https://l.sr.ht/gnrA.jpg)
+![A picture of a ThinkPad running Helios, demonstrating userspace memory allocation](https://redacted.moe/f/4d2d7b25.jpg)
 
 Drawing some inspiration from seL4, Helios uses a capability-based design for
 isolation and security. The kernel offers primitives for allocating physical

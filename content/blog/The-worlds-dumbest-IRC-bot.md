@@ -64,7 +64,7 @@ This has not been an entirely smart move.
 ![I say "I hate C++ templates", and the bot responds by writing "yeah, fuck C++
 templates!" with "C++ templates" displayed in rainbow colors. MartijnBraam
 follows up by asking "number of c++ programmers launched into the sun", which
-wormy claims is 367880 people as of 2009.](https://l.sr.ht/OCyx.png)
+wormy claims is 367880 people as of 2009.](https://redacted.moe/f/52eb4eba.png)
 
 One "feature", inspired by [Bryan
 Cantrill](https://www.youtube.com/watch?v=30jNsCVLpAE), records every time the

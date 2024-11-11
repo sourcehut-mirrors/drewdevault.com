@@ -211,4 +211,4 @@ us.
 
 In summary: no matter what, definitely don't do this:
 
-![Picture of a SATA card for RAIDing 10 microSD cards together](https://l.sr.ht/ig3R.jpg)
+![Picture of a SATA card for RAIDing 10 microSD cards together](https://redacted.moe/f/802d6207.jpg)

@@ -36,7 +36,7 @@ month ago (and to think it's only three months old!).
 
 [helios]: https://drewdevault.com/2022/06/13/helios.html
 
-![A picture of Helios drawing to a framebuffer](https://l.sr.ht/KeMW.jpg)
+![A picture of Helios drawing to a framebuffer](https://redacted.moe/f/7e43ce39.jpg)
 
 There was also a lot of progress on [Himitsu], which I plan on presenting in a
 video and blog post in a few days time. The Firefox add-on actually works now
@@ -61,6 +61,6 @@ architectures for now. We now have complex number support, as well as
 improvements to encoding::json and net::uri.
 
 ![A screenshot of a fractal rendered with the aid of Hare's new complex number
-support](https://l.sr.ht/Do-Q.png)
+support](https://redacted.moe/f/737ed5b7.png)
 
 That's all for today. Until next time!

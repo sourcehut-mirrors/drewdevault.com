@@ -57,7 +57,7 @@ viewing pleasure:
 
 [himitsu]: https://git.sr.ht/~sircmpwn/himitsu
 
-![A GUI dialog asking a user to consent to allow an application to access their IMAP credentials](https://l.sr.ht/hr4G.png)
+![A GUI dialog asking a user to consent to allow an application to access their IMAP credentials](https://redacted.moe/f/13c10c49.png)
 
 Bonus update: two new [BARE](https://baremessages.org) implementations have
 appeared: OCaml and Java.
@@ -67,5 +67,5 @@ support!
 
 <details>
   <summary>...</summary>
-  <img src="https://l.sr.ht/y15d.png" alt="A screenshot of a page of a programming language specification detailing the syntax of tagged unions" />
+  <img src="https://redacted.moe/f/26c6ba23.png" alt="A screenshot of a page of a programming language specification detailing the syntax of tagged unions" />
 </details>

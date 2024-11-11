@@ -7,8 +7,8 @@ Consider these two people, each captured in the midst of delivering a technical
 talk.
 
 <div class="images">
-  <img src="https://l.sr.ht/AB9J.jpg" alt="A picture of a young trans woman in a red dress" />
-  <img src="https://l.sr.ht/uI9v.jpg" alt="A picture of a middle-aged white man in a red shirt" />
+  <img src="https://redacted.moe/f/c34dbc20.jpg" alt="A picture of a young trans woman in a red dress" />
+  <img src="https://redacted.moe/f/bd64d141.jpg" alt="A picture of a middle-aged white man in a red shirt" />
 </div>
 <style>.images { display: flex; }</style>
 

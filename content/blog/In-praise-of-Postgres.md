@@ -15,7 +15,7 @@ was in July of 1996. It used this logo:
 
 [^1]: The first release of Postgre**SQL**. Its lineage can be traced further back.
 
-![A "logo" which depicts the word "PostgreSQL" in a 3D chrome font bursting through a brick wall from space. No, seriously.](https://l.sr.ht/Ye7j.jpg)
+![A "logo" which depicts the word "PostgreSQL" in a 3D chrome font bursting through a brick wall from space. No, seriously.](https://redacted.moe/f/f36a9083.jpg)
 
 After 25 years of persistence, and a better logo design, Postgres stands today
 as one of the most significant pillars of profound achievement in free software,

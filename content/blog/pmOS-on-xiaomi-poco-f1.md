@@ -105,8 +105,8 @@ generally useful thing to have around. I think I've lent it to others more than
 I've used it myself.
 
 [4]: https://gitlab.gnome.org/World/Phosh/phosh/-/issues/552
-[5]: https://l.sr.ht/TOL9.png
-[6]: https://l.sr.ht/6SQX.png
+[5]: https://redacted.moe/f/40dd2e96.png
+[6]: https://redacted.moe/f/ce6414d5.png
 
 There are many other apps which work without issues. I found that [Foliate][7]
 works great for reading e-books and [Evince][8] works nicely for PDFs (two

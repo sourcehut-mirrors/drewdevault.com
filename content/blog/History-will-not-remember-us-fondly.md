@@ -64,11 +64,11 @@ discriminatory laws against LGBT Poles, and conservative populism has taken hold
 of much of Italy, just to name a few more. Social and political systems are
 regressing worldwide.
 
-<a href="https://l.sr.ht/Gd_r.png">
+<a href="https://redacted.moe/f/85f7d261.png">
   <img
     style="max-width: 100%"
     alt="A visualization of democratic decline across Europe and Eurasia, showing that declines have outweighed gains in each of the past 10 years, demonstrating a persistent net decline in democracy."
-    src="https://l.sr.ht/Gd_r.png" />
+    src="https://redacted.moe/f/85f7d261.png" />
 </a>
 
 <small style="display: block; text-align: center">Source: <a href="https://freedomhouse.org/report/nations-transit/2020/dropping-democratic-facade">Freedom House</a></small>

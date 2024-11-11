@@ -81,7 +81,7 @@ This gives us a reasonably clean path to writing a formal grammar (and
 specification) for the language, which is what we did next.
 
 ![A screenshot of a PDF file which shows a formal grammar similar to the sample
-given above.](https://l.sr.ht/CFo0.png)
+given above.](https://redacted.moe/f/00bba3bd.png)
 
 All of these samples describe a struct type. The following example shows what
 this grammar looks like in real code &mdash; starting from the word "struct" and
@@ -523,7 +523,7 @@ fn peek(
 Let's say we're looking for a binding like our sample code to show up next. The
 grammar from the spec is as follows:
 
-![](https://l.sr.ht/W2AY.png)
+![](https://redacted.moe/f/f0e1d07d.png)
 
 And here's the code that parses that:
 

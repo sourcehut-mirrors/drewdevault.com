@@ -425,7 +425,7 @@ I/O they handle, plus a special case for error handling:
 3. Reading from the plan file
 4. Forwarding its contents to the client
 
-![](https://l.sr.ht/p5yc.svg)
+![](https://redacted.moe/f/2eb5650a.svg)
 
 Each circle in this diagram represents a point where we will submit some I/O to
 our io_uring instance and return to the event loop. If any I/O resulted in an
