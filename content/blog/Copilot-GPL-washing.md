@@ -129,7 +129,7 @@ reproducing, verbatim, a function which is governed by the GPL, and would thus
 be governed by its terms:
 
 <video
-  src="https://mirror.drewdevault.com/copilot-squareroot.mp4"
+  src="https://redacted.moe/f/dd1d5a73.mp4"
   muted autoplay controls></video>
 
 <div class="text-center">

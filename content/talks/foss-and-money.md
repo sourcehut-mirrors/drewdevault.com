@@ -12,7 +12,7 @@ title: Can free software be made sustainable?
 
 **Resources**
 
-- [Download slides](https://mirror.drewdevault.com/foss-and-money.pdf)
+- [Download slides](https://redacted.moe/f/a8d57594.pdf)
 
 **Events**
 
@@ -22,4 +22,4 @@ CSOA Gabrio, Via Millio 42, Torino, Italia
 
 2022-09-10 @ 19:00 local time
 
-<audio controls src="https://mirror.drewdevault.com/hackmeeting-turin-free-software-sustainability.ogg"></audio>
+<audio controls src="https://redacted.moe/f/99dcc2cd.ogg"></audio>

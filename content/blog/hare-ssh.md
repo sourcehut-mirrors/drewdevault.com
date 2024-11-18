@@ -906,7 +906,7 @@ proto=ssh type=ssh-ed25519 pkey=pF7SljE25sVLdWvInO4gfqpJbbjxI6j+tIUcNWzVTHU= ske
 
 Then, when running the agent:
 
-<video src="https://mirror.drewdevault.com/hissh-agent.webm" controls muted></video>
+<video src="https://redacted.moe/f/09d422dd.webm" controls muted></video>
 
 (Yes, I know that the GUI has issues. I slapped it together in C in an afternoon
 and it needs a lot of work. [Help wanted!][hiprompt-gtk])

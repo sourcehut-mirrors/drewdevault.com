@@ -12,7 +12,7 @@ countless programmers. And I recently added myself to this number :)
 [Doom]: https://en.wikipedia.org/wiki/Doom_(1993_video_game)
 [open source]: https://github.com/id-Software/DOOM
 
-<video src="https://mirror.drewdevault.com/doom.webm" controls muted autoplay></video>
+<video src="https://redacted.moe/f/588e2fbd.webm" controls muted autoplay></video>
 
 I'm working on a new kernel called [Helios], and I thought that porting Doom
 would present a good opportunity for proving the kernel design &mdash; you never
@@ -462,9 +462,7 @@ crashes when you try to pick up the shotgun. But it does its job: it
 demonstrates the maturity of the kernel's features thus far and provides good
 feedback on the API design and real-world utility.
 
-If you'd like to try it, you can download a bootable ISO here:
-
-https://mirror.drewdevault.com/doom.iso
+If you'd like to try it, you can [download a bootable ISO](https://redacted.moe/f/0f2b716a.iso).
 
 You can run it on qemu like so:
 

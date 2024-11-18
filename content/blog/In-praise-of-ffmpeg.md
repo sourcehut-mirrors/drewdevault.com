@@ -59,7 +59,7 @@ single command which produced a working remote video game streaming setup *from
 scratch* thanks to ffmpeg. ffmpeg is *amazing*.
 
 <video autoplay mute loop controls>
-  <source src="https://mirror.drewdevault.com/ffx.webm"></source>
+  <source src="https://redacted.moe/f/3c729511.webm"></source>
 </video>
 
 I have relied on ffmpeg for many tasks and for many years. It has always been

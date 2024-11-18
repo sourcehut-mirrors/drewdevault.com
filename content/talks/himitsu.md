@@ -14,7 +14,7 @@ title: "Himitsu: A novel keyring & password manager for Unix"
 
 **Resources**
 
-- [Download slides](https://mirror.drewdevault.com/himitsu.pdf)
+- [Download slides](https://redacted.moe/f/5dba5030.pdf)
 - [Himitsu](https://himitsustore.org)
 
 **Events**

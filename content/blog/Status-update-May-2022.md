@@ -38,7 +38,7 @@ login), and also supports secret data other than passwords &mdash; like SSH
 keys. An extensible consent and agent protocols allow you to expand it to
 support a wide variety of use-cases for secure use of secrets.
 
-<video src="https://mirror.drewdevault.com/hissh-agent.webm" muted controls></video>
+<video src="https://redacted.moe/f/09d422dd.webm" muted controls></video>
 
 [Himitsu]: https://sr.ht/~sircmpwn/himitsu
 [Codeberg]: https://codeberg.org

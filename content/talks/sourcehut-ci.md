@@ -9,10 +9,6 @@ title: Opening up the SourceHut CI engine
 > be looking at how the system is laid out and at directions for future
 > improvement.
 
-**Resources**
-
-- [Download slides](https://mirror.drewdevault.com/builds.pdf)
-
 **Events**
 
 [LOSTilburg](https://lostilburg.nl/post/017/)

@@ -340,11 +340,10 @@ Initially, the Hare code incorporated a lot of proof-of-concept work from Alexey
 Yerin's "carrot" kernel prototype for RISC-V, which also booted via EFI.
 Following the early bringing-up of the bootloader environment, this was
 refactored into a more robust and general-purpose EFI support layer for Helios,
-which will be applicable to future ports. You can review the EFI support
-module's haredocs [here](https://mirror.drewdevault.com/efi.html). The purpose
-of this module is to provide an idiomatic Hare-oriented interface to the EFI
-boot services, which the bootloader makes use of mainly to read files from the
-boot media and examine the system's memory map.
+which will be applicable to future ports. The purpose of this module is to
+provide an idiomatic Hare-oriented interface to the EFI boot services, which the
+bootloader makes use of mainly to read files from the boot media and examine the
+system's memory map.
 
 Let's take a look at the first few lines of bmain:
 
@@ -606,7 +605,7 @@ end point out some flags that I'm still not sure about. The ARM CPU is *very*
 configurable and identifying the configuration that produces the desired
 behavior for a general-purpose kernel requires some effort.
 
-[1]: https://mirror.drewdevault.com/ARMARM.pdf
+[1]: https://redacted.moe/f/f0255890.pdf
 
 After this function completes, the MMU is initialized and we are up and running
 with the kernel memory map we prepared earlier; the kernel is loaded in the

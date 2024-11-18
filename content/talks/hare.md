@@ -13,7 +13,7 @@ title: Introducing the Hare programming langauge
 
 **Resources**
 
-- [Download slides](https://mirror.drewdevault.com/hare.pdf)
+- [Download slides](https://redacted.moe/f/4d05dfb5.pdf)
 - [Hare](https://harelang.org)
 
 **Events**

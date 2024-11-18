@@ -11,7 +11,7 @@ title: Cryptocurrency sucks
 
 **Resources**
 
-- [Download slides](https://mirror.drewdevault.com/cryptocurrency.pdf)
+- [Download slides](https://redacted.moe/f/5b697982.pdf)
 - [Cryptocurrency is an abject disaster](https://drewdevault.com/2021/04/26/Cryptocurrency-is-a-disaster.html)
 
 **Events**
