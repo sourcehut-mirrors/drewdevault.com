@@ -26,13 +26,14 @@ obligations of the AGPL which set it apart from other licenses are as follows:
 
 If you're using AGPL-licensed software like a database engine or [my own
 AGPL-licensed works][sourcehut], and you haven't made any changes to the source
-code, all you have to do is provide a link to the upstream source code
-somewhere, and if users ask for it, direct them there. If you *have* modified
-the software, you simply have to publish your modifications. The easiest way to
-do this is to send it as a patch upstream, but you could use something as simple
-as providing a tarball to your users.
+code, you don't have to do anything to comply. If you *have* modified the
+software, you simply have to publish your modifications. The easiest way to do
+this is to send it as a patch upstream, but you could use something as simple as
+providing a tarball to your users.[^addendum]
 
 [sourcehut]: https://sr.ht/~sircmpwn/sourcehut/
+
+[^addendum]: *December 4th, 2024*: A correction to this passage was made following a clarification from Florian Kohrt. Thanks!
 
 The nuances are detailed and cover many edge cases to prevent abuse. But in
 general, just publish your modifications under the same AGPL terms and you'll
