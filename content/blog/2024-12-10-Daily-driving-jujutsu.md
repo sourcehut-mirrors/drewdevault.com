@@ -85,7 +85,7 @@ allows for either git(1) or jj(1) to be used as the need demands.
 I would have contributed patches to address these shortcomings if it were not
 for my third criticism, which addresses the elephant in the room: Jujutsu is a
 Google employee's "20% project", and thus all contributors are required to sign
-the Google <abrr title="contributor license agreement">CLA</abbr> to
+the Google <abbr title="contributor license agreement">CLA</abbr> to
 participate. I refuse to sign any such thing and [so should you][cla]. I have
 [raised the issue on GitHub][cla discussion] but it hasn't attracted any sort of
 official response. This stiffly limits my enthusiasm for the project and any
