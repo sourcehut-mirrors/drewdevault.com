@@ -49,11 +49,11 @@ my "wow" moment with Jujutsu.
 One day I was working on a large-ish change. I had written a few commits over
 the course of the day towards this end. However, I noticed that I had overlooked
 something in a commit three or four commits earlier. So I touched up the
-relevant code and then ran `jj squash -i <commit ID>` to squash the changes into
-the earlier `<commit ID>`. This command fires up an interface similar to git add
--p, which interactively presented me with hunks out of my working directory to
-choose from. I found the one I wanted, selected it, then dismissed the
-interactive thingy with a quick keystroke. And it was done!
+relevant code and then ran `jj squash -i -t <commit ID>` to squash the changes
+into the earlier `<commit ID>`. This command fires up an interface similar to
+git add -p, which interactively presented me with hunks out of my working
+directory to choose from. I found the one I wanted, selected it, then dismissed
+the interactive thingy with a quick keystroke. And it was done!
 
 There are some hidden details in this story that I want to draw your attention
 to. When I edited this earlier commit, I was in the middle of working on
