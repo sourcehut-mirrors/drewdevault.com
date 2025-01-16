@@ -68,7 +68,7 @@ running for decades.
 I do not want to platform Jack Dorsey on this stage. To that end, I am
 organizing a sit-in, in which I and anyone who will join me are going to sit
 ourselves down on the Janson stage during his allocated time slot and peacefully
-prevent the talk from proceeding as scheduled. We will be meeting at 11:45 PM
+prevent the talk from proceeding as scheduled. We will be meeting at 11:45 AM
 outside of Janson, 15 minutes prior to Dorsey's scheduled time slot. Once the
 stage is free from the previous speaker, we will sit on the stage until 12:30
 PM. Bring a good book. If you want to help organize this sit-in, or just let me
