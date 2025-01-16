@@ -1,5 +1,5 @@
 ---
-title: No billionares at FOSDEM
+title: No billionaires at FOSDEM
 date: 2025-01-16
 ---
 
