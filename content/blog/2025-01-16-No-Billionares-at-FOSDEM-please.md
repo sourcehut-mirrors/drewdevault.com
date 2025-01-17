@@ -45,7 +45,7 @@ allegations on their way out, and announced a new bitcoin mining ASIC in
 collaboration with Core Scientific, who presumably installed them into [their
 new 100MW Muskogee, OK bitcoin mining installation][4], proudly served by the
 [Muskogee Generating Station][5] fossil fuel power plant and its [11 million
-tons][7] of annual CO<sup>2</sup> emissions and [an estimated 62 excess
+tons][7] of annual CO<sub>2</sub> emissions and [an estimated 62 excess
 deaths][6] in the local area due to pollution associated with the power plant.
 Nice.
 
