@@ -76,3 +76,7 @@ know that you intend to participate, please contact me via
 [email](mailto:sir@cmpwn.com); I'll set up a mailing list if there's enough
 interest in organizing things like printing out pamphlets to this effect, or
 even preparing an alternative talk to "schedule" in his slot.
+
+---
+
+[Follow-up: FOSDEM '25 protest](https://drewdevault.com/2025/01/20/2025-01-20-FOSDEM-protest.html)
