@@ -71,7 +71,7 @@ into Rust-for-Linux were applied to a new Linux-compatible OS we could have
 something production ready for some use-cases within a few years.
 
 Novel OS design is hard: projects like [Redox][2] are working on this, but it
-will take along time to bear fruit and research operating systems often have to
+will take a long time to bear fruit and research operating systems often have to
 go back to the drawing board and make major revisions over and over again before
 something useful and robust emerges. This is important work -- and near to my
 heart -- but it's not for everyone. However, making an OS which is based on a
