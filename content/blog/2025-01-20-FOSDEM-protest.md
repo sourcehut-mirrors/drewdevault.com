@@ -82,7 +82,7 @@ policy, $120M in fines for enabling consumer fraud, and the lay-offs of another
 enough of a threat to our community and its ethos to raise alarm at his
 participation in FOSDEM. We find this compelling enough to take action to
 prevent him and his colleagues from using FOSDEM's platform to present
-themselves as good actors in our community and sell us their new "AI agenitic
+themselves as good actors in our community and sell us their new "AI agentic
 framework".
 
 The open source community and FOSDEM itself would not exist without collective
