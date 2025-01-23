@@ -3,6 +3,8 @@ title: "FOSDEM '25 protest"
 date: 2025-01-20
 ---
 
+*Update: Dorsey's talk was cancelled! [See the update here](/2025/01/23/2025-01-23-Transparency-and-governance-FOSDEM.html).*
+
 [Last week][previous], I wrote to object to Jack Dorsey and his company, Block,
 Inc., being accepted as main track speakers at FOSDEM, and proposed a protest
 action in response. [FOSDEM issued a statement about our plans][statement] on

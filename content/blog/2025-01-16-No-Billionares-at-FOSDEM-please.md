@@ -3,6 +3,8 @@ title: No billionaires at FOSDEM
 date: 2025-01-16
 ---
 
+*Update: Dorsey's talk was cancelled! [See the update here](/2025/01/23/2025-01-23-Transparency-and-governance-FOSDEM.html).*
+
 Jack Dorsey, former CEO of Twitter, ousted board member of BlueSky, and grifter
 extraordinaire to the tune of a $5.6B net worth, is [giving a keynote at
 FOSDEM][0].
