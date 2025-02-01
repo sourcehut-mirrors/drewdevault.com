@@ -63,7 +63,7 @@ governance at FOSDEM.
 
 So, what's next?
 
-Let's do something useful with that now-empty time slot in Janson. Anyone who
+~~Let's do something useful with that now-empty time slot in Janson. Anyone who
 planned to attend the protest is encouraged to come anyway on Sunday at 12:00
 PM, where we're going to talk amongst ourselves and anyone else who shows up
 about what we want from FOSDEM in the future, and what a transparent and
@@ -71,9 +71,15 @@ participatory model of governance would look like. We would be thrilled if
 anyone on the FOSDEM staff wants to join the conversation as well, assuming
 their busy schedule permits. We'll prepare a summary of our discussion and our
 findings to submit to the staff and the FOSDEM community for consideration after
-the event.
+the event.~~
 
 Until then -- I'll see you there!
+
+**NOTICE**: The discussion session has been cancelled. After meeting with many
+of the protest volunteers and discussing the matter among the organizers, we
+have agreed that de-platforming Dorsey is mission success and improvising
+further action isn't worth the trouble. We'll be moving for reforms at FOSDEM
+after the event -- I'll keep you posted.
 
 ---
 
