@@ -81,7 +81,7 @@ that what you will.*[^marx]
 
 ---
 
-One way we can justify property rights by using them as a tool for managing
+One way we can justify property rights is by using them as a tool for managing
 *scarcity*. If demand for coffee exceeds the supply of coffee beans, a scarcity
 exists, meaning that not everyone who wants to have coffee gets to have some.
 But, we still want to enjoy scarce things. Perhaps someone who foregoes coffee
