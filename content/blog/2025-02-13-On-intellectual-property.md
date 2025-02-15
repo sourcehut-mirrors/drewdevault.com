@@ -28,10 +28,10 @@ if I took it from a fruit stand without permission. This act is called "theft"
 
 It is important to note that the very possibility that one could illicitly
 assume possession of an object is a strong indication that "property" is a
-social convention, rather than a natural law; one cannot defy the law of gravity
-in the same way as one can defy property. And, given that, we could try to
-imagine other social conventions to govern the use of *things* in a society. If
-we come up with an idea we like, and we're in a radical mood, we could even
+social convention, rather than a law of nature; one cannot defy the law of
+gravity in the same way as one can defy property. And, given that, we could try
+to imagine other social conventions to govern the use of *things* in a society.
+If we come up with an idea we like, and we're in a radical mood, we could even
 challenge the notion of property in society at large and seek to implement a
 different social convention.
 
@@ -40,9 +40,9 @@ has an "owner", or owners, to whom society confers certain rights with respect
 to the thing in question. That may include, for example, the right to use it, to
 destroy it, to exclude others from using it, to sell it, or give it away, and so
 on. Property is this special idea society uses to grant you the authority to use
-a bunch of verbs with respect to a thing. However, being a social convention
-rather than a natural law, nothing prevents me from using any of these verbs on
-something society does not recognize as my property, e.g. by
+a bunch of verbs with respect to a thing. However, being a social convention,
+nothing prevents me from using any of these verbs on something society does not
+recognize as my property, e.g. by
 <abbr title='"I have a bridge to sell you" is an English-language idiom that refers to selling something you do not own to a gullible person.'>
 selling you this bridge</abbr>. This is why the social convention must be
 **enforced**.
