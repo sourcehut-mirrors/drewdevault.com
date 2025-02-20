@@ -10,7 +10,7 @@ sources:
 triggers:
   - action: email
     condition: always
-    to: Drew DeVault <sir@cmpwn.com>
+    to: Drew DeVault <drew@ddevault.org>
 tasks:
 - openring: |
     cd openring
