@@ -12,7 +12,6 @@ layout: page
 
 - [Japanese learning resources](/japanese.html)
 - [Make a blog!](/make-a-blog.html) (defunct)
-- [List of random ideas](/ideas.html)
 - [New server checklist](/new-server.html)
 - [New sysadmin lecture](/new-sysadmin-lecture.html)
 - [Dynamic linking bad](/dynlib.html)
