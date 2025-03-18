@@ -34,12 +34,13 @@ salary.
 Now it's LLMs. If you think these crawlers respect robots.txt then you are
 several assumptions of good faith removed from reality. These bots crawl
 everything they can find, robots.txt be damned, including expensive endpoints
-like git blame, and they do so using random User-Agents that overlap with
-end-users and come from tens of thousands of IP addresses -- mostly residential,
-in unrelated subnets, each one making no more than one HTTP request over any
-time period we tried to measure -- actively and maliciously adapting and
-blending in with end-user traffic and avoiding attempts to characterize their
-behavior or block their traffic.
+like git blame, every page of every git log, and every commit in every repo, and
+they do so using random User-Agents that overlap with end-users and come from
+tens of thousands of IP addresses -- mostly residential, in unrelated subnets,
+each one making no more than one HTTP request over any time period we tried to
+measure -- actively and maliciously adapting and blending in with end-user
+traffic and avoiding attempts to characterize their behavior or block their
+traffic.
 
 We are experiencing dozens of brief outages per week, and I have to review our
 mitigations several times per day to keep that number from getting any higher.
