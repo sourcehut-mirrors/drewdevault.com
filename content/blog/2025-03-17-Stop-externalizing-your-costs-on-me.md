@@ -3,6 +3,9 @@ title: Please stop externalizing your costs directly into my face
 date: 2025-03-17
 ---
 
+*This blog post is expressing personal experiences and opinions and doesn't
+reflect any official policies of SourceHut.*
+
 Over the past few months, instead of working on our priorities at SourceHut, I
 have spent anywhere from 20-100% of my time in any given week mitigating
 hyper-aggressive LLM crawlers at scale. This isn't the first time SourceHut has
