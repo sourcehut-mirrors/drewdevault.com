@@ -19,20 +19,17 @@ tasks:
 - build: |
     cd drewdevault.com
     /usr/local/bin/openring \
-      -s https://emersion.fr/blog/rss.xml \
-      -s http://way-cooler.org/feed.xml \
       -s https://os.phil-opp.com/rss.xml \
-      -s https://blog.golang.org/feed.atom \
       -s https://aphyr.com/posts.atom \
       -s https://sourcehut.org/blog/index.xml \
       -s https://100r.co/links/rss.xml \
-      -s https://www.bitsaboutmoney.com/archive/rss/ \
       -s https://blog.brixit.nl/rss/ \
-      -s https://brr.fyi/feed.xml \
       -s https://bitfehler.srht.site/index.xml \
-      -s https://adnano.co/atom.xml \
       -s https://www.willowbarraco.fr:443/atom.xml \
       -s https://torresjrjr.com/archive/index.xml \
+      -s https://cadence.moe/blog/rss.xml?limit=30 \
+      -s https://harelang.org/blog//index.xml \
+      -s https://vladh.net/index.xml \
       < webring-in.template \
       > layouts/partials/webring-out.html
     hugo
