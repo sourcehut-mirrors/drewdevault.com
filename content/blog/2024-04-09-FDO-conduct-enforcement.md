@@ -29,8 +29,8 @@ I invite you to start by reading the two email threads, [one][1], and [two][2],
 which Vaxry has published for your consideration, as well as Vaxry's follow-ups
 on his blog, [one][3], and [two][4].
 
-[1]: https://blog.vaxry.net/resource/articleFDO/LyudeMails.pdf
-[2]: https://blog.vaxry.net/resource/articleFDO/lyudeReply.pdf
+[1]: https://web.archive.org/web/20250306212807/https://blog.vaxry.net/resource/articleFDO/RHMails.pdf
+[2]: https://web.archive.org/web/20240412194128/https://blog.vaxry.net/resource/articleFDO/lyudeReply.pdf
 [3]: https://blog.vaxry.net/articles/2024-fdo-and-redhat
 [4]: https://blog.vaxry.net/articles/2024-fdo-and-redhat2
 
