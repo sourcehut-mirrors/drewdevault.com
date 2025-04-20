@@ -37,7 +37,7 @@ dangerous applications of tech hegemony to fascism. Allow me to introduce public
 enemy number one: Palantir. Under the direction of neo-fascist Peter Thiel and
 in collaboration with <abbr title="Immigrations and Customs Enforcement">ICE</abbr>,
 Palantir is applying the innovations of the last few decades of surveillance
-capitalism to implementing [a database of undesirables][ice database] the Nazis
+capitalism to implementing a [database of undesirables][ice database] the Nazis
 could have never dreamed of. Where DOGE is hilariously tragic, Palantir is
 nightmarishly effective.
 
