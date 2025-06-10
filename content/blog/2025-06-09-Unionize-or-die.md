@@ -446,5 +446,7 @@ General:
 * [AFL-CIO](https://aflcio.org/formaunion) (US)
 * [workcenter.gov](https://www.workcenter.gov/step-by-step-guide/) (US)
 * [generalstrikeus.com] (US)
+* [Emergency Workplace Organizing Committee](https://workerorganizing.org/) (US)
+* [Organize Now!](https://www.organisenow.org.uk/) (UK)
 
 [Send me more](mailto:drew@ddevault.org) resources to add here!
