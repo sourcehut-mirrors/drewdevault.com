@@ -448,5 +448,6 @@ General:
 * [generalstrikeus.com] (US)
 * [Emergency Workplace Organizing Committee](https://workerorganizing.org/) (US)
 * [Organize Now!](https://www.organisenow.org.uk/) (UK)
+* [Industrial Workers of the World](https://www.iww.org/) (Global)
 
 [Send me more](mailto:drew@ddevault.org) resources to add here!
