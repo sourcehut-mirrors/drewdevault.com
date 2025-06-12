@@ -435,19 +435,21 @@ We can do it, together.
 Tech-specific:
 
 * [unitelabor.dev](https://unitelabor.dev) (new)
-* [CODE-CWA] (US)
 * [Tech Workers Coalition](https://techworkerscoalition.org/) (Global)
+* [CODE-CWA] (US)
 * [UTAW](https://utaw.tech/) (UK)
 * [Prospect](https://prospect.org.uk/tech-workers/) (UK)
 * [Alphabet Workers Union](https://www.alphabetworkersunion.org/) (Google)
 
 General:
 
+* [Industrial Workers of the World](https://www.iww.org/) (Global)
+* [International Confederation of Labor](https://www.iclcit.org/) (Global)
 * [AFL-CIO](https://aflcio.org/formaunion) (US)
 * [workcenter.gov](https://www.workcenter.gov/step-by-step-guide/) (US)
 * [generalstrikeus.com] (US)
 * [Emergency Workplace Organizing Committee](https://workerorganizing.org/) (US)
+* [Labor Notes](https://www.labornotes.org/) (US)
 * [Organize Now!](https://www.organisenow.org.uk/) (UK)
-* [Industrial Workers of the World](https://www.iww.org/) (Global)
 
 [Send me more](mailto:drew@ddevault.org) resources to add here!
