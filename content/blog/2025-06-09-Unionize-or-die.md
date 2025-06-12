@@ -5,10 +5,10 @@ date: 2025-06-09
 
 Tech workers have long resisted the suggestion that we should be organized into
 unions. The topic is consistently met with a cold reception by tech workers when
-it is raised, and no big tech labor is meaningful organized. This is a fatal
-mistake -- and I don't mean "fatal" in the figurative sense. Tech workers, it's
-time for you to unionize, and strike, or you and your loved ones are literally
-going to die.
+it is raised, and no big tech workforce is meaningfully organized. This is a
+fatal mistake -- and I don't mean "fatal" in the figurative sense. Tech workers,
+it's time for you to unionize, and strike, or you and your loved ones are
+literally going to die.
 
 In this article I will justify this statement and show that it is clearly not
 hyperbolic. I will explain exactly what you need to do, and how organized labor
