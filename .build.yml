@@ -3,22 +3,18 @@ packages:
   - go
   - hugo
   - hut
+  - openring
 oauth: pages.sr.ht/PAGES:RW
 sources:
   - https://git.sr.ht/~sircmpwn/drewdevault.com
-  - https://git.sr.ht/~sircmpwn/openring
 triggers:
   - action: email
     condition: always
     to: Drew DeVault <drew@ddevault.org>
 tasks:
-- openring: |
-    cd openring
-    go build -o openring
-    sudo cp openring /usr/local/bin/
 - build: |
     cd drewdevault.com
-    /usr/local/bin/openring \
+    openring \
       -s https://os.phil-opp.com/rss.xml \
       -s https://aphyr.com/posts.atom \
       -s https://sourcehut.org/blog/index.xml \
