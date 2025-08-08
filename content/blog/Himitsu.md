@@ -16,7 +16,7 @@ distributions] hopefully on the way soon.
 So, what is Himitsu and what makes it special? The following video introduces
 the essential concepts and gives you an idea of what's possible:
 
-<iframe title="Introduction to the Himitsu secret key store" src="https://spacepub.space/videos/embed/5f9e5407-64a6-4776-9175-de744f2e7bc4" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups" width="560" height="315" frameborder="0"></iframe>
+<video src="https://himitsustore.org/intro.mp4" controls></video>
 
 If you prefer reading to watching, this blog post includes everything that's in
 the video.
