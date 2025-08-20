@@ -110,7 +110,7 @@ implement a standard library which is only somewhat compatible with Wren CLI.
 [hare-ev]: https://sr.ht/~sircmpwn/hare-ev
 [Wren CLI]: https://wren.io/cli/
 
-In addition to the async runtime, Hare's wren::api runtime provides some basic
+On top of the async runtime, Hare's wren::api runtime provides some basic
 features for reading and writing files, querying the process arguments and
 environment, etc. It's not much but it is, perhaps, an interesting place to
 begin building out something a bit more interesting. A simple module loader is
