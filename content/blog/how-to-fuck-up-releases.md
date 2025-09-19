@@ -14,7 +14,7 @@ At first, I did everything manually. This is fine enough for stuff with simple
 release processes - stuff that basically amounts to tagging a commit, pushing
 it, and calling it a day. But even this gets tedious, and I'd often make a
 mistake when picking the correct version number. So, I wrote a small script:
-[semver](https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/semver). `semver
+[semver](https://paste.sr.ht/~sircmpwn/34bd575b4c37ae6102d6ede2a4ba17b2e1bb9cf8). `semver
 patch` bumps the patch version, `semver minor` bumps the minor version, and
 `semver major` bumps the major version, based on semantic versioning. I got into
 the habit of using this script instead of making the tags manually. The next
@@ -67,7 +67,7 @@ the script to `git pull` first...
 
 I am doomed to creatively outsmart my tools in releases. If you'd like to save
 yourself from some of the mistakes I've made, you can [find my semver script
-here](https://git.sr.ht/~sircmpwn/dotfiles/tree/master/bin/semver).
+here](https://paste.sr.ht/~sircmpwn/34bd575b4c37ae6102d6ede2a4ba17b2e1bb9cf8).
 
 [^1]: Each of these `_incr_version` scripts proved to have many bugs of their own, of course.
 [^2]: Eli Schwartz of Arch Linux also sent a patch to Busybox which made their gzip implementation consistent with GNU's.
