@@ -75,7 +75,7 @@ DHH, who is well known as a rich [fascist][dhh fascist 1] [weirdo][dhh fascist
 2].[^2] One need only consult [his blog][6] to browse his [weird, racist views
 on immigration][7], [fat-shaming objections to diverse representation][8],
 [vaguely anti-feminist/homophobic/rapey rants on consent][9], and, recently,
-[tone-policing antifascists][9] who celebrate the death of notable fascist
+[tone-policing antifascists][10] who celebrate the death of notable fascist
 Charlie Kirk.
 
 [dhh fascist 1]: https://davidcel.is/articles/rails-needs-new-governance
