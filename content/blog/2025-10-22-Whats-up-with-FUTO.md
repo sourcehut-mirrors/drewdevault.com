@@ -153,7 +153,7 @@ interview published on
 [PeerTube](https://peertube.futo.org/w/eSzKtjupL928QzxPXC5k2R) and
 [Odysee](https://odysee.com/@FUTO:e/curtisyarvin:2), the latter a platform
 controversial for its role in spreading hate speech and
-disinformation.[^odysee hate speech] Yarvin [also appeared on stage][rossmann
+misinformation.[^odysee hate speech] Yarvin [also appeared on stage][rossmann
 moldbug] to "debate" Louis Rossmann in June 2022, in which Yarvin is permitted
 to speak at length with minimal interruptions or rebuttals to argue for an
 authoritarian techno-monarchy to replace democracy.
