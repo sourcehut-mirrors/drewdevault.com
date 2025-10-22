@@ -140,7 +140,7 @@ January 2025:
 
 Vice President Vance and numerous other figures in the American right have cited
 Yarvin as a friend and source of inspiration in shaping policy.[^yarvin policy]
-Among his many political positions, Yarvin has has proclaimed that black people
+Among his many political positions, Yarvin has proclaimed that black people
 are genetically predisposed to a lower IQ than white people, and moreover
 suggests that black people are inherently suitable for
 enslavement.[^yarvin slavery]
