@@ -66,13 +66,13 @@ about it.
 So I asked Rich Felker, the maintainer of [musl libc], about the FUTO grant, and
 **he didn't know anything about it**. Rich and I spoke about this for a while
 and eventually Rich uncovered a transaction in his [GitHub sponsors][felker
-sponsors] account from FUTO: a one-time donation of $1,000. This donation
-circumvents musl's established process for donations from institutional sponsors
-The donation page that FUTO used includes this explanation: "This offer is for
-individuals, and may be available to small organizations on request. Commercial
-entities wishing to be listed as sponsors should inquire by email." It's pretty
-clear that there are special instructions for institutional donors who wish to
-receive musl's endorsement as thanks for their contribution.
+sponsors] account from FUTO: a one-time donation of $1,000. This payment
+circumvents musl's established process for donations from institutional
+sponsors. The donation page that FUTO used includes this explanation: "This
+offer is for individuals, and may be available to small organizations on
+request. Commercial entities wishing to be listed as sponsors should inquire by
+email." It's pretty clear that there are special instructions for institutional
+donors who wish to receive musl's endorsement as thanks for their contribution.
 
 The extent of the FUTO "grant program", at least in the case of musl libc,
 involved ignoring musl's established process for institutional sponsors, quietly
