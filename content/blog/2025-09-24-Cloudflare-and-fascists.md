@@ -152,15 +152,15 @@ Here's another one -- Kling endorsing white replacement theory in June:
     Trump for classifying antifascists as terrorists.
 
 And in a moment of poetic irony, a few days ago Kling [spoke in
-solidarity][dhh-kling] with DHH over his "persecution" for "banal, mainstream
-positions" on Twitter just a few days ago, in response to DHH's tweet
+solidarity][dhh-kling] with Hansson over his "persecution" for "banal, mainstream
+positions" on Twitter just a few days ago, in response to Hansson's tweet
 signal-boosting another [notable reactionary tech fascist][lunduke], Bryan
 Lunduke.
 
 [dhh-kling]: https://nitter.net/awesomekling/status/1969350008538370216
 
-So, to sum it up, Kling wears his mask a bit better than DHH, but as far as I'm
-concerned it seems clear that both projects are run by fascists. If it walks
+So, to sum it up, Kling wears his mask a bit better than Hansson, but as far as
+I'm concerned it seems clear that both projects are run by fascists. If it walks
 like a fascist and quacks like a fascist... then why is Cloudflare giving them
 hundreds of thousands of dollars?
 
