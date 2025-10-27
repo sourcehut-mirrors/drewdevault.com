@@ -105,6 +105,8 @@ list so presumably the M.O. is the same. This is also the case for
 [KiCad](https://www.kicad.org/sponsors/sponsors/). GrapheneOS is listed
 prominently as well, but [that doesn't seem to have worked
 out very well for them](https://grapheneos.social/@GrapheneOS/113443396794247106).
+Presumably ffmpeg received a similar quiet donation from FUTO, rather than
+something more easily recognizable as a grant.
 
 So, it seems like FUTO is doing some shady stuff and putting a bunch of notable
 FOSS projects on their home page without good reason to justify their
@@ -202,3 +204,71 @@ proudly displayed [on the front page](https://futo.org) of a fascist-adjacent,
 washed-up millionaire's scummy vanity company, and you don't like that, maybe
 you should ask them to knock it off? Eron, Louis -- you know that a lot of these
 logos are trademarked, right?
+
+---
+
+*Updated 2025-10-27*:
+
+The FUTO website has been updated to clarify the nature of grants versus
+donations ([before], [after]) and to reduce the appearance of endorsements from
+the donation recipients -- the site is much better after this change.
+
+[before]: https://web.archive.org/web/20251022223705/https://www.futo.org/
+[after]: https://futo.org
+
+I spoke to a representative who spoke for the FUTO leadership, and shared
+positive feedback regarding the changes to the website. I also asked for a
+follow-up on the matter of platforming fascist activist Curtis Yarvin on their
+social media channels, and I was provided this official response:
+
+> We prefer to spend our time building great software for people to use, funding
+> interesting projects, and making FUTO better every day. We have no interest in
+> engaging in politics as this is a distraction from our work. We'd like to move
+> past this. We don't have any further comment that that.
+
+I understand the view that distancing oneself from politics can be a productive
+approach to your work, and the work FUTO does funding great software like Immich
+is indeed important work that should be conducted relatively free of
+distractions. However, FUTO is a fundamentally political organization and it
+does not distance itself from politics. Consider for example the [FUTO
+statement on Open Source][1], which takes several political positions:
+
+* Disapproval of the Open Source Initiative and their legitimacy as an authority
+* Disapproval of OSI's proposed AI standards
+* Disapproval of the "tech oligopoly"
+* Advocacy for an "open source" which is inclusive of restrictions on commercial use
+* Support for Eric S. Raymond's side in his conflict with OSI
+* Tacit support for Bryan Lunduke
+
+A truer "apolitical" approach would accept the mainstream definition of open
+source, would not take positions on conflicts with OSI or Eric Raymond, and
+would be careful not to cite (or [platform][lunduke platform]) controversial
+figures such as Lunduke.
+
+[lunduke platform]: https://www.youtube.com/watch?v=6RU7FZpd_K0
+
+It is difficult for FUTO's work to be apolitical at all. Importantly, there are
+biases in their grants and donations: their selections have a tendency
+to privilege projects focused on privacy, decentralization, multimedia,
+communication, and right to repair, all of which suggest the political
+priorities of FUTO. The choice to fund "source first" software in addition to
+open source, or not to fund outright closed source software, or not to vet
+projects based on their community moderation, are also political factors in
+their process of selecting funding recipients, or at least are seemingly
+apolitical decisions which ultimately have political consequences.
+
+This brings us to the political nature of the choice to platform Curtis Yarvin.
+Yarvin is a self-proclaimed fascist who argues openly for fascist politics.
+Platforming Yarvin on the FUTO channels legitimizes Yarvin's ideas and his work,
+and provides curious listeners a funnel that leads to Yarvin's more radical
+ideas and into a far-right rabbit-hole. Platforming Yarvin advances the fascist
+political program.
+
+It should go without saying that it is political to support fascism or
+fascists. There is an outrageous moral, intellectual, and political
+contradiction in claiming that it is apolitical to promote a person whose
+political program is to dismantle democracy and eject people he disagrees with
+from the political sphere entirely. FUTO should reflect on their values,
+acknowledge the political nature of their work, and consider the ways in which
+their work intersects with politics writ large, then make decisions that align
+their political actions with their political beliefs.
