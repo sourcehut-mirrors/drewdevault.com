@@ -97,7 +97,7 @@ verified it on much more real-world hardware. I have about ten devices which all
 (consistently!) pass the Hermes test suite. Feel free to [try it out on
 yours][iso] as well and let me know how it goes!
 
-[iso]: https://redacted.moe/d/69a8581c.iso
+[iso]: https://redacted.moe/dl/69a8581c.iso
 
 That's all there is to say for now, but I hope to keep you in the loop as I
 continue working on this for a while. The userspace is starting to take shape
