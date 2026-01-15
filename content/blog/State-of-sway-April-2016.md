@@ -42,7 +42,7 @@ synced between computers.
 
 Today, sway looks like this:
 
-[![](https://sr.ht/me1j.png)](https://sr.ht/me1j.png)
+[![](/l.sr.ht/me1j.png)](/l.sr.ht/me1j.png)
 
 We're now making our way towards Sway 1.0. I have put together a roadmap of the
 things we have done and the things that remain to do for Sway 1.0, which is
@@ -51,7 +51,7 @@ still now moving forward on many of these features, including the most asked for
 feature: the stacked & tabbed window layouts, which is under development from
 Mikkel Oscar Lyderik. He's given me this screenshot to tease you with:
 
-![](https://sr.ht/0CkR.png)
+![](/l.sr.ht/0CkR.png)
 
 All of this is only possible thanks to the hard work of dozens of contributors.
 Here's the breakdown of **lines of code per author** for the top ten authors

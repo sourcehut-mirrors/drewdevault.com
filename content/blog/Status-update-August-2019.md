@@ -24,7 +24,7 @@ main project repo or browse the git data on the web. I'll be posting more sr.ht
 news to sr.ht-announce later today if you want to hear more!
 
 ![Screenshot of a failed build on builds.sr.ht offering SSH access to the build
-environment](https://sr.ht/thL-.png)
+environment](/l.sr.ht/thL-.png)
 
 [aerc 0.2.0](https://git.sr.ht/~sircmpwn/aerc/refs/0.2.0) has been released,
 which included nearly 200 changes from 34 contributors. I'm grateful to the
@@ -49,7 +49,7 @@ well to a cool project from the Sway community: Jason Francis's
 configuring displays on wlroots-based desktops. The changes necessary for it to
 work will land in sway 1.2, and users building from git can try it out today.
 
-![](https://sr.ht/iyU4.png)
+![](/l.sr.ht/iyU4.png)
 
 On the DRM leasing and VR for Wayland work I was discussing in the last update,
 I'm happy to share that I've got it working with SteamVR! I've written a

@@ -26,7 +26,7 @@ start improving touch support, and I've accomplished both:
 
 [^1]: A Purism employee that works closely with wlroots on the Librem 5
 
-![A picture of a Librem5 devkit running pmOS and sway](https://sr.ht/fGxf.jpg)
+![A picture of a Librem5 devkit running pmOS and sway](/l.sr.ht/fGxf.jpg)
 
 As you can see, I also got [postmarketOS](https://postmarketos.org/) running,
 and I love it - I hope to work with them a lot in the future. The [first
@@ -52,7 +52,7 @@ compositor running on Godot:
 [rdp]: https://github.com/swaywm/wlroots/pull/1578
 
 <video
-  src="https://sr.ht/9bV-.webm"
+  src="/l.sr.ht/9bV-.webm"
   autoplay muted loop controls
   style="max-width: 100%;"
 ></video>
@@ -91,7 +91,7 @@ ready for builds.sr.ht users to take advantage of - that relay is for cutting
 power to the board to force a reboot when it misbehaves - but a lot of this is
 also useful for my own purposes in porting musl & Alpine Linux.
 
-![Picture of a 1U chassis with a bunch of custom components within](https://sr.ht/M7me.jpg)
+![Picture of a 1U chassis with a bunch of custom components within](/l.sr.ht/M7me.jpg)
 
 One problem I'm still trying to solve is the microSD card. I don't want to run
 untrusted builds.sr.ht code when that microSD card is plugged in. I've been

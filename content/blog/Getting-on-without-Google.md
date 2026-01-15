@@ -6,7 +6,7 @@ title: Getting on without Google
 tags: [google]
 ---
 
-![](https://sr.ht/d718.png)
+![](/l.sr.ht/d718.png)
 
 I used Google for a long time, but have waned myself off of it over the past
 few years, and I finally deleted my account a little over a month ago. I feel so
@@ -73,7 +73,7 @@ this type of self-hosted music service.
 aren't up to snuff (you get used to just being a bit more specific anyway), the
 bangs feature is absolutely indispensable. I recently patched Chromium for
 Android to support DuckDuckGo as a search engine as well:
-[here's the patch](https://sr.ht/h4bZ.patch).
+[here's the patch](/l.sr.ht/h4bZ.patch).
 
 ## File hosting
 

@@ -18,7 +18,7 @@ library](https://git.sr.ht/~emersion/python-emailthreads) Simon Ser wrote for
 me... almost a year ago... I'm able to take a thread of emails discussing a
 patch and organically convert them into inline feedback on the web.
 
-[![](https://sr.ht/sjtE.png)](https://lists.sr.ht/~philmd/qemu/patches/5556)
+[![](/l.sr.ht/sjtE.png)](https://lists.sr.ht/~philmd/qemu/patches/5556)
 
 <small style="display: block; text-align: center;">
   Click the screenshot to visit this page on the web

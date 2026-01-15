@@ -17,7 +17,7 @@ it is on my dining room table:
 [hifiveu]: https://www.sifive.com/boards/hifive-unleashed
 [riscv]: https://en.wikipedia.org/wiki/RISC-V
 
-![](https://sr.ht/JMao.jpg)
+![](/l.sr.ht/JMao.jpg)
 
 This board is *cool*. I'm working on making this hardware available to
 [builds.sr.ht][srht] users in the next few months, where I intend to use it to

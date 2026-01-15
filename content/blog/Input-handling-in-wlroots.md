@@ -74,11 +74,11 @@ We provide the [`wlr_pointer`][wlr_pointer] abstraction for getting events from
 a "pointer" device, like a mouse. However, because batteries are not included,
 you will find that we only tell you what the pointer device is doing - we don't
 act on it. If you want to, for example, display a cursor image <img
-src="https://sr.ht/hf39.png" style="display: inline; margin: 0; padding: 0;" />
+src="/l.sr.ht/hf39.png" style="display: inline; margin: 0; padding: 0;" />
 on screen which moves around when the mouse does, you need to wire this up
 yourself. We have tools which can help.
 
-[cur]: https://sr.ht/hf39.png
+[cur]: /l.sr.ht/hf39.png
 [wlr_pointer]: https://github.com/swaywm/wlroots/blob/4984ea49eeaa292d66be9e535d93a4d8185f3e18/include/wlr/types/wlr_pointer.h
 
 First, let's talk about getting the cursor image to show. You can source the

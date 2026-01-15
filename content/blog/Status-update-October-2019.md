@@ -18,7 +18,7 @@ at home, working on free and open source software.
 I have a video to share today, of a workflow on git.sr.ht that I'm very excited
 about: sending patchsets as emails from the web.
 
-<video src="https://sr.ht/_fUk.webm" controls muted>
+<video src="/l.sr.ht/_fUk.webm" controls muted>
   Your web browser does not support the webm video codec. Please consider using
   web browsers that support free and open standards.
 </video>
@@ -53,7 +53,7 @@ Wrapping up Sourcehut news, I'll leave you with an out-of-context screenshot of
 a mockup I made this month:
 
 [![Screenshot of a Sourcehut DNS service showing DNS records managed by zone
-files in a git repository](https://sr.ht/_yhw.png)](https://sr.ht/_yhw.png)
+files in a git repository](/l.sr.ht/_yhw.png)](/l.sr.ht/_yhw.png)
 
 Let's move on to Wayland news. We've started the planning for the next sway
 release, and it's shaping up to be really cool. We expect to ship patches which

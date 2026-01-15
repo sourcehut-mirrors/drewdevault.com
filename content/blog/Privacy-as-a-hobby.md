@@ -81,7 +81,7 @@ companies won't even try[^10] to keep your data secret even when they aren't
 legally compelled to. I like this image from Maciej Cegłowski's excellent
 talk[^11] on website obesity about the state of most websites:
 
-![](https://sr.ht/ks75.jpg)
+![](/l.sr.ht/ks75.jpg)
 
 When you give all of this information to Google, Facebook, and others, you're
 basically waiving your fifth amendment[^12] rights.

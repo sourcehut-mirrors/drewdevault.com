@@ -12,7 +12,7 @@ links and markdown. The end result looks something like this:
 
 **NOTICE**: Annotations were ultimately removed from sourcehut.
 
-![](https://sr.ht/w767.png)
+![](/l.sr.ht/w767.png)
 
 <small class="text-muted">
   <a href="https://sourcehut.org">SourceHut</a> is the "hacker's forge", a

@@ -227,7 +227,7 @@ $ WAYLAND_DISPLAY=wayland-1 gnome-terminal -- htop
 
 To see the following beautiful image:
 
-![](https://sr.ht/y_qN.png)
+![](/l.sr.ht/y_qN.png)
 
 Run any other clients you like - many of them will work!
 

@@ -66,18 +66,18 @@ users come away from this happy, and on IRC they're in the minority.
 Some IRC clients (Matrix) have this feature today, but most Matrix users don't
 realize what a nuisance they're being on the chat. Here's what they see:
 
-![](https://sr.ht/VOeY.png)
+![](/l.sr.ht/VOeY.png)
 
 And here's what I see:
 
-![](https://sr.ht/HZ7Z.png)
+![](/l.sr.ht/HZ7Z.png)
 
 Conservative improvements built on top of existing IRC norms, such as [The
 Lounge](https://thelounge.chat/), are much better. Most people post images on
 IRC as URLs, which clients can do a quick HEAD request against and embed if the
 mimetype is appropriate:
 
-![](https://sr.ht/9RsR.png)
+![](/l.sr.ht/9RsR.png)
 
 [^3]: Text user interface
 [^4]: IRC is over 30 years old and has barely changed since - so using unmaintained or barely-maintained clients is not entirely uncommon nor wrong.

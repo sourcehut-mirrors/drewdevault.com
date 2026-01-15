@@ -13,7 +13,7 @@ home here in Philadelphia. At least until I leave for
 some rest... throughout all of these wild travels, I've been hard at work on my
 free software projects. Let's get started with this month's status update!
 
-![](https://sr.ht/iuDE.jpg)
+![](/l.sr.ht/iuDE.jpg)
 
 <p style="text-align: center">
   <small>Great view from a hike on O'ahu</small>
@@ -35,7 +35,7 @@ same improvements are already helping with the development of other software.
 [wlr changelog]: https://github.com/swaywm/wlroots/releases/tag/0.7.0
 [mate panel]: https://github.com/mate-desktop/mate-panel/pull/991
 
-[![Screenshot of MATE panel running on sway](https://sr.ht/9Oro.png)](https://sr.ht/9Oro.png)
+[![Screenshot of MATE panel running on sway](/l.sr.ht/9Oro.png)](/l.sr.ht/9Oro.png)
 
 <p style="text-align: center">
   <small>Rest assured, the weird alignment issues were fixed</small>
@@ -64,7 +64,7 @@ afternoon project (or weekend, for some utilities), how about picking up your
 favorite [POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/) tool and
 sending along an implementation?
 
-[![Screenshot of ctools test suite](https://sr.ht/DSxS.png)](https://builds.sr.ht/~sircmpwn/job/88955)
+[![Screenshot of ctools test suite](/l.sr.ht/DSxS.png)](https://builds.sr.ht/~sircmpwn/job/88955)
 
 [ctools]: https://git.sr.ht/~sircmpwn/ctools
 
@@ -90,7 +90,7 @@ from work... though for me a "day off" is a day where I write less than 1,000
 lines of code. Thank you again for your support - it means the world to me. I'll
 see you next month!
 
-![](https://sr.ht/1cuE.jpg)
+![](/l.sr.ht/1cuE.jpg)
 
 <p style="text-align: center">
   <small>Had the best seats at a concert in Tokyo!</small>

@@ -24,7 +24,7 @@ reference, here are similar pages on [GitHub][github-blob] and
 [github-blob]: https://github.com/torvalds/linux/blob/master/init/main.c
 [gitlab-blob]: https://gitlab.freedesktop.org/libinput/libinput/blob/master/src/evdev.c
 
-[![Screenshot of git.sr.ht](https://sr.ht/kkJm.png)][gitsrht-blob]
+[![Screenshot of git.sr.ht](/l.sr.ht/kkJm.png)][gitsrht-blob]
 
 <style>
 img {
@@ -61,7 +61,7 @@ deleting things.  Each button also is unambiguous and relies on the text within
 itself rather than the text nearby: the git.sr.ht repository deletion page uses
 "Delete $reponame", rather than "Continue".
 
-![Screenshot of repo deletion UI](https://sr.ht/d6Vx.png)
+![Screenshot of repo deletion UI](/l.sr.ht/d6Vx.png)
 
 The last important point in sourcehut's design is the use of icons, or rather
 the lack thereof. Icons are used extremely conservatively on sr.ht. Interactive

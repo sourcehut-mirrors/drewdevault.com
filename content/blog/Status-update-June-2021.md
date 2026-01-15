@@ -6,7 +6,7 @@ date: 2021-06-15
 Hiya! Got another status update for you. First, let me share this picture that
 my dad and I took on our recent astronomy trip (click for full res):
 
-[![A long-exposure picture of the night sky. Thousands of stars are visible, as well as the band of the milky way.](https://l.sr.ht/o750.jpg)](https://redacted.moe/f/a3b37775.jpg)
+[![A long-exposure picture of the night sky. Thousands of stars are visible, as well as the band of the milky way.](/l.sr.ht/o750.jpg)](/l.sr.ht/o750.jpg)
 
 Bonus Venus:
 

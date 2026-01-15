@@ -18,7 +18,7 @@ authors across 2,263 commits. These were written through 653 pull requests and
 much every distribution except for Debian derivatives, and a PPA is available
 for those guys.
 
-[![](https://sr.ht/ICd5.png)](https://sr.ht/ICd5.png)
+[![](/l.sr.ht/ICd5.png)](/l.sr.ht/ICd5.png)
 
 For those who are new to the project, [Sway](http://swaywm.org) is an
 i3-compatible Wayland compositor. That is, your existing [i3](http://i3wm.org/)

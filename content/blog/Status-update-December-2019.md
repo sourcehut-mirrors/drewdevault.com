@@ -36,7 +36,7 @@ the billing system as well. All of these should address some inconveniences
 which have been frustrating users for a while now. As for names.sr.ht, let's
 just share another teaser screenshot:
 
-[![Screenshot of domain contact management on names.sr.ht](https://sr.ht/LLkW.png)](https://sr.ht/LLkW.png)
+[![Screenshot of domain contact management on names.sr.ht](/l.sr.ht/LLkW.png)](/l.sr.ht/LLkW.png)
 
 I also received my [PinePhone](https://www.pine64.org/pinephone/) this week, and
 I've been terribly excited to work on it. I've already sent a few patches to

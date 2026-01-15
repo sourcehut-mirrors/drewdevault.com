@@ -32,10 +32,7 @@ This is a Javascript project that can:
 * Decode the osu! beatmap format
 * Play the map!
 
-In case you don't have any osz files hanging around, try out [this
-one](https://sr.ht/f30.osz), which is the one from the video above.
-
-![](https://sr.ht/044.png)
+![](/l.sr.ht/044.png)
 
 ## osu!web and the future
 
@@ -71,7 +68,7 @@ archive we have several things:
 * Assets - a background image and optionally a skin (like a Minecraft texture
     pack)
 
-![](https://sr.ht/ce6.png)
+![](/l.sr.ht/ce6.png)
 
 We then load the *.osu files and decode them. They look similar to ini files or
 Unix config files. Here's a snippet:
@@ -113,7 +110,7 @@ I sneakily loaded a beatmap in the background in your browser as you were
 reading. If you want to check it out, open up your console and play with the
 `track` object. Ignore all the disqus errors, they're irrelevant.
 
-![](https://sr.ht/a81.png)
+![](/l.sr.ht/a81.png)
 
 ## Enter stage: Web Audio
 
@@ -273,7 +270,7 @@ this.updateHitCircle = function(hit, time) {
 I've left out sliders, which again are pretty complicated. We'll get to them
 after you look at this screenshot again:
 
-![](https://sr.ht/044.png)
+![](/l.sr.ht/044.png)
 
 All of these hit objects are having their alpha and approach circle scale
 adjusted each frame by the above method. Since we're basing this on the
@@ -286,7 +283,7 @@ The hardest thing so far has been rendering sliders, which are hit objects that
 you're meant to click and hold as you move across the "slider". They look like
 this:
 
-![](https://sr.ht/c97.png)
+![](/l.sr.ht/c97.png)
 
 The golden circle is the area you need to keep your mouse in if you want to pass
 this slider. Sliders are defined as a series of curves. There are a few kinds:
@@ -302,7 +299,7 @@ now-deprecated "peppysliders" method, where the sprite is repeated along the
 curve several times. If you look carefully as a slider fades out, you can notice
 that this is the case.
 
-![](https://sr.ht/787.png)
+![](/l.sr.ht/787.png)
 
 The newer style of sliders involves rendering them with a custom shader. This
 should be possible with PIXI, but I haven't done any research on them yet.

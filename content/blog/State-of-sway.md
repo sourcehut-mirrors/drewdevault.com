@@ -21,7 +21,7 @@ authors across 2,067 commits. These were written through 589 pull requests and
 425 issues. Sway packages are available today in the official repos of Arch,
 Gentoo, Fedora, NixOS, openSUSE, Void Linux, and more. Sway looks like this:
 
-[![](https://sr.ht/ICd5.png)](https://sr.ht/ICd5.png)
+[![](/l.sr.ht/ICd5.png)](/l.sr.ht/ICd5.png)
 
 Side note: please add pretty screenshots of sway to [this wiki
 page](https://github.com/SirCmpwn/sway/wiki/Screenshots-of-Sway). Thanks!

@@ -17,7 +17,7 @@ authors across 2,345 commits. These were written through 689 pull requests and
 624 issues. Sway packages are available today in the repos of almost every Linux
 distribution.
 
-[![](https://sr.ht/ICd5.png)](https://sr.ht/ICd5.png)
+[![](/l.sr.ht/ICd5.png)](/l.sr.ht/ICd5.png)
 
 For those who are new to the project, [Sway](http://swaywm.org) is an
 i3-compatible Wayland compositor. That is, your existing [i3](http://i3wm.org/)

@@ -21,7 +21,7 @@ The next time your build fails on builds.sr.ht, you'll probably notice the
 following message:
 
 ![Screenshot of builds.sr.ht showing a prompt to SSH into the failed build
-VM and examine it](https://sr.ht/thL-.png)
+VM and examine it](/l.sr.ht/thL-.png)
 
 After the build fails, we process everything normally - sending emails,
 webhooks, and so on - but keep the VM booted for an additional 10 minutes. If

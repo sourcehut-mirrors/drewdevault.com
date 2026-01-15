@@ -87,7 +87,7 @@ kernel without support for loadable modules (on par with the static linking them
 of agunix). If you make your own Linux distribution you will probably have to
 figure out modules yourself, likely implicating something like eudev.
 Eventually, I was able to get agunix [running on my
-laptop](https://sr.ht/OzCq.jpg), which has now become my primary agunix dev
+laptop](/l.sr.ht/OzCq.jpg), which has now become my primary agunix dev
 machine (often via SSH from my dev desktop).
 
 The next stage for me was getting agunix.org up and running on agunix. I

@@ -23,7 +23,7 @@ roff), and to a lesser extent also fails criteria #2[^1]. Another option,
 written in Ruby and fails #2. All of these are fine for the niches they fill,
 but not what I'm looking for. And as for GNU info... ugh.
 
-[![](https://sr.ht/nemf.png)](https://xkcd.com/912/)
+[![](/l.sr.ht/nemf.png)](https://xkcd.com/912/)
 
 So, after tolerating less-than-optimal tools for too long, I eventually wrote
 the man page generator I'd been promising for years:

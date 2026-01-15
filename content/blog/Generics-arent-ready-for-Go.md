@@ -82,7 +82,7 @@ perfect solution to every problem.  This is impossible, and attempts will just
 create a messy kitchen sink that solves every problem poorly.
 
 <img
-  src="https://sr.ht/TxC_.jpg"
+  src="/l.sr.ht/TxC_.jpg"
   alt="Nina Tucker from Fullmetal Alchemist"
   width="320" />
 <p class="text-center">

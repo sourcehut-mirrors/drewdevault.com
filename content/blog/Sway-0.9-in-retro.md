@@ -18,7 +18,7 @@ supported. In fact, as of last week, all of the features from the i3
 configuration I used before I started working on Sway are now supported by Sway.
 Today, Sway looks like this (click to expand):
 
-[![](https://sr.ht/ICd5.png)](https://sr.ht/ICd5.png)
+[![](/l.sr.ht/ICd5.png)](/l.sr.ht/ICd5.png)
 
 For those who are new to the project, [Sway](http://swaywm.org) is an
 i3-compatible Wayland compositor. That is, your existing [i3](http://i3wm.org/)

@@ -68,7 +68,7 @@ make any edits you like. Given that most popular email clients these days are
 awful and can't handle basic tasks like "sending email" properly, I strongly
 recommend this tool over attempting to send format-patch's output yourself.
 
-<img style="max-width: 75%" src="https://sr.ht/wmKv.jpg" />
+<img style="max-width: 75%" src="/l.sr.ht/wmKv.jpg" />
 
 <p style="text-align: center; max-width: 80%; margin: 1rem auto">
     <em>

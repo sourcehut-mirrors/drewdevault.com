@@ -33,7 +33,7 @@ allowing you to compose emails and read new ones at the same time. It builds on
 this foundation with a lot of new and exciting features. For example, its
 "filter" feature allows us to review patches with syntax highlighting:
 
-![Screenshot of aerc displaying a patch](https://sr.ht/JoqH.png)
+![Screenshot of aerc displaying a patch](/l.sr.ht/JoqH.png)
 
 The embedded terminal emulator also allows us convenient access to nearby git
 repositories for running tests against incoming patches, pushing the changes

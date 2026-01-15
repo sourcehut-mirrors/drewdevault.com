@@ -10,11 +10,11 @@ I bought a DEC VT220 terminal a while ago, and put it next to my desk at work. I
 use it to read emails on mutt now, and it's actually quite pleasant. There was
 some setup involved in making it as comfortable as possible, though.
 
-[![My desk at work](https://sr.ht/BnAH.jpg)](https://sr.ht/BnAH.jpg)
+[![My desk at work](/vt220-long-shot.jpg)](/vt220-long-shot.jpg)
 
 Here's the terminal up close:
 
-[![The terminal itself](https://sr.ht/TnC6.jpg)](https://sr.ht/TnC6.jpg)
+[![The terminal itself](/vt220-closeup.jpg)](/vt220-closeup.jpg)
 
 ## Hardware
 

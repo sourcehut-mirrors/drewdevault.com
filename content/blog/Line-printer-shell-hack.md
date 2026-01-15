@@ -21,7 +21,7 @@ Slightly more sophisticated instructions can be written to them with ANSI escape
 sequences, just like a terminal. They can also be rigged up to CUPS, then you
 can use something like `man -t 5 scdoc` to produce printouts like this:
 
-[![](https://sr.ht/gHCA.jpg)](https://sr.ht/gHCA.jpg)
+[![](/l.sr.ht/gHCA.jpg)](/l.sr.ht/gHCA.jpg)
 
 Plugging the printer into Linux and writing out pages isn't much for hack value,
 however. What I really wanted to make was something resembling an old-school

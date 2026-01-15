@@ -355,7 +355,7 @@ irc.freenode.net](http://webchat.freenode.net/?channels=knightos&uio=d4).
 
 ---
 
-![](https://sr.ht/zhRB.jpg)
+![](/l.sr.ht/zhRB.jpg)
 
 **2018-08-31**: This article was updated to fix some long-broken scripts and
 adjust everything to fit into the since-updated blog theme. The title was also

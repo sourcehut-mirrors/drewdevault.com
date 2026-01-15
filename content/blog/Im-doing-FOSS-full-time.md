@@ -62,7 +62,7 @@ allows me to tremendously accelerate the progress of these projects. If you were
 impressed by what I built in my spare time, just wait until you see what we can
 accomplish now!
 
-![](https://sr.ht/YsHI.png)
+![](/l.sr.ht/YsHI.png)
 
 From the bottom of my heart, thank you for your support!
 

@@ -26,7 +26,7 @@ number). During each sample, I record the ID, author, title, URL, status
 based on [HN's published algorithm](https://news.ycombinator.com/item?id=231209).
 A note is made when the title, URL, or status changes.
 
-[![](https://sr.ht/IFCA.png)](https://hn.0x2237.club/post/15217697)
+[![](/l.sr.ht/IFCA.png)](https://hn.0x2237.club/post/15217697)
 
 The information gathered is publicly available at
 [hn.0x2237.club](https://hn.0x2237.club) (sorry about the stupid domain, I just
@@ -128,7 +128,7 @@ banned without explanation, or that use slightly different language:
 
 Here's an example of a fairly common moderator action:
 
-![](https://sr.ht/PhJM.png)
+![](/l.sr.ht/PhJM.png)
 
 [This post](https://hn.0x2237.club/post/15217697) had its title changed at
 around 09-11-17 12:10 UTC, and had the rank artificially adjusted to push it
@@ -136,14 +136,14 @@ further down the front page. We can tell that the drop was artificial just by
 correlating it with the known moderator action, but we can also compare it
 against the computed base rank:
 
-![](https://sr.ht/IJQI.png)
+![](/l.sr.ht/IJQI.png)
 
 Note however that the base rank is often wildly different from the rank observed
 in practice; the factors that go into adjusting it are rather complex. We can
 also see that despite the action, the post's score continued to increase, even
 at an accelerated pace:
 
-![](https://sr.ht/FmNU.png)
+![](/l.sr.ht/FmNU.png)
 
 This "title change and derank" is a fairly common action - here are some more
 examples from the past few days:

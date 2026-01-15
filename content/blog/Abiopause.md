@@ -23,7 +23,7 @@ termination shock begins the *heliosheath*. This is a turbulent place where
 particles from the sun and from the interstellar medium mix. The interactions in
 this area are complicated and interesting, you should read up about it later.
 
-![Picture of a faucet pouring into a sink](https://legacy.sr.ht/_FIT.svg)
+![Picture of a faucet pouring into a sink](/l.sr.ht/_FIT.svg)
 
 <div class="text-center">
   <small>Yanpas via Wikimedia Commons, CC-BY-SA</small>
