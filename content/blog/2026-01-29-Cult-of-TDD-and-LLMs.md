@@ -65,7 +65,7 @@ is supposed to achieve.
 
 [^1]: That actually happened at one of my old jobs.
 
-All of these flashy traits allows one to adopt the aesthetics of good,
+All of these flashy traits allow one to adopt the aesthetics of good,
 diligent software engineering work regardless of how good the work actually is.
 It's an intoxicating way to work, especially for someone who struggles with
 software engineering. It makes you feel like a good programmer and gives you
@@ -81,15 +81,15 @@ they might have been chasing for their entire career, and I bet the rush is so
 much sweeter than watching the lights on your test suite runs tick over to
 green.
 
-A coding agent allows one to feel the raw productive power a great programmer
-can tap into. It allows one to feel like the "10× programmers" they've sat next
-to in the open office for ten years, whose skills they never quite achieved
-themselves. It scales up the raw output by a factor of ten, and lets one
-assemble apparently great works in a fraction of the time, solo-coding great
+A coding agent permits one to feel as if they have the raw productive power a
+great programmer can tap into. One may feel like the "10× programmers" they've
+sat next to in the open office for ten years, whose skills they never quite
+achieved themselves. It scales up the raw output by a factor of ten, and lets
+one assemble apparently great works in a fraction of the time, solo-coding great
 cathedrals in the time it used to take them to build, with great difficulty, a
 homely shack.
 
-But, if it seems to good to be true...
+But, if it seems too good to be true...
 
 Those cathedrals are not the great works they appear to be. The construction is
 shoddy and the architecture nonsensical and a great programmer hand-writing code
