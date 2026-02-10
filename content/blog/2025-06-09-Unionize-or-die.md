@@ -283,7 +283,7 @@ to suppress their wages.
 
 Organized labor is powerful and consistently gets concessions from the rich and
 powerful in a way that no other strategy has ever been able to. It works, and we
-have a moral obligation to do it. Unions gets results.
+have a moral obligation to do it. Unions get results.
 
 ## How to organize step by step
 
@@ -292,8 +292,8 @@ moving the needle here. The process is as follows:
 
 1. Building solidarity and community with your peers
 1. Understanding your rights and how to organize safely
-1. Establishing the consensus to unionize, and do it
-1. Promoting solidarity with across tech workplaces and labor as a whole
+1. Establishing the consensus to unionize, and doing it
+1. Promoting solidarity across tech workplaces and labor as a whole
 
 Remember that you will not have to do this alone -- in fact, that's the whole
 point. Step one is building community with your colleagues. Get to know them
