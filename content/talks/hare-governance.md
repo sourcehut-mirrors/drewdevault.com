@@ -1,0 +1,23 @@
+---
+layout: page
+title: Building and scaling Hare’s community governance
+---
+
+**Abstract**
+
+> How the Hare programming language community grew from one BDFL and a ragtag
+> group of early hackers to a productive, sociable, and egalitarian community of
+> happy hackers with a lightweight and effective model of participatory
+> governance.
+
+**Resources**
+
+- [Download slides](https://redacted.moe/f/f95c1355.pdf)
+
+**Events**
+
+FOSS Backstage 2026
+
+2026-03-17 11:55 - 12:25
+
+[Details](https://26.foss-backstage.de/session/building-and-scaling-hares-community-governance/)

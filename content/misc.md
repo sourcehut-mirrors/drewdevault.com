@@ -26,3 +26,4 @@ layout: page
 - [Opening up the SourceHut CI engine](/talks/sourcehut-ci.html)
 - [Himitsu: A novel keyring & password manager for Unix](/talks/himitsu.html)
 - [Can free software be made sustainable?](/talks/foss-and-money.html)
+- [Building and scaling Hare’s community governance](/talks/hare-governance.html)
