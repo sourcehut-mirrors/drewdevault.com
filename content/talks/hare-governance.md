@@ -12,6 +12,7 @@ title: Building and scaling Hare’s community governance
 
 **Resources**
 
+- [The Hare programming language](https://harelang.org)
 - [Download slides](https://redacted.moe/f/f95c1355.pdf)
 
 **Events**
