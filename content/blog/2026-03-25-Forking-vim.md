@@ -43,8 +43,7 @@ many African countries are enduring to supply rare metals like Cobalt for the
 billions of new chips that this boom demands. And at a moment when the climate
 demands immediate action to reduce our footprint on this planet, the AI boom is
 driving data centers to consume a full 1.5% of the world's total energy
-production in order to eliminate the jobs of the poor and replace them with a
-robot that lies.
+production in order to eliminate jobs and replace them with a robot that lies.
 
 Meanwhile, this whole circus is enabling the rising tide of fascism around the
 world, not only by supercharging propaganda but also by directly financially
