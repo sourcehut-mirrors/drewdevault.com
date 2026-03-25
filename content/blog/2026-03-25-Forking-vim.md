@@ -56,8 +56,11 @@ I don't think it's *cute* that someone [vibe coded "battleship" in VimScript][1]
 I think it's more important that we stop collectively pretending that we don't
 understand how awful all of this is. I don't want to use software which has
 slop in it. I do what I can to avoid it, and sadly even Vim now comes under
-scrutiny in that effort as both Vim and NeoVim are relying on LLMs to develop
-the software.
+scrutiny in that effort as both [Vim][vim slop] and [NeoVim][nvim slop] are
+relying on LLMs to develop the software.
+
+[vim slop]: https://github.com/vim/vim/issues/18800#issuecomment-3568099543
+[nvim slop]: https://github.com/neovim/neovim/issues?q=label%3A%22AI%20assisted%20%F0%9F%A4%96%22
 
 So this is how, a few years after Bram's passing, I find myself in another
 unusual moment of mourning: mourning Vim itself. What an odd feeling.
