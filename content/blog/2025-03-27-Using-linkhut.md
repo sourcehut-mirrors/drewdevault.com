@@ -1,6 +1,14 @@
 ---
 title: Using linkhut to signal-boost my bookmarks
 date: 2025-03-27
+noindex: true
+---
+
+---
+
+**Notice**: linkhut has started to use generative AI tools upstream.
+Consequently, I have withdrawn my endorsement of the project.
+
 ---
 
 It must have been at least a year ago that I first noticed [linkhut], and its

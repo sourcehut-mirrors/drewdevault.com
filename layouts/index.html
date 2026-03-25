@@ -4,13 +4,11 @@
   <section class="article-list">
     <h1>{{$.Title}}</h1>
 
-    {{ range (where (where .Site.RegularPages "Section" "blog") "Params.nohtml" "!=" "true") }}
-    {{- if .OutputFormats.Get "html" }}
+    {{ range (where (where .Site.RegularPages "Section" "blog") "Params.noindex" "!=" "true") }}
     <div class="article">
       <span class="date">{{.Date.Format "January 2, 2006"}}</span>
       <a href="{{.Permalink}}">{{.Title}}</a>
     </div>
-    {{ end }}
     {{ end }}
   </section>
 
@@ -25,8 +23,6 @@
       <a class="rss" href="/blog/index.xml">rss</a>
       ·
       <a href="misc.html">misc</a>
-      ·
-      <a href="https://ln.ht/~ddevault">signal boost</a>
     </div>
 
     <dl class="external-links">
