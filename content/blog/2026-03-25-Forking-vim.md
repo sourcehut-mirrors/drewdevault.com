@@ -94,9 +94,9 @@ which address CVEs discovered after this release, but others which address minor
 bug fixes. I also penned a handful of original patches which bring the codebase
 from this time up to snuff for building it on newer toolchains. My old vimrc 
 [needed very few changes][vimrc diff] to work on this version of Vim, and all of
-my plugins work with the exception of fzf.vim, which I would like to fix at some
+my plugins work ~~with the exception of fzf.vim, which I would like to fix at some
 point (or maybe a sympathetic reader is willing to work on backporting the
-necessary changes).
+necessary changes)~~. *Thanks, dzwdz, for figuring out the issues with fzf.vim!*
 
 [vimrc diff]: https://paste.sr.ht/~sircmpwn/bf58300e4b11542b17eeece9a3671656172f86c8
 
