@@ -43,8 +43,10 @@ command line flags:
 
 Use `-f <filename>` to read from or write to a file. Without this option, tar
 uses stdin and stdout, which is what the pipelines above rely on. Use `-C
-<path>` to change directories before archiving or extracting files. That's
-basically everything you need to know about tar to use it for this purpose.
+<path>` to change directories before archiving or extracting files. Use `-z` to
+compress or decompress the tarball with gzip. That's basically everything you
+need to know about tar to use it for this purpose (and for most purposes,
+really).
 
 With rsync, to control where the files end up you have to do memorize some rules
 about things like whether or not each path has a trailing slash. With tar, the
