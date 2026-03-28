@@ -63,6 +63,8 @@ When `tar -x` opens this tarball, it will call
 will extract this file into `./public/index.html`. You can change the working
 directory before tar does this, on either end, by passing `tar -C <path>`.
 
+Of course, you could just use scp, but this fits into my brain better.
+
 I hope that's useful to you!
 
 ---
