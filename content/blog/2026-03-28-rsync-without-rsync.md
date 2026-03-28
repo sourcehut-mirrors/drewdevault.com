@@ -46,7 +46,7 @@ uses stdin and stdout, which is what the pipelines above rely on. Use `-C
 <path>` to change directories before archiving or extracting files. That's
 basically everything you need to know about tar to use it for this purpose.
 
-With rsync, to control where the files end you have to do memorize some rules
+With rsync, to control where the files end up you have to do memorize some rules
 about things like whether or not each path has a trailing slash. With tar, the
 rules are, in my opinion, a bit easier to reason about. The paths which appear
 on the command line of `tar -c` are the paths that `tar -x` will open to create
