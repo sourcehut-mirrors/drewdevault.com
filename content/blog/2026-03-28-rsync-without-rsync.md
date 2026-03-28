@@ -14,12 +14,12 @@ connection to another host".
 Consider the following:
 
 ```
-tar -cz public | ssh example.org tar -C /var/www -x
+tar -cz public | ssh example.org tar -C /var/www -xz
 ```
 
 This will transfer the contents of `./public/` to
 `example.org:/var/www/public/`, preserving file ownership and permissions and so
-on. This is roughly the equivalent of:
+on, with gzip compression. This is roughly the equivalent of:
 
 ```
 rsync -a public example.org:/var/www/
@@ -30,7 +30,7 @@ Here's the same thing with a lightweight progress display thanks to [pv][1]:
 [1]: https://ivarch.com/programs/pv.shtml
 
 ```
-tar -cz public | pv | ssh example.org tar -C /var/www -x
+tar -cz public | pv | ssh example.org tar -C /var/www -xz
 ```
 
 I know tar is infamously difficult to remember how to use. Honestly, I kind of
@@ -48,7 +48,7 @@ compress or decompress the tarball with gzip. That's basically everything you
 need to know about tar to use it for this purpose (and for most purposes,
 really).
 
-With rsync, to control where the files end up you have to do memorize some rules
+With rsync, to control where the files end up you have to memorize some rules
 about things like whether or not each path has a trailing slash. With tar, the
 rules are, in my opinion, a bit easier to reason about. The paths which appear
 on the command line of `tar -c` are the paths that `tar -x` will open to create
