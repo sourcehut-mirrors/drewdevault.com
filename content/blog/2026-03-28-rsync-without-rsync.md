@@ -79,5 +79,5 @@ https://git.sr.ht/~sircmpwn/rtar
 Example:
 
 ```
-rtar -R /var/www public/* me@example.org
+rtar -R /var/www me@example.org public/*
 ```
