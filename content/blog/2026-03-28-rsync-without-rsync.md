@@ -74,10 +74,10 @@ I hope that's useful to you!
 **Update**: As a fun little challenge I wrapped up this concept in a small
 program that makes it easier to use:
 
-https://git.sr.ht/~sircmpwn/rtar
+https://git.sr.ht/~sircmpwn/xtar
 
 Example:
 
 ```
-rtar -R /var/www me@example.org public/*
+xtar -R /var/www me@example.org public/*
 ```
