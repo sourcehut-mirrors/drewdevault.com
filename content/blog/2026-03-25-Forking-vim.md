@@ -60,7 +60,7 @@ scrutiny in that effort as both [Vim][vim slop] and [NeoVim][nvim slop] are
 relying on LLMs to develop the software.
 
 [vim slop]: https://github.com/vim/vim/issues/18800#issuecomment-3568099543
-[nvim slop]: https://github.com/neovim/neovim/issues?q=label%3A%22AI%20assisted%20%F0%9F%A4%96%22
+[nvim slop]: https://github.com/neovim/neovim/pulls?q=label%3A%22AI%20assisted%20%F0%9F%A4%96%22
 
 So this is how, a few years after Bram's passing, I find myself in another
 unusual moment of mourning: mourning Vim itself. What an odd feeling.
