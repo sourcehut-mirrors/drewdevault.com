@@ -1,15 +1,15 @@
 image: alpine/edge
 oauth: pages.sr.ht/PAGES:RW
 packages:
+- curl
 - zig
 sources:
 - https://git.sr.ht/~sircmpwn/drewdevault.com
-- https://github.com/kristoff-it/zine
 tasks:
 - zine: |
-    cd zine
-    zig build --release=safe
-    sudo cp zig-out/bin/zine /usr/bin/
+    # TODO: Build from source (or install an Alpine package)
+    curl https://redacted.moe/f/f4b9d9a6 > zine
+    sudo cp zine /usr/bin/
 - build: |
     cd drewdevault.com
     zine release
