@@ -1,0 +1,21 @@
+image: alpine/edge
+oauth: pages.sr.ht/PAGES:RW
+packages:
+- zig
+sources:
+- https://git.sr.ht/~sircmpwn/drewdevault.com
+- https://github.com/kristoff-it/zine
+tasks:
+- zine: |
+    cd zine
+    zig build --release=safe
+    sudo cp zig-out/bin/zine /usr/bin/
+- build: |
+    cd drewdevault.com
+    zine release
+- publish: |
+    hut pages publish -d drewdevault.com public/
+triggers:
+  - action: email
+    condition: always
+    to: Drew DeVault <drew@ddevault.org>
