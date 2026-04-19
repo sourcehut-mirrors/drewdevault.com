@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Developers: Let distros do their job</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Developers: Let distros do their job
+		<small>
+			<span class="date">September 27, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			September 27, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I wrote a post some time ago titled <a href="https://drewdevault.com/2019/12/09/Developers-shouldnt-distribute.html" target="_blank">Developers shouldn’t distribute their own software</a>, and after a discussion on the sr.ht IRC channel today, the topic seems worthy of renewed mention. Let’s start with this: what exactly is a software distribution, anyway?</p><p>I use “software distribution” here, rather than “Linux distribution”, because it generalizes better. For example, all of the major BSD systems, plus Illumos and others besides, are software distributions, but don’t involve Linux. Some differ further still, sitting on top of another operating system, such as Nix or pkgsrc. What these systems all have in common is that they concern themselves with the <em>distribution</em> of <em>software</em>, and thus are a <em>software distribution</em>.</p><p>An important trait of these systems is that they function independently of the development of the software they distribute, and are overseen by a third party. For the purpose of this discussion, I will rule out package repositories which are not curated by the third-party in question, such as npm or PyPI. It is no coincidence that such repositories often end up <a href="https://www.zdnet.com/article/two-malicious-python-libraries-removed-from-pypi/" target="_blank">distributing</a> <a href="https://www.trendmicro.com/vinfo/dk/security/news/cybercrime-and-digital-threats/hacker-infects-node-js-package-to-steal-from-bitcoin-wallets" target="_blank">malware</a>.</p><p>Software distributions are often volunteer-run and represent the interests of the users; in a sense they are a kind of <a href="https://en.wikipedia.org/wiki/Trade_union" target="_blank">union</a> of users. They handle building your software for their system, and come to the table with domain-specific knowledge about the concerns of the platform that they’re working with. There are hundreds of Linux distros and each does things differently — the package maintainers are the experts who save you the burden of learning how all of them work. Instead of cramming all of your files into /opt, they will carefully sort it into the right place, make sure all of your dependencies are sorted upon installation, and make the installation of your software a single command (or click) away.</p><p>They also serve an important role as the user’s advocate. If an update ships which breaks a bunch of other packages, they’ll be in the trenches dealing with it so that the users don’t face the breakage themselves. They are also the first line of defense preventing the installation of malware on the user’s system. Many sideloaded packages for Linux include <del>telemetry</del> spyware or adware from the upstream distributor, which is usually patched out by the distribution.</p><p>Distributions are also working on innovative projects at the scale of the entire software ecosystem, and are dealing with bigger picture things than you need to concern yourself with. Here are some things which they have already solved:</p><ul><li>Automatic updates and dependency management</li><li>Universal cryptographic signatures for all packages</li><li>Worldwide distribution and bandwidth sharing via mirrors</li><li>System-wide audits of software installed on your machine</li><li>CVE management and patch distribution</li><li>Long-term support</li></ul><p>There are several areas of open research, too, such as reproducible builds or deterministic whole-system configuration like Nix and Guix are working on. You can take advantage of all of this innovation and research for the low price of zero dollars by standing back and letting distros handle the distribution of your software. It’s what they’re good at.</p><p>There are a few things you <em>can</em> do to make this work better.</p><ul><li>Ship your software as a simple tarball. Don’t ship pre-built binaries and definitely don’t ship a “curl | bash” command. Naive users will mess up their systems when they use them.</li><li>Use widely adopted, standard build systems and methodologies. Use the standard approach for your programming language. They have already been through the gamut of distros and their operating modes are well-understood by packagers.</li><li><a href="https://drewdevault.com/2021/05/19/How-to-write-release-notes.html" target="_blank">Ship good release notes</a>. Distro packagers read them! Give them a head’s up about any important changes which might affect their distro.</li><li>Be picky with your dependencies and try to avoid making huge dependency trees. Bonus: this leads to better security and maintainability!</li><li>Maintain a friendly dialogue with distro maintainers if and when they come asking questions. They’re the expert on their distro, but you’re the expert on your software, and sometimes you will meet to compare notes.</li></ul><p><em>See also: <a href="https://archive.fosdem.org/2018/schedule/event/how_to_make_package_managers_cry/" target="_blank">FOSDEM 2018 - How To Make Package Managers Cry</a></em></p><p>One thing you shouldn’t do is go around asking distros to add your program to their repos. Once you ship your tarballs, your job is done. It’s the <em>users</em> who will go to their distro and ask for a new package. And users — do this! If you find yourself wanting to use some cool software which isn’t in your distro, go ask for it, or better yet, package it up yourself. For many packages, this is as simple as copying and pasting a similar package (let’s hope they followed my advice about using an industry-standard build system), making some tweaks, and building it.</p><p>Distros are quite accessible projects, packaging is usually not that difficult. Distributions always need more volunteers, and there are plenty of friendly experts at your local distro who would be pleased to help you figure out the finer details, assuming you’re prepared to stand up and do the work yourself. Once you get used to it, making and submitting a new package can take as little as 10 or 15 minutes for a simple one.</p><p>Oh, and if you are in the developer role — you are presumably also a user of both your own software and some kind of software distribution. This puts you in a really good position to champion it for inclusion in your own distro :)</p><hr><p>P.S. Systems which invert this model, e.g. Flatpak, are completely missing the point.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Nitter-and-other-internet-reclamation-projects/">
+					← Nitter and other Internet reclamation projects
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Reflection/">
+					How reflection works in Hare →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

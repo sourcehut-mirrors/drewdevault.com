@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, August 2021</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, August 2021
+		<small>
+			<span class="date">August 15, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			August 15, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Greetings! It’s shaping up to be a beautiful day here in Amsterdam, and I have found the city much to my liking so far. If you’re in Amsterdam and want to grab a beer sometime, send me an email! I’ve been making a lot of new friends here. Meanwhile, I’ve also enjoyed a noticable increase in my productivity levels. Let’s go over the month’s accomplishments.</p><p>First, I have spent most of my time on the programming language project. I mentioned in the last update that we broke ground on a codegen rewrite, and yesterday all of our tests finally passed and I merged it. The new design is much better, and we should be able to simplify it even further still when we write the <abbr title="The 'hosted' compiler is one that 'hosts' itself: it's written in our new programming language and compiles itself. This is contrasted with the 'bootstrap' compiler, which is written in C and is used for bootstrapping the hosted toolchain from scratch.">hosted compiler</abbr> in the near future. This will also give us a better basis for a small number of experiments we’d like to do before finalizing the language design. Some other improvements include fleshing out our floating point math support library, a base64 module, a poll module, and parallel DNS resolution.</p><p>In SourceHut news, we shipped the <a href="https://man.sr.ht/lists.sr.ht/graphql.md" target="_blank">lists.sr.ht GraphQL API</a>. Future work will expand support for thread parsing and implement write operations. Presently, I am also working on a design for GraphQL-native webhooks, targetting meta.sr.ht for the initial release. sr.ht packages for Alpine 3.14 were now made available, and planned maintenance two weeks ago was the first of two fleet-wide rollouts of the upgrades to sr.ht hosted — the next is scheduled for tomorrow.</p><p>These two projects are my primary focus right now, and they’re both making good progress. In the coming month, I hope to address a few language design questions and build a more sophisticated I/O abstraction for the standard library. On sr.ht, I plan on expanding the GraphQL-native webhooks prototype and hopefully shipping it to one of the GQL APIs, along with starting on another major GQL support movement — either write support for lists.sr.ht, or the initial paste.sr.ht GQL API.</p><p>That’s all I have to share today! Thanks for tuning in.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Debugging-your-new-PL/">
+					← Tips for debugging your new programming language
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/visurf-announcement/">
+					visurf, a web browser based on NetSurf →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

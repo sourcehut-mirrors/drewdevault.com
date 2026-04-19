@@ -1,0 +1,24 @@
+---
+.title = "Rocky Mountain Tech Trifecta",
+.date = @date("2011-02-25"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+Coming soon, I'll be giving a presentation on Windows Phone 7 with Silverlight
+at the Rocky Mountain Tech Trifecta.  If you can get to Denver on March 5th,
+it's a free event and you'll learn a ton.  Be there by 1:15PM to check out my
+talk - here's the description:
+
+## Get the Most Out of Silverlight for WP7
+
+The Windows Phone 7 provides a great platform for rich, interactive
+applications with Silverlight 4.0 and XNA. Developers can create amazing
+applications in small amounts of time using the same powerful tools they
+already use. The phone provides hardware such as an accelerometer, GPS, and
+more, and this presentation will cover how to utilize this hardware.
+
+I'll see you there!  Come back here after the Trifecta for the slide deck and
+code downloads.
+
+http://rmtechtrifecta.com/Home

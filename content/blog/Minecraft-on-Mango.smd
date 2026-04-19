@@ -1,0 +1,25 @@
+---
+.title = "Minecraft on Mango",
+.date = @date("2012-01-03"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+Yes, you see that right.  My new pet project is making a Minecraft client for
+Windows Phone 7 that can connect to official Minecraft 1.0 (or 1.0.1) servers.
+So far, I have connecting done, and I'm working on the immense code required to
+parse all server messages.  This is only possible thanks to the new [Socket](https://web.archive.org/web/20120305125235/http://bit.ly/wL2FfT)
+support added to Mango.  I've already written an (incomplete) library for
+connecting to Minecraft servers in C#, but the crucial flaw with porting it to
+WP7 is that the existing library is syncronous.  Mango unfortunately supports
+only asyncronous socket communication, so I almost have to start from scratch.
+
+As for now, I'll keep you guys posted on the progress here on my blog.  Making
+a full-blown Minecraft client like I intend to is shaky legal ground.  Once
+I've progressed further, I plan on contacting Mojang for approval, then open
+source it for the remaining development.  One benifit that this has is that it
+will not (eventually) let you play Minecraft without actually purchasing it
+from Mojang.
+
+Oh, and if I ever manage to figure out native stuff on WP7, I'll reverse it and
+make your phone the server. 

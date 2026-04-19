@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Throwing in the towel on mobile Linux</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Throwing in the towel on mobile Linux
+		<small>
+			<span class="date">June 16, 2023</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+	<main>
+		<article>
+			<p>I have been tinkering with mobile Linux – a phrase I will use here to describe any Linux distribution other than Android running on a mobile device – as my daily driver since about 2019, when I first picked up the PinePhone. For about 3 years I have run mobile Linux as my daily driver on my phone, and as of a few weeks ago, I’ve thrown in the towel and switched to Android.</p><p>The distribution I ran for the most time is <a href="https://postmarketos.org/" target="_blank">postmarketOS</a>, which I was mostly quite happy with, running at times sxmo and Phosh. I switched to <a href="https://ubports.com/en/" target="_blank">UBports</a> a couple of months ago. I have tried a variety of hardware platforms to support these efforts, namely:</p><ul><li>Pinephone (pmOS)</li><li>Pinephone Pro (pmOS)</li><li>Xiaomi Poco F1 (pmOS)</li><li>Fairphone 4 (UBports)</li></ul><p>I have returned to LineageOS as my daily driver and closed the book on mobile Linux for the time being. What put the final nails in the coffin was what I have been calling out as my main concern throughout my experience: reliability, particularly of the telephony components.</p><table>
+  <thead>
+    <tr>
+      <th>Use-case</th>
+      <th>Importance</th>
+      <th>postmarketOS</th>
+      <th>UBports</th>
+      <th>LineageOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Basic system reliability</td>
+      <td class="blue">5</td>
+      <td class="red">2</td>
+      <td class="blue">4</td>
+      <td class="blue">5</td>
+    </tr>
+    <tr>
+      <td>Mobile telephony</td>
+      <td class="blue">5</td>
+      <td class="yellow">3</td>
+      <td class="yellow">3</td>
+      <td class="blue">5</td>
+    </tr>
+    <tr>
+      <td>Hotspot</td>
+      <td class="blue">4</td>
+      <td class="blue">5</td>
+      <td class="yellow">3</td>
+      <td class="blue">5</td>
+    </tr>
+    <tr>
+      <td>2FA</td>
+      <td class="blue">4</td>
+      <td class="blue">4</td>
+      <td class="red">1</td>
+      <td class="blue">5</td>
+    </tr>
+    <tr>
+      <td>Web browsing</td>
+      <td class="blue">4</td>
+      <td class="blue">5</td>
+      <td class="red">2</td>
+      <td class="blue">4</td>
+    </tr>
+    <tr>
+      <td>Mobile banking</td>
+      <td class="blue">4</td>
+      <td class="red">1</td>
+      <td class="red">1</td>
+      <td class="blue">5</td>
+    </tr>
+    <tr>
+      <td>Bluetooth audio</td>
+      <td class="yellow">3</td>
+      <td class="blue">4</td>
+      <td class="red">2</td>
+      <td class="blue">4</td>
+    </tr>
+    <tr>
+      <td>Music player</td>
+      <td class="yellow">3</td>
+      <td class="blue">4</td>
+      <td class="red">1</td>
+      <td class="yellow">3</td>
+    </tr>
+    <tr>
+      <td>Reading email</td>
+      <td class="yellow">3</td>
+      <td class="red">1</td>
+      <td class="yellow">3</td>
+      <td class="blue">4</td>
+    </tr>
+    <tr>
+      <td>Navigation aid</td>
+      <td class="yellow">3</td>
+      <td class="red">2</td>
+      <td class="red">1</td>
+      <td class="blue">5</td>
+    </tr>
+    <tr>
+      <td>Camera</td>
+      <td class="yellow">3</td>
+      <td class="yellow">3</td>
+      <td class="yellow">3</td>
+      <td class="blue">5</td>
+    </tr>
+    <tr>
+      <td>Password manager</td>
+      <td class="yellow">3</td>
+      <td class="blue">5</td>
+      <td class="red">1</td>
+      <td class="red">1</td>
+    </tr>
+    <tr>
+      <td>sysadmin</td>
+      <td class="yellow">3</td>
+      <td class="blue">5</td>
+      <td class="red">2</td>
+      <td class="yellow">3</td>
+    </tr>
+  </tbody>
+</table>
+<details class="block"><summary>More on these use-cases and my experiences</summary><p><strong>Mobile banking</strong>: only available through a proprietary vendor-provided Android app. Tried to get it working on Waydroid; did not work on pmOS and almost worked on UBports, but Waydroid is <em>very</em> unreliable. Kind of shit but I don’t have any choice because my bank requires it for 2FA.</p><p><strong>Web browsing</strong>: I can just run Firefox upstream on postmarketOS. Amazing! UBports cannot do this, and the available web browsers are not nearly as pleasant to use. I run Fennic on Android and it’s fine.</p><p><strong>Music player</strong>: the music player on UBports is <em>extremely</em> unreliable.</p><p><strong>Reading email</strong>: This is not entirely pmOS’s fault; I could have used my main client, aerc, which is a testament to pmOS’s general utility, but it is a TUI that is uncomfortable to use on a touchscreen-only device.</p><p><strong>Password manager</strong>: pmOS gets 5/5 because I could use the password manager I wrote myself, <a href="https://himitsustore.org" target="_blank">himitsu</a>, out of the box. Non-critical use-case because I could just type passwords in manually on the rare occasion I need to use one.</p><p><strong>sysadmin</strong>: stuff like being able to SSH into my production boxes from anywhere to troubleshoot stuff.</p></details><p>Among these use-cases, there is one that absolutely cannot be budged on: mobile telephony. My phone is a critical communication device and I need to be able to depend on calls and SMS at all times, therefore the first two rows need to score 4 or 5 before the platform is suitable for my use. I remember struggling with postmarketOS while I was sick with a terrible throat infection – and I could not call my doctor. Not cool.</p><p>I really like these projects and I love the work that’s going into them. postmarketOS in particular: being able to run the same environment I run everywhere else, Alpine Linux, on my phone, is fucking amazing. The experience is impressively complete in many respects, all kinds of things, including things I didn’t expect to work well, work great. In the mobile Linux space I think it’s the most compelling option right now.</p><p>But pmOS really suffers from reliability issues – both on edge and on stable it seemed like every update broke some things and fixed others, so only a subset of these cool features was working well at any given moment. The breakage would often be minor nuisances, such as the media controls on my bluetooth headphones breaking in one update and being fixed in the next, or major showstoppers such as broken phone calls, SMS, or, in one case, all of my icons disappearing from the UI (with no fallback in most cases, leaving me navigating the UI blind).</p><p>So I tried UBports instead, and despite the general lack of good auxiliary features compared to pmOS, the core telephony was more reliable – for a while. But once issues started to appear, particularly around SMS, I could not tolerate it for long in view of the general uselessness of the OS for anything else. I finally gave it up and installed LineageOS.</p><p>Mobile Linux is very cool and the community has made tremendous, unprecedented progress towards realizing its potential, and the forward momentum is still strong. I’m excited to see it continue to improve. But I think that before anyone can be expected to use this as a daily driver, the community really needs to batten down the hatches and focus on one thing and one thing only: always, <em>always</em> being usable as a phone. I’ll be back once more reliability is in place.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/How-to-go-to-war/">
+					← How to go to war with your employer
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Reforming-the-free-software-message/">
+					Reforming the free software message →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

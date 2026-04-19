@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, June 2019</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, June 2019
+		<small>
+			<span class="date">June 15, 2019</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			June 15, 2019. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Summer is in full swing here in Philadelphia. Last night I got great views of Jupiter and a nearly-full Moon, and my first Saturn observation of the year.  I love astronomy on clear Friday nights, there’s always plenty of people coming through the city. And today, on a relaxing lazy Saturday, waiting for friends for dinner later, I have the privilege of sharing another status report with you.</p><p>First, I want to talk about some work I’ve done with blogs lately. On the bottom of this article you’ll find a few blog posts from around the net. This is populated with <a href="https://git.sr.ht/~sircmpwn/openring" target="_blank">openring</a>, a small Go tool I made to fetch a few articles from a list of RSS feeds. A couple of other people have added this to their own sites as well, and I hope to use this to encourage the growth of a network of bloggers supporting each other without any nonfree or centralized software. I’ll write about this in its own article in time. I’ve also made an <a href="/make-a-blog/">open offer</a> to give $20 to anyone who wants to make their own blog, and so far 5 new blogs have taken me up on the offer. Maybe you’ll be the next?</p><p>Other side projects have seen some nice progress this month, too. <a href="https://git.sr.ht/~sircmpwn/wio" target="_blank">Wio</a> has received a few patches from Leon Plickat improving the UX, and I understand more are on the way. I’m also happy to tell you that the RISC-V musl libc port I was working on is heading upstream and slated for inclusion in the next release! Big thanks to everyone who helped with that, and to Rich Felker for reviewing it and assembling the final patches. I was also able to find some time this month to contribute to <a href="https://git.sr.ht/~emersion/mrsh" target="_blank">mrsh</a>, adding support for job IDs, the <code>wait</code>, <code>break</code>, and <code>continue</code> builtins, and a handful of other improvements. I’m really excited about mrsh, it’s getting close to completion. My friend Luminarys also finally released <a href="https://synapse-bt.org/" target="_blank">synapse 1.0</a>, a bittorrent client that I had a <a href="https://github.com/Luminarys/synapse/commit/ac92bb424c3d7d99905f4c0988c924001b688080#diff-d981183863e690e9f0f2bd20145a7a16" target="_blank">hand in designing</a>, and <a href="https://github.com/ddevault/receptor" target="_blank">building</a> <a href="https://broca.synapse-bt.org/" target="_blank">frontends</a> for. Congrats, Lumi! This one has been a long time coming.</p><p>Alright, now for some updates on the larger, long-term projects. The initial pre-release of aerc <a href="/blog/Announcing-aerc-0.1.0/">shipped</a> two weeks ago! Even since then it’s already attracted a flurry of patches from the community. I’m tremendously excited about this project, I think it has heaps of potential and a community is quickly forming to help us live up to it. Since 0.1.0 it’s already grown support for formatting the index list, swapped the Python dependency for POSIX awk, grown temporary accounts and the ability to view headers, and more. I’ve already started planning 0.2.0 - check out <a href="https://todo.sr.ht/~sircmpwn/aerc2?search=label:%22blocker%22%20status%3Aopen" target="_blank">the list of blockers</a> for a sneak peek.</p><p>The Godot+Wayland workstream has picked up again, and I’ve secured some VR hardware (an HTC Vive) and started working on <a href="https://github.com/swaywm/wlroots/issues/1723" target="_blank">planning the changes necessary</a> for first-class VR support on wlroots. In the future I also would like to contribute with the OpenXR and OpenHMD efforts for bringing a full-stack free software solution for VR. I also did a proof-of-concept 3D Wayland compositor that I intend to translate to VR once I have the system up and running on Wayland:</p><p><video autoplay muted controls>
+<source src="https://yukari.sr.ht/godot3d.webm">
+</video></p><p>In other respects, sway & wlroots have been somewhat quiet. We’ve been focusing on small bug fixes and quality-of-life improvements, while some beefier changes are stewing on the horizon. wlroots has seen some slow and steady progress on refining its DRM implementation, improvements to which are going to lead to even further improved performance and capability of the downstream compositors - notably, direct scan-out has just been merged with the help of Scott Anderson and Simon Ser.</p><p>In SourceHut news, the most exciting is perhaps that todo.sr.ht has grown an API and webhooks! That makes it the last major sr.ht service to gain these features, which unblocks a lot of other stuff in the pipeline. The biggest workstream unblocked by this is dispatch.sr.ht, which has an design proposal for an overhaul under discussion on the development list. This’ll open the door for features like building patches sent to mailing lists, linking tickets to commits, and much more. I’ve also deployed another compute server to pick up the load as git.sr.ht grows to demand more resources, which frees up the box it used to be on with more space for smaller services to get comfortable. I was also happy to bring Ludovic Chabant, the driving force behind hg.sr.ht, with me to attend a Mercurial conference in Paris, where I learned heaps about the internals (and externals, to be honest) of Mercurial. Cool things are in store here, too! Big thanks to the Mercurial maintainers for being so accommodating of my ignorance, and for putting on a friendly and productive conference.</p><p>In the next month, I’m moving aerc to the backburner and turning my focus back to SourceHut & wlroots VR. I’m getting a consistent stream of great patches for aerc to review, so I’m happy to leave it in the community’s hands for a while. For SourceHut, the upcoming dispatch workstream is going to be a huge boon to the community there. On its coattails will come more powerful data import & export tools, giving the users more ownership and autonomy over their data, and perhaps following this will be some nice improvements to git.sr.ht. I’m also going to try and find time to invest more in Alpine Linux on RISC-V this month.</p><p>From the bottom of my heart, thank you again for lending your support. I’ve never been busier, happier, and more productive than I have been since working on FOSS full-time. Let’s keep building awesome software together.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/My-journey-from-MIT-to-GPL/">
+					← My personal journey from MIT to GPL
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Absence-of-features-in-IRC/">
+					Absence of certain features in IRC considered a feature →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

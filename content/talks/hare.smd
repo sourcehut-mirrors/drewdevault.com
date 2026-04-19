@@ -1,0 +1,25 @@
+---
+.title = "Introducing the Hare programming langauge",
+.date = @date("2022-05-04"),
+.author = "Drew DeVault",
+.layout = "page.shtml",
+--- 
+
+**Abstract**
+
+> Hare is a systems programming language designed to be simple, stable, and
+> robust. Hare uses a static type system, manual memory management, and a
+> minimal runtime. It is well-suited to writing operating systems, system
+> tools, compilers, networking software, and other low-level, high performance
+> tasks.
+
+**Resources**
+
+- [Download slides](https://redacted.moe/f/4d05dfb5.pdf)
+- [Hare](https://harelang.org)
+
+**Events**
+
+Techinc
+
+2022-05-04 @ 19:00 AMS

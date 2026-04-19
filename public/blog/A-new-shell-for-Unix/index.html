@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>rc: a new shell for Unix</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		rc: a new shell for Unix
+		<small>
+			<span class="date">April 18, 2023</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			April 18, 2023. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p><a href="https://git.sr.ht/~sircmpwn/rc" target="_blank">rc</a> is a Unix shell I’ve been working on over the past couple of weeks, though it’s been in the design stages for a while longer than that. It’s not done or ready for general use yet, but it is interesting, so let’s talk about it.</p><p>As the name (which is subject to change) implies, rc is inspired by the Plan 9 <a href="http://man.9front.org/1/rc" target="_blank">rc</a> shell. It’s not an implementation of Plan 9 rc, however: it departs in many notable ways. I’ll assume most readers are more familiar with POSIX shell or Bash and skip many of the direct comparisons to Plan 9. Also, though most of the features work as described, the shell is a work-in-progress and some of the design I’m going over today has not been implemented yet.</p><p>Let’s start with the basics. Simple usage works much as you’d expect:</p><pre><code>name=ddevault
+echo Hello $name
+</code></pre><p>But there’s already something important that might catch your eye here: the lack of quotes around $name. One substantial improvement rc makes over POSIX shells and Bash right off the bat is fixing our global shell quoting nightmare. There’s no need to quote variables!</p><pre><code># POSIX shell
+x=&quot;hello world&quot;
+printf &apos;%s\n&apos; $x
+# hello
+# world
+
+# rc
+x=&quot;hello world&quot;
+printf &apos;%s\n&apos; $x
+# hello world
+</code></pre><p>Of course, the POSIX behavior is actually useful sometimes. rc provides for this by acknowledging that shells have not just one fundamental type (strings), but two: strings and <em>lists</em> of strings, i.e. argument vectors.</p><pre><code>x=(one two three)
+echo $x(1)  # prints first item (&quot;one&quot;)
+echo $x     # expands to arguments (echo &quot;one&quot; &quot;two&quot; &quot;three&quot;)
+echo $#x    # length operator: prints 3
+
+x=&quot;echo hello world&quot;
+$x
+# echo hello world: command not found
+
+x=(echo hello world)
+$x
+# hello world
+
+# expands to a string, list values separated with space:
+$&quot;x
+# echo hello world: command not found
+</code></pre><p>You can also slice up lists and get a subset of items:</p><pre><code>x=(one two three four five)
+echo $x(-4) # one two three four
+echo $x(2-) # two three four five
+echo $x(2-4) # two three four
+</code></pre><p>A departure from Plan 9 rc is that the list operators can be used with strings for string operations as well:</p><pre><code>x=&quot;hello world&quot;
+echo $#x     # 11
+echo $x(2)   # e
+echo $x(1-5) # hello
+</code></pre><p>rc also supports loops. The simple case is iterating over the command line arguments:</p><pre><code>% cat test.rc 
+for (arg) {
+	echo $arg
+}
+% rc test.rc one two three 
+one
+two
+three
+</code></pre><p>{ } is a command like any other; this can be simplified to for (arg) echo $arg. You can also enumerate any list with in:</p><pre><code>list=(one two three)
+for (item in $list) {
+	echo $item
+}
+</code></pre><p>We also have while loops and if:</p><pre><code>while (true) {
+	if (test $x -eq 10) {
+		echo ten
+	} else {
+		echo $x
+	}
+}
+</code></pre><p>Functions are defined like so:</p><pre><code>fn greet {
+	echo Hello $1
+}
+
+greet ddevault
+</code></pre><p>Again, any command can be used, so this can be simplified to fn greet echo $1. You can also add named parameters:</p><pre><code>fn greet(user time) {
+	echo Hello $user
+	echo It is $time
+}
+
+greet ddevault `{date}
+</code></pre><p>Note the use of `{script…} instead of $() for command expansion. Additional arguments are still placed in $*, allowing for the user to combine variadic-style functions with named arguments.</p><p>Here’s a more complex script that I run to perform sanity checks before applying patches:</p><pre><code>#!/bin/rc
+fn check_branch(branch) {
+	if (test `{git rev-parse --abbrev-ref HEAD} != $branch) {
+		echo &quot;Error: not on master branch&quot;
+		exit 1
+	}
+}
+
+fn check_uncommitted {
+	if (test `{git status -suno | wc -l} -ne 0) {
+		echo &quot;Error: you have uncommitted changes&quot;
+		exit 1
+	}
+}
+
+fn check_behind {
+	if (test `{git rev-list &quot;@{u}..&quot; | wc -l} -ne 0) {
+		echo &quot;Error: your branch is behind upstream&quot;
+		exit 1
+	}
+}
+
+check_branch master
+check_uncommitted
+check_behind
+exec git pull
+</code></pre><p>That’s a brief introduction to rc! Presently it clocks in at about 2500 lines of Hare. It’s not done yet, so don’t get too excited, but much of what’s described here is already working. Some other stuff which works but I didn’t mention include:</p><ul><li>Boolean compound commands (x && y, x || y)</li><li>Pipelines, which can pipe arbitrary file descriptors (“x |[2] y”)</li><li>Redirects, also including arbitrary fds (“x >[2=1] file”)</li></ul><p>It also has a <a href="https://git.sr.ht/~sircmpwn/rc/tree/master/item/doc/grammar.txt" target="_blank">formal context-free grammar</a>, which is a work-in-progress but speaks to our desire to have a robust description of the shell available for users and other implementations. We use Ember Sawady’s excellent <a href="https://git.d2evs.net/~ecs/madeline/" target="_blank">madeline</a> for our interactive mode, which supports command line editing, history, ^r, and fish-style forward completion OOTB.</p><p>Future plans include:</p><ul><li>Simple arithmetic expansion</li><li>Named pipe expansions</li><li>Sub-shells</li><li>switch statements</li><li>Port to <a href="https://ares-os.org" target="_blank">ares</a></li><li>Find a new name, perhaps</li></ul><p>It needs a small amount of polish, cleanup, and bugs fixed as well.</p><p>I hope you find it interesting! I will let you know when it’s done. Feel free to <a href="https://git.sr.ht/~sircmpwn/rc" target="_blank">play with it</a> in the meanwhile, and maybe send some patches?</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/The-FSF-is-dying/">
+					← The Free Software Foundation is dying
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Who-leads-us/">
+					Who should lead us? →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

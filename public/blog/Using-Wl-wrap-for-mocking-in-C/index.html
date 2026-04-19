@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Using -Wl,--wrap for mocking in C</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Using -Wl,--wrap for mocking in C
+		<small>
+			<span class="date">July 19, 2016</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			July 19, 2016. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>One of the comforts I’ve grown used to in higher level languages when testing my code is mocking. The idea is that in order to test some code in isolation, you should “mock” the behavior of things it depends on. Let’s see a (contrived) example:</p><pre><code class="c"><span class="type">int</span> <span class="constant variable function">read_to_end</span>(<span class="type">FILE</span> <span class="operator">*</span><span class="constant variable">f</span>, <span class="type">char</span> <span class="operator">*</span><span class="constant variable">buf</span>) {
+    <span class="type">int</span> <span class="constant variable">r</span> <span class="operator">=</span> <span class="number">0</span>, <span class="constant variable">l</span><span class="delimiter">;</span>
+    <span class="keyword">while</span> (!<span class="constant variable function">feof</span>(<span class="constant variable">f</span>)) {
+        <span class="constant variable">l</span> <span class="operator">=</span> <span class="constant variable function">fread</span>(<span class="constant variable">buf</span>, <span class="number">1</span>, <span class="number">256</span>, <span class="constant variable">f</span>)<span class="delimiter">;</span>
+        <span class="constant variable">r</span> <span class="operator">+=</span> <span class="constant variable">l</span><span class="delimiter">;</span>
+        <span class="constant variable">buf</span> <span class="operator">+=</span> <span class="constant variable">l</span><span class="delimiter">;</span>
+    }
+    <span class="keyword">return</span> <span class="constant variable">r</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>If we want to test this function without mocking, we would need to actually open a specially crafted file and provide a <code>FILE*</code> to the function. However, with the linker <code>--wrap</code> flag, we can define a wrapper function. Using <code>-Wl,[flag]</code> in your C compiler command line will pass <code>[flag]</code> to the linker. Gold (GNU) and lld (LLVM) both support the wrap flag, which specifies a function to be “wrapped”. If I use <code>-Wl,--wrap=fread</code>, then the code above will be compiled like so:</p><pre><code class="c"><span class="type">int</span> <span class="constant variable function">read_to_end</span>(<span class="type">FILE</span> <span class="operator">*</span><span class="constant variable">f</span>, <span class="type">char</span> <span class="operator">*</span><span class="constant variable">buf</span>) {
+    <span class="type">int</span> <span class="constant variable">r</span> <span class="operator">=</span> <span class="number">0</span>, <span class="constant variable">l</span><span class="delimiter">;</span>
+    <span class="keyword">while</span> (!<span class="constant variable function">feof</span>(<span class="constant variable">f</span>)) {
+        <span class="constant variable">l</span> <span class="operator">=</span> <span class="constant variable function">__wrap_fread</span>(<span class="constant variable">buf</span>, <span class="number">1</span>, <span class="number">256</span>, <span class="constant variable">f</span>)<span class="delimiter">;</span>
+        <span class="constant variable">r</span> <span class="operator">+=</span> <span class="constant variable">l</span><span class="delimiter">;</span>
+        <span class="constant variable">buf</span> <span class="operator">+=</span> <span class="constant variable">l</span><span class="delimiter">;</span>
+    }
+    <span class="keyword">return</span> <span class="constant variable">r</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>And if I add <code>-Wl,--wrap=feof</code> we’ll get this:</p><pre><code class="c"><span class="type">int</span> <span class="constant variable function">read_to_end</span>(<span class="type">FILE</span> <span class="operator">*</span><span class="constant variable">f</span>, <span class="type">char</span> <span class="operator">*</span><span class="constant variable">buf</span>) {
+    <span class="type">int</span> <span class="constant variable">r</span> <span class="operator">=</span> <span class="number">0</span>, <span class="constant variable">l</span><span class="delimiter">;</span>
+    <span class="keyword">while</span> (!<span class="constant variable function">__wrap_feof</span>(<span class="constant variable">f</span>)) {
+        <span class="constant variable">l</span> <span class="operator">=</span> <span class="constant variable function">__wrap_fread</span>(<span class="constant variable">buf</span>, <span class="number">1</span>, <span class="number">256</span>, <span class="constant variable">f</span>)<span class="delimiter">;</span>
+        <span class="constant variable">r</span> <span class="operator">+=</span> <span class="constant variable">l</span><span class="delimiter">;</span>
+        <span class="constant variable">buf</span> <span class="operator">+=</span> <span class="constant variable">l</span><span class="delimiter">;</span>
+    }
+    <span class="keyword">return</span> <span class="constant variable">r</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>Now, we can define some functions that do the behavior we need to test instead of invoking fread directly:</p><pre><code class="c"><span class="type">int</span> <span class="constant variable">feof_return_value</span> <span class="operator">=</span> <span class="number">0</span><span class="delimiter">;</span>
+
+<span class="type">int</span> <span class="constant variable function">__wrap_feof</span>(<span class="type">FILE</span> <span class="operator">*</span><span class="constant variable">f</span>) {
+    <span class="constant variable function">assert</span>(<span class="constant variable">f</span> <span class="operator">==</span> (<span class="type">FILE</span> <span class="operator">*</span>)<span class="number">0x1234</span>)<span class="delimiter">;</span>
+    <span class="keyword">return</span> <span class="constant variable">feof_return_value</span><span class="delimiter">;</span>
+}
+
+<span class="type">void</span> <span class="constant variable function">test_read_to_end_eof</span>() {
+    <span class="comment">// ...</span>
+    <span class="constant variable">feof_return_value</span> <span class="operator">=</span> <span class="number">1</span><span class="delimiter">;</span>
+    <span class="constant variable function">read_to_end</span>((<span class="type">FILE</span> <span class="operator">*</span>)<span class="number">0x1234</span>, <span class="constant variable">buf</span>)<span class="delimiter">;</span>
+    <span class="comment">// ...</span>
+}
+</code></pre>
+<p>Using <code>--wrap</code> also conveniently defines <code>__real_feof</code> and <code>__real_fread</code> if we need them.</p><p>Unfortunately, you can’t have two different wrappers for the same function in an executable. This could lead to having to write several executables for each, or making your wrapper function smart enough to have several configurable outcomes.</p><p>Eventually I intend to write my own test framework for C, which will use wrappers to support mocking. I want wrappers to be done automatically and have it behave something like this:</p><pre><code class="c"><span class="keyword">static</span> <span class="type">int</span> <span class="constant variable function">fake_fread</span>(<span class="type">void</span> <span class="operator">*</span><span class="constant variable">ptr</span>, <span class="type">size_t</span> <span class="constant variable">size</span>,
+        <span class="type">size_t</span> <span class="constant variable">nmemb</span>, <span class="type">FILE</span> <span class="operator">*</span><span class="constant variable">stream</span>) {
+    <span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span><span class="constant variable">hello</span> <span class="operator">=</span> <span class="string">&quot;Hello world!&quot;</span><span class="delimiter">;</span>
+    <span class="constant variable function">memcpy</span>(<span class="constant variable">ptr</span>, <span class="constant variable">hello</span>, <span class="constant variable function">strlen</span>(<span class="constant variable">hello</span>) <span class="operator">+</span> <span class="number">1</span>)<span class="delimiter">;</span>
+    <span class="keyword">return</span> <span class="constant variable function">strlen</span>(<span class="constant variable">hello</span>) <span class="operator">+</span> <span class="number">1</span><span class="delimiter">;</span>
+}
+
+<span class="type">void</span> <span class="constant variable function">test_read_to_end</span>() {
+    <span class="type">FILE</span> <span class="operator">*</span><span class="constant variable">test</span> <span class="operator">=</span> (<span class="type">FILE</span> <span class="operator">*</span>)<span class="number">0x1234</span><span class="delimiter">;</span>
+    <span class="type">char</span> <span class="operator">*</span><span class="constant variable">buffer</span> <span class="operator">=</span> <span class="constant variable">char</span>[<span class="number">1024</span>]<span class="delimiter">;</span>
+
+    <span class="type">mock_t</span> <span class="operator">*</span><span class="constant variable">mock_feof</span> <span class="operator">=</span> <span class="constant variable function">configure_mock</span>(<span class="constant variable">feof</span>, <span class="string">&quot;p&quot;</span>)<span class="delimiter">;</span>
+    <span class="constant variable">mock_feof</span><span class="operator">-&gt;</span><span class="property function">call</span>(<span class="number">0</span>)<span class="operator">-&gt;</span><span class="property function">returns</span>(<span class="number">0</span>)<span class="delimiter">;</span>
+    <span class="constant variable">mock_feof</span><span class="operator">-&gt;</span><span class="property function">returns</span>(<span class="number">1</span>)<span class="delimiter">;</span>
+
+    <span class="comment">// pzzp is pointer, size_t, size_t, pointer</span>
+    <span class="comment">// Tells us what the fread arguments look like</span>
+    <span class="type">mock_t</span> <span class="operator">*</span><span class="constant variable">mock_fread</span> <span class="operator">=</span> <span class="constant variable function">configure_mock</span>(<span class="constant variable">fread</span>, <span class="string">&quot;pzzp&quot;</span>)<span class="delimiter">;</span>
+    <span class="constant variable">mock_fread</span><span class="operator">-&gt;</span><span class="property function">exec</span>(<span class="constant variable">fake_fread</span>)<span class="delimiter">;</span>
+
+    <span class="constant variable function">read_to_end</span>(<span class="constant variable">test</span>, <span class="constant variable">buffer</span>)<span class="delimiter">;</span>
+
+    <span class="constant variable function">assert</span>(<span class="constant variable">mock_feof</span><span class="operator">-&gt;</span><span class="property">call_count</span> <span class="operator">==</span> <span class="number">2</span>)<span class="delimiter">;</span>
+    <span class="constant variable function">assert</span>((<span class="type">FILE</span><span class="operator">*</span>)<span class="constant variable">mock_feof</span><span class="operator">-&gt;</span><span class="property function">call</span>(<span class="number">0</span>)<span class="operator">-&gt;</span><span class="property function">args</span>(<span class="number">0</span>) <span class="operator">==</span> <span class="constant variable">test</span>)<span class="delimiter">;</span>
+
+    <span class="constant variable function">assert</span>(<span class="constant variable">mock_fread</span><span class="operator">-&gt;</span><span class="property">call_count</span> <span class="operator">==</span> <span class="number">1</span>)<span class="delimiter">;</span>
+    <span class="constant variable function">assert</span>((<span class="type">FILE</span><span class="operator">*</span>)<span class="constant variable">mock_fread</span><span class="operator">-&gt;</span><span class="property function">call</span>(<span class="number">0</span>)<span class="operator">-&gt;</span><span class="property function">args</span>(<span class="number">0</span>) <span class="operator">==</span> <span class="constant variable">buffer</span>)<span class="delimiter">;</span>
+    <span class="constant variable function">assert</span>((<span class="type">FILE</span><span class="operator">*</span>)<span class="constant variable">mock_fread</span><span class="operator">-&gt;</span><span class="property function">call</span>(<span class="number">0</span>)<span class="operator">-&gt;</span><span class="property function">args</span>(<span class="number">3</span>) <span class="operator">==</span> <span class="constant variable">test</span>)<span class="delimiter">;</span>
+
+    <span class="constant variable function">assert</span>(<span class="constant variable function">strcmp</span>(<span class="constant variable">buffer</span>, <span class="string">&quot;Hello world!&quot;</span>) <span class="operator">==</span> <span class="number">0</span>)<span class="delimiter">;</span>
+}
+</code></pre>
+
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Privacy-as-a-hobby/">
+					← Life, liberty, and the pursuit of privacy
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Sway-0.9-in-retro/">
+					Sway 0.9 &amp; One year of Sway →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

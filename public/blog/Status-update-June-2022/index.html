@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, June 2022</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, June 2022
+		<small>
+			<span class="date">June 15, 2022</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			June 15, 2022. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Hello again! I would like to open this post by acknowledging the response to my earlier post, “bleh”. Since it was published, I have received several hundred emails expressing support and kindness. I initially tried to provide these with thoughtful replies, then shorter replies, then I had to stop replying at all, but I did read every one. Thank you, everyone, for sending these. I appreciate it very much, and it means a lot to me.</p><p>I have actually had a lot more fun programming this month than usual, since I decided to spend more time on experimental and interesting projects and less time on routine maintenance or long-term developments. So, the feature you’ve been waiting for in SourceHut might be delayed, but in return, there’s cool progress on the projects that you didn’t even know you were waiting for. Of course, the SourceHut workload never dips below a dull roar, as I have to attend to business matters and customer support promptly, and keep a handle on the patch queue, and the other SourceHut staff and contributors are always hard at work — so there’ll be plenty to discuss in the “what’s cooking” later.</p><p>The bulk of my focus has been on the Helios kernel this month, a project <a href="https://drewdevault.com/2022/06/13/helios.html" target="_blank">I introduced</a> a couple of days ago. I spent a lot of time furiously refactoring, reworking the existing kernel code for evalutaing features like page allocation and virtual address space management into capability-oriented kernel services that can be provided to userspace, then overhauling our startup code to provision a useful set of capabilities for the init process to take advantage of. I also implemented x86_64 I/O port services, which allowed for the first few drivers to be written in userspace — serial ports and simple VBE graphics. We also got interrupts working properly and brought up the PIT, which is another major step towards multi-tasking. I also implemented a new syscall ABI with error handling, and refactored a lot of the arch-specific code to make new ports easier. The kernel is in a much better state now than it was a month ago (and to think it’s only three months old!).</p><p><figure><img src="https://redacted.moe/f/7e43ce39.jpg">
+<figcaption>A picture of Helios drawing to a framebuffer</figcaption></figure></p><p>There was also a lot of progress on <a href="https://sr.ht/~sircmpwn/himitsu" target="_blank">Himitsu</a>, which I plan on presenting in a video and blog post in a few days time. The Firefox add-on actually works now (though some features remain to be done), and Alexey Yerin fixed several important bugs and contributed several new features. The user is now prompted to consent before deleting keys, and we have a new GTK+ prompter written in Python, which is much more reliable and feature-full thanks to Martijn Braam’s help (rewriting it in C again is a long-term TODO item for any interested contributor). I also made some progress towards what will ultimately become full-disk encryption support.</p><p><figure><img src="https://brixitcdn.net/metainfo/keyring.png">
+<figcaption>himitsu-keyring, a new GTK+ keyring manager from Martijn Braam</figcaption></figure></p><p>Hare also enjoyed many improvements this month. We have some new improvements to date/time support, including fixes for Martian time ;) I also mostly implemented cross-compiling, which you can try out with <code>hare build -t riscv64</code> or something similar. The major outstanding pain point here is that the Hare cache is not arch-aware, so you need to <code>rm -rf ~/.cache/hare</code> each time you switch architectures for now. We now have complex number support, as well as improvements to encoding::json and net::uri.</p><p><figure><img src="https://redacted.moe/f/737ed5b7.png">
+<figcaption>A screenshot of a fractal rendered with the aid of Hare’s new complex number support</figcaption></figure></p><p>That’s all for today. Until next time!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/helios/">
+					← The Helios microkernel
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Himitsu/">
+					Introducing the Himitsu keyring &amp; password manager for Unix →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

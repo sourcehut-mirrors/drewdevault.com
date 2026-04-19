@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>godocs.io six months later</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		godocs.io six months later
+		<small>
+			<span class="date">May 7, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			May 7, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>We’re six months on from <a href="https://drewdevault.com/2020/12/18/godocs.io.html" target="_blank">forking godoc.org</a> following its upstream deprecation, and we’ve made a lot of great improvements since. For those unaware, the original godoc.org was replaced with pkg.go.dev, and a redirect was set up. The new website isn’t right for many projects — one of the most glaring issues is the narrow list of software licenses pkg.go.dev will display documentation for. To continue serving the needs of projects which preferred the old website, we forked the project and set up <a href="https://godocs.io" target="_blank">godocs.io</a>.</p><p>Since then, we’ve made a lot of improvements, both for the hosted version and for the <a href="https://sr.ht/~sircmpwn/godocs.io/" target="_blank">open source project</a>. Special thanks is due to Adnan Maolood, who has taken charge of a lot of these improvements, and also to a few other contributors who have helped in their own small ways. Since forking, we’ve:</p><ul><li>Added Go modules support</li><li>Implemented <a href="gemini://godocs.io" target="_blank">Gemini access</a></li><li>Made most of the frontend JavaScript optional and simpler</li><li>Rewritten the search backend to use PostgreSQL</li></ul><p>We also substantially cleaned up the codebase, removing over 37,000 lines of code — 64% of the lines from the original code base. The third-party dependencies to Google infrastructure have been removed and it’s much easier to run the software locally or on your intranet, too.</p><p>What we have now is still the same GoDoc: the experience is very similar to the original godocs.org. However, we have substantially improved it: streamlining the codebase, making the UI more accessible, and adding a few important features; thanks to the efforts of just a small number of volunteers. We’re happy to be supporting the Go community with this tool, and looking forward to making more (conservative!) improvements in the future. Enjoy!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Praise-for-Alpine-Linux/">
+					← In praise of Alpine Linux
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Try-not-to-make-unlikable-software/">
+					I try not to make unlikable software (and features) →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

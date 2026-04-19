@@ -1,0 +1,14 @@
+---
+.title = "Umbraco Certification",
+.date = @date("2011-11-29"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+I'm officially an Umbraco Certified Developer, with level 2 certification (the
+highest).  Hooray!  This means I'm now officially an expert on using the great
+open-source ASP.NET Content Management System [Umbraco](https://web.archive.org/web/20120305102609/http://umbraco.com/).  Thanks to my employer,
+[DSoft Technology](https://web.archive.org/web/20120305102609/http://www.dsoft-tech.com/), for paying for the certification.  This explains the fancy
+new badge on the right side of my blog.
+
+Short story short: if you are working with Umbraco and need help, I'm your guy. 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Rotating passwords in bulk in the wake of security events</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Rotating passwords in bulk in the wake of security events
+		<small>
+			<span class="date">May 11, 2017</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			May 11, 2017. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I’ve been putting this post off for a while. Do you remember the <a href="https://blog.cloudflare.com/incident-report-on-memory-leak-caused-by-cloudflare-parser-bug/" target="_blank">CloudFlare security problem</a> that happened a few months ago? This is the one that disclosed huge amounts of sensitive information for huge numbers websites. When this happened, your accounts on <a href="https://github.com/pirate/sites-using-cloudflare" target="_blank">thousands of websites</a> were potentially compromised.</p><p>Updating passwords for all of these services at once was a major source of frustration for users. Updating a single password can take 5 minutes, and changing dozens of them might take hours. I decided that I wanted to make this process easier.</p><pre><code>$ ./pass-rotate github.com linode.com news.ycombinator.com twitter.com
+Rotating github.com... 
+  Enter your two factor (TOTP) code:
+OK
+Rotating linode.com... 
+  Enter your two-factor (TOTP) code:
+OK
+Rotating news.ycombinator.com... OK
+Rotating twitter.com... 
+  Enter your SMS authorization code:
+OK                                                                       
+</code></pre><p>I just changed 4 passwords in about 20 seconds. This is <a href="https://github.com/SirCmpwn/pass-rotate" target="_blank">pass-rotate</a>, which is basically youtube-dl for rotating passwords. It integrates with your password manager to make it easy to change your password. pass-rotate is also provided in the form of a library that password managers can directly integrate with to provide first-class support for password rotation with a shared implementation of various websites. Not only can it help you rotate passwords after security events, but it can be used for periodic password rotation to keep your accounts safer in general.</p><p>How this was basically done is by reverse engineering the password change flow of each of the websites it supports. Each provider’s backend submits HTTP requests that simulates logging into the website and interacting with the password reset form. This is often quite simple, like <a href="https://github.com/SirCmpwn/pass-rotate/blob/master/passrotate/providers/github.py" target="_blank">github.py</a>, but can sometimes be quite complex, like <a href="https://github.com/SirCmpwn/pass-rotate/blob/master/passrotate/providers/namecheap.py" target="_blank">namecheap.py</a>.</p><p>The current list of supported services is available <a href="https://github.com/SirCmpwn/pass-rotate/wiki/Currently-supported-services" target="_blank">here</a>. There’s also an issue to discuss making a standardized mechanism for automated password rotation <a href="https://github.com/SirCmpwn/pass-rotate/issues/1" target="_blank">here</a>. At the time of writing, the list of supported services is:</p><ul><li>Cloudflare <sub>✗ TOTP</sub></li><li>Digital Ocean <sub>✗ TOTP</sub></li><li>Discord <sub>✓ TOTP</sub></li><li>GitHub <sub>✓ TOTP ✗ U2F</sub></li><li>Linode <sub>✓ TOTP</sub></li><li>NameCheap <sub>✓ SMS</sub></li><li>Pixiv</li><li>Twitter <sub>✓ SMS ✓ TOTP</sub></li><li>YCombinator</li></ul><p>Adding new services is easy - check out <a href="https://github.com/SirCmpwn/pass-rotate/blob/master/CONTRIBUTING.md" target="_blank">the guide</a>. I would be happy to merge your pull requests. Please add websites you use and websites you maintain!</p><p>I also set up a Patreon campaign today. If you’d like to contribute to my work, please visit <a href="https://patreon.com/sircmpwn" target="_blank">the Patreon page</a>. This supports all of my open source projects, but if you want to support pass-rotate in particular feel free to let me know when you make your contribution. This kind of project needs long term maintenance to support countless providers and keep up with changes to them. Feel free to let me know what service providers you want me to add support for when you make your pledge!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Building-a-real-Linux-distro/">
+					← Building a &quot;real&quot; Linux distro
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Limited-generics-in-C/">
+					Limited &quot;generics&quot; in C without macros or UB →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

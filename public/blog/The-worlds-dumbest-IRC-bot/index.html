@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>The world&apos;s stupidest IRC bot</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		The world&apos;s stupidest IRC bot
+		<small>
+			<span class="date">March 29, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			March 29, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I’m an <a href="https://en.wikipedia.org/wiki/Internet_Relay_Chat" target="_blank">IRC</a> power user, having been hanging out in 200+ channels on 10+ networks 24/7 for the past 10 years or so. Because IRC is <a href="https://tools.ietf.org/html/rfc2812" target="_blank">standardized</a> and simple, a common pastime for IRC enthusiasts is the creation of bots. In one of the social channels I hang out in, we’ve spent the past 6 years gradually building the world’s stupidest IRC bot: wormy.</p><p>For a start, wormy is highly schizophrenic. Though it presents itself as a single bot, it is in fact a <a href="https://en.wikipedia.org/wiki/BNC_(software)" target="_blank">bouncer</a> which combines the connections of 7 independent bots. At one point, this number was higher — as many as 11 — but some bots were consolidated.</p><pre><code>&lt;@sircmpwn&gt; .bots
+&lt;wormy&gt; Serving text/html since 2017, yours truly [&quot;ps&quot;] For a list of commands, try `.help`
+&lt;wormy&gt; minus&apos; parcel tracking bot r10.b563abc (built on 2020-06-06T12:02:13Z, https://git.sr.ht/~minus/parcel-tracking-bot)
+&lt;wormy&gt; minus&apos; dice bot r16.498a0b8 (built on 2020-02-04T20:16:14Z, https://git.sr.ht/~minus/dice-irc-bot)
+&lt;wormy&gt; Featuring arbitrary code execution by design and buffer overflows by mistake, jsbot checking in
+&lt;wormy&gt; Radiobot coming to you live from The Internet, taking listener requests at 1-800-GUD-SONGS
+&lt;wormy&gt; urlbot: live streaming moe directly to your eyeballs
+&lt;wormy&gt; o/ SirCmpwn made me so he wouldn&apos;t forget shit so much
+</code></pre><p>These bots provide a variety of features for channel members, such as checking tracking numbers for parcels out for delivery, requesting songs for our private internet radio, reading out the mimetypes and titles of URLs mentioned in the channel, or feeding queries into Wolfram Alpha.</p><pre><code>&lt;wormy&gt; Now playing: 8369492 小さき者への贖罪の為のソナタ  by ALI PROJECT from 禁書 (4m42s FLAC)
+&lt;wormy&gt; Now playing: 1045361 アキノサクラ by Wakana from magic moment (5m0s FLAC) #live ♥ minus
+&lt;wormy&gt; Now playing: d0b1cb3 Forevermore by F from Cafe de Touhou 3 (4m9s FLAC) ♥ hummer12007
+&lt;wormy&gt; Now playing: 0911e90 Moeru San Shimai by Iwasaki Taku from Tengen Toppa Gurren Lagann Original Soundtrack - CD01 (3m3s FLAC)
+&lt;wormy&gt; Now playing: ac1a17e rebellion anthem by Yousei teikoku from rebellion anthem (5m15s MP3) ♥ minus
+&lt;wormy&gt; Now playing: a5ab39a Desirable Dream by GET IN THE RING from Aki-秋- (4m38s FLAC) ♥ minus
+</code></pre><p>Things really took off with the introduction of a truly stupid bot last year: <a href="https://git.sr.ht/~sircmpwn/jsbot" target="_blank">jsbot</a>. This bot adds a <code>.js</code> command which executes arbitrary JavaScript (using Fabrice Bellard’s <a href="https://bellard.org/quickjs/" target="_blank">quickjs</a>) expressions, and sending their stringified result to the channel.</p><pre><code>&lt;@sircmpwn&gt; .js Array(16).join(&quot;wat&quot; - 1) + &quot; Batman!&quot;
+&lt;wormy&gt; =&gt; NaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaNNaN Batman!
+</code></pre><p>We soon realized, however, that what we had effectively created was a persistent JavaScript environment which was connected to IRC. This has made it possible to write even more IRC bots in the least practical manner imaginable: by writing JavaScript statements, one line at a time, into IRC messages, and hoping it works.</p><p>This has not been an entirely smart move.</p><p><figure><img src="https://redacted.moe/f/52eb4eba.png">
+<figcaption>I say “I hate C++ templates”, and the bot responds by writing “yeah, fuck C++ templates!” with “C++ templates” displayed in rainbow colors. MartijnBraam follows up by asking “number of c++ programmers launched into the sun”, which wormy claims is 367880 people as of 2009.</figcaption></figure></p><p>One “feature”, inspired by <a href="https://www.youtube.com/watch?v=30jNsCVLpAE" target="_blank">Bryan Cantrill</a>, records every time the word “fuck” is used in the channel. Then, whenever anyone says “wtf”, the bot helpfully offers up an example of the usage of the word “fuck” by printing one of the recorded messages. Here’s how it was made:</p><pre><code>&lt;sircmpwn&gt; .js let wtf = [];
+&lt;wormy&gt;  =&gt; undefined
+&lt;sircmpwn&gt; .js on(/fuck/, msg =&gt; wtf.push(msg.text))
+&lt;wormy&gt;  =&gt; 25
+&lt;sircmpwn&gt; .js on(/^what the fuck$/, msg =&gt; msg.reply(wtf[Math.floor(Math.random() * wtf.length)]))
+&lt;wormy&gt;  =&gt; 26
+</code></pre><p>Here’s one which records whenever someone says “foo++” or “foo--” and keeps track of scores:</p><pre><code>.js on(/^([a-zA-Z0-9_]+)(\+\+|--)$/, (msg, thing, op) =&gt; { if (typeof scores[thing] === &quot;undefined&quot;) scores[thing] = 0; scores[thing] += op === &quot;++&quot; ? 1 : -1; msg.reply(`${thing}: ${scores[thing]}`) });
+.js on(/\.score (.*)/, (msg, item) =&gt; msg.reply(scores[item]));
+.js let worst = () =&gt; Object.entries(scores).sort((a, b) =&gt; a[1] - b[1]).slice(0, 5).map(s =&gt; `${s[0]}: ${s[1]}`).join(&quot;, &quot;);
+.js let best = () =&gt; Object.entries(scores).sort((a, b) =&gt; b[1] - a[1]).slice(0, 5).map(s =&gt; `${s[0]}: ${s[1]}`).join(&quot;, &quot;);
+.js on(/^.worst$/, msg =&gt; msg.reply(worst()));
+.js on(/^.best$/, msg =&gt; msg.reply(best()));
+</code></pre><p>Other “features” written in horrible one-liners include SI unit conversions, rewriting undesirable URLs (e.g. m.wikipedia.org => en.wikipedia.org), answering “wormy you piece of shit” with “¯\_(ツ)_/¯”, and giving the obvious response to “make me a sandwich”.</p><p>Eventually it occurred to us that we had two dozen stupid IRC bots storing not only their state, but their code, in a single long-lived process on some server. For a while, the answer to this was adding “don’t reboot this server kthx” to the MotD, but eventually we did some magic nonsense to make certain variables persistent:</p><pre><code class="js"><span class="keyword">let</span> <span class="constructor constant variable_builtin function_builtin variable">persistent</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span><span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+<span class="keyword">function</span> <span class="constructor constant variable_builtin function_builtin variable function">writePersistent</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+  <span class="keyword">let</span> <span class="constructor constant variable_builtin function_builtin variable">fd</span> <span class="operator">=</span> <span class="constructor constant variable_builtin function_builtin variable">std</span><span class="punctuation_delimiter">.</span><span class="property function_method">open</span><span class="punctuation_bracket">(</span><span class="string">&quot;persist.json&quot;</span><span class="punctuation_delimiter">,</span> <span class="string">&quot;w&quot;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+  <span class="constructor constant variable_builtin function_builtin variable">fd</span><span class="punctuation_delimiter">.</span><span class="property function_method">puts</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">JSON</span><span class="punctuation_delimiter">.</span><span class="property function_method">stringify</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">persistent</span><span class="punctuation_bracket">)</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+  <span class="constructor constant variable_builtin function_builtin variable">fd</span><span class="punctuation_delimiter">.</span><span class="property function_method">close</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span>
+
+<span class="keyword">let</span> <span class="constructor constant variable_builtin function_builtin variable">persist_handler</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span>
+  <span class="property function_method">set</span>: <span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">obj</span><span class="punctuation_delimiter">,</span> <span class="constructor constant variable_builtin function_builtin variable">prop</span><span class="punctuation_delimiter">,</span> <span class="constructor constant variable_builtin function_builtin variable">val</span><span class="punctuation_bracket">)</span> <span class="operator">=&gt;</span> <span class="punctuation_bracket">{</span>
+    <span class="constructor constant variable_builtin function_builtin variable">obj</span><span class="punctuation_bracket">[</span><span class="constructor constant variable_builtin function_builtin variable">prop</span><span class="punctuation_bracket">]</span> <span class="operator">=</span> <span class="constructor constant variable_builtin function_builtin variable">val</span><span class="punctuation_delimiter">;</span>
+    <span class="constructor constant variable_builtin function_builtin variable function">writePersistent</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+  <span class="punctuation_bracket">}</span><span class="punctuation_delimiter">,</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+<span class="keyword">let</span> <span class="constructor constant variable_builtin function_builtin variable">p</span> <span class="operator">=</span> <span class="constructor constant variable_builtin function_builtin variable">std</span><span class="punctuation_delimiter">.</span><span class="property function_method">loadFile</span><span class="punctuation_bracket">(</span><span class="string">&quot;persist.json&quot;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="keyword">if</span> <span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">p</span> <span class="operator">!==</span> <span class="constant_builtin">null</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+  <span class="constructor constant variable_builtin function_builtin variable">persistent</span> <span class="operator">=</span> <span class="constructor constant variable_builtin function_builtin variable">JSON</span><span class="punctuation_delimiter">.</span><span class="property function_method">parse</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">p</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+  <span class="constructor constant variable_builtin function_builtin variable">Object</span><span class="punctuation_delimiter">.</span><span class="property function_method">keys</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">persistent</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">map</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">key</span> <span class="operator">=&gt;</span> <span class="punctuation_bracket">{</span>
+    <span class="keyword">let</span> <span class="constructor constant variable_builtin function_builtin variable">proxy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="constructor constant variable_builtin function_builtin variable">Proxy</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">persistent</span><span class="punctuation_bracket">[</span><span class="constructor constant variable_builtin function_builtin variable">key</span><span class="punctuation_bracket">]</span><span class="punctuation_delimiter">,</span> <span class="constructor constant variable_builtin function_builtin variable">persist_handler</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+    <span class="constructor constant variable_builtin function_builtin variable">persistent</span><span class="punctuation_bracket">[</span><span class="constructor constant variable_builtin function_builtin variable">key</span><span class="punctuation_bracket">]</span> <span class="operator">=</span> <span class="constructor constant variable_builtin function_builtin variable">proxy</span><span class="punctuation_delimiter">;</span>
+    <span class="constructor constant variable_builtin function_builtin variable">exports</span><span class="punctuation_bracket">[</span><span class="constructor constant variable_builtin function_builtin variable">key</span><span class="punctuation_bracket">]</span> <span class="operator">=</span> <span class="constructor constant variable_builtin function_builtin variable">proxy</span><span class="punctuation_delimiter">;</span>
+  <span class="punctuation_bracket">}</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span>
+
+<span class="constructor constant variable_builtin function_builtin variable">exports</span><span class="punctuation_delimiter">.</span><span class="property function_method">persist</span> <span class="operator">=</span> <span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">name</span><span class="punctuation_delimiter">,</span> <span class="constructor constant variable_builtin function_builtin variable">obj</span><span class="punctuation_bracket">)</span> <span class="operator">=&gt;</span> <span class="punctuation_bracket">{</span>
+  <span class="keyword">let</span> <span class="constructor constant variable_builtin function_builtin variable">proxy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="constructor constant variable_builtin function_builtin variable">Proxy</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">obj</span><span class="punctuation_delimiter">,</span> <span class="constructor constant variable_builtin function_builtin variable">persist_handler</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+  <span class="constructor constant variable_builtin function_builtin variable">persistent</span><span class="punctuation_bracket">[</span><span class="constructor constant variable_builtin function_builtin variable">name</span><span class="punctuation_bracket">]</span> <span class="operator">=</span> <span class="constructor constant variable_builtin function_builtin variable">proxy</span><span class="punctuation_delimiter">;</span>
+  <span class="constructor constant variable_builtin function_builtin variable function">writePersistent</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+  <span class="keyword">return</span> <span class="constructor constant variable_builtin function_builtin variable">proxy</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>Anyway, there’s no moral to this story. We just have a silly IRC bot and I thought I’d share that with you. If you want a stupid IRC bot for your own channel, <a href="https://git.sr.ht/~sircmpwn/jsbot" target="_blank">jsbot</a> is available on sourcehut. I highly disrecommend it and disavow any responsibility for the consequences.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Open-sourcing-video-games/">
+					← The complete guide for open sourcing video games
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Go-is-a-great-language/">
+					Go is a great programming language →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

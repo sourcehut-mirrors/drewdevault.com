@@ -1,0 +1,77 @@
+---
+.title = "The Cheap Way To Fix a GameBoy Game",
+.date = @date("2011-08-07"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+So I recently picked up Pokemon Gold on eBay for super cheap because the saving
+feature was broken.  For those of you who don't know, Pokemon Gold and games
+like it store their saved data in a special kind of RAM called SRAM.  Since RAM
+requires a battery to keep the data intact, these cartridges have a small
+battery inside.  Usually, when your game stops being able to save, it's because
+this battery died.  Unfortunately, the kind of battery they use can be
+difficult to find.  I decided to use an alternate battery in its place - a AA.
+
+Obviously a AA battery can't fit inside of a GameBoy cartridge, so I had to do
+a lot of hacky stuff to make this work.  The first thing I did was scrounge up
+some equipment.  I don't have any solder, or a soldering iron, or even any
+proper wires.  The materials for this build are as follows:
+
+* Cheap plastic pen
+* Lighter
+* Old noise-cancelling headphones
+* Speaker wires
+* Tape
+* Scissors
+* AA Battery
+
+These are all the materials I used for this.  The first thing I did was get the
+cartridge open.  I took the ink and metal tip out of my pen, and melted down
+the tip.  While it was still hot, I pressed the tip of the pen onto the screw
+that held the casing on (it requires a special screwdriver that is difficult to
+find).  After the melted plastic pen dried, I had a DIY GameBoy cartridge
+screwdriver.  I removed the screw and opened up the case to reveal the game
+inside.
+
+Attached to the game was a battery powering the SRAM.  I pried it out of its
+casing, leaving the contacts in place.  Then I looked for some wiring and found
+speaker wire.  This I stripped.  I wound some of it around each contact and
+left it aside.  Then, using the lighter to soften the plastic, and scissors to
+manipulate it, I put some holes in the side of the casing so the wires could
+get out.  I put the game back in the case and led the wires out.
+
+I went to look for something to hold the battery with.  After a lot of
+searching, I stumbled upon some old noise cancelling headphones that had a
+mount for a single AA battery.  I abused the headphones until just the mount
+remained, and put a fresh battery inside.  I trapped the leads coming out of
+the cartridge between the battery's contacts and the walls of the mount.  I
+then stuck the cartridge back into my GameBoy Advance and turned it on.
+
+I went through the prompts and chatted up Professor Oak a bit, then finally was
+dropped into the overworld and saved the game.  I turned off the GameBoy,
+crossed my fingers, and started it up again.  Hooray!  The game offered me the
+option to continue, and I was able to save again.
+
+Pics of the build below:
+
+The GameBoy showing the successfully saved game.  The front of the case is to
+the left, only half of the case is actually inserted.  This allowed me to make
+sure that the cartridge meets the contacts in the GameBoy itself, but still let
+me meddle around inside without taking it out.
+
+![](/gameboy-1.jpg)
+
+The game, before replacing the front of the cartridge.
+
+![](/gameboy-2.jpg)
+
+The cartridge and the battery leading up to it.
+
+![](/gameboy-3.jpg)
+
+The final game, completed and ready to play!
+
+![](/gameboy-4.jpg)
+
+![](/gameboy-5.jpg)

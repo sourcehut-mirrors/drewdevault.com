@@ -1,0 +1,47 @@
+---
+.title = "Creating an Integrated Development Environment",
+.date = @date("2011-07-23 13:00:00"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+The Texas Instruments community does not have a modern, well-working IDE for
+development.  A while ago, I thought I'd take up the responsibility and create
+tiDE - Texas Instruments Development Environment.  It's an open source IDE
+which, although geared heavily towards TI development, should be easy to adapt
+to many more languages if you so choose.  I just want to highlight some
+interesting things about it.
+
+First of all, it has support for a plethora of languages (or at least it will -
+languages already supported are highlighted): **z80 Assembly**, **z80
+TI-Basic**, **z80 Axe Parser**, 68k Assembly, 68k TI-Basic, 68k C, ARM Basic,
+ARM Assembly, ARM C, and TI-Lua.
+
+tiDE also comes with it's own z80 TI-83+ emulator, and will eventually have
+built-in emulators for all the platforms it supports.
+
+Interesting features that the IDE has, that may be extensible to your own
+programs, that are completed and ready for use as of now:
+
+* Syntax Highlighting, Code Completion, and Code Folding provided by
+  [ICSharpCode](https://web.archive.org/web/20120305101527/http://www.icsharpcode.net/)'s open-source Text Editor
+* Window Docking provided by the open-source [Dock Panel Suite](https://web.archive.org/web/20120305101527/http://sourceforge.net/projects/dockpanelsuite/)
+* XML-Based Project and File Templates
+* Code Insight - Provides the ability to learn different things about code,
+  including generating a list of "important places" that the solution explorer
+  uses to navigate straight to different areas of code
+* Extensible, easy to implement Settings Manager
+* z80 Core Emulation provided by Benjamin Ryves in a project called "Brazil"
+* Fast mnomic-based assembly using caching to improve speed
+* Automatic Substitution - one of our supported languages, TI-Basic, has
+  untypable characters.  When you type "->", it automatically becomes "→"
+* (De)tokenization: taking a series of text and tokenizing it into smaller,
+  byte based commands
+* Grayscale sprite editing with any number of colors
+* Automatic generation and presentation of commands provided through code
+  completion
+* Customizable keyboard shortcuts that map to any clickable object in the IDE
+
+All of these features are ready to use right now, and free for anyone to
+implement in their own projects.  Download the source code at
+http://tidenv.codeplex.com 

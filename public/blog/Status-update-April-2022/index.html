@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, April 2022</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, April 2022
+		<small>
+			<span class="date">April 15, 2022</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			April 15, 2022. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>This month marked my first time filing taxes in two countries, and I can assure you it is the worst. I am now a single-issue voter in the US: stop taxing expats! You can get some insight into the financials of SourceHut in the recently-published <a href="https://sourcehut.org/blog/2022-04-08-2021-financial-report/" target="_blank">financial report</a>. But let’s get right into the fun stuff: free software development news.</p><p>There was some slowdown from me this month thanks to all of the business and financial crap I had to put up with, but I was able to get some cool stuff done and many other contributors have been keeping things moving. I’ll start by introducing a new/old project: Himitsu.</p><p>Essentially, Himitsu is a secret storage system whose intended use-case is to provide features like password storage and SSH agent functionality. It draws much of its inspiration from Plan 9’s Factotum. You may have stumbled upon an <a href="https://git.sr.ht/~sircmpwn/himitsu.old" target="_blank">early prototype</a> on git.sr.ht which introduces the basic idea and included the start of an implementation in C. Ultimately I shelved this project for want of a better programming language to implement it with, and then I made a better programming language to implement it with. Over the past two weeks, I have implemented something similar to where the C codebase was left, in fewer than half the lines of code and much less than half the time. Here’s a little peek at what works now:</p><pre><code>[12:18:31] taiga ~/s/himitsu $ ./himitsud 
+Please enter your passphrase to unlock the keyring: 
+[2022-04-15 12:18:56] himitsud running
+^Z[1]+  Stopped                    ./himitsud
+[12:18:57] taiga ~/s/himitsu $ bg
+[1] ./himitsud
+[12:18:58] taiga ~/s/himitsu $ nc -U ~/.local/state/himitsu/socket 
+add proto=imap host=example.org user=sir@cmpwn.com password!=&quot;Hello world!&quot;
+^C
+[12:19:12] taiga ~/s/himitsu $ ls ~/.local/share/himitsu/
+2849c1d5-61b3-4803-98cf-fc57fe5f69a6  index  key
+[12:19:14] taiga ~/s/himitsu $ cat ~/.local/share/himitsu/index
+YNfVlkORDX1GmXIfL8vOiiTgBJKh47biFsUaKrqzfMP2xfD4B9/lqSl2Y9OtIpVcYzrNjBBZOxcO81vNQdgnvxQ+xaCKaVpQS4Dh6DyaY0/lpq6rfowTY5GwcI155KkmTI4z1ABOVkL4z4XDsQ2DEiqClcQE5/+CxsQ/U/u9DthLJRjrjw==
+[12:19:19] taiga ~/s/himitsu $ fg
+./himitsud
+^C[2022-04-15 12:19:22] himitsud terminated
+[12:19:22] taiga ~/s/himitsu $ ./himitsud 
+Please enter your passphrase to unlock the keyring: 
+Loaded key proto=imap host=example.org user=sir@cmpwn.com password!=2849c1d5-61b3-4803-98cf-fc57fe5f69a6
+[2022-04-15 12:19:29] himitsud running
+^C[2022-04-15 12:19:31] himitsud terminated
+[12:19:33] taiga ~/s/himitsu $ find . -type f | xargs wc -l | tail -n1
+  895 total
+</code></pre><p>This project is progressing quite fast and I hope to have it working for some basic use-cases soon. I’ll do a dedicated blog post explaining how it works and why it’s important later on, though it will remain mostly under wraps until the language is released.</p><p>Speaking of the language, there were a number of exciting developments this month. Two major standard library initiatives were merged: regex and datetime. The regex implementation is simple, small, and fast, targeting POSIX ERE as a reasonably sane conservative baseline regex dialect. The datetime implementation is quite interesting as well, and it provides a pretty comprehensive API which should address almost all use-cases for timekeeping in our language with a robust and easy-to-use API. As a bonus, and a little flex at how robust our design is, we’ve included support for Martian time. I’m very pleased with how both of these turned out.</p><pre><code class="hare"><span class="include">use</span> <span class="constant variable namespace">datetime</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">fmt</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">os</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">time</span><span class="punctuation_delimiter">::</span><span class="constant type variable namespace">chrono</span><span class="punctuation_delimiter">;</span>
+
+<span class="keyword">export</span> <span class="keyword_function">fn</span> <span class="constructor constant variable function">main</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="type_builtin type">void</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">now</span> <span class="operator">=</span> <span class="constant variable namespace">datetime</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">in</span><span class="punctuation_bracket">(</span><span class="constant variable namespace">chrono</span><span class="punctuation_delimiter">::</span><span class="constant type variable">MTC</span><span class="punctuation_delimiter">,</span> <span class="constant variable namespace">datetime</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">now</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="constant variable namespace">fmt</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">printf</span><span class="punctuation_bracket">(</span><span class="string">&quot;Current Martian coordinated time: &quot;</span><span class="punctuation_bracket">)</span><span class="operator">!</span><span class="punctuation_delimiter">;</span>
+	<span class="constant variable namespace">datetime</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">format</span><span class="punctuation_bracket">(</span><span class="constant variable namespace">os</span><span class="punctuation_delimiter">::</span><span class="constant type variable">stdout</span><span class="punctuation_delimiter">,</span> <span class="constant variable namespace">datetime</span><span class="punctuation_delimiter">::</span><span class="constant type variable">STAMP</span><span class="punctuation_delimiter">,</span> <span class="operator">&amp;</span><span class="constant variable">now</span><span class="punctuation_bracket">)</span><span class="operator">!</span><span class="punctuation_delimiter">;</span>
+	<span class="constant variable namespace">fmt</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">println</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="operator">!</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>Other recent improvements include support for signal handling, glob, aes-ni, and net::uri. Work has slowed down on cryptography — please get in touch if you’d like to help. Many readers will be happy to know that there are rumblings about possibly going public soon; after a couple more milestones we’ll be having a meeting to nail down the most urgent priorities before going public and then we’ll get this language into your hands to play with.</p><p>I also started a bittorrent daemon in this language, but it’s temporarily blocked until we sort out HTTP/TLS. So, moving right along: SourceHut news? Naturally I will leave most of it for the “what’s cooking” post, but I’ll offer you a little tease of what we’ve been working on: GraphQL. We landed support this month for GraphQL-native webhooks in todo.sr.ht, as well as some new improvements to the pages.sr.ht GQL API. hg.sr.ht is also now starting to see some polish put on its GraphQL support, and some research is underway on GraphQL Federation. Very soon we will be able to put a bow on this work.</p><p>That’s all for today! Thanks again for reading and for your ongoing support. I appreciate you!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/git-snail-mail/">
+					← Announcing git snail-mail
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Announcing-Hare/">
+					Announcing the Hare programming language →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

@@ -1,0 +1,7 @@
+---
+.title = "Deep time",
+.date = @date("2026-04-02"),
+.author = "Drew DeVault",
+.layout = "singletons/time.shtml",
+--- 
+

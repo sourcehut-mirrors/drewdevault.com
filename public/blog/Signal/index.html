@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>I don&apos;t trust Signal</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		I don&apos;t trust Signal
+		<small>
+			<span class="date">August 8, 2018</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			August 8, 2018. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Occasionally when Signal is in the press and getting a lot of favorable discussion, I feel the need to step into various forums, IRC channels, and so on, and explain why I don’t trust Signal. Let’s do a blog post instead.</p><p>Off the bat, let me explain that I expect a tool which claims to be secure to actually be secure. I don’t view “but that makes it harder for the average person” as an acceptable excuse. If Edward Snowden and Bruce Schneier are going to spout the virtues of the app, I expect it to <em>actually</em> be secure when it matters - when vulnerable people using it to encrypt sensitive communications are targeted by smart and powerful adversaries.</p><p>Making promises about security without explaining the tradeoffs you made in order to appeal to the average user is unethical. Tradeoffs are necessary - but self-serving tradeoffs are not, and it’s your responsibility to clearly explain the drawbacks and advantages of the tradeoffs you make. If you make broad and inaccurate statements about your communications product being “secure”, then when the political prisoners who believed you are being tortured and hanged, it’s on you. The stakes are serious. Let me explain why I don’t think Signal takes them seriously.</p><h2>Google Play</h2><p>Why do I make a big deal out of Google Play and Google Play Services? Well, some people might trust Google, the company. But up against nation states, it’s no contest - Google has ties to the NSA, has been served secret subpoenas, and is literally the world’s largest machine designed for harvesting and analyzing private information about their users. Here’s what Google Play Services <em>actually</em> is: <strong>a rootkit</strong>. Google Play Services lets Google do silent background updates on apps on your phone and give them any permission they want. Having Google Play Services on your phone means your phone is not secure.<sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup></p><p>For the longest time, Signal wouldn’t work without Google Play Services, but Moxie (the founder of Open Whisper Systems and maintainer of Signal) finally fixed this in 2017. There was also a long time when Signal was only available on the Google Play Store. Today, you can <a href="https://signal.org/android/apk/" target="_blank">download the APK directly from signal.org</a>, but… well, we’ll get to that in a minute.</p><h2>F-Droid</h2><p>There’s an alternative to the Play Store for Android. <a href="https://f-droid.org" target="_blank">F-Droid</a> is an open source app “store” (repository would be a better term here) which only includes open source apps (which Signal thankfully is).  By no means does Signal have to <em>only</em> be distributed through F-Droid - it’s certainly a compelling alternative. This has been proposed, and Moxie has <a href="https://github.com/signalapp/Signal-Android/issues/127" target="_blank">definitively shut the discussion down</a>. Admittedly this is from 2013, but his points and the arguments against them haven’t changed. Let me quote some of his positions and my rebuttals:</p><blockquote><p>No upgrade channel. Timely and automatic updates are perhaps the most effective security feature we could ask for, and not having them would be a real blow for the project.</p></blockquote><p>F-Droid supports updates. If you’re concerned about moving your updates quickly through the (minimal) bureaucracy of F-Droid, you can always run your own repository. Maybe this is a lot of work?<sup class="footnote-ref"><a href="#fn-2" id="fn-2-ref-1">2</a></sup> I wonder how the workload compares to <a href="https://signal.org/blog/signal-and-giphy-update/" target="_blank">animated gif search</a>, a very important feature for security concious users. I bet that <a href="https://signal.org/blog/signal-foundation/" target="_blank">50 million dollar donation</a> could help, given how many people operate F-Droid repositories on a budget of $0.</p><blockquote><p>No app scanning. The nice thing about market is the server-side APK scanning and signature validation they do. If you start distributing APKs around the internet, it’s a reversion back to the PC security model and all of the malware problems that came with it.</p></blockquote><p>Try searching the Google Play Store for “flashlight” and look at the permissions of the top 5 apps that come up. All of them are harvesting and selling the personal information of their users to advertisers. Is this some kind of joke? F-Droid is a curated repository, like Linux distributions. Google Play is a malware distributor.  Packages on F-Droid are reviewed by a human being and are <a href="https://f-droid.org/en/docs/Signing_Process/" target="_blank">cryptographically signed</a>. If you run your own F-Droid repo this is even less of a concern.</p><p>I’m not going to address all of Moxie’s points here, because there’s a deeper problem to consider. I’ll get into more detail shortly. You can read the 6-year-old threads tearing Moxie’s arguments apart over and over again until GitHub added the feature to lock threads, if you want to see a more in-depth rebuttal.</p><h2>The APK direct download</h2><p>Last year Moxie added an official APK download to signal.org. He said this was up for “<a href="https://github.com/signalapp/Signal-Android/issues/127#issuecomment-286223680" target="_blank">harm reduction</a>”, to avoid people using unofficial builds they find around the net. The download page is covered in warnings telling you that it’s for advanced users only, it’s insecure, would you please go to the Google Play store you stupid user. I wonder, has Moxie considered communicating to people the risks of using the Google Play version?<sup class="footnote-ref"><a href="#fn-3" id="fn-3-ref-1">3</a></sup></p><p>The APK direct download doesn’t even accomplish the stated goal of “harm reduction”. The user has to manually verify the checksum, and figure out how to do it on a phone, no less. A checksum isn’t a signature, by the way - if your government- or workplace- or abusive-spouse-installed certificate authority gets in the way they can replace the APK <em>and</em> its checksum with whatever they want. The app has to update itself, using a similarly insecure mechanism. F-Droid handles updates and actually signs their packages. This is a no brainer, Moxie, why haven’t you put Signal on F-Droid yet?</p><h2>Why is Signal like this?</h2><p>So if you don’t like all of this, if you don’t like how Moxie approaches these issues, if you want to use something else, what do you do?</p><p>Moxie knows about everything I’ve said in this article. He’s a very smart guy and I am under no illusions that he doesn’t understand everything I’ve put forth. I don’t think that Moxie makes these choices because he thinks they’re the right thing to do. He makes arguments which don’t hold up, derails threads, leans on logical fallacies, and loops back around to long-debunked positions when he runs out of ideas. I think this is deliberate. An open source software team reads this article as a list of things they can improve on and gets started. Moxie reads this and prepares for war. Moxie can’t come out and say it openly, but he’s made the decisions he has made because they serve his own interests.</p><p>Lots of organizations which are pretending they don’t make self-serving decisions at their customer’s expense rely on argumentative strategies like Moxie does. If you can put together an argument which on the surface appears reasonable, but requires in-depth discussion to debunk, passerby will be reassured that your position is correct, and that the dissenters are just trolls. They won’t have time to read the lengthy discussion which demonstrates that your conclusions are wrong, especially if you draw the discussion out like Moxie does. It can be hard to distinguish these from genuine positions held by the person you’re talking to, but when it conveniently allows them to make self-serving plays, it’s a big red flag.</p><p>This is a strong accusation, I know. The thing which convinced me of its truth is Signal’s centralized design and hostile attitude towards forks. In open source, when a project is making decisions and running things in a way you don’t like, you can always fork the project. This is one of the fundamental rights granted to you by open source. It has a side effect Moxie doesn’t want, however. It reduces his power over the project. Moxie has a clever solution to this: centralized servers and trademarks.</p><h2>Trust, federation, and peer-to-peer chat</h2><p>Truly secure systems do not require you to trust the service provider. This is the point of end-to-end encryption. But we have to trust that Moxie is running the server software he says he is. We have to trust that he isn’t writing down a list of people we’ve talked to, when, and how often. We have to trust not only that Moxie is trustworthy, but given that Open Whisper Systems is based in San Francisco we have to trust that he hasn’t received a national security letter, too (by the way, Signal doesn’t have a warrant canary). Moxie can <em>tell</em> us he doesn’t store these things, but he could. <strong>Truly secure systems don’t require trust</strong>.</p><p>There are a couple of ways to solve this problem, which can be used in tandem. We can stop Signal from knowing when we’re talking to each other by using peer-to-peer chats. This has some significant drawbacks, namely that both users have to be online at the same time for their messages to be delivered to each other. You can still fall back to peer-to-server-to-peer when one peer is offline, however. But this isn’t the most important of the two solutions.</p><p>The most important change is federation. Federated services are like email, in that Alice can send an email from gmail.com to Bob’s yahoo.com address. I should be able to stand up a Signal server, on my own hardware where I am in control of the logs, and communicate freely with other Signal servers, including Open Whisper’s servers. This distributes the security risks across hundreds of operators in many countries with various data extradition laws. This turns what would today be easy for the United States government to break and makes it much, much more difficult. Federation would also open the possibility for bridging the gap with several other open source secure chat platforms to all talk on the same federated network - which would spur competition and be a great move for users of all chat platforms.</p><p>Moxie forbids you from distributing branded builds of the Signal app, and if you rebrand he forbids you from using the official Open Whisper servers. Because his servers don’t federate, that means that users of Signal forks <em>cannot talk to Signal users</em>. This is a truly genius move. No fork of Signal<sup class="footnote-ref"><a href="#fn-4" id="fn-4-ref-1">4</a></sup> to date has ever gained any traction, and never will, because you can’t talk to any Signal users with them. In fact, there are no third-party applications which can interact with Signal users in any way. Moxie can write as many blog posts which appeal to wispy ideals and “moving ecosystems” as he wants<sup class="footnote-ref"><a href="#fn-5" id="fn-5-ref-1">5</a></sup>, but those are all <em>really</em> convenient excuses for an argument which allows him to design systems which serve his own interests.</p><p>No doubt these are non-trivial problems to solve. But I have <em>personally</em> been involved in open source projects which have collectively solved similarly difficult problems a thousand times over with a combined budget on the order of tens of thousands of dollars.</p><p>What were you going to do with that 50 million dollars again?</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>“But how is AOSP any better?” This is a common strawman counter-argument. Fact: There is empirical evidence which shows that Google Play Services does silent updates and can obtain any permission on your phone: a rootkit. There is no empirical evidence to suggest AOSP has similar functionality.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-2">
+						<p>No, it’s not.</p>
+						
+							<a class="footnote-backref" href="#fn-2-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-3">
+						<p>Probably not, because that wouldn’t be self-serving. But I’m getting ahead of myself.</p>
+						
+							<a class="footnote-backref" href="#fn-3-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-4">
+						<p>See <a href="https://github.com/LibreSignal/LibreSignal" target="_blank">LibreSignal</a> and <a href="https://github.com/SilenceIM/Silence#silence-" target="_blank">Silence</a>, particularly <a href="https://github.com/LibreSignal/LibreSignal/issues/37#issuecomment-217211165" target="_blank">this thread</a>.</p>
+						
+							<a class="footnote-backref" href="#fn-4-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-5">
+						<p>See <a href="https://signal.org/blog/the-ecosystem-is-moving/" target="_blank">Reflections: The ecosystem is moving</a>. Yes, that’s the unedited title.</p>
+						
+							<a class="footnote-backref" href="#fn-5-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Local-mail-server/">
+					← Setting up a local dev mail server
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Commons-clause-will-destroy-open-source/">
+					The Commons Clause will destroy open source →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

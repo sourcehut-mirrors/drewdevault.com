@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Building interactive SSH applications</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Building interactive SSH applications
+		<small>
+			<span class="date">September 2, 2019</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			September 2, 2019. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>After the announcement of <a href="https://drewdevault.com/2019/08/19/Introducing-shell-access-for-builds.html" target="_blank">shell access for builds.sr.ht jobs</a>, a few people sent me some questions, wondering how this sort of thing is done. Writing interactive SSH applications is actually pretty easy, but it does require some knowledge of the pieces involved and a little bit of general Unix literacy.</p><p>On the server, there are three steps which you can meddle with using OpenSSH: authentication, the shell session, and the command. The shell is pretty easily manipulated. For example, if you set the user’s login shell to <code>/usr/bin/nethack</code>, then <a href="https://www.nethack.org/" target="_blank">nethack</a> will run when they log in. Editing this is pretty straightforward, just pop open <code>/etc/passwd</code> as root and set their shell to your desired binary. If the user SSHes into your server with a TTY allocated (which is done by default), then you’ll be able to run a curses application or something interactive.</p><script
+  id="asciicast-CQ5iaFl8kMnOGV3x0TeI7vfjV"
+  src="https://asciinema.org/a/pafXXANiWHY9MOH2yXdVHHJRd.js" async
+></script>
+<noscript><i>This article includes third-party JavaScript content from
+asciinema.org, a free- and open-source platform that I trust.</i></noscript>
+<p>However, a downside to this is that, if you choose a “shell” which does not behave like a shell, it will break when the user passes additional command line arguments, such as <code>ssh user@host ls -a</code>. To address this, instead of overriding the shell, we can override the <em>command</em> which is run. The best place to do this is in the user’s <code>authorized_keys</code> file. Before each line, you can add options which apply to users who log in with that key. One of these options is the “command” option. If you add this to <code>/home/user/.ssh/authorized_keys</code> instead:</p><pre><code>command=&quot;/usr/bin/nethack&quot; ssh-rsa ... user
+</code></pre><p>Then it’ll use the user’s shell (which should probably be <code>/bin/sh</code>) to run <code>nethack</code>, which will work regardless of the command supplied by the user (which is stored into <code>SSH_ORIGINAL_COMMAND</code> in the environment, should you need it). There are probably some other options you want to set here, as well, for security reasons:</p><pre><code>restrict,pty,command=&quot;...&quot; ssh-rsa ... user
+</code></pre><p>The full list of options you can set here is available in the <code>sshd(8)</code> man page. <code>restrict</code> just turns off most stuff by default, and <code>pty</code> explicitly re-enables TTY allocation, so that we can do things like curses. This will work if you want to explicitly authorize specific people, one at a time, in your <code>authorized_keys</code> file, to use your SSH-driven application.  However, there’s one more place where we can meddle: the <code>AuthorizedKeysCommand</code> in <code>/etc/ssh/sshd_config</code>. Instead of having OpenSSH read from the <code>authorized_keys</code> file in the user’s home directory, it can execute an arbitrary program and read the <code>authorized_keys</code> file from its stdout. For example, on Sourcehut we use something like this:</p><pre><code>AuthorizedKeysCommand /usr/bin/gitsrht-dispatch &quot;%u&quot; &quot;%h&quot; &quot;%t&quot; &quot;%k&quot;
+AuthorizedKeysUser root
+</code></pre><p>Respectively, these format strings will supply the command with the username attempting login, the user’s home directory, the type of key in use (e.g. <code>ssh-rsa</code>), and the base64-encoded key itself. More options are available - see <code>TOKENS</code>, in the <code>sshd_config(8)</code> man page. The key supplied here can be used to identify the user - on Sourcehut we look up their SSH key in the database. Then you can choose whether or not to admit the user based on any logic of your choosing, and print an appropriate <code>authorized_keys</code> to stdout. You can also take this opportunity to forward this information along to the command that gets executed, by appending them to the command option or by using the environment options.</p><h2>How this works on builds.sr.ht</h2><p>We use a somewhat complex system for incoming SSH connections, which I won’t go into here - it’s only necessary to support multiple SSH applications on the same server, like git.sr.ht and builds.sr.ht. For builds.sr.ht, we accept all connections and authenticate later on. This means our AuthorizedKeysCommand is quite simple:</p><pre><code class="python"><span class="comment">#!/usr/bin/env python3</span>
+<span class="comment"># We just let everyone in at this stage, authentication is done later on.</span>
+<span class="keyword">import</span> <span class="constructor constant variable">sys</span>
+<span class="constructor constant variable">key_type</span> <span class="operator">=</span> <span class="constructor constant variable">sys</span>.<span class="constructor property constant variable">argv</span>[<span class="number">3</span>]
+<span class="constructor constant variable">b64key</span> <span class="operator">=</span> <span class="constructor constant variable">sys</span>.<span class="constructor property constant variable">argv</span>[<span class="number">4</span>]
+
+<span class="constructor constant variable">keys</span> <span class="operator">=</span> (<span class="string">f&quot;command=</span><span class="string escape">\&quot;</span><span class="string">buildsrht-shell &apos;</span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">b64key</span><span class="string embedded punctuation_special">}</span><span class="string">&apos;</span><span class="string escape">\&quot;</span><span class="string">,restrict,pty &quot;</span> <span class="operator">+</span>
+    <span class="string">f&quot;</span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">key_type</span><span class="string embedded punctuation_special">}</span><span class="string"> </span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">b64key</span><span class="string embedded punctuation_special">}</span><span class="string"> somebody</span><span class="string escape">\n</span><span class="string">&quot;</span>)
+<span class="constructor function_builtin constant variable function">print</span>(<span class="constructor constant variable">keys</span>)
+<span class="constructor constant variable">sys</span>.<span class="constructor property constant function_method variable">exit</span>(<span class="number">0</span>)
+</code></pre>
+<p>The command, <code>buildsrht-shell</code>, does some more interesting stuff. First, the user is told to connect with a command like <code>ssh builds@buildhost connect &lt;job ID&gt;</code>, so we use the <code>SSH_ORIGINAL_COMMAND</code> variable to grab the command line they included:</p><pre><code class="python"><span class="constructor constant variable">cmd</span> <span class="operator">=</span> <span class="constructor constant variable">os</span>.<span class="constructor property constant variable">environ</span>.<span class="constructor property constant function_method variable">get</span>(<span class="string">&quot;SSH_ORIGINAL_COMMAND&quot;</span>) <span class="operator">or</span> <span class="string">&quot;&quot;</span>
+<span class="constructor constant variable">cmd</span> <span class="operator">=</span> <span class="constructor constant variable">shlex</span>.<span class="constructor property constant function_method variable">split</span>(<span class="constructor constant variable">cmd</span>)
+<span class="keyword">if</span> <span class="constructor function_builtin constant variable function">len</span>(<span class="constructor constant variable">cmd</span>) <span class="operator">!=</span> <span class="number">2</span>:
+    <span class="constructor function_builtin constant variable function">fail</span>(<span class="string">&quot;Usage: ssh ... connect &lt;job ID&gt;&quot;</span>)
+<span class="constructor constant variable">op</span> <span class="operator">=</span> <span class="constructor constant variable">cmd</span>[<span class="number">0</span>]
+<span class="keyword">if</span> <span class="constructor constant variable">op</span> <span class="operator">not</span> <span class="operator">in</span> [<span class="string">&quot;connect&quot;</span>, <span class="string">&quot;tail&quot;</span>]:
+    <span class="constructor function_builtin constant variable function">fail</span>(<span class="string">&quot;Usage: ssh ... connect &lt;job ID&gt;&quot;</span>)
+<span class="constructor constant variable">job_id</span> <span class="operator">=</span> <span class="constructor function_builtin constant variable function">int</span>(<span class="constructor constant variable">cmd</span>[<span class="number">1</span>])
+</code></pre>
+<p>Then we do some authentication, fetching the job info from the local job runner and checking their key against meta.sr.ht (the authentication service).</p><pre><code class="python"><span class="constructor constant variable">b64key</span> <span class="operator">=</span> <span class="constructor constant variable">sys</span>.<span class="constructor property constant variable">argv</span>[<span class="number">1</span>]
+
+<span class="keyword">def</span> <span class="constructor constant variable function">get_info</span>(<span class="constructor constant variable">job_id</span>):
+    <span class="constructor constant variable">r</span> <span class="operator">=</span> <span class="constructor constant variable">requests</span>.<span class="constructor property constant function_method variable">get</span>(<span class="string">f&quot;http://localhost:8080/job/</span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">job_id</span><span class="string embedded punctuation_special">}</span><span class="string">/info&quot;</span>)
+    <span class="keyword">if</span> <span class="constructor constant variable">r</span>.<span class="constructor property constant variable">status_code</span> <span class="operator">!=</span> <span class="number">200</span>:
+        <span class="keyword">return</span> <span class="constant_builtin">None</span>
+    <span class="keyword">return</span> <span class="constructor constant variable">r</span>.<span class="constructor property constant function_method variable">json</span>()
+
+<span class="constructor constant variable">info</span> <span class="operator">=</span> <span class="constructor function_builtin constant variable function">get_info</span>(<span class="constructor constant variable">job_id</span>)
+<span class="keyword">if</span> <span class="operator">not</span> <span class="constructor constant variable">info</span>:
+    <span class="constructor function_builtin constant variable function">fail</span>(<span class="string">&quot;No such job found.&quot;</span>)
+
+<span class="constructor constant variable">meta_origin</span> <span class="operator">=</span> <span class="constructor function_builtin constant variable function">get_origin</span>(<span class="string">&quot;meta.sr.ht&quot;</span>)
+<span class="constructor constant variable">r</span> <span class="operator">=</span> <span class="constructor constant variable">requests</span>.<span class="constructor property constant function_method variable">get</span>(<span class="string">f&quot;</span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">meta_origin</span><span class="string embedded punctuation_special">}</span><span class="string">/api/ssh-key/</span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">b64key</span><span class="string embedded punctuation_special">}</span><span class="string">&quot;</span>)
+<span class="keyword">if</span> <span class="constructor constant variable">r</span>.<span class="constructor property constant variable">status_code</span> <span class="operator">==</span> <span class="number">200</span>:
+    <span class="constructor constant variable">username</span> <span class="operator">=</span> <span class="constructor constant variable">r</span>.<span class="constructor property constant function_method variable">json</span>()[<span class="string">&quot;owner&quot;</span>][<span class="string">&quot;name&quot;</span>]
+<span class="keyword">elif</span> <span class="constructor constant variable">r</span>.<span class="constructor property constant variable">status_code</span> <span class="operator">==</span> <span class="number">404</span>:
+    <span class="constructor function_builtin constant variable function">fail</span>(<span class="string">&quot;We don&apos;t recognize your SSH key. Make sure you&apos;ve added it to &quot;</span> <span class="operator">+</span>
+        <span class="string">f&quot;your account.</span><span class="string escape">\n</span><span class="string embedded punctuation_special">{</span><span class="string embedded variable function constructor function_builtin constant">get_origin</span><span class="string embedded">(</span><span class="string embedded">&apos;meta.sr.ht&apos;</span><span class="embedded">, </span><span class="embedded variable constructor constant">external</span><span class="embedded operator">=</span><span class="embedded constant_builtin">True</span><span class="embedded">)</span><span class="embedded punctuation_special">}</span>/keys&quot;)
+<span class="keyword">else</span>:
+    <span class="variable function constructor function_builtin constant">fail</span>(<span class="string">&quot;Temporary authentication failure. Try again later.&quot;</span>)
+
+<span class="keyword">if</span> <span class="variable constructor constant">username</span> <span class="operator">!=</span> <span class="variable constructor constant">info</span>[<span class="string">&quot;username&quot;</span>]:
+    <span class="variable function constructor function_builtin constant">fail</span>(<span class="string">&quot;You are not permitted to connect to this job.&quot;</span>)
+</code></pre>
+<p>There are two modes from here on out: connecting and tailing. The former logs into the local build VM, and the latter prints the logs to the terminal. Connecting looks like this:</p><pre><code class="python"><span class="keyword">def</span> <span class="constructor constant variable function">connect</span>(<span class="constructor constant variable">job_id</span>, <span class="constructor constant variable">info</span>):
+    <span class="string">&quot;&quot;&quot;Opens a shell on the build VM&quot;&quot;&quot;</span>
+    <span class="constructor constant variable">limit</span> <span class="operator">=</span> <span class="constructor function_builtin constant variable function">naturaltime</span>(<span class="constructor constant variable">datetime</span>.<span class="constructor property constant function_method variable">utcnow</span>() <span class="operator">-</span> <span class="constructor constant variable">deadline</span>)
+    <span class="constructor function_builtin constant variable function">print</span>(<span class="string">f&quot;Your VM will be terminated </span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">limit</span><span class="string embedded punctuation_special">}</span><span class="string">, or when you log out.&quot;</span>)
+    <span class="constructor function_builtin constant variable function">print</span>()
+    <span class="constructor constant variable">requests</span>.<span class="constructor property constant function_method variable">post</span>(<span class="string">f&quot;http://localhost:8080/job/</span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">job_id</span><span class="string embedded punctuation_special">}</span><span class="string">/claim&quot;</span>)
+    <span class="constructor constant variable">sys</span>.<span class="constructor property constant variable">stdout</span>.<span class="constructor property constant function_method variable">flush</span>()
+    <span class="constructor constant variable">sys</span>.<span class="constructor property constant variable">stderr</span>.<span class="constructor property constant function_method variable">flush</span>()
+    <span class="constructor constant variable">tty</span> <span class="operator">=</span> <span class="constructor constant variable">os</span>.<span class="constructor property constant function_method variable">open</span>(<span class="string">&quot;/dev/tty&quot;</span>, <span class="constructor constant variable">os</span>.<span class="constructor property constant variable">O_RDWR</span>)
+    <span class="constructor constant variable">os</span>.<span class="constructor property constant function_method variable">dup2</span>(<span class="number">0</span>, <span class="constructor constant variable">tty</span>)
+    <span class="constructor constant variable">subprocess</span>.<span class="constructor property constant function_method variable">call</span>([
+        <span class="string">&quot;ssh&quot;</span>, <span class="string">&quot;-qt&quot;</span>,
+        <span class="string">&quot;-p&quot;</span>, <span class="constructor function_builtin constant variable function">str</span>(<span class="constructor constant variable">info</span>[<span class="string">&quot;port&quot;</span>]),
+        <span class="string">&quot;-o&quot;</span>, <span class="string">&quot;UserKnownHostsFile=/dev/null&quot;</span>,
+        <span class="string">&quot;-o&quot;</span>, <span class="string">&quot;StrictHostKeyChecking=no&quot;</span>,
+        <span class="string">&quot;-o&quot;</span>, <span class="string">&quot;LogLevel=quiet&quot;</span>,
+        <span class="string">&quot;build@localhost&quot;</span>, <span class="string">&quot;bash&quot;</span>
+    ])
+    <span class="constructor constant variable">requests</span>.<span class="constructor property constant function_method variable">post</span>(<span class="string">f&quot;http://localhost:8080/job/</span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">job_id</span><span class="string embedded punctuation_special">}</span><span class="string">/terminate&quot;</span>)
+</code></pre>
+<p>This is pretty self explanatory, except perhaps for the dup2 - we just open <code>/dev/tty</code> and make <code>stdin</code> a copy of it. Some interactive applications misbehave if stdin is not a tty, and this mimics the normal behavior of SSH. Then we log into the build VM over SSH, which with stdin/stdout/stderr rigged up like so will allow the user to interact with the build VM. After that completes, we terminate the VM.</p><p>This is mostly plumbing work that just serves to get the user from point A to point B. The tail functionality is more application-like:</p><pre><code class="python"><span class="keyword">def</span> <span class="constructor constant variable function">tail</span>(<span class="constructor constant variable">job_id</span>, <span class="constructor constant variable">info</span>):
+    <span class="string">&quot;&quot;&quot;Tails the build logs to stdout&quot;&quot;&quot;</span>
+    <span class="constructor constant variable">logs</span> <span class="operator">=</span> <span class="constructor constant variable">os</span>.<span class="constructor property constant variable">path</span>.<span class="constructor property constant function_method variable">join</span>(<span class="constructor function_builtin constant variable function">cfg</span>(<span class="string">&quot;builds.sr.ht::worker&quot;</span>, <span class="string">&quot;buildlogs&quot;</span>), <span class="constructor function_builtin constant variable function">str</span>(<span class="constructor constant variable">job_id</span>))
+    <span class="constructor constant variable">p</span> <span class="operator">=</span> <span class="constructor constant variable">subprocess</span>.<span class="constructor property constant function_method variable">Popen</span>([<span class="string">&quot;tail&quot;</span>, <span class="string">&quot;-f&quot;</span>, <span class="constructor constant variable">os</span>.<span class="constructor property constant variable">path</span>.<span class="constructor property constant function_method variable">join</span>(<span class="constructor constant variable">logs</span>, <span class="string">&quot;log&quot;</span>)])
+    <span class="constructor constant variable">tasks</span> <span class="operator">=</span> <span class="constructor function_builtin constant variable function">set</span>()
+    <span class="constructor constant variable">procs</span> <span class="operator">=</span> [<span class="constructor constant variable">p</span>]
+    <span class="comment"># holy bejeezus this is hacky</span>
+    <span class="keyword">while</span> <span class="constant_builtin">True</span>:
+        <span class="keyword">for</span> <span class="constructor constant variable">task</span> <span class="operator">in</span> <span class="constructor constant variable">manifest</span>.<span class="constructor property constant variable">tasks</span>:
+            <span class="keyword">if</span> <span class="constructor constant variable">task</span>.<span class="constructor property constant variable">name</span> <span class="operator">in</span> <span class="constructor constant variable">tasks</span>:
+                <span class="keyword">continue</span>
+            <span class="constructor constant variable">path</span> <span class="operator">=</span> <span class="constructor constant variable">os</span>.<span class="constructor property constant variable">path</span>.<span class="constructor property constant function_method variable">join</span>(<span class="constructor constant variable">logs</span>, <span class="constructor constant variable">task</span>.<span class="constructor property constant variable">name</span>, <span class="string">&quot;log&quot;</span>)
+            <span class="keyword">if</span> <span class="constructor constant variable">os</span>.<span class="constructor property constant variable">path</span>.<span class="constructor property constant function_method variable">exists</span>(<span class="constructor constant variable">path</span>):
+                <span class="constructor constant variable">procs</span>.<span class="constructor property constant function_method variable">append</span>(<span class="constructor constant variable">subprocess</span>.<span class="constructor property constant function_method variable">Popen</span>(
+                    <span class="string">f&quot;tail -f </span><span class="string embedded punctuation_special">{</span><span class="string embedded constructor constant variable">shlex</span><span class="string embedded">.</span><span class="string embedded property variable constructor constant function_method">quote</span><span class="string embedded">(</span><span class="string embedded variable constructor constant">path</span><span class="string embedded">)</span><span class="string embedded punctuation_special">}</span><span class="string"> | &quot;</span> <span class="operator">+</span>
+                    <span class="string">&quot;awk &apos;{ print </span><span class="string escape">\&quot;</span><span class="string">[&quot;</span> <span class="operator">+</span> <span class="variable constructor constant">shlex</span>.<span class="property variable constructor constant function_method">quote</span>(<span class="variable constructor constant">task</span>.<span class="property variable constructor constant">name</span>) <span class="operator">+</span> <span class="string">&quot;] </span><span class="string escape">\&quot;</span><span class="string"> $0 }&apos;&quot;</span>,
+                    <span class="variable constructor constant">shell</span><span class="operator">=</span><span class="constant_builtin">True</span>))
+                <span class="variable constructor constant">tasks</span>.<span class="property variable constructor constant function_method">update</span>({ <span class="variable constructor constant">task</span>.<span class="property variable constructor constant">name</span> })
+        <span class="variable constructor constant">info</span> <span class="operator">=</span> <span class="variable function constructor function_builtin constant">get_info</span>(<span class="variable constructor constant">job_id</span>)
+        <span class="keyword">if</span> <span class="operator">not</span> <span class="variable constructor constant">info</span>:
+            <span class="keyword">break</span>
+        <span class="keyword">if</span> <span class="variable constructor constant">info</span>[<span class="string">&quot;task&quot;</span>] <span class="operator">==</span> <span class="variable constructor constant">info</span>[<span class="string">&quot;tasks&quot;</span>]:
+            <span class="keyword">for</span> <span class="variable constructor constant">p</span> <span class="operator">in</span> <span class="variable constructor constant">procs</span>:
+                <span class="variable constructor constant">p</span>.<span class="property variable constructor constant function_method">kill</span>()
+            <span class="keyword">break</span>
+        <span class="variable constructor constant">time</span>.<span class="property variable constructor constant function_method">sleep</span>(<span class="number">3</span>)
+
+<span class="keyword">if</span> <span class="variable constructor constant">op</span> <span class="operator">==</span> <span class="string">&quot;connect&quot;</span>:
+    <span class="keyword">if</span> <span class="variable constructor constant">info</span>[<span class="string">&quot;task&quot;</span>] <span class="operator">!=</span> <span class="variable constructor constant">info</span>[<span class="string">&quot;tasks&quot;</span>] <span class="operator">and</span> <span class="variable constructor constant">info</span>[<span class="string">&quot;status&quot;</span>] <span class="operator">==</span> <span class="string">&quot;running&quot;</span>:
+        <span class="variable function constructor function_builtin constant">tail</span>(<span class="variable constructor constant">job_id</span>, <span class="variable constructor constant">info</span>)
+    <span class="variable function constructor function_builtin constant">connect</span>(<span class="variable constructor constant">job_id</span>, <span class="variable constructor constant">info</span>)
+<span class="keyword">elif</span> <span class="variable constructor constant">op</span> <span class="operator">==</span> <span class="string">&quot;tail&quot;</span>:
+    <span class="variable function constructor function_builtin constant">tail</span>(<span class="variable constructor constant">job_id</span>, <span class="variable constructor constant">info</span>)
+</code></pre>
+<p>This… I… let’s just pretend you never saw this. And that’s how SSH access to builds.sr.ht works!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Introducing-shell-access-for-builds/">
+					← Shell access for builds.sr.ht CI
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Enough-to-decide/">
+					How I decide between many programming languages →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

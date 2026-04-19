@@ -1,0 +1,86 @@
+<extend template="base.shtml">
+<head id="head">
+</head>
+<body id="body">
+	<main class="index">
+		<section class="article-list">
+			<h1 :text="$page.title"></h1>
+
+			<ctx :loop="$site.page('blog').subpages()">
+				<ctx :if="$loop.it.custom.getOr('noindex', false).not()">
+					<ctx :if="$loop.it.custom.get?('external')">
+						<blockquote class="article">
+							<span class="date" :text="$loop.it.date.format('January 02, 2006')"></span>
+							<a href="$if" :text="$loop.it.title"></a><br>
+							<small>🚀 Signal boost: someone else's article that I think you should read</small>
+						</blockquote>
+					</ctx>
+					<ctx :if="$loop.it.custom.has('external').not()">
+						<ctx :if="$loop.it.title.eql('Installing Windows 8 - Super-User Guide')">
+							<hr>
+							<p>
+							<strong>Notice</strong>: Blog posts from this point onwards were
+							recovered from an archive of my old Blogspot blog, and every one
+							of them sucks. In my defense, I was 17 or 18 at the time.
+							</p>
+						</ctx>
+						<div class="article">
+							<span class="date" :text="$loop.it.date.format('January 02, 2006')"></span>
+							<a href="$loop.it.link()" :text="$loop.it.title"></a>
+						</div>
+					</ctx>
+				</ctx>
+			</ctx>
+		</section>
+
+		<aside>
+			<img
+				src="$site.asset('ddevault-profile-148_2.jpg').link()"
+				alt="A picture of me, a bald man with a short beard, wearing glasses and smiling at the camera in an outdoor setting"
+				width="148" height="148"
+				class="avatar">
+
+			<div class="text-center">
+				<a class="rss" href="/blog/index.xml">rss</a>
+				·
+				<a href="$site.page('misc').link()">misc</a>
+			</div>
+
+			<dl class="external-links">
+				<dt>email</dt>
+				<dd><a href="mailto:drew@ddevault.org">drew@ddevault.org</a></dd>
+				<dt>sourcehut</dt>
+				<dd><a href="https://sr.ht/~sircmpwn">~sircmpwn</a></dd>
+				<dt>pgp</dt>
+				<dd><a href="$site.asset('publickey.txt').link()">9FB5E737DC25…</a></dd>
+			</dl>
+
+			<div class="text-center">
+				<a href="https://liberapay.com/ddevault/donate">
+					<img
+						alt="Donate using Liberapay"
+						src="$site.asset('donate.svg').link()">
+				</a>
+			</div>
+
+			<div class="text-center" style="margin-top: 1rem">
+				<img
+					src="$site.asset('pride.svg').link()"
+					height="64"
+					alt="Progress pride flag">
+				<br>
+				<img
+					src="$site.asset('antifa.svg').link()"
+					height="64"
+					alt="Antifascist symbol; two flags, black and red, enscribed in a circle that reads 'antifaschistische aktion'">
+				<br>
+				<a href="https://www.sproutdistro.com/catalog/zines/direct-action/">
+					<img
+						src="$site.asset('luigi.jpg').link()"
+						alt="A pixel-art sprite of Luigi from Super Mario World holding a large hammer"
+						height="64">
+				</a>
+			</div>
+		</aside>
+	</main>
+</body>

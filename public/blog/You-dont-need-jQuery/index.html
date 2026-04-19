@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>You don&apos;t need jQuery</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		You don&apos;t need jQuery
+		<small>
+			<span class="date">August 19, 2013</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			August 19, 2013. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>It’s true. You really don’t need jQuery. Modern web browsers can do most of what you want from jQuery, without jQuery.</p><p>For example, take <a href="https://mediacru.sh" target="_blank">MediaCrush</a>. It’s a website I spent some time working on with a friend. It’s actually quite sophisticated - drag-and-drop uploading, uploading via a hidden form, events wired up to links and dynamically generated content, and ajax requests/file uploads, the whole she-bang. It does all of that without jQuery. It’s <a href="https://github.com/MediaCrush/MediaCrush" target="_blank">open source</a>, if you’re looking for a good example of how all of this can be used in the wild.</p><p>Let’s walk through some of the things you like jQuery for, and I’ll show you how to do it without.</p><h2>Document Querying with CSS Selectors</h2><p>You like jQuery for selecting content. I don’t blame you - it’s really cool. Here’s some code using jQuery:</p><pre><code class="js"><span class="constructor constant variable_builtin function_builtin variable function">$</span><span class="punctuation_bracket">(</span><span class="string">&apos;div.article p&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">addClass</span><span class="punctuation_bracket">(</span><span class="string">&apos;test&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>Now, here’s how you can do it on vanilla JS:</p><pre><code class="js"><span class="keyword">var</span> <span class="constructor constant variable_builtin function_builtin variable">items</span> <span class="operator">=</span> <span class="constructor constant variable_builtin function_builtin variable">document</span><span class="punctuation_delimiter">.</span><span class="property function_method">querySelectorAll</span><span class="punctuation_bracket">(</span><span class="string">&apos;div.article p&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="keyword">for</span> <span class="punctuation_bracket">(</span><span class="keyword">var</span> <span class="constructor constant variable_builtin function_builtin variable">i</span> <span class="operator">=</span> <span class="number">0</span><span class="punctuation_delimiter">;</span> <span class="constructor constant variable_builtin function_builtin variable">i</span> <span class="operator">&lt;</span> <span class="constructor constant variable_builtin function_builtin variable">items</span><span class="punctuation_delimiter">.</span><span class="property">length</span><span class="punctuation_delimiter">;</span> <span class="constructor constant variable_builtin function_builtin variable">i</span><span class="operator">++</span><span class="punctuation_bracket">)</span>
+    <span class="constructor constant variable_builtin function_builtin variable">items</span><span class="punctuation_bracket">[</span><span class="constructor constant variable_builtin function_builtin variable">i</span><span class="punctuation_bracket">]</span><span class="punctuation_delimiter">.</span><span class="property">classList</span><span class="punctuation_delimiter">.</span><span class="property function_method">add</span><span class="punctuation_bracket">(</span><span class="string">&apos;test&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>Documentation: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document.querySelectorAll" target="_blank">querySelectorAll</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/element.classList" target="_blank">classList</a></p><p>This is, of course, a little more verbose. However, it’s probably a lot simpler than you expected. Works in IE 8 and newer - except for classList, which works in IE 10 and newer. You can instead use className, which is a little less flexible, but still pretty easy to work with.</p><h2>Ajax</h2><p>You want to make requests in JavaScript. This is how you POST with jQuery:</p><pre><code class="js"><span class="constructor constant variable_builtin function_builtin variable">$</span><span class="punctuation_delimiter">.</span><span class="property function_method">post</span><span class="punctuation_bracket">(</span><span class="string">&apos;/path/to/endpoint&apos;</span><span class="punctuation_delimiter">,</span> <span class="punctuation_bracket">{</span>
+    <span class="property">parameter</span>: <span class="constructor constant variable_builtin function_builtin variable">value</span>
+    <span class="constructor constant variable_builtin function_builtin variable">otherParameter</span>: <span class="constructor constant variable_builtin function_builtin variable">otherValue</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">,</span>
+<span class="constructor constant variable_builtin function_builtin variable">success</span>: <span class="keyword">function</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">data</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+    <span class="constructor constant variable_builtin function_builtin variable function">alert</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">data</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>Here’s the same code, without jQuery:</p><pre><code class="js"><span class="keyword">var</span> <span class="constructor constant variable_builtin function_builtin variable">xhr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="constructor constant variable_builtin function_builtin variable">XMLHttpRequest</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span> <span class="comment">// A little deceptively named</span>
+<span class="constructor constant variable_builtin function_builtin variable">xhr</span><span class="punctuation_delimiter">.</span><span class="property function_method">open</span><span class="punctuation_bracket">(</span><span class="string">&apos;POST&apos;</span><span class="punctuation_delimiter">,</span> <span class="string">&apos;/path/to/endpoint&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="constructor constant variable_builtin function_builtin variable">xhr</span><span class="punctuation_delimiter">.</span><span class="property function_method">onload</span> <span class="operator">=</span> <span class="keyword">function</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+    <span class="constructor constant variable_builtin function_builtin variable function">alert</span><span class="punctuation_bracket">(</span><span class="variable_builtin">this</span><span class="punctuation_delimiter">.</span><span class="property">responseText</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+<span class="keyword">var</span> <span class="constructor constant variable_builtin function_builtin variable">formData</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="constructor constant variable_builtin function_builtin variable">FormData</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="constructor constant variable_builtin function_builtin variable">formData</span><span class="punctuation_delimiter">.</span><span class="property function_method">append</span><span class="punctuation_bracket">(</span><span class="string">&apos;parameter&apos;</span><span class="punctuation_delimiter">,</span> <span class="constructor constant variable_builtin function_builtin variable">value</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="constructor constant variable_builtin function_builtin variable">formData</span><span class="punctuation_delimiter">.</span><span class="property function_method">append</span><span class="punctuation_bracket">(</span><span class="string">&apos;otherParameter&apos;</span><span class="punctuation_delimiter">,</span> <span class="constructor constant variable_builtin function_builtin variable">value</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="constructor constant variable_builtin function_builtin variable">xhr</span><span class="punctuation_delimiter">.</span><span class="property function_method">send</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">formData</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>Documentation: <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttpRequest</a></p><p>Also a bit more verbose than jQuery, but much simpler than you might’ve expected. Now here’s the real kicker: It works in IE 7, and IE 5 with a little effort. IE actually pioneered XHR.</p><h2>Animations</h2><p>This is where it starts to get more subjective and breaks backwards compatability. Here’s my opinion on the matter of transitions: dropping legacy browser support for fancy animations is acceptable. I don’t think it’s a problem if your website isn’t pretty and animated on older browsers. Keep that in mind as we move on.</p><p>I want to animate the opacity of a <code>.foobar</code> when you hover over it. With jQuery:</p><pre><code class="js"><span class="constructor constant variable_builtin function_builtin variable function">$</span><span class="punctuation_bracket">(</span><span class="string">&apos;.foobar&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">on</span><span class="punctuation_bracket">(</span><span class="string">&apos;mouseenter&apos;</span><span class="punctuation_delimiter">,</span> <span class="keyword">function</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+    <span class="constructor constant variable_builtin function_builtin variable function">$</span><span class="punctuation_bracket">(</span><span class="variable_builtin">this</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">animate</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">{</span>
+        <span class="property">opacity</span>: <span class="number">0.5</span>
+    <span class="punctuation_bracket">}</span><span class="punctuation_delimiter">,</span> <span class="number">2000</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">on</span><span class="punctuation_bracket">(</span><span class="string">&apos;mouseleave&apos;</span><span class="punctuation_delimiter">,</span> <span class="keyword">function</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+    <span class="constructor constant variable_builtin function_builtin variable function">$</span><span class="punctuation_bracket">(</span><span class="variable_builtin">this</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">animate</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">{</span>
+        <span class="property">opacity</span>: <span class="number">1</span>
+    <span class="punctuation_bracket">}</span><span class="punctuation_delimiter">,</span> <span class="number">2000</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>Without jQuery, I wouldn’t do this in Javascript. I’d use the magic of CSS animations:</p><pre><code class="css">.<span class="property">foobar</span> {
+    <span class="property variable">transition</span><span class="punctuation_delimiter">:</span> <span class="variable">opacity</span> <span class="number">2</span><span class="type number">s</span> <span class="variable">linear</span>;
+}
+
+.<span class="property">foobar</span><span class="punctuation_delimiter">:</span><span class="property attribute">hover</span> {
+    <span class="property variable">opacity</span><span class="punctuation_delimiter">:</span> <span class="number">0</span>;
+}
+</code></pre>
+<p class="foobar">Hover over this text</p>
+<style>.foobar{transition:opacity 2s linear;font-weight:bold;}.foobar:hover{opacity:0.5;}</style>
+<p>Documentation: <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_CSS_animations" target="_blank">CSS animations</a></p><p>Much better, eh? Works in IE 10+. You can do much more complicated animations with CSS, but I can’t think of a good demo, so that’s an exercise left to the reader.</p><h2>Tree traversal</h2><p>jQuery lets you navigate a tree pretty easily. Let’s say you want to find the container of a button and remove all .foobar elements underneath it, upon clicking the button.</p><pre><code class="js"><span class="constructor constant variable_builtin function_builtin variable function">$</span><span class="punctuation_bracket">(</span><span class="string">&apos;#mybutton&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">click</span><span class="punctuation_bracket">(</span><span class="keyword">function</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+    <span class="constructor constant variable_builtin function_builtin variable function">$</span><span class="punctuation_bracket">(</span><span class="variable_builtin">this</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">parent</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">children</span><span class="punctuation_bracket">(</span><span class="string">&apos;.foobar&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">remove</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>Nice and succinct. I’m sure you can tell the theme so far - the main advantage of jQuery is a less verbose syntax. Here’s how it’s done without jQuery:</p><pre><code class="js"><span class="constructor constant variable_builtin function_builtin variable">document</span><span class="punctuation_delimiter">.</span><span class="property function_method">getElementById</span><span class="punctuation_bracket">(</span><span class="string">&apos;mybutton&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="property function_method">addEventListener</span><span class="punctuation_bracket">(</span><span class="string">&apos;click&apos;</span><span class="punctuation_delimiter">,</span> <span class="keyword">function</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+    <span class="keyword">var</span> <span class="constructor constant variable_builtin function_builtin variable">foobars</span> <span class="operator">=</span> <span class="variable_builtin">this</span><span class="punctuation_delimiter">.</span><span class="property">parentElement</span><span class="punctuation_delimiter">.</span><span class="property function_method">querySelectorAll</span><span class="punctuation_bracket">(</span><span class="string">&apos;.foobar&apos;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+    <span class="keyword">for</span> <span class="punctuation_bracket">(</span><span class="keyword">var</span> <span class="constructor constant variable_builtin function_builtin variable">i</span> <span class="operator">=</span> <span class="number">0</span><span class="punctuation_delimiter">;</span> <span class="constructor constant variable_builtin function_builtin variable">i</span> <span class="operator">&lt;</span> <span class="constructor constant variable_builtin function_builtin variable">foobars</span><span class="punctuation_delimiter">.</span><span class="property">length</span><span class="punctuation_delimiter">;</span> <span class="constructor constant variable_builtin function_builtin variable">i</span><span class="operator">++</span><span class="punctuation_bracket">)</span>
+        <span class="variable_builtin">this</span><span class="punctuation_delimiter">.</span><span class="property">parentElement</span><span class="punctuation_delimiter">.</span><span class="property function_method">removeChild</span><span class="punctuation_bracket">(</span><span class="constructor constant variable_builtin function_builtin variable">foobars</span><span class="punctuation_bracket">[</span><span class="constructor constant variable_builtin function_builtin variable">i</span><span class="punctuation_bracket">]</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">,</span> <span class="constant_builtin">false</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>A little wordier, but not so bad. Works in IE 9+ (8+ if you don’t use addEventListener).</p><h2>In conclusion</h2><p>jQuery is, of course, based on JavaScript, and as a result, anything jQuery can do can be done without jQuery. Feel free to <a href="mailto:sir@cmpwn.com" target="_blank">ask me</a> if you’re curious about how I’d do something else without jQuery.</p><p>I feel like adding jQuery is one of the first things a web developer does to their shiny new website. It just isn’t really necessary in this day and age. That extra request, 91kb, and load time are probably negligible, but it’s still a little less clean than it could be. There’s no need to go back and rid all of your projects of jQuery, but I’d suggest that for your next one, you try to do without. Keep MDN open in the next tab over and I’m sure you’ll get through it fine.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev"></div>
+			<div class="next">
+				<a href="/blog/Music-syncing-on-Androi/">
+					Custom Music Syncing on Android →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, January 2020</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, January 2020
+		<small>
+			<span class="date">January 15, 2020</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			January 15, 2020. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I forgot to write this post this morning, and I’m on cup 3 of coffee while knee-deep in some arcane work with tarballs in Python. Forgive the brevity of this introduction. Let’s get right into the status update.</p><p>First of all, <a href="https://fosdem.org/2020/" target="_blank">FOSDEM 2020</a> is taking place on February 1st and 2nd, and I’m planning on being there again this year. I hope to see you there! I’ll be hosting another <a href="https://fosdem.org/2020/schedule/event/bof_sourcehut/" target="_blank">small session</a> for SourceHut and aerc users where I’ll take questions, demo some new stuff, and give out stickers.</p><p>In Wayland news, the upcoming Sway 1.3 release is getting very close - rc3 is planned to ship later today. We’ve confirmed that it’ll ship with VNC support via <a href="https://github.com/any1/wayvnc" target="_blank">wayvnc</a> and improvements to input latency. I haven’t completed much extra work on Casa (and “Sway Mobile” alongside it), but there have been some small improvements. I did find some time to work on <a href="https://git.sr.ht/~sircmpwn/sedna" target="_blank">Sedna</a>, however. We’ve decided to use it as a proving grounds for the new wlroots scene graph API, which plans to incorporate Simon Ser’s <a href="https://github.com/emersion/libliftoff" target="_blank">libliftoff</a> and put to rest the eternal debate over how wlroots renderer should take shape. This’ll be <em>lots</em> of work but the result will be a remarkably good foundation on which we can run performant compositors on a huge variety of devices — and, if we’re lucky, might help resolve the Nvidia problem. I also did a bit more work on the <a href="https://wayland-book.com" target="_blank">Wayland Book</a>, refactoring some of the chapter ordering to make more sense and getting started with the input chapter. More soon.</p><p>On SourceHut, lots of new developments have been underway. The latest round of performance improvements for git.sr.ht finally landed with the introduction of new server hardware, and it’s finally competitive with its peers in terms of push and web performance. I’ve also overhauled our monitoring infrastructure <a href="https://metrics.sr.ht" target="_blank">and made it public</a>. Our <a href="https://sourcehut.org/blog/2020-01-13-sourcehut-q4-2019-financial-report/" target="_blank">Q4 2019 financial report</a> was also published earlier this week. I’m currently working on pushing forward through the self-service data ownership goals, and we’ve already seen some improvements in that todo.sr.ht can now re-import tracker exports from itself or other todo.sr.ht instances.</p><p>I’ve also been working more on <a href="https://git.sr.ht/~sircmpwn/himitsu" target="_blank">himitsu</a> recently, though I’m taking it pretty slowly because it’s a security-sensitive project. Most of the crypto code has been written at this point - writing encrypted secrets to disk, reading and writing the key index - but reading encrypted secrets back from the disk remains to be implemented. I know there are some bugs in the current implementation, which I’ll be sorting out before I write much more code. I also implemented most of the support code for the Unix socket RPC, and implemented a couple of basic commands which have been helpful with proving out the secret store code (proving that it’s wrong, at least).</p><p>Simon Ser’s <a href="https://mrsh.sh" target="_blank">mrsh</a> has also been going very well lately, and is now a nearly complete implementation of the POSIX shell. I’ve started working on something I’ve long planned to build on top of mrsh: a comfortable interactive shell, inspired by fish’s interactive mode, but with a strictly POSIX syntax. I call the project <a href="https://git.sr.ht/~sircmpwn/imrsh" target="_blank">imrsh</a>, for interactive mrsh. I’ve already got it in somewhat good shape, but many of the features remain to be implemented. The bulk of the work was in Simon’s mrsh, so it shouldn’t be too hard to add a pretty interface on top. We’ll see how it goes.</p><p>That’s all for today. In the coming month I hope to expand on each of these, and I’m also working on a new Secret Project which may start bearing fruits soon (but likely not). Thank you for your continued support! I’ll see you at FOSDEM.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Re-Slow/">
+					← Following up on &quot;Hello world&quot;
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Effective-project-governance/">
+					A philosophy of project governance →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

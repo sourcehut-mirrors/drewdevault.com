@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Python&apos;s datetime sucks</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Python&apos;s datetime sucks
+		<small>
+			<span class="date">June 28, 2014</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			June 28, 2014. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I’ve been playing with Python for about a year now, and I like pretty much everything about it. There’s one thing that’s really rather bad and really should not be that bad, however - date & time support. It’s ridiculous how bad it is in Python. This is what you get with the standard datetime module:</p><ul><li>The current time and strftime, with a reasonable set of properties</li><li>Time deltas with days, seconds, and microseconds and nothing else</li><li>Acceptable support for parsing dates and times</li></ul><p>What you don’t get is:</p><ul><li>Meaningful time deltas</li><li>Useful arithmetic</li></ul><p>Date and time support is a rather tricky thing to do and it’s something that the standard library should support well enough to put it in the back of your mind instead of making you do all the work.</p><p>We’ll be comparing it to C# and .NET.</p><p>Let’s say I want to get the total hours between two <code>datetime</code>s.</p><pre><code class="cs"><span class="comment">// C#</span>
+<span class="type variable">DateTime</span> <span class="variable">a</span><span class="punctuation_delimiter">,</span> <span class="variable">b</span><span class="punctuation_delimiter">;</span>
+<span class="type_builtin">double</span> <span class="variable">hours</span> <span class="operator">=</span> <span class="punctuation_bracket">(</span><span class="variable">b</span> <span class="operator">-</span> <span class="variable">a</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">.</span><span class="variable">TotalHours</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<pre><code class="python"><span class="comment"># Python</span>
+<span class="constructor constant variable">a</span>, <span class="constructor constant variable">b</span> <span class="operator">=</span> ...
+<span class="constructor constant variable">hours</span> <span class="operator">=</span> (<span class="constructor constant variable">b</span> <span class="operator">-</span> <span class="constructor constant variable">a</span>).<span class="constructor property constant variable">seconds</span> <span class="operator">/</span> <span class="number">60</span> <span class="operator">/</span> <span class="number">60</span>
+</code></pre>
+<p>That’s not so bad. How about getting the time exactly one month in the future:</p><pre><code class="cs"><span class="keyword">var</span> <span class="variable">a</span> <span class="operator">=</span> <span class="variable">DateTime</span><span class="punctuation_delimiter">.</span><span class="variable">Now</span><span class="punctuation_delimiter">.</span><span class="variable function">AddMonths</span><span class="punctuation_bracket">(</span><span class="number">1</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<pre><code class="python"><span class="constructor constant variable">a</span> <span class="operator">=</span> <span class="constructor constant variable">date</span>.<span class="constructor property constant function_method variable">now</span>() <span class="operator">+</span> <span class="constructor function_builtin constant variable function">timedelta</span>(<span class="constructor constant variable">days</span><span class="operator">=</span><span class="number">30</span>)
+</code></pre>
+<p>Well, that’s not ideal. In C#, if you add one month to Janurary 30th, you get Feburary 28th (or leap day if appropriate). In Python, you could write a janky function to do this for you, or you could use the crappy alternative I wrote above.</p><p>How about if I want to take a delta between dates and show it somewhere, like a countdown? Say an event is happening at some point in the future and I want to print “3 days, 5 hours, 12 minutes, 10 seconds left”. This is distinct from the first example, which could give you “50 hours”, whereas this example would give you “2 days, 2 hours”.</p><pre><code class="cs"><span class="type variable">DateTime</span> <span class="variable">future</span> <span class="operator">=</span> ..<span class="punctuation_delimiter">.</span><span class="punctuation_delimiter">;</span>
+<span class="keyword">var</span> <span class="variable">delta</span> <span class="operator">=</span> <span class="variable">future</span> <span class="operator">-</span> <span class="variable">DateTime</span><span class="punctuation_delimiter">.</span><span class="variable">Now</span><span class="punctuation_delimiter">;</span>
+<span class="variable">Console</span><span class="punctuation_delimiter">.</span><span class="variable function">WriteLine</span><span class="punctuation_bracket">(</span><span class="string">&quot;{0} days, {1} hours, {2} minutes, {3} seconds left&quot;</span><span class="punctuation_delimiter">,</span>
+    <span class="variable">delta</span><span class="punctuation_delimiter">.</span><span class="variable">Days</span><span class="punctuation_delimiter">,</span>
+    <span class="variable">delta</span><span class="punctuation_delimiter">.</span><span class="variable">Hours</span><span class="punctuation_delimiter">,</span>
+    <span class="variable">delta</span><span class="punctuation_delimiter">.</span><span class="variable">Minutes</span><span class="punctuation_delimiter">,</span>
+    <span class="variable">delta</span><span class="punctuation_delimiter">.</span><span class="variable">Seconds</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<pre><code class="python"><span class="comment"># ...mess of math you have to implement yourself omitted...</span>
+</code></pre>
+<p>Maybe I have a website where users can set their locale?</p><pre><code class="cs"><span class="type variable">DateTime</span> <span class="variable">a</span> <span class="operator">=</span> ..<span class="punctuation_delimiter">.</span><span class="punctuation_delimiter">;</span>
+<span class="variable">Console</span><span class="punctuation_delimiter">.</span><span class="variable function">WriteLine</span><span class="punctuation_bracket">(</span><span class="variable">a</span><span class="punctuation_delimiter">.</span><span class="variable function">ToString</span><span class="punctuation_bracket">(</span><span class="string">&quot;some format string&quot;</span><span class="punctuation_delimiter">,</span> <span class="variable">user</span><span class="punctuation_delimiter">.</span><span class="variable">Locale</span><span class="punctuation_bracket">)</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<pre><code class="python"><span class="constructor constant variable">locale</span>.<span class="constructor property constant function_method variable">setlocale</span>(<span class="constructor constant variable">locale</span>.<span class="constructor property constant variable">LC_TIME</span>, <span class="string">&quot;sv_SE&quot;</span>) <span class="comment"># Global!</span>
+<span class="constructor function_builtin constant variable function">print</span>(<span class="constructor constant variable">time</span>.<span class="constructor property constant function_method variable">strftime</span>(<span class="string">&quot;some format string&quot;</span>))
+</code></pre>
+<p>By the way, that Python one doesn’t work on Windows. It uses system locales names which are different on Windows than on Linux or OS X. Mono (cross-platform .NET) handles this for you on any system.</p><p>And a few other cases that are easy in .NET and not in Python:</p><ul><li>Days since the start of this year</li><li>Constants like the days in every month</li><li>Is it currently DST in this timezone?</li><li>Is this a leap year?</li></ul><p>In short, Python’s datetime module could really use a lot of fleshing out. This is common stuff and easy for a naive programmer to do wrong.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Why-Go-error-handling-doesnt-sit-right-with-me/">
+					← Go&apos;s error handling doesn&apos;t sit right with me
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Process-scheduling-in-KnightOS/">
+					Process scheduling and multitasking in KnightOS →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

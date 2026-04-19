@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, March 2022</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, March 2022
+		<small>
+			<span class="date">March 15, 2022</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			March 15, 2022. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Greetings! The weather is starting to warm up again, eh? I’m a bit disappointed that we didn’t get any snow this winter. Yadda yadda insert intro text here. Let’s get down to brass tacks. What’s new this month?</p><p>I mainly focused on the programming language this month. I started writing a kernel, which you can see a screenshot of below. This screenshot shows a simulated page fault, demonstrating that we have a working interrupt handler, and also shows something mildly interesting: backtraces. I need to incorporate this approach into the standard library as well, so that we can dump useful stack traces on assertion failures and such. I understand that someone is working on DWARF support as well, so perhaps we’ll soon be able to translate function name + offset into a file name and line number.</p><p><figure><img src="https://redacted.moe/f/848da9ff.png">
+<figcaption>A redacted screenshot of a kernel showing a simulated page fault</figcaption></figure></p><p>I also started working on a PNG decoder this weekend, which at the time of writing can successfully decode 77 of the 161 PNG test vectors. I am quite pleased with how the code turned out here: this library is a good demonstration of the strengths of the language. It has simple code which presents a comprehensive interface for the file format, has a strong user-directed memory management model, takes good advantage of features like slices, and makes good use of standard library features like compress::zlib and the I/O abstraction. I will supplement this later with a higher level image API which handles things like pixel format conversions and abstracting away format-specific details.</p><pre><code class="hare"><span class="include">use</span> <span class="constant variable namespace">bufio</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">bytes</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">compress</span><span class="punctuation_delimiter">::</span><span class="constant type variable namespace">zlib</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">errors</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">io</span><span class="punctuation_delimiter">;</span>
+
+<span class="keyword">export</span> <span class="keyword">type</span> <span class="constant type_definition variable">idat_reader</span> <span class="operator">=</span> <span class="keyword type">struct</span><span class="type"> </span><span class="punctuation_bracket type">{</span><span class="type">
+	</span><span class="constant field type variable">st</span><span class="punctuation_delimiter type">:</span><span class="type"> </span><span class="constant type variable namespace">io</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">stream</span><span class="punctuation_delimiter">,</span>
+	<span class="constant field variable">src</span><span class="punctuation_delimiter">:</span> <span class="punctuation_special type operator">*</span><span class="constant type variable">chunk_reader</span><span class="punctuation_delimiter">,</span>
+	<span class="constant field variable">inflate</span><span class="punctuation_delimiter">:</span> <span class="constant type variable namespace">zlib</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">reader</span><span class="punctuation_delimiter">,</span>
+	<span class="constant field variable">decoder</span><span class="punctuation_delimiter">:</span> <span class="punctuation_special type operator">*</span><span class="constant type variable">decoder</span><span class="punctuation_delimiter">,</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+<span class="comment spell">// Returns a new IDAT reader for a [[chunk_reader]], from which raw pixel data</span>
+<span class="comment spell">// may be read via [[io::read]]. The user must prepare a [[decoder]] object</span>
+<span class="comment spell">// along with a working buffer to store the decoder state. For information about</span>
+<span class="comment spell">// preparing a suitable decoder, see [[newdecoder]].</span>
+<span class="keyword">export</span> <span class="keyword_function">fn</span> <span class="constructor constant variable function">new_idat_reader</span><span class="punctuation_bracket">(</span>
+	<span class="parameter constant variable">cr</span><span class="punctuation_delimiter">:</span> <span class="punctuation_special type operator">*</span><span class="constant type variable">chunk_reader</span><span class="punctuation_delimiter">,</span>
+	<span class="parameter constant variable">decoder</span><span class="punctuation_delimiter">:</span> <span class="punctuation_special type operator">*</span><span class="constant type variable">decoder</span><span class="punctuation_delimiter">,</span>
+<span class="punctuation_bracket">)</span> <span class="punctuation_bracket type">(</span><span class="constant type variable">idat_reader</span> <span class="operator">|</span> <span class="constant type variable namespace">io</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">error</span><span class="punctuation_bracket">)</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span>
+	<span class="constructor function_builtin constant function_call variable">assert</span><span class="punctuation_bracket">(</span><span class="constant variable">cr</span><span class="punctuation_delimiter">.</span><span class="constant field variable">ctype</span> <span class="operator">==</span> <span class="constant variable">IDAT</span><span class="punctuation_delimiter">,</span> <span class="string">&quot;Attempted to create IDAT reader for non-IDAT chunk&quot;</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword_return">return</span> <span class="constant type variable">idat_reader</span> <span class="punctuation_bracket">{</span>
+		<span class="constant field variable">st</span> <span class="operator">=</span> <span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type variable">stream</span> <span class="punctuation_bracket">{</span>
+			<span class="constant field variable">reader</span> <span class="operator">=</span> <span class="operator">&amp;</span><span class="constant variable">idat_read</span><span class="punctuation_delimiter">,</span>
+			<span class="punctuation_special">...</span>
+		<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">,</span>
+		<span class="constant field variable">src</span> <span class="operator">=</span> <span class="constant variable">cr</span><span class="punctuation_delimiter">,</span>
+		<span class="constant field variable">inflate</span> <span class="operator">=</span> <span class="constant variable namespace">zlib</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">decompress</span><span class="punctuation_bracket">(</span><span class="constant variable">cr</span><span class="punctuation_bracket">)</span><span class="operator">?</span><span class="punctuation_delimiter">,</span>
+		<span class="constant field variable">decoder</span> <span class="operator">=</span> <span class="constant variable">decoder</span><span class="punctuation_delimiter">,</span>
+	<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+<span class="keyword_function">fn</span> <span class="constructor constant variable function">idat_read</span><span class="punctuation_bracket">(</span>
+	<span class="parameter constant variable">st</span><span class="punctuation_delimiter">:</span> <span class="punctuation_special type operator">*</span><span class="constant type variable namespace">io</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">stream</span><span class="punctuation_delimiter">,</span>
+	<span class="parameter constant variable">buf</span><span class="punctuation_delimiter">:</span> <span class="punctuation_bracket type">[</span><span class="punctuation_bracket type">]</span><span class="type_builtin type">u8</span><span class="punctuation_delimiter">,</span>
+<span class="punctuation_bracket">)</span> <span class="punctuation_bracket type">(</span><span class="type_builtin type">size</span> <span class="operator">|</span> <span class="constant type variable namespace">io</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">EOF</span> <span class="operator">|</span> <span class="constant type variable namespace">io</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">error</span><span class="punctuation_bracket">)</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span>
+	<span class="keyword">let</span> <span class="constant variable">ir</span> <span class="operator">=</span> <span class="constant variable">st</span><span class="punctuation_delimiter">:</span> <span class="punctuation_special type operator">*</span><span class="constant type variable">idat_reader</span><span class="punctuation_delimiter">;</span>
+	<span class="constructor function_builtin constant function_call variable">assert</span><span class="punctuation_bracket">(</span><span class="constant variable">ir</span><span class="punctuation_delimiter">.</span><span class="constant field variable">st</span><span class="punctuation_delimiter">.</span><span class="constant field variable">reader</span> <span class="operator">==</span> <span class="operator">&amp;</span><span class="constant variable">idat_read</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword">let</span> <span class="constant variable">dec</span> <span class="operator">=</span> <span class="constant variable">ir</span><span class="punctuation_delimiter">.</span><span class="constant field variable">decoder</span><span class="punctuation_delimiter">;</span>
+	<span class="conditional">if</span> <span class="punctuation_bracket">(</span><span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">buffered</span> <span class="operator">!=</span> <span class="number">0</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+		<span class="keyword_return">return</span> <span class="constructor function_builtin constant function_call variable">decoder_copy</span><span class="punctuation_bracket">(</span><span class="constant variable">dec</span><span class="punctuation_delimiter">,</span> <span class="constant variable">buf</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+	<span class="conditional">if</span> <span class="punctuation_bracket">(</span><span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">filter</span> <span class="keyword_operator">is</span> <span class="type_builtin type">void</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+		<span class="type_qualifier">const</span> <span class="constant variable">ft</span> <span class="operator">=</span> <span class="conditional">match</span> <span class="punctuation_bracket">(</span><span class="constant variable namespace">bufio</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">scanbyte</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">ir</span><span class="punctuation_delimiter">.</span><span class="constant field variable">inflate</span><span class="punctuation_bracket">)</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+		<span class="conditional">case</span> <span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type variable">EOF</span> <span class="punctuation_delimiter">=&gt;</span>
+			<span class="keyword_return">return</span> <span class="constructor function_builtin constant function_call variable">idat_finish</span><span class="punctuation_bracket">(</span><span class="constant variable">ir</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+		<span class="conditional">case</span> <span class="keyword">let</span> <span class="constant variable">b</span><span class="punctuation_delimiter">:</span> <span class="type_builtin type">u8</span> <span class="punctuation_delimiter">=&gt;</span>
+			<span class="keyword_return">yield</span> <span class="constant variable">b</span><span class="punctuation_delimiter">:</span> <span class="constant type variable">filter</span><span class="punctuation_delimiter">;</span>
+		<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+		<span class="conditional">if</span> <span class="punctuation_bracket">(</span><span class="constant variable">ft</span> <span class="operator">&gt;</span> <span class="constant variable namespace">filter</span><span class="punctuation_delimiter">::</span><span class="constant type variable">PAETH</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+			<span class="keyword_return">return</span> <span class="constant variable namespace">errors</span><span class="punctuation_delimiter">::</span><span class="constant type variable">invalid</span><span class="punctuation_delimiter">;</span>
+		<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+		<span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">filter</span> <span class="operator">=</span> <span class="constant variable">ft</span><span class="punctuation_delimiter">;</span>
+	<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+	<span class="comment spell">// Read one scanline</span>
+	<span class="repeat">for</span> <span class="punctuation_bracket">(</span><span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">read</span> <span class="operator">&lt;</span> <span class="constructor function_builtin constant function_call variable">len</span><span class="punctuation_bracket">(</span><span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">cr</span><span class="punctuation_bracket">)</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+		<span class="conditional">match</span> <span class="punctuation_bracket">(</span><span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">read</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">ir</span><span class="punctuation_delimiter">.</span><span class="constant field variable">inflate</span><span class="punctuation_delimiter">,</span> <span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">cr</span><span class="punctuation_bracket">[</span><span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">read</span><span class="punctuation_special">..</span><span class="punctuation_bracket">]</span><span class="punctuation_bracket">)</span><span class="operator">?</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+		<span class="conditional">case</span> <span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type variable">EOF</span> <span class="punctuation_delimiter">=&gt;</span>
+			<span class="comment spell">// TODO: The rest of the scanline could be in the next</span>
+			<span class="comment spell">// IDAT chunk. However, if there is a partially read</span>
+			<span class="comment spell">// scanline in the decoder and no IDAT chunk in the</span>
+			<span class="comment spell">// remainder of the file, we should probably raise an</span>
+			<span class="comment spell">// error.</span>
+			<span class="keyword_return">return</span> <span class="constructor function_builtin constant function_call variable">idat_finish</span><span class="punctuation_bracket">(</span><span class="constant variable">ir</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+		<span class="conditional">case</span> <span class="keyword">let</span> <span class="constant variable">n</span><span class="punctuation_delimiter">:</span> <span class="type_builtin type">size</span> <span class="punctuation_delimiter">=&gt;</span>
+			<span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">read</span> <span class="operator">+=</span> <span class="constant variable">n</span><span class="punctuation_delimiter">;</span>
+		<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+	<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+	<span class="constructor function_builtin constant function_call variable">applyfilter</span><span class="punctuation_bracket">(</span><span class="constant variable">dec</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">read</span> <span class="operator">=</span> <span class="number">0</span><span class="punctuation_delimiter">;</span>
+	<span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">buffered</span> <span class="operator">=</span> <span class="constructor function_builtin constant function_call variable">len</span><span class="punctuation_bracket">(</span><span class="constant variable">dec</span><span class="punctuation_delimiter">.</span><span class="constant field variable">cr</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword_return">return</span> <span class="constructor function_builtin constant function_call variable">decoder_copy</span><span class="punctuation_bracket">(</span><span class="constant variable">dec</span><span class="punctuation_delimiter">,</span> <span class="constant variable">buf</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+<span class="keyword_function">fn</span> <span class="constructor constant variable function">idat_finish</span><span class="punctuation_bracket">(</span><span class="parameter constant variable">ir</span><span class="punctuation_delimiter">:</span> <span class="punctuation_special type operator">*</span><span class="constant type variable">idat_reader</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket type">(</span><span class="constant type variable namespace">io</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">EOF</span> <span class="operator">|</span> <span class="constant type variable namespace">io</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">error</span><span class="punctuation_bracket">)</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span>
+	<span class="comment spell">// Verify checksum</span>
+	<span class="conditional">if</span> <span class="punctuation_bracket">(</span><span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">copy</span><span class="punctuation_bracket">(</span><span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type variable">empty</span><span class="punctuation_delimiter">,</span> <span class="constant variable">ir</span><span class="punctuation_delimiter">.</span><span class="constant field variable">src</span><span class="punctuation_bracket">)</span><span class="operator">?</span> <span class="operator">!=</span> <span class="number">0</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+		<span class="comment spell">// Extra data following zlib stream</span>
+		<span class="keyword_return">return</span> <span class="constant variable namespace">errors</span><span class="punctuation_delimiter">::</span><span class="constant type variable">invalid</span><span class="punctuation_delimiter">;</span>
+	<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword_return">return</span> <span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type variable">EOF</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+<span class="attribute">@test</span> <span class="keyword_function">fn</span> <span class="constructor constant variable function">idat_reader</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="type_builtin type">void</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">src</span> <span class="operator">=</span> <span class="constant variable namespace">bufio</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">fixed</span><span class="punctuation_bracket">(</span><span class="constant variable">no_filtering</span><span class="punctuation_delimiter">,</span> <span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type variable">mode</span><span class="punctuation_delimiter">::</span><span class="constant variable">READ</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">read</span> <span class="operator">=</span> <span class="constructor function_builtin constant function_call variable">newreader</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">src</span><span class="punctuation_bracket">)</span> <span class="keyword_operator">as</span> <span class="constant type variable">reader</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword">let</span> <span class="constant variable">chunk</span> <span class="operator">=</span> <span class="constructor function_builtin constant function_call variable">nextchunk</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">read</span><span class="punctuation_bracket">)</span> <span class="keyword_operator">as</span> <span class="constant type variable">chunk_reader</span><span class="punctuation_delimiter">;</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">ihdr</span> <span class="operator">=</span> <span class="constructor function_builtin constant function_call variable">new_ihdr_reader</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">chunk</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">ihdr</span> <span class="operator">=</span> <span class="constructor function_builtin constant function_call variable">ihdr_read</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">ihdr</span><span class="punctuation_bracket">)</span><span class="operator">!</span><span class="punctuation_delimiter">;</span>
+
+	<span class="keyword">let</span> <span class="constant variable">pixbuf</span><span class="punctuation_delimiter">:</span> <span class="punctuation_bracket type">[</span><span class="punctuation_bracket type">]</span><span class="type_builtin type">u8</span> <span class="operator">=</span> <span class="constructor function_builtin constant function_call variable">alloc</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">[</span><span class="number">0</span><span class="punctuation_special">...</span><span class="punctuation_bracket">]</span><span class="punctuation_delimiter">,</span> <span class="constructor function_builtin constant function_call variable">decoder_bufsiz</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">ihdr</span><span class="punctuation_bracket">)</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword_return">defer</span> <span class="constructor function_builtin constant function_call variable">free</span><span class="punctuation_bracket">(</span><span class="constant variable">pixbuf</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword">let</span> <span class="constant variable">decoder</span> <span class="operator">=</span> <span class="constructor function_builtin constant function_call variable">newdecoder</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">ihdr</span><span class="punctuation_delimiter">,</span> <span class="constant variable">pixbuf</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+
+	<span class="repeat">for</span> <span class="punctuation_bracket">(</span><span class="boolean">true</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+		<span class="constant variable">chunk</span> <span class="operator">=</span> <span class="constructor function_builtin constant function_call variable">nextchunk</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">read</span><span class="punctuation_bracket">)</span> <span class="keyword_operator">as</span> <span class="constant type variable">chunk_reader</span><span class="punctuation_delimiter">;</span>
+		<span class="conditional">if</span> <span class="punctuation_bracket">(</span><span class="constructor function_builtin constant function_call variable">chunk_reader_type</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">chunk</span><span class="punctuation_bracket">)</span> <span class="operator">==</span> <span class="constant variable">IDAT</span><span class="punctuation_bracket">)</span> <span class="punctuation_bracket">{</span>
+			<span class="conditional">break</span><span class="punctuation_delimiter">;</span>
+		<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+		<span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">copy</span><span class="punctuation_bracket">(</span><span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type variable">empty</span><span class="punctuation_delimiter">,</span> <span class="operator">&amp;</span><span class="constant variable">chunk</span><span class="punctuation_bracket">)</span><span class="operator">!</span><span class="punctuation_delimiter">;</span>
+	<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+	<span class="type_qualifier">const</span> <span class="constant variable">idat</span> <span class="operator">=</span> <span class="constructor function_builtin constant function_call variable">new_idat_reader</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">chunk</span><span class="punctuation_delimiter">,</span> <span class="operator">&amp;</span><span class="constant variable">decoder</span><span class="punctuation_bracket">)</span><span class="operator">!</span><span class="punctuation_delimiter">;</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">pixels</span> <span class="operator">=</span> <span class="constant variable namespace">io</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">drain</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">idat</span><span class="punctuation_bracket">)</span><span class="operator">!</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword_return">defer</span> <span class="constructor function_builtin constant function_call variable">free</span><span class="punctuation_bracket">(</span><span class="constant variable">pixels</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="constructor function_builtin constant function_call variable">assert</span><span class="punctuation_bracket">(</span><span class="constant variable namespace">bytes</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">equal</span><span class="punctuation_bracket">(</span><span class="constant variable">pixels</span><span class="punctuation_delimiter">,</span> <span class="constant variable">no_filtering_data</span><span class="punctuation_bracket">)</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>In SourceHut news, I completed our migration to Alpine 3.15 this month after a brief outage, including an upgrade to our database server, which is upgraded on a less frequent cadance than the others. Thanks to Adnan’s work, we’ve also landed many GraphQL improvements, mainly refactorings and other like improvements, setting the stage for the next series of roll-outs. I plan on transitioning back from focusing on the language to focusing on SourceHut for the coming month, and I expect to see some good progress here.</p><p>That’s all I have to share for today. Until next time!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/It-takes-a-village/">
+					← It takes a village
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Netherlands-update/">
+					The Netherlands so far →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

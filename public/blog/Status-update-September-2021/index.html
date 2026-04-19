@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, September 2021</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, September 2021
+		<small>
+			<span class="date">September 15, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			September 15, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>It’s a quiet, foggy morning here in Amsterdam, and here with my fresh mug of coffee and a cuddly cat in my lap, I’d like to share the latest news on my FOSS efforts with you. Grab yourself a warm drink and a cat of your own and let’s get started.</p><p>First, a new project: <a href="https://sr.ht/~sircmpwn/visurf" target="_blank">visurf</a>. I <a href="https://drewdevault.com/2021/09/11/visurf-announcement.html" target="_blank">announced this</a> a few days ago, but the short of it is that I am building a minimal Wayland-only frontend for the <a href="http://www.netsurf-browser.org" target="_blank">NetSurf</a> web browser which uses vi-inspired keybindings. Since the announcement there has been some good progress: touch support, nsvirc, tabs, key repeat, and so on. Some notable medium-to-large efforts ahead of us include a context menu on right click, command completion and history, kinetic scrolling via touch, pinch-to-zoom, clipboard support, and a readability mode. Please help! It’s pretty easy to get involved: join the IRC channel at #netsurf on libera.chat and ask for something to do.</p><p>The programming language is also doing well. Following the codegen rewrite we have completed some long-pending refactoring to parts of the language design, which we intend to keep working on with further refinements in the coming weeks and months. We also developed a new frontend for reading the documentation in your terminal:</p><script id="asciicast-q53ZaG138sp89gKYqo1fui9Qj" src="https://asciinema.org/a/q53ZaG138sp89gKYqo1fui9Qj.js" async></script>
+<p>Other improvements include the addition of parametric format modifiers (<code>fmt::printfln(&quot;{%}&quot;, 10, &amp;fmt::modifiers { base = strconv::base::HEX, ...  })</code>), fnmatch, and (WIP) design improvements to file I/O, the latter relying on new struct subtyping semantics. I’m hoping that we’ll have improvements to the grammar and semantics of match expressions and tagged unions in the near future, and we are also looking into some experiments with reflection.</p><p>Many improvements have landed for SourceHut. lists.sr.ht now has a writable GraphQL API, along with the first implementation of <a href="https://sourcehut.org/blog/2021-08-25-graphql-native-webhooks/" target="_blank">GraphQL-native webhooks</a>. Thanks to a few contributors, you can also now apply custom sorts to your search results on todo.sr.ht, and builds.sr.ht has grown Rocky Linux support. More details to follow in the “What’s cooking” post for the SourceHut blog.</p><p>That’s all for today! Thanks for tuning in for this update, and thanks for continuing to support our efforts. Have a great day!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/visurf-announcement/">
+					← visurf, a web browser based on NetSurf
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Nitter-and-other-internet-reclamation-projects/">
+					Nitter and other Internet reclamation projects →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

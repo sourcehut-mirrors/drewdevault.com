@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>A great alternative is rarely fatter than what it aims to replace</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		A great alternative is rarely fatter than what it aims to replace
+		<small>
+			<span class="date">February 21, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			February 21, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>This is not always true, but in my experience, it tends to hold up. We often build or evaluate tools which aim to replace something kludgy^Wvenerable. Common examples include shells, programming languages, system utilities, and so on. Rust, Zig, etc, are taking on C in this manner; so too does zsh, fish, and oil take on bash, which in turn takes on the Bourne shell. There are many examples.</p><p>All of these tools are fine in their own respects, but they have all failed to completely supplant the software they’re seeking to improve upon.<sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup> What these projects have in common is that they <em>expand</em> on the ideas of their predecessors, rather than <em>refining</em> them. A truly great alternative finds the nugget of truth at the center of the idea, cuts out the cruft, and solves the same problem with less.</p><p>This is one reason I like Alpine Linux, for example. It’s not really aiming to replace any distro in particular so much as it competes with the Linux ecosystem as a whole. Alpine does this by being <em>simpler</em> than the rest: it’s the only Linux system I can fit more or less entirely in my head. Compare this to the most common approach: “let’s make a Debian derivative!” It kind of worked for Ubuntu, less so for everyone else. The C library Alpine ships, <a href="https://musl.libc.org" target="_blank">musl libc</a>, is another example: it aims to replace glibc by being leaner and meaner, <a href="https://drewdevault.com/2020/09/25/A-story-of-two-libcs.html" target="_blank">and I’ve talked about its success in this respect before</a>.</p><p>Go is a programming language which has done relatively well in this respect. It aimed to fill a bit of a void in the high-performance internet infrastructure systems programming niche,<sup class="footnote-ref"><a href="#fn-2" id="fn-2-ref-1">2</a></sup> <sup class="footnote-ref"><a href="#fn-3" id="fn-3-ref-1">3</a></sup> and it is markedly simpler than most of the other tools in its line of work. It takes the opportunity to add a few innovations — its big risk is its novel concurrency model — but Go balances this with a level of simplicity in other respects which is unchallenged among its contemporaries,<sup class="footnote-ref"><a href="#fn-4" id="fn-4-ref-1">4</a></sup> and a commitment to that simplicity which has endured for years.<sup class="footnote-ref"><a href="#fn-5" id="fn-5-ref-1">5</a></sup></p><p>There are many other examples. UTF-8 is a simple, universal approach which smooths over the idiosyncrasies of the encoding zoo which pre-dates it, and has more-or-less rendered its alternatives obsolete. JSON has almost completely replaced XML, and its grammar famously fits on a business card.<sup class="footnote-ref"><a href="#fn-6" id="fn-6-ref-1">6</a></sup> On the other hand, when zsh started as a superset of bash, it crippled its ability to compete on “having less warts than bash”.</p><p>Rust is more vague in its inspirations, and does not start as a superset of anything. It has, however, done a poor job of scope management, and is significantly more complex than many of the languages it competes with, notably C and Go. For this reason, it struggles to root out the hold-outs in those domains, and it suffers for the difficulty in porting it to new platforms, which limits its penetration into a lot of domains that C is still thriving in. However, it succeeds in being much simpler than C++, and I expect that it will render C++ obsolete in the coming years as such.<sup class="footnote-ref"><a href="#fn-7" id="fn-7-ref-1">7</a></sup></p><p>In computing, we make do with a hodge podge of hacks and kludges which, at best, approximate the solutions to the problems that computing presents us. If you start with one such hack as the basis of a supposed replacement and build <em>more</em> on top of it, you will inherit the warts, and you may find it difficult to rid yourself of them. If, instead, you question the premise of the software, interrogate the underlying problem it’s trying to solve, and apply your insights, plus a healthy dose of hindsight, you may isolate what’s right from what’s superfluous, and your simplified solution just might end up replacing the cruft of yore.</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>Some of the listed examples have not given up and would prefer that I say something to the effect of “but the jury is still out” here.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-2">
+						<p>That’s a lot of adjectives!</p>
+						
+							<a class="footnote-backref" href="#fn-2-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-3">
+						<p>More concisely, I think of Go as an “internet programming language”, distinct from the systems programming languages that inspired it. Its design shines especially in this context, but its value-add is less pronounced for other tasks in the systems programming domain - compilers, operating systems, etc.</p>
+						
+							<a class="footnote-backref" href="#fn-3-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-4">
+						<p><a href="https://golang.org/ref/spec" target="_blank">The Go spec</a> is quite concise and has changed very little since Go’s inception. Go is also unique among its contemporaries for (1) writing a spec which (2) supports the development of multiple competing implementations.</p>
+						
+							<a class="footnote-backref" href="#fn-4-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-5">
+						<p>Past tense, unfortunately, now that Go 2 is getting stirred up.</p>
+						
+							<a class="footnote-backref" href="#fn-5-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-6">
+						<p>It is possible that JSON has achieved <em>too much</em> success in this respect, as it has found its way into a lot of use-cases for which it is less than ideal.</p>
+						
+							<a class="footnote-backref" href="#fn-6-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-7">
+						<p>Despite my infamous distaste for Rust, long-time readers will know that where I have distaste for Rust, I have passionate scorn for C++. I’m quite glad to see Rust taking it on, and I hope very much that it succeeds in this respect.</p>
+						
+							<a class="footnote-backref" href="#fn-7-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/How-to-make-your-downstreams-happy/">
+					← How to make your downstream users happy
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Gmail-is-a-huge-source-of-spam/">
+					Gmail is a huge source of spam →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

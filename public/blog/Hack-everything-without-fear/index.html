@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Hack everything without fear</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Hack everything without fear
+		<small>
+			<span class="date">March 17, 2018</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			March 17, 2018. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>We live in a golden age of open source, and it can sometimes be easy to forget the privileges that this affords us. I’m writing this article with vim, in a terminal emulator called urxvt, listening to music with mpv, in a Sway desktop session, on the Linux kernel. Supporting this are libraries like glibc or musl, harfbuzz, and mesa. I also have the support of the AMDGPU video driver, libinput and udev, alsa and pulseaudio.</p><p>All of this is open source. I can be reading the code for any of these tools within 30 seconds, and for many of these tools I already have their code checked out somewhere on my filesystem. It gets even better, though: these projects don’t just make their code available - they accept patches, too! Why wouldn’t we take advantage of this tremendous opportunity?</p><p>I often meet people who are willing to contribute to one project, but not another. Some people will shut down when they’re faced with a problem that requires them to dig into territory that they’re unfamiliar with. In Sway, for example, it’s often places like libinput or mesa. These tools might seem foreign and scary - but to these people, at some point, so did Sway. In reality these codebases are quite accessible.</p><p>Getting around in an unfamiliar repository can be a little intimidating, but do it enough times and it’ll become second nature. The same tools like gdb work just as well on them. If you have a stacktrace for a segfault originating in libinput, compile libinput with symbols and gdb will show you the file name and line number of the problem. Go there and read the code! Learn how to use tools like <code>git grep</code> to find stuff. Run <code>git blame</code> to see who wrote a confusing line of code, and send them an email! When you find the problem, don’t be afraid to send a patch over instead of working around it in your own code. This is something every programmer should be comfortable doing often.</p><p>Even when the leads you’re chasing down are written in unfamiliar programming languages or utilize even more unfamiliar libraries, don’t despair. All programming languages have a lot in common and huge numbers of resources are available online. Learning just enough to understand (and fix!) a particular problem is very possible, and something I find myself doing it all the time. You don’t have to be an expert in a particular programming language to invoke trial & error.</p><p>If you’re similarly worried about the time investment, don’t be. You already set aside time to work your problem, and this is just part of that process. Yes, you’ll probably be spending your time differently from your expectations - more reading code than writing code.  But how is that any less productive? The biggest time sink in this process is all the time you spend worrying about how much time it’s going to take, or telling me in IRC you can’t solve your problem because you’re not good enough to understand mesa or the kernel or whatever.</p><p>An important pastime of the effective programmer is reading and understanding the tools you use. You should at least have a basic idea of how everything on your system works, and in the places your knowledge is lacking you should make it your business to study up. The more you do this, the less scary foreign code will become, and the more productive you will be. No longer will you be stuck in your tracks because your problem leads you away from the beaten path!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/How-to-write-an-IRC-bot/">
+					← How to write an IRC bot
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Decentralize-decentralize-decentralize/">
+					Achtung! Decentralize, decentralize, decentralize! →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

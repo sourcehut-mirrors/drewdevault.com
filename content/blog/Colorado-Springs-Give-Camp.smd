@@ -1,0 +1,36 @@
+---
+.title = "Colorado Springs Give Camp",
+.date = @date("2011-01-27"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+I recently participated in the Colorado Springs Give Camp, which is a way for
+charities and other non-profit organizations to get customized solutions for
+their needs from professional developers.  A group of volunteer professional
+developers meet over a weekend, and put in work to meet whatever
+software-related needs a non-profit organization may want.  This time around,
+we made a website for Crossfire Ministries, as well as a solution for tracking
+donations and volunteers.
+
+If you want to check out the work we did, you can see the old version of their
+website here: http://www.crossfireministries.com/cf_old, and the new one here:
+http://www.crossfireministries.com/.
+
+If you like the style of the website, you have me to thank - I was in charge of
+the styling and templates, as well as designing the fancy banner across the
+top.  However, most of the work was done by the rest of the volunteers, who
+moved the old content over and trained the Crossfire Ministries staff with the
+use of the software.  The solution for managing the volunteers and donations
+was also done by a separate team, who especially deserve credit when their work
+is behind the scenes.
+
+The website is powered by a very good open source, cross-platform ASP.NET
+website solution called [MojoPortal](https://web.archive.org/web/20120305151542/http://www.mojoportal.com/).
+I can't praise MojoPortal enough - it made it outrageously easy to get the
+basic framework of the website up and running.
+
+If you want to join us at the next Give Camp, you can volunteer at the Colorado
+Springs Give Camp website: http://www.springsgivecamp.org/.  And finally, a big
+thanks to News First 5, who covered the event:
+http://www.newsfirst5.com/videoplayer/?video_id=5579&categories= 

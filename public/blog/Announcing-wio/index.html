@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Announcing Wio: A clone of Plan 9&apos;s Rio for Wayland</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Announcing Wio: A clone of Plan 9&apos;s Rio for Wayland
+		<small>
+			<span class="date">May 1, 2019</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			May 1, 2019. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>For a few hours here and there over the past few months, I’ve been working on a side project: <a href="https://wio-project.org" target="_blank">Wio</a>. I’ll just let the (3 minute) screencast do the talking first:</p><p><video src="https://yukari.sr.ht/wio.webm" controls></video></p><p><strong>Note</strong>: this video begins with several seconds of grey video. This is normal.</p><p>In short, Wio is a Wayland compositor based on wlroots which has a similar look and feel to Plan 9’s Rio desktop. It works by running each application in its own nested Wayland compositor, based on <a href="https://www.hjdskes.nl/projects/cage/" target="_blank">Cage</a> - yet another wlroots-based Wayland compositor. I used Cage in <a href="https://drewdevault.com/2019/04/23/Using-cage-for-a-seamless-RDP-Wayland-desktop.html" target="_blank">last week’s RDP article</a>, but here’s another cool use-case for it.</p><p>The behavior this allows for (each window taking over its parent’s window, rather than spawning a new window) has been something I wanted to demonstrate on Wayland for a very long time. This is a good demonstration of how Wayland’s fundamentally different and conservative design allows for some interesting use-cases which aren’t possible at all on X11.</p><p>I’ve also given Wio some nice features which are easy thanks to wlroots, but difficult on Plan 9 without kernel hacking. Namely, these are multihead support, HiDPI support, and support for the wlroots layer shell protocol. Several other wlroots protocols were invited to the party, useful for taking screenshots, redshift, and so on. Layer shell support is particularly cool, since programs like swaybg and waybar work on Wio.</p><p>In terms of Rio compatability, Wio has a ways to go. I would seriously appreciate help from users who are interested in improving Wio. Some notably missing features include:</p><ul><li>Any kind of filesystem resembling Rio’s window management filesystem. In theory this ought to be do-able with FUSE, at least in part (/dev/text might be tough).</li><li>Running every application in its own namespace, for double the Plan 9</li><li>Hiding/showing windows (that menu entry is dead)</li><li>Joint improvements with Cage to bring greater support for Wayland features, like client-side window resize/move, fullscreen windows, etc</li><li>Damage tracking to avoid re-rendering everything on every frame, saving battery life and GPU time</li></ul><p>If you’re interested in helping, please join the IRC channel and say hello: <a href="http://webchat.freenode.net/?channels=%23wio&uio=MTA9dHJ1ZSYxMT0xNzQmMTM9ZmFsc2U4c" target="_blank">#wio on irc.freenode.net</a>. For Wio’s source code and other information, visit the website at <a href="https://wio-project.org" target="_blank">wio-project.org</a>.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Shut-up-and-get-back-to-work-style/">
+					← The &quot;shut up and get back to work&quot; coding style guide
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Git-email-webcast/">
+					Webcast: Reviewing git &amp; mercurial patches with email →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

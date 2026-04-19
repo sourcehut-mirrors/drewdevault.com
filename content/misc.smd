@@ -1,0 +1,15 @@
+---
+.title = "Miscellaneous links",
+.date = @date("2026-04-02"),
+.author = "Drew DeVault",
+.layout = "misc.shtml",
+--- 
+
+# Pages
+
+- [Japanese learning resources](japanese)
+- [Make a blog!](make-a-blog)
+- [New server checklist](new-server)
+- [New sysadmin lecture](new-sysadmin-lecture)
+- [Dynamic linking bad](dynlib)
+- [Deep time](time)

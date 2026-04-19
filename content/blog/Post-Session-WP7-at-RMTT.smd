@@ -1,0 +1,41 @@
+---
+.title = "Post-Session: Windows Phone 7 @ RMTT",
+.date = @date("2011-03-05"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+Thanks to everyone who dropped by and saw my talk on Getting the Most Out of
+Silverlight for WP7 at the Rocky Mountain Tech Trifecta.  Just a few things you
+might like to check out:
+
+## Slide Deck
+
+You can pick up the slide deck right here: http://tinyurl.com/5utyofc
+
+## Source Code
+
+The source code for out Ultimate Task Manager is right here:
+http://tinyurl.com/6fuphmy
+
+Do whatever you want with it, but if you make it better, I'd love to hear about
+it! It's not too detailed, but it does a pretty decent job of showing off WP7.
+
+## Other Resources
+
+Here's some pretty sweet stuff you can check out:
+
+* Accelerometer Shake Detection: I didn't have time to integrate this into our
+  application, but it's pretty cool.  Mark Arteaga has a nice post about shake
+  detection.  http://tinyurl.com/5wg8tqx
+* Bing Services: I mentioned that you can access Bing Services from the phone
+  to geocode addresses.  Not only does it do that, but a lot more stuff as
+  well.  I didn't have the extra time to go over this, but here's some
+  information if you're interested: http://tinyurl.com/6dbdxjm
+* WP7 Tasks: A couple people asked about tasks in WP7.  Check out Tim
+  Binkley-Jones' presentation at 4:15, or get the scoop here:
+  http://tinyurl.com/5turcpk
+
+Come back in a couple days and I'll have a video of the presentation posted for
+anyone who couldn't make it.  Post any questions you may have below, and please
+rate the session here: http://tinyurl.com/5slnaja 

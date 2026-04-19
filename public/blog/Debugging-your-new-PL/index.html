@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Tips for debugging your new programming language</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Tips for debugging your new programming language
+		<small>
+			<span class="date">August 11, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			August 11, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Say you’re building a new (compiled) programming language from scratch. You’ll inevitably have to debug programs written in it, and worse, many of these problems will lead you into deep magic, as you uncover problems with your compiler or runtime. And as you find yourself diving into the arcane arts, your tools may be painfully lacking: how do you debug code written in a language for which debuggers and other tooling simply has not been written yet?</p><p>In the implementation of my own programming language, I have faced this problem many times, and developed, by necessity, some skills around debugging with crippled tools that may lack an awareness of your language. Of course, the ultimate goal is to build out first-class debugging support, but we must have a language in the first place before we can write tools to debug it. If you find yourself in this situation, here are my recommendations.</p><p>First, I’ll echo the timeless words of Brian Kernighan:</p><blockquote><p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p></blockquote><p>— Unix for Beginners (1979)</p><p>Classic debugging techniques are of heightened importance in this environment: first seek to isolate the problem code, then to understand the problem code, then form, and test, a hypothesis — usually with a thoughtful print statement. Often, this is enough.</p><p>Unfortunately, you may have to fire up gdb. gdb is often painful in the best of situations, but if you have to use it without debug symbols, you may find yourself shutting off the computer and seeking out rural real estate on which you can establish a new career in farming. If you can stomach it, I can offer some advice.</p><p>First, you’re going to be working in assembly, so make sure you’re familiar with how it works. I would recommend keeping the ISA manual and your ABI specification handy. If you’re smart and your language sets up stack frames properly (this is easy, do it early), you should at least have a backtrace, breakpoints at functions, and globals, though all of these will be untyped. You can write C casts to add some ad-hoc types to examine data in your process, like “print *(int *)$rdi”.</p><p>You’ll also get used to the ‘x’ command, which eXamines memory. The command format is “x/NT”, where N is the number of objects, and T is the object type: w for word (int), g for giantword (long), and h and b for halfword (short) and byte, respectively: “x/8g $rdi” will interpret rdi as an address where 8 longs are stored and print them out in hexadecimal. Of particular use is the “i” format, for “instruction”, which will disassemble from the given address:</p><pre><code>(gdb) x/8i $rip
+=&gt; 0x5555555565c8 &lt;rt.memcpy+4&gt;:	mov    $0x0,%eax
+   0x5555555565cd &lt;rt.memcpy+9&gt;:	cmp    %rdx,%rax
+   0x5555555565d0 &lt;rt.memcpy+12&gt;:	jae    0x5555555565df &lt;rt.memcpy+27&gt;
+   0x5555555565d2 &lt;rt.memcpy+14&gt;:	movzbl (%rsi,%rax,1),%ecx
+   0x5555555565d6 &lt;rt.memcpy+18&gt;:	mov    %cl,(%rdi,%rax,1)
+   0x5555555565d9 &lt;rt.memcpy+21&gt;:	add    $0x1,%rax
+   0x5555555565dd &lt;rt.memcpy+25&gt;:	jmp    0x5555555565cd &lt;rt.memcpy+9&gt;
+   0x5555555565df &lt;rt.memcpy+27&gt;:	leave  
+</code></pre><p>You can set breakpoints on the addresses you find here (e.g. “b *0x5555555565d0”), and step through one instruction at a time with the “si” command.</p><p>I also tend to do some silly workarounds to avoid having to read too much assembly. If I want to set a breakpoint in some specific place, I might do the following:</p><pre><code class="hare"><span class="keyword_function">fn</span> <span class="constructor constant variable function">_break</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="type_builtin type">void</span> <span class="operator">=</span> <span class="constant_builtin">void</span><span class="punctuation_delimiter">;</span>
+
+<span class="keyword">export</span> <span class="keyword_function">fn</span> <span class="constructor constant variable function">main</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="type_builtin type">void</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span>
+    <span class="comment spell">// ...some code...</span>
+
+    <span class="comment spell">// Point of interest</span>
+    <span class="keyword">let</span> <span class="constant variable">x</span> <span class="operator">=</span> <span class="constant variable">y</span><span class="punctuation_bracket">[</span><span class="constant variable">z</span> <span class="operator">*</span> <span class="constant variable">q</span><span class="punctuation_bracket">]</span><span class="punctuation_delimiter">;</span>
+    <span class="constructor function_builtin constant function_call variable">_break</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+    <span class="constructor function_builtin constant function_call variable">somefunc</span><span class="punctuation_bracket">(</span><span class="constant variable">x</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+
+    <span class="comment spell">// ...some code...</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>Then I can instruct gdb to “b _break” to break when this function is called, use “finish” to step out of the call frame, and I’ve arrived at the point of interest without having to rely on line numbers being available in my binary.</p><p>Overall, this is a fairly miserable process which can take 5-10× longer than normal debugging, but with these tips you should at least find your problems solvable. Good motivation to develop better debugging tools for your new language, eh? A future blog post might go over some of this with DWARF and possibly how to teach gdb to understand a new language natively. In the meantime, good luck!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Apple-CSAM-scanning/">
+					← Police to begin regular, warrant-free searches of homes for child abuse material
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Status-update-August-2021/">
+					Status update, August 2021 →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

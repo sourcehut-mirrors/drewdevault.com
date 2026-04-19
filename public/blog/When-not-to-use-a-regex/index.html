@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>When not to use a regex</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		When not to use a regex
+		<small>
+			<span class="date">August 13, 2017</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			August 13, 2017. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>The other day, I saw <a href="https://github.com/zeeshanu/learn-regex" target="_blank">Learn regex the easy way</a>. This is a great resource, but I felt the need to pen a post explaining that regexes are usually not the right approach.</p><p>Let’s do a little exercise. I googled “URL regex” and here’s the first Stack Overflow result:</p><pre><code>https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&amp;//=]*)
+</code></pre><p style="text-align: right">
+<small><a href="https://stackoverflow.com/a/3809435/1191610">source</a></small>
+</p>
+<p>This is a bad regex. Here are some valid URLs that this regex fails to match:</p><ul><li><a href="http://x.org" target="_blank">http://x.org</a></li><li><a href="http://nic.science" target="_blank">http://nic.science</a></li><li><a href="http://名がドメイン.com" target="_blank">http://名がドメイン.com</a> (warning: this is a parked domain)</li><li><a href="http://example.org/url,with,commas" target="_blank">http://example.org/url,with,commas</a></li><li><a href="https://en.wikipedia.org/wiki/Harry_Potter_(film_series)" target="_blank">https://en.wikipedia.org/wiki/Harry_Potter_(film_series)</a></li><li><a href="http://127.0.0.1" target="_blank">http://127.0.0.1</a></li><li>http://[::1] (ipv6 loopback)</li></ul><p>Here are some invalid URLs the regex is fine with:</p><ul><li><a href="http://exam..ple.org" target="_blank">http://exam..ple.org</a></li><li>http://–example.org</li></ul><p>This answer has been revised 9 times on Stack Overflow, and this is the best they could come up with. Go back and read the regex. Can you tell where each of these bugs are? How long did it take you? If you received a bug report in your application because one of these URLs was handled incorrectly, do you understand this regex well enough to fix it? If your application has a URL regex, go find it and see how it fares with these tests.</p><p>Complicated regexes are opaque, unmaintainable, and often wrong. The correct approach to validating a URL is as follows:</p><pre><code class="python"><span class="keyword">from</span> <span class="constructor constant variable">urllib</span>.<span class="constructor constant variable">parse</span> <span class="keyword">import</span> <span class="constructor constant variable">urlparse</span>
+
+<span class="keyword">def</span> <span class="constructor constant variable function">is_url_valid</span>(<span class="constructor constant variable">url</span>):
+    <span class="keyword">try</span>:
+        <span class="constructor function_builtin constant variable function">urlparse</span>(<span class="constructor constant variable">url</span>)
+        <span class="keyword">return</span> <span class="constant_builtin">True</span>
+    <span class="keyword">except</span>:
+        <span class="keyword">return</span> <span class="constant_builtin">False</span>
+</code></pre>
+<p>A regex is useful for validating <em>simple</em> patterns and for <em>finding</em> patterns in text. For anything beyond that it’s almost certainly a terrible choice. Say you want to…</p><p><strong>validate an email address</strong>: try to send an email to it!</p><p><strong>validate password strength requirements</strong>: estimate the complexity with <a href="https://github.com/dropbox/zxcvbn" target="_blank">zxcvbn</a>!</p><p><strong>validate a date</strong>: use your standard library! <a href="https://docs.python.org/3.6/library/datetime.html#datetime.datetime.strptime" target="_blank">datetime.datetime.strptime</a></p><p><strong>validate a credit card number</strong>: run the <a href="https://en.wikipedia.org/wiki/Luhn_algorithm" target="_blank">Luhn algorithm</a> on it!</p><p><strong>validate a social security number</strong>: alright, use a regex. But don’t expect the number to be assigned to someone until you ask the Social Security Administration about it!</p><p>Get the picture?</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/State-of-Sway-August-2017/">
+					← State of Sway August 2017
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Complicated/">
+					Killing ants with nuclear weapons →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Plaid is an evil nightmare product from Security Hell</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Plaid is an evil nightmare product from Security Hell
+		<small>
+			<span class="date">February 19, 2022</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			February 19, 2022. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p><a href="https://plaid.com" target="_blank">Plaid</a> is a business that has built a widget that can be embedded in any of their customer’s websites which allows their customers to configure integrations with a list of third-party service providers. To facilitate this, Plaid pops up a widget on their customer’s domain which asks the end-user to <em>type in their username and password</em> for the third-party service provider. If necessary, they will ask for a 2FA code. This is done without the third party’s permission, presumably through a browser emulator and a provider-specific munging shim, and collects the user’s credentials on a domain which is operated by neither the third party nor by Plaid.</p><p>The third-party service provider in question is the end-user’s bank.</p><p>What the actual fuck!</p><p>Plaid has weighed on my mind for a while, though I might have just ignored them if they hadn’t been enjoying a sharp rise in adoption across the industry. For decades, we have stressed the importance of double-checking the domain name and the little TLS “lock” icon before entering your account details for anything. It is perhaps the single most important piece of advice the digital security community has tried to bring into the public conciousness. Plaid wants to throw out all of those years of hard work and ask users to enter their freaking <em>bank credentials</em> into a third-party form.</p><p>The raison d’être for Plaid is that banks are infamously inflexible and slow on the uptake for new technology. The status quo which Plaid aims to disrupt (ugh), at least for US bank account holders, involves the user entering their routing number and account number into a form. The service provider makes two small (<$1) deposits, and when they show up on the user’s account statement a couple of days later, the user confirms the amounts with the service provider, the service provider withdraws the amounts again, and the integration is complete. The purpose of this dance is to provide a sufficiently strong guarantee that the account holder is same person who is configuring the integration.</p><p>This process is annoying. Fixing it would require banks to develop, deploy, and standardize on better technology, and, well, good luck with that. And, honestly, a company which set out with the goal of addressing this problem ethically would have a laudable ambition. But even so, banks <em>are</em> modernizing around the world, and tearing down the pillars of online security in exchange for a mild convenience is ridiculous.</p><p>A convincing argument can be made that this platform violates the Computer Fraud and Abuse Act. Last year, <a href="https://www.jurist.org/news/2021/08/plaid-agrees-to-pay-58-million-in-data-privacy-class-action-lawsuit/" target="_blank">they paid out $58M</a> in one of many lawsuits for scraping and selling your bank data. Plaid thus joins the ranks of Uber, AirBnB, and others like them in my reckoning as a “move fast and break laws” company. This platform can only exist if they are either willfully malignant or grossly incompetent. They’ve built something that they know is wrong, and are hoping that they can outrun the regulators.</p><p>This behavior is not acceptable. This company needs to be regulated into the dirt and made an example of. Shame on you Plaid, and shame on everyone involved in bringing this product to market. Shame on their B2B customers as well, who cannot, such as they may like to, offload ethical due-diligence onto their vendors. Please don’t work for these start-ups. <a href="https://drewdevault.com/2020/05/05/We-are-complicit-in-our-employers-deeds.html" target="_blank">I hold employees complicit in their employer’s misbehavior</a>. You have options, please go make the world a better place somewhere else.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Status-update-February-2022/">
+					← Status update, February 2022
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Open-source-is-defined-by-the-OSD/">
+					Open Source is defined by the OSI&apos;s Open Source Definition →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

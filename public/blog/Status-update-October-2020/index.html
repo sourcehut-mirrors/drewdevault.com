@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, October 2020</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, October 2020
+		<small>
+			<span class="date">October 15, 2020</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			October 15, 2020. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I’m writing this month’s status update from a brand-new desktop workstation (well, I re-used the GPU), my first new workstation in about 10 years. I hope this new one lasts for another decade! I aimed for something smaller and lightweight this time — it’s a Mini-ITX build. I’ve only been running this for a few days, so let me tell you about the last few accomplishments which are accountable to my venerable workstation’s final days of life.</p><p>First, there’s been a ton of important work completed for SourceHut’s API 2.0 plans. All of the main blockers for the first version of meta.sr.ht’s writable GraphQL API are resolved, and after implementing a few more resolvers it should be in a shippable state. This included riggings for database transactions, simplification of the mini-“ORM” I built, and support for asyncronous work like delivering webhooks. The latter called for a new library, <a href="https://sr.ht/~sircmpwn/dowork/" target="_blank">dowork</a>, which you’re free to reuse to bring asyncronous work processing to your Go programs.</p><p>I also built a new general-purpose daemon for SourceHut called <a href="https://sr.ht/~sircmpwn/chartsrv/" target="_blank">chartsrv</a>, which can be used to generate graphs from <a href="https://prometheus.io/" target="_blank">Prometheus</a> data. The following is a real-time graph of the load average on the builds.sr.ht workers:</p><p><figure><img src="https://metrics.sr.ht/chart.svg?title=Build%20worker%20load%20average&query=avg_over_time%28node_load15%7Binstance%3D~%22cirno%5B0-9%5D%2B.sr.ht%3A80%22%7D%5B1h%5D%29&max=64&since=336h&stacked&step=10000&height=3&width=10">
+<figcaption>A chart which hopefully shows a reasonable load average across all workers</figcaption></figure></p><p>I’ve been getting more into <a href="https://gemini.circumlunar.space/" target="_blank">Gemini</a> this month, and have completed three (or four?) whole projects for it:</p><ul><li><a href="https://sr.ht/~sircmpwn/gmni/" target="_blank">gmni</a> and gmnlm: a client implementation and line-mode browser</li><li><a href="https://sr.ht/~sircmpwn/gmnisrv/" target="_blank">gmnisrv</a>: a server implementation</li><li><a href="https://sr.ht/~sircmpwn/kineto/" target="_blank">kineto</a>: an HTTP->Gemini portal</li></ul><p>The (arguably) fourth project is the completion of a Gemini version of this blog, which is available at <code>gemini://drewdevault.com</code>, or via the kineto portal at <a href="https://portal.drewdevault.com" target="_blank">portal.drewdevault.com</a>. I’ll be posting some content exclusively on Gemini (and I already have!), so get yourself a client if you want to tune in.</p><p>I have also invested some effort into <a href="https://git.sr.ht/~sircmpwn/himitsu" target="_blank">himitsu</a>, a project I shelved for so long that you probably don’t remember it. Worry not, I have rewritten the README.md to give you a better introduction to it. Here’s a screenshot for your viewing pleasure:</p><p><figure><img src="https://redacted.moe/f/13c10c49.png">
+<figcaption>A GUI dialog asking a user to consent to allow an application to access their IMAP credentials</figcaption></figure></p><p>Bonus update: two new <a href="https://baremessages.org" target="_blank">BARE</a> implementations have appeared: OCaml and Java.</p><p>That’s all for now! I’ll see you for the next update soon. Thanks for your support!</p><details>
+  <summary>...</summary>
+  <img src="https://redacted.moe/f/26c6ba23.png" alt="A screenshot of a page of a programming language specification detailing the syntax of tagged unions">
+</details>
+
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Four-principles-of-software-engineering/">
+					← Four principles of software engineering
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Firefox-the-embarassment-of-FOSS/">
+					Firefox: The Jewel^WEmbarassment of Open Source →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

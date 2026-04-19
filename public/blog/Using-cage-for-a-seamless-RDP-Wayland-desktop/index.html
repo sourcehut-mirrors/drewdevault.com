@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Using Cage for a seamless remote Wayland session</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Using Cage for a seamless remote Wayland session
+		<small>
+			<span class="date">April 23, 2019</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			April 23, 2019. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Congratulations to Jente Hidskes on <a href="https://www.hjdskes.nl/blog/cage-01/" target="_blank">the first release of Cage</a>! Cage is a Wayland compositor designed for kiosks - though, as you’ll shortly find out, is useful in many unexpected ways. It launches a single application, in fullscreen, and exits the compositor when that application exits. This lets you basically add a DRM+KMS+libinput session to any Wayland-compatible application (or X application via XWayland) and run it in a tiny wlroots compositor.</p><p>I actually was planning on writing something like this at some point (for a project which still hasn’t really come off the ground yet), so I was excited when Jente <a href="https://www.hjdskes.nl/blog/cage/" target="_blank">announced it</a> in December. With the addition of the <a href="https://github.com/swaywm/wlroots/pull/1578" target="_blank">RDP backend</a> in wlroots, I thought it would be cool to combine these to make a seamless remote desktop experience. In short, I installed <a href="http://www.freerdp.com/" target="_blank">FreeRDP</a> and Cage on my laptop, and <a href="https://swaywm.org" target="_blank">sway</a> on my desktop. On my desktop, I <a href="https://github.com/swaywm/wlroots/blob/master/docs/env_vars.md#rdp-backend" target="_blank">generated TLS certificates per the wlroots docs</a> and ran sway like so:</p><pre><code class="sh"><span class="constant property">WLR_RDP_TLS_CERT_PATH</span><span class="constant">=</span><span class="constant operator">$</span><span class="constant property">HOME</span><span class="constant">/tls.crt</span> \
+<span class="constant property">WLR_RDP_TLS_KEY_PATH</span><span class="constant">=</span><span class="constant operator">$</span><span class="constant property">HOME</span><span class="constant">/tls.key</span> \
+<span class="constant property">WLR_BACKENDS</span><span class="constant">=rdp</span> \
+<span class="constant function">sway</span>
+</code></pre>
+<p>Then, on my laptop, I can run this script:</p><pre><code class="sh"><span class="comment">#!/bin/sh</span>
+<span class="keyword">if</span> [ <span class="operator">$</span># -eq 0 ]
+<span class="keyword">then</span>
+	<span class="keyword">export</span> <span class="property">XDG_RUNTIME_DIR</span>=/tmp
+	<span class="constant function">exec</span> <span class="constant">cage</span> <span class="constant">sway-remote</span> <span class="constant">launch</span>
+<span class="keyword">else</span>
+	<span class="constant function">sleep</span> <span class="constant">3</span>
+	<span class="constant function">exec</span> <span class="constant">xfreerdp</span> \
+		<span class="constant">-v</span> <span class="constant">homura</span> \
+		<span class="constant">--bpp</span> <span class="constant">32</span> \
+		<span class="constant">--size</span> <span class="constant">1280x800</span> \
+		<span class="constant">--rfx</span>
+<span class="keyword">fi</span>
+</code></pre>
+<p>The first branch is taken on the first run, and it starts up cage and asks it to run this script again. The second branch then starts up xfreerdp and connects to my desktop (its hostname is <code>homura</code>). xfreerdp is then fullscreened and all of my laptop’s input events are directed to it. The result is an experience which is basically identical to running sway directly on my laptop, except it’s actually running on my desktop and using the remote desktop protocol to send everything back and forth.</p><p>This isn’t especially practical, but it is a cool hack. It’s definitely not network transparency like some people want, but I wasn’t aiming for that. It’s just a neat thing you can do now that we have an RDP backend for wlroots. And congrats again to Jente - be sure to give Cage a look and see if you can think of any other novel use-cases, too!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Your-VPN-is-a-serious-choice/">
+					← Choosing a VPN service is a serious decision
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Shut-up-and-get-back-to-work-style/">
+					The &quot;shut up and get back to work&quot; coding style guide →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

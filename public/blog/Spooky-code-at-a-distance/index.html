@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Spooky action at a distance</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Spooky action at a distance
+		<small>
+			<span class="date">January 19, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			January 19, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Einstein famously characterized the strangeness of quantum mechanics as “spooky action at a distance”, which, if I had to pick one phrase about physics to be my favorite, would be a strong contender. I like to relate this to programming language design: there are some language features which are similarly spooky. Perhaps the most infamous of these is operator overloading. Consider the following:</p><pre><code>x + y
+</code></pre><p>If this were written in C, without knowing anything other than the fact that this code compiles correctly, I can tell you that x and y are numeric types, and the result is their sum. I can even make an educated guess about the CPU instructions which will be generated to perform this task. However, if this were a language with operator overloading… who knows? What if x and y are some kind of some Vector class? It could compile to this:</p><pre><code>Vector::operator_plus(x, y)
+</code></pre><p>The performance characteristics, consequences for debugging, and places to look for bugs are considerably different than the code would suggest on the surface. This function call is the “spooky action” — and the distance between the “+” operator and the definition of its behavior is the “distance”.</p><p>Also consider if x and y are strings: maybe “+” means concatenation? Concatenation often means allocation, which is a pretty important side-effect to consider. Are you going to thrash the garbage collector by doing this? <em>Is</em> there a garbage collector, or is this going to leak? Again, using C as an example, this case would be explicit:</p><pre><code>char *new = malloc(strlen(x) + strlen(y) + 1);
+strcpy(new, x);
+strcat(new, y);
+</code></pre><p>If the filename of the last file you had open in your text editor ended in <code>.rs</code>, you might be frothing at the mouth after reading this code. Strictly for the purpose of illustrating my point, however, consider that everything which happens here is explicit, opt-in to the writer, and obvious to the reader.</p><p>That said, C doesn’t get off scott-free in this article. Consider the following code:</p><pre><code>int x = 10, y = 20;
+int z = add(x, y);
+printf(&quot;%d + %d = %d\n&quot;, x, y, z);
+</code></pre><p>You may expect this to print out <code>10 + 20 = 30</code>, and you would be forgiven for your naivety.</p><pre><code>$ cc -o test test.c
+$ ./test
+30 + 20 = 30
+</code></pre><p>The savvy reader may have already figured out the catch: add is not a function.</p><pre><code>#define add(x, y) x += y
+</code></pre><p>The spooky action is the mutation of x, and the distance is between the apparent “callsite” and the macro definition. This is spooky because it betrays the reader’s expectations: it looks and smells like a function call, but it does something which breaks the contract of function calls. Some languages do this better, by giving macros an explicit syntax like <code>name!(args...)</code>, but, personally, I still don’t like it.</p><p>Language features like this are, like all others, a trade-off. But I’m of the opinion that this trade is unwise: you’re wagering readability, predictability, debuggability, and more. These features are toxic to anyone seeking stable, robust code. They certainly have no place in systems programming.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Elasticsearch-does-not-belong-to-Elastic/">
+					← Elasticsearch does not belong to Elastic
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/FOSS-is-to-surrender-your-monopoly/">
+					Open source means surrendering your monopoly over commercial exploitation →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

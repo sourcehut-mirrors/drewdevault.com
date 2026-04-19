@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Introducing scdoc, a man page generator</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Introducing scdoc, a man page generator
+		<small>
+			<span class="date">May 13, 2018</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			May 13, 2018. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>A man page generator is one of those tools that I’ve said I would write for a long time, being displeased with most of the other options. For a while I used asciidoc, but was never fond of it. There are a few things I want to see in a man page generator:</p><ol><li>A syntax which is easy to read and write</li><li>Small and with minimal dependencies</li><li>Designed with man pages as a first-class target</li></ol><p>All of the existing tools failed some of these criteria. <a href="http://asciidoc.org/" target="_blank">asciidoc</a> hits #1, but fails #2 and #3 by being written in XSLT+Python and targetting man pages as a second-class citizen. <a href="http://mandoc.bsd.lv/" target="_blank">mdocml</a> fails #1 (it’s not much better than writing raw roff), and to a lesser extent also fails criteria #2<sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup>. Another option, <a href="https://github.com/rtomayko/ronn" target="_blank">ronn</a> meets criteria #1 and #3, but it’s written in Ruby and fails #2. All of these are fine for the niches they fill, but not what I’m looking for. And as for GNU info… ugh.</p><p><a href="https://xkcd.com/912/" target="_blank"><img src="/l.sr.ht/nemf.png"></a></p><p>So, after tolerating less-than-optimal tools for too long, I eventually wrote the man page generator I’d been promising for years: <a href="https://git.sr.ht/~sircmpwn/scdoc" target="_blank">scdoc</a>. In a nutshell, scdoc is a man page generator that:</p><ul><li>Has an easy to read and write syntax. It’s inspired by Markdown, but importantly it’s not <em>actually</em> Markdown, because Markdown is designed for HTML and not man pages.</li><li>Is less than 1,000 lines of POSIX.1 C99 code with no dependencies and weighs 78 KiB statically linked against musl libc.</li><li>Only supports generating man pages. You can post-process the roff output if you want it converted to something else (e.g. html).</li></ul><p>I recently migrated <a href="https://github.com/swaywm/sway/pull/1958" target="_blank">sway’s manual</a> to scdoc after adding support for generating tables to it (a feature from asciidoc that the sway manual took advantage of). This change also removes a blocker to localizing man pages - something that would have been needlessly difficult to do with asciidoc. Of course, scdoc has full support for UTF-8.</p><p>My goal was to make a man page generator that had no more dependencies than man itself and would be a no-brainer for projects to use to make their manual more maintainable. Please give it a try!</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>mdocml is small and has minimal dependencies, but it has <em>runtime</em> dependencies - you need it installed to read the man pages it generates. This is Bad.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Redirecting-stderr-of-running-process/">
+					← Redirecting stderr of a running process
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Why-rewrite-wlc/">
+					Why did we replace wlc? →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

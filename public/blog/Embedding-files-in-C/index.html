@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Embedding files in C programs with koio</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Embedding files in C programs with koio
+		<small>
+			<span class="date">May 29, 2018</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			May 29, 2018. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Quick blog post today to introduce a new tool I wrote: <a href="https://git.sr.ht/~sircmpwn/koio" target="_blank">koio</a>. This is a small tool which takes a list of files and embeds them in a C file. A library provides an fopen shim which checks the list of embedded files before resorting to the real filesystem.</p><p>I made this tool for <a href="https://github.com/SirCmpwn/chopsui" target="_blank">chopsui</a>, where I eventually want to be able to bundle up sui markup, stylesheets, images, and so on in a statically linked chopsui program. Many projects have small tools which serve a similar purpose, but it was simple enough and useful enough that I chose to make something generic so it could be used on several projects.</p><p>The usage is pretty simple. I can embed <code>ko_fopen.c</code> in a C file with this command:</p><pre><code class="sh"><span class="constant operator function">$</span><span class="constant function"> </span><span class="constant property function">koio</span> <span class="constant">-o</span> <span class="constant">bundle.c</span> <span class="constant">ko_fopen.c://ko_fopen.c</span>
+</code></pre>
+<p>I can compile and link with <code>bundle.c</code> and do something like this:</p><pre><code class="c"><span class="keyword">#include</span> <span class="string">&lt;koio.h&gt;</span>
+
+<span class="type">void</span> <span class="constant variable function">koio_load_assets</span>(<span class="type">void</span>)<span class="delimiter">;</span>
+<span class="type">void</span> <span class="constant variable function">koio_unload_assets</span>(<span class="type">void</span>)<span class="delimiter">;</span>
+
+<span class="type">int</span> <span class="constant variable function">main</span>(<span class="type">int</span> <span class="constant variable">argc</span>, <span class="type">char</span> <span class="operator">*</span><span class="operator">*</span><span class="constant variable">argv</span>) {
+    <span class="constant variable function">koio_load_assets</span>()<span class="delimiter">;</span>
+    <span class="type">FILE</span> <span class="operator">*</span><span class="constant variable">src</span> <span class="operator">=</span> <span class="constant variable function">ko_fopen</span>(<span class="string">&quot;//ko_fopen.c&quot;</span>, <span class="string">&quot;r&quot;</span>)<span class="delimiter">;</span>
+    <span class="type">int</span> <span class="constant variable">c</span><span class="delimiter">;</span>
+    <span class="keyword">while</span> ((<span class="constant variable">c</span> <span class="operator">=</span> <span class="constant variable function">fgetc</span>(<span class="constant variable">src</span>)) <span class="operator">!=</span> <span class="constant variable">EOF</span>) {
+        <span class="constant variable function">putchar</span>(<span class="constant variable">c</span>)<span class="delimiter">;</span>
+    }
+    <span class="constant variable function">fclose</span>(<span class="constant variable">src</span>)<span class="delimiter">;</span>
+    <span class="constant variable function">koio_unload_assets</span>()<span class="delimiter">;</span>
+    <span class="keyword">return</span> <span class="number">0</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>The generated <code>bundle.c</code> looks like this:</p><pre><code class="c"><span class="keyword">#include</span> <span class="string">&lt;koio.h&gt;</span>
+
+<span class="keyword">static</span> <span class="keyword">struct</span> {
+	<span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span><span class="property">path</span><span class="delimiter">;</span>
+	<span class="type">size_t</span> <span class="property">len</span><span class="delimiter">;</span>
+	<span class="type">char</span> <span class="operator">*</span><span class="property">data</span><span class="delimiter">;</span>
+} <span class="constant variable">files</span>[] <span class="operator">=</span> {
+	{
+		<span class="delimiter">.</span><span class="property">path</span> <span class="operator">=</span> <span class="string">&quot;//ko_fopen.c&quot;</span>,
+		<span class="delimiter">.</span><span class="property">len</span> <span class="operator">=</span> <span class="number">408</span>,
+		<span class="delimiter">.</span><span class="property">data</span> <span class="operator">=</span>
+<span class="string">&quot;#define _POSIX_C_SOURCE 200809L\n#include &lt;errno.h&gt;\n#include &lt;stdlib.h&gt;\n#inc&quot;</span>
+<span class="string">&quot;lude &lt;stdio.h&gt;\n#include \&quot;koio_private.h\&quot;\n\nFILE *ko_fopen(const char *path&quot;</span>
+<span class="string">&quot;, const char *mode) {\n\tstruct file_entry *entry = hashtable_get(&amp;koio_vfs, p&quot;</span>
+<span class="string">&quot;ath);\n\tif (entry) {\n\t\tif (mode[0] != &apos;r&apos; || mode[1] != &apos;\\0&apos;) {\n\t\t\ter&quot;</span>
+<span class="string">&quot;rno = ENOTSUP;\n\t\t\treturn NULL;\n\t\t}\n\t\treturn fmemopen(entry-&gt;data, en&quot;</span>
+<span class="string">&quot;try-&gt;len, \&quot;r\&quot;);\n\t}\n\treturn fopen(path, mode);\n}\n&quot;</span>,
+	},
+}<span class="delimiter">;</span>
+
+<span class="type">void</span> <span class="constant variable function">koio_load_assets</span>(<span class="type">void</span>) {
+	<span class="constant variable function">ko_add_file</span>(<span class="constant variable">files</span>[<span class="number">0</span>]<span class="delimiter">.</span><span class="property">path</span>, <span class="constant variable">files</span>[<span class="number">0</span>]<span class="delimiter">.</span><span class="property">data</span>, <span class="constant variable">files</span>[<span class="number">0</span>]<span class="delimiter">.</span><span class="property">len</span>)<span class="delimiter">;</span>
+}
+
+<span class="type">void</span> <span class="constant variable function">koio_unload_assets</span>(<span class="type">void</span>) {
+	<span class="constant variable function">ko_del_file</span>(<span class="constant variable">files</span>[<span class="number">0</span>]<span class="delimiter">.</span><span class="property">path</span>)<span class="delimiter">;</span>
+}
+</code></pre>
+<p>A very simple tool, but one that I hope people will find useful. It’s very lightweight:</p><ul><li>312 lines of C</li><li>/bin/koio is ~40 KiB statically linked to musl</li><li>libkoio.a is ~18 KiB</li><li>Only mandatory dependencies are POSIX 2008 and a C99 compiler</li><li>Only optional dependency is <a href="https://git.sr.ht/~sircmpwn/scdoc" target="_blank">scdoc</a> for the manual, which is similarly lightweight</li></ul><p>Enjoy!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Why-rewrite-wlc/">
+					← Why did we replace wlc?
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/How-I-maintain-FOSS-projects/">
+					How I maintain FOSS projects →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

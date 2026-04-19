@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Breaking down Apollo Federation&apos;s anti-FOSS corporate gaslighting</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Breaking down Apollo Federation&apos;s anti-FOSS corporate gaslighting
+		<small>
+			<span class="date">November 5, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			November 5, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Gather around, my friends, for there is another company which thinks we are stupid and we enjoy having our faces spat in. <a href="https://www.apollographql.com/blog/announcement/moving-apollo-federation-2-to-the-elastic-license-v2/" target="_blank">Apollo Federation</a><sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup> has announced that they will switch to a non-free license. Let’s find out just how much the Elastic license really is going to “protect the community” like they want you to believe.</p><p>Let’s start by asking ourselves, objectively, what practical changes can we expect from a switch from the <a href="https://mit-license.org" target="_blank">MIT license</a> to the <a href="https://www.elastic.co/licensing/elastic-license" target="_blank">Elastic License</a>? Both licenses are pretty short, so I recommend quickly reading them yourself before we move on.</p><p>I’ll summarize the difference between these licenses. First, the Elastic license offers you (the recipient of the software) one benefit that MIT does not: an explicit license for any applicable patents. However, it also has many additional restrictions, such as:</p><ul><li>No sublicensing (e.g. incorporating part of it into your own program)</li><li>No resale (e.g. incorporating it into Red Hat and selling support)</li><li>No modifications which circumvent the license key activation code</li><li>No use in a hosted or managed service</li></ul><p>This is an objective analysis of the change. How does Apollo explain the changes?</p><blockquote><h3>Why the new license?</h3><p>The Apollo developer community is at the heart of everything we do. As stewards of our community, we have a responsibility to prevent harm from anyone who intends to exploit our work without contributing back. We want to continue serving you by funding the development of important open-source graph technology for years to come. To honor that commitment, we’re moving Apollo Federation 2 to the Elastic License v2 (ELv2).</p></blockquote><p>Taking them at their word, this change was motivated by their deep care for their developer community. They want to “honor their commitment”, which is to “fund the development of important open-source graph technology” and “prevent harm from anyone who intends to exploit our work without contributing back”.</p><p>This is a very misleading statement. The answer to the question stated by the header is “funding the development”, but they want us to first think that they’re keeping the community at the heart of this decision — a community that they have just withheld several rights from. Their wording also seeks to link the community with the work, “our work”, when the change is clearly motivated from a position where Apollo believes they have effective ownership over the software, sole right to its commercialization, and a right to charge the community a rent — enforced via un-circumventable license key activation code. The new license gives Apollo exclusive right to commercial exploitation of the software — so they can “exploit our work”, but the community itself cannot.</p><p>What’s more, the change does not fund “open-source graph technology” as advertised, because after this change, Apollo Federation is no longer open source. The term “open source” is defined by the <a href="https://opensource.org/osd" target="_blank">Open Source Definition</a><sup class="footnote-ref"><a href="#fn-2" id="fn-2-ref-1">2</a></sup>, whose first clause is:</p><blockquote><p>[The distribution terms of open-source software] shall not restrict any party from selling or giving away the software as a component of an aggregate software distribution containing programs from several different sources. The license shall not require a royalty or other fee for such sale.</p></blockquote><p>The OSD elaborates later:</p><blockquote><p>The license must not restrict anyone from making use of the program in a specific field of endeavor. For example, it may not restrict the program from being used in a business, or from being used for genetic research.</p><p>The rights attached to the program must apply to all to whom the program is redistributed without the need for execution of an additional license by those parties.</p></blockquote><p>The Elastic license clearly does not meet this criteria.</p><p>Reading the Apollo announcement further, it continues to peddle this and other lies. The next paragraph attempts to build legitimacy for its peers in this anti-FOSS gaslighting movement:</p><blockquote><p>Open-source licensing is evolving with the cloud. Many successful companies built on open-source technology (such as Elastic, MongoDB, and Confluent) have followed the path we’re taking to protect their communities and combine open, collaborative development with the benefits of cloud services that are easy to adopt and manage.</p></blockquote><p>They continue to use “open-source” language throughout, and misleads us into believing that they’ve made this change to protect the community and empower developers.</p><blockquote><p>When the Elastic License v2 was released, Elastic CEO Shay Banon called upon open-source companies facing a similar decision to “coalesce around a smaller number of licenses.” We’re excited to be part of this coalition of modern infrastructure companies building businesses that empower developers. […] Moving the Apollo Federation libraries and gateway to ELv2 helps us focus on our mission: empowering all of you.</p></blockquote><p>It should be evident by now that this is complete horseshit. Let me peel away the bullshit and explain what is actually going on here in plain English.</p><p>Free and open source software can be commercialized — this is an essential requirement of the philosophy! However, it cannot be <em>exclusively</em> commercialized. Businesses which participate in the FOSS ecosystem must give up their intellectual property monopoly, and allow the commercial ecosystem to flourish within their community — not just within their own ledger. They have to make their hosted version <em>better</em> than the competitors, or seek other monetization strategies: selling books, support contracts, consulting, early access to security patches, and so on.</p><p>The community, allegedly at the heart of everything Apollo does, participates in the software’s development, marketing, and growth, and they are rewarded with the right to commercialize it. The community is incentivized to contribute back because they retain their copyright and the right to monetize the software. <a href="https://github.com/apollographql/apollo-client/graphs/contributors" target="_blank">634 people</a> have contributed to Apollo, and the product is the sum of their efforts, and should belong to them — not just to the business which shares a name with the software. The community built their projects on top of Apollo based on the open source social contract, and gave their time, effort, and copyright for their contributions to it, and Apollo pulled the rug out from under them. In the words of Bryan Cantrill, this shameful, reprehensible behavior is <a href="https://invidious.mnus.de/watch?v=-zRN7XLCRhc&t=2483" target="_blank">shitting in the pool of open source</a>.</p><p>The smashing success of the free and open source software movement, both socially and commercially, has attracted the attention of bad actors like Apollo, who want to capitalize on this success without meeting its obligations. This wave of nonfree commercial gaslighting is part of a pattern where a company builds an open-source product, leverages the open-source community to build a market for it and to <em>directly</em> improve the product via their contributions, then switches to a nonfree license and steals the work for themselves, fucking everyone else over.</p><p>Fuck Matt DeBergalis, Shay Banon, Jay Kreps, and Dev Ittycheria. These are the CEOs and CTOs responsible for this exploitative movement. They are morally bankrupt assholes and rent-seekers who gaslight and exploit the open source community for personal gain.</p><p>This is a good reminder that this is the ultimate fate planned by any project which demands a copyright assignment from contributors in the form of a Contributor License Agreement (CLA). <a href="https://drewdevault.com/2018/10/05/Dont-sign-a-CLA.html" target="_blank">Do not sign these</a>! Retain your copyright over your contributions and contribute to projects which are collectively owned by their community — because <em>that’s</em> how you honor your community.</p><hr><p>Previously:</p><ul><li><a href="https://drewdevault.com/2021/01/19/Elasticsearch-does-not-belong-to-Elastic.html" target="_blank">Elasticsearch does not belong to Elastic</a></li><li><a href="https://drewdevault.com/2021/01/20/FOSS-is-to-surrender-your-monopoly.html" target="_blank">Open source means surrendering your monopoly over commercial exploitation</a></li><li><a href="https://drewdevault.com/2021/04/12/DCO.html" target="_blank">The Developer Certificate of Origin is a great alternative to a CLA</a></li></ul><p>If you are an Apollo Federation user who is affected by this change, I have set up <a href="https://lists.sr.ht/~sircmpwn/apollo-fork" target="_blank">a mailing list</a> to organize a community-maintained fork. Please send an email to this list if you are interested in participating in such a fork.</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>For those unaware, Apollo Federation is a means of combining many GraphQL<sup class="footnote-ref"><a href="#fn-3" id="fn-3-ref-1">3</a></sup> microservices into one GraphQL API.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-2">
+						<p>Beware, there are more gaslighters who want us to believe that the OSD does not define “open source”. This is factually incorrect. Advocates of this position usually have ulterior motives and, like Apollo, tend to be thinking more about their wallets than the community.</p>
+						
+							<a class="footnote-backref" href="#fn-2-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-3">
+						<p>For those unaware, GraphQL is a standardized query language largely used to replace REST for service APIs. SourceHut uses GraphQL.</p>
+						
+							<a class="footnote-backref" href="#fn-3-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/stalebot/">
+					← GitHub stale bot considered harmful
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Status-update-November-2021/">
+					Status update, November 2021 →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

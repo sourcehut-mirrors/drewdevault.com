@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Add a &quot;contrib&quot; directory to your projects</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Add a &quot;contrib&quot; directory to your projects
+		<small>
+			<span class="date">June 6, 2020</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			June 6, 2020. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>There’s a common pattern among free- and open-source software projects to include a “contrib” directory at the top of their source code tree. I’ve seen this in many projects for many years, but I’ve seen it discussed only rarely — so here we are!</p><p>The contrib directory is used as an unorganized (or, at best, lightly organized) bin of various useful things <strong>contrib</strong>uted by the community around the software, but which is not necessarily a good candidate for being a proper part of the software. Things in contrib should not be wired into your build system, shouldn’t be part of your automated testing, shouldn’t be included in your documentation, and should not be installed with your packages. contrib entries are not supported by the maintainers, and are given only a light code review at the most. There is no guarantee whatsoever of workitude or maintenance for anything found in contrib.</p><p>Nevertheless, it is often useful to have such a place to put various little scripts, config files, and so on, which provide a helpful leg-up for users hoping to integrate the software with some third-party product, configure it to fit nicely into an unusual environment, coax it into some unusual behavior, or whatever else the case may be. The idea is to provide a place to drop a couple of files which might save a future someone facing similar problems from doing all of the work themselves. Such people can contribute back small fixes or improvements, and the maintenance burden of such contributions lies entirely with the users.</p><p>If the contributor wants to take on a greater maintenance burden, this kind of stuff is better suited to a standalone project, with its own issue tracking, releases, and so on. If you just wrote a little script and want somewhere to drop it so that others may find it useful, then contrib is the place for you.</p><p>For a quick example, let’s consult Sway’s <a href="https://github.com/swaywm/sway/tree/master/contrib" target="_blank">contrib folder</a>:</p><pre><code>_incr_version
+autoname-workspaces.py
+grimshot
+grimshot.1
+grimshot.1.scd
+inactive-windows-transparency.py
+</code></pre><p>The <code>_incr_version</code> script is something that I use myself to help with preparing new releases. It is a tool useful only to maintainers, and therefore is not distributed with the project.</p><p>Looking at <code>autoname-workspaces.py</code> next, from which we can see that the quality criteria is reduced for members of contrib — none of Sway’s upstream code is written in Python, and the introduction of such a dependency would be controversial. This script automatically changes your workspace name based on what applications you’re running in it — an interesting workflow, but quite different from the OOTB experience.</p><p><code>grimshot</code> is a shell script which ties together many third-party programs (grim, slurp, wl-copy, jq, and notify-send) to make a convenient way of taking screenshots. Adding this upstream would introduce <em>a lot</em> of third-party dependencies for a minor convenience. This tool has had a bit more effort put into it: notice that a man page is provided as well. Because the contrib directory does not participate in the upstream build system, the contributor has also added a pre-compiled man page so that you can skip this step when installing it on your system.</p><p>Last, we have <code>inactive-windows-transparency.py</code>, which is a script for making all windows other than your focused one semi-transparent. Some people may want this, but again, it’s not really something we’d consider appropriate for the OOTB experience. Perfect for contrib!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Status-update-May-2020/">
+					← Status update, May 2020
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Can-we-talk-about-client-side-certs/">
+					Can we talk about client-side certificates? →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

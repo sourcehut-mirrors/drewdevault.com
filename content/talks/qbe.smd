@@ -1,0 +1,32 @@
+---
+.title = "Introduction to qbe",
+.date = @date("2022-02-05"),
+.author = "Drew DeVault",
+.layout = "page.shtml",
+--- 
+
+**Abstract**
+
+> qbe is an optimizing compiler backend which consumes programs in a simple
+> intermediate language, optimizes them, and emits assembly for x86\_64, aarch64,
+> or riscv64, aiming to achieve "70% of the performance" of advanced compilers
+> like LLVM in "10% of the code". This talk will briefly introduce qbe and its
+> intermediate language, explain how it works and what it's capable of, and go
+> over some sample programs which can be written in it.
+
+**Resources**
+
+- [Download slides](https://fosdem.org/2022/schedule/event/lg_qbe/attachments/slides/4878/export/events/attachments/lg_qbe/slides/4878/qbe.pdf)
+- [qbe](https://c9x.me/compile/)
+- [cproc C compiler](https://sr.ht/~mcf/cproc/)
+
+**Events**
+
+FOSDEM 2022 (virtual)
+
+2022-02-05 @ 14:40
+
+Recording:
+
+[]($video.url('https://video.fosdem.org/2022/L.lightningtalks/lg_qbe.webm').controls(true))
+

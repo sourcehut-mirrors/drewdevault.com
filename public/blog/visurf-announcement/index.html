@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>visurf, a web browser based on NetSurf</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		visurf, a web browser based on NetSurf
+		<small>
+			<span class="date">September 11, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			September 11, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I’ve started a new side project that I would like to share with you: <a href="https://sr.ht/~sircmpwn/visurf" target="_blank">visurf</a>. visurf, or nsvi, is a <a href="https://www.netsurf-browser.org" target="_blank">NetSurf</a> frontend which provides vi-inspired key bindings and a lightweight Wayland UI with few dependencies. It’s still a work-in-progress, and is not ready for general use yet. I’m letting you know about it today in case you find it interesting and want to help.</p><p>NetSurf is a project which has been on my radar for some time. It is a small web browser engine, developed in C independently of the lineage of WebKit and Gecko which defines the modern web today. It mostly supports HTML4 and CSS2, plus only a small amount of HTML5 and CSS3. Its JavaScript support, while present, is very limited. Given the <a href="https://drewdevault.com/2020/03/18/Reckless-limitless-scope.html" target="_blank">epidemic of complexity in the modern web</a>, I am pleased by the idea of a small browser, more limited in scope, which perhaps requires the cooperation of like-minded websites to support a pleasant experience.</p><p>I was a <a href="https://qutebrowser.org" target="_blank">qutebrowser</a> user for a long time, and I think it’s a great project given the constraints that it’s working in — namely, the modern web. But I reject the modern web, and qute is just as much a behemoth of complexity as the rest of its lot. Due to stability issues, I finally ended up abandoning it for Firefox several months ago.</p><p>The UI paradigm of qutebrowser’s modal interface, inspired by vi, is quite nice. I tried to use Tridactyl, but it’s a fundamentally crippled experience due to the limitations of Web Extensions on Firefox. Firefox has more problems besides — it may be somewhat more stable, but it’s ultimately still an obscenely complex, monsterous codebase, owned by an organization which cares less and less about my needs with each passing day. A new solution is called for.</p><p>Here’s where visurf comes in. Here’s a video of it in action:</p><p><video controls>
+<source src="https://redacted.moe/f/5f0fb143.webm">
+</video></p><p>I hope that this project will achieve these goals:</p><ol><li>Create a nice new web browser</li><li>Drive interest in the development of NetSurf</li><li>Encourage more websites to build with scope-constrained browsers in mind</li></ol><p>The first goal will involve fleshing out this web browser, and I could use your help. Please join #netsurf on irc.libera.chat, <a href="https://todo.sr.ht/~sircmpwn/visurf" target="_blank">browse the issue tracker</a>, and <a href="https://lists.sr.ht/~sircmpwn/visurf-devel" target="_blank">send patches</a> if you are able. Some features I have in mind for the future are things like interactive link selection, a built-in readability mode to simplify the HTML of articles around the web, and automatic redirects to take advantage of tools like <a href="https://github.com/zedeus/nitter" target="_blank">Nitter</a>. However, there’s also more fundamental features to do, like clipboard support, command completion, even key repeat. There is much to do.</p><p>I also want to get people interested in improving NetSurf. I don’t want to see it become a “modern” web browser, and frankly I think that’s not even possible, but I would be pleased to see more people helping to improve its existing features, and expand them to include a reasonable subset of the modern web. I would also like to add Gemini support. I don’t know if visurf will ever be taken upstream, but I have been keeping in touch with the NetSurf team while working on it and if they’re interested it would be easy to see that through. Regardless, any improvements to visurf or to NetSurf will also improve the other.</p><p>To support the third goal, I plan on overhauling <a href="https://sourcehut.org" target="_blank">sourcehut’s</a> frontend<sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup>, and in the course of that work we will be building a new HTML+CSS framework (think Bootstrap) which treats smaller browsers like NetSurf as a first-class target. The goal for this effort will be to provide a framework that allows for conservative use of newer browser features, with suitable fallbacks, with enough room for each website to express its own personality in a manner which is beautiful and useful on all manner of web browsers.</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>Same interface, better code.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Status-update-August-2021/">
+					← Status update, August 2021
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Status-update-September-2021/">
+					Status update, September 2021 →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

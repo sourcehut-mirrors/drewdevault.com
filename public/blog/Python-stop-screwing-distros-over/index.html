@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Python: Please stop screwing over Linux distros</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Python: Please stop screwing over Linux distros
+		<small>
+			<span class="date">November 16, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			November 16, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<blockquote><p>Linux distributions? Oh, those things we use to bootstrap our Docker containers? Yeah, those are annoying. What were you complaining about again?</p></blockquote><p>The Python community is obsessed with reinventing the wheel, over and over and over and over and over and over again. distutils, setuptools, pip, pipenv, tox, flit, conda, poetry, virtualenv, requirements.txt, setup.py, setup.cfg, pyproject.toml… I honestly can’t even list all of the things you have to deal with. It’s a disaster.</p><p><a href="https://xkcd.com/1987/" target="_blank"><figure><img src="https://imgs.xkcd.com/comics/python_environment.png">
+<figcaption>An xkcd comic showing a convoluted graph of competing Python environments</figcaption></figure></a></p><p>This comic is almost 4 years old and it has become much worse since. Python is a mess. I really want to like Python. I have used it for many years and in many projects, including SourceHut, which was predominantly developed in Python. But I simply can’t handle it anymore, and I have been hard at work removing Python from my stack.</p><p>This has always been a problem with Python, but in the past few years everyone and their cousin decided to “solve” it by building another mess which is totally incompatible with all of the others, all of the “solutions” enjoying varying levels of success in the community and none of them blessed as the official answer.</p><p>I manage my Python packages in the only way which I think is sane: installing them from my Linux distribution’s package manager. I maintain a few dozen Python packages for Alpine Linux myself. It’s from this perspective that, throughout all of this turmoil in Python’s packaging world, I have found myself feeling especially put out.</p><p>Every one of these package managers is designed for a reckless world in which programmers chuck packages wholesale into ~/.pip, set up virtualenvs and pin their dependencies to 10 versions and 6 vulnerabilities ago, and ship their computers directly into production in Docker containers which aim to do the minimum amount necessary to make their user’s private data as insecure as possible.</p><p>None of these newfangled solutions addresses the needs of any of the distros, despite our repeated pleas. They all break backwards compatibility with our use-case and send our complaints to /dev/null. I have seen representatives from every Linux distro making repeated, desperate pleas to Python to address their concerns, from Debian to Arch to Alpine to NixOS, plus non-Linux distros like FreeBSD and Illumos. Everyone is frustrated. We are all struggling to deal with Python right now, and Python is not listening to us.</p><p>What is it about Linux distros that makes our use-case unimportant? Have we offered no value to Python over the past 30 years? Do you just feel that it’s time to shrug off the “legacy” systems we represent and embrace the brave new world of serverless cloud-scale regulation-arbitrage move-fast-and-break-things culture of the techbro startup?</p><p>Distros are feeling especially frustrated right now, but I don’t think we’re alone. Everyone is frustrated with Python packaging. I call on the PSF to sit down for some serious, sober engineering work to fix this problem. Draw up a list of the use-cases you need to support, pick the most promising initiative, and put in the hours to make it work properly, today and tomorrow. Design something you can stick with and make stable for the next 30 years. If you have to break some hearts, fine. Not all of these solutions can win. Right now, upstream neglect is destroying the Python ecosystem. The situation is grave, and we need strong upstream leadership right now.</p><hr><p>P.S. PEP-517 and 518 are a start, but are very disappointing in how little they address distro problems. These PEPs are designed to tolerate the proliferation of build systems, which is exactly what needs to stop. Python ought to stop trying to avoid hurting anyone’s feelings and pick one. Maybe their decision-making framework prevents this, if so, the framework needs to be changed.</p><hr><p>P.P.S. There are a lot of relevant xkcds that I wanted to add. Here’s the ones I left out:</p><ul><li><a href="https://xkcd.com/1988/" target="_blank">https://xkcd.com/1988/</a></li><li><a href="https://xkcd.com/927/" target="_blank">https://xkcd.com/927/</a></li></ul><p>Further reading: <a href="https://drewdevault.com/2021/09/27/Let-distros-do-their-job.html" target="_blank">Developers: Let distros do their job</a></p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Cash-for-leftpad/">
+					← I will pay you cash to delete your npm module
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/A-philosophy-for-instant-messaging/">
+					My philosophy for productive instant messaging →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

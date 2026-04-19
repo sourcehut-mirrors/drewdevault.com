@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>My philosophy for productive instant messaging</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		My philosophy for productive instant messaging
+		<small>
+			<span class="date">November 24, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			November 24, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>We use Internet Relay Chat (<a href="https://en.wikipedia.org/wiki/Internet_Relay_Chat" target="_blank">IRC</a>) extensively at <a href="https://sourcehut.org" target="_blank">sourcehut</a> for real-time group chats and one-on-one messaging. The IRC protocol is quite familiar to hackers, who have been using it since the late 80’s. As chat rooms have become more and more popular among teams of both hackers and non-hackers in recent years, I would like to offer a few bites of greybeard wisdom to those trying to figure out how to effectively use instant messaging for their own work.</p><p>For me, IRC is a vital communication tool, but many users of <insert current instant messaging software fad here><sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup> find it frustrating, often to the point of resenting the fact that they have to use it at all. Endlessly catching up on discussions they missed, having their workflow interrupted by unexpected messages, searching for important information sequestered away in a discussion which happened weeks ago… it can be overwhelming and ultimately reduce your productivity and well-being. Why does it work for me, but not for them? To find out, let me explain how I think about and use IRC.</p><p>The most important trait to consider when using IM software is that it is <em>ephemeral</em>, and must be treated as such. You should not “catch up” on discussions that you missed, and should not expect others to do so, either. Any important information from a chat room discussion must be moved to a more permanent medium, such as an email to a mailing list,<sup class="footnote-ref"><a href="#fn-2" id="fn-2-ref-1">2</a></sup> a ticket filed in a bug tracker, or a page updated on a wiki. One very productive use of IRC for me is holding a discussion to hash out the details of an issue, then writing up a summary up for a mailing list thread where the matter is discussed in more depth.</p><p>I don’t treat discussions on IRC as actionable until they are shifted to another mode of discussion. On many occasions, I have discussed an issue with someone on IRC, and once the unknowns are narrowed down and confirmed to be actionable, ask them to follow-up with an email or a bug report. If the task never leaves IRC, it also never gets done.  Many invalid or duplicate tasks are filtered out by this approach, and those which do get mode-shifted often have more detail than they otherwise might, which improves the signal-to-noise ratio on my bug trackers and mailing lists.</p><p>I have an extensive archive of IRC logs dating back over 10 years, tens of gigabytes of gzipped plaintext files. I reference these logs perhaps only two or three times a year, and often for silly reasons, like finding out how many swear words were used over some time frame in a specific group chat, or to win an argument about who was the first person to say “yeet” in my logs. I almost never read more than a couple dozen lines of the backlog when starting up IRC for the day.</p><p>Accordingly, you should never expect anyone to be in the know for a discussion they were not present at. This also affects how I use “highlights”.<sup class="footnote-ref"><a href="#fn-3" id="fn-3-ref-1">3</a></sup> Whenever I highlight someone, I try to include enough context in the message so that they can understand why they were mentioned without having to dig through their logs, even if they receive the notification hours later.</p><p><em>Bad</em>:</p><pre><code>&lt;sircmpwn&gt; minus: ping
+&lt;sircmpwn&gt; what is the best way to frob foobars?
+</code></pre><p><em>Good</em>:</p><pre><code>&lt;sircmpwn&gt; minus: do you know how to frob foobars?
+</code></pre><p>I will also occasionally send someone a second highlight un-pinging them if the question was resolved and their input is no longer needed. Sometimes I <em>will</em> send a vague “ping <username>” example when I actually want them to participate in the discussion <em>right now</em>, but if they don’t answer immediately then I will usually un-ping them later.<sup class="footnote-ref"><a href="#fn-4" id="fn-4-ref-1">4</a></sup></p><p>This draws attention to another trait of instant messaging: it is <em>asynchronous</em>. Not everyone is online at the same time, and we should adjust our usage of it in consideration of this. For example, when I send someone a private message, rather than expecting them to engage in a real-time dialogue with me right away, I dump everything I know about the issue for them to review and respond to in their own time. This could be hours later, when I’m not available myself!</p><p><em>Bad</em>:</p><pre><code>&lt;sircmpwn&gt; hey emersion, do you have a minute?
+*8 hours later*
+&lt;emersion&gt; yes?
+*8 hours later*
+&lt;sircmpwn&gt; what is the best way to frob foobars?
+*8 hours later*
+&lt;emersion&gt; did you try mongodb?
+</code></pre><p><em>Good</em>:<sup class="footnote-ref"><a href="#fn-5" id="fn-5-ref-1">5</a></sup></p><pre><code>&lt;sircmpwn&gt; hey emersion, what&apos;s the best way to frob foobars?
+&lt;sircmpwn&gt; I thought about mongodb but they made it non-free
+*10 minutes later*
+&lt;sircmpwn&gt; update: considered redis, but I bet they&apos;re one bad day away from making that non-free too
+*8 hours later*
+&lt;emersion&gt; good question
+&lt;emersion&gt; maybe postgresql? they seem like a trustworthy bunch
+*8 hours later*
+&lt;sircmpwn&gt; makes sense. Thanks!
+</code></pre><p>This also presents us a solution to the interruptions problem: just don’t answer right away, and don’t expect others to. I don’t have desktop or mobile notifications for IRC. I only use it when I’m sitting down at my computer, and I “pull” notifications from it instead of having it “push” them to me — that is, I glance at the client every now and then. If I’m in the middle of something, I don’t read it.</p><p>With these considerations in mind, IRC has been an extraordinarily useful tool for me, and maybe it can be for you, too. I’m not troubled by interruptions to my workflow. I never have to catch up on a bunch of old messages. I can communicate efficiently and effectively with my team, increasing our productivity considerably, without worrying about an added source of stress. I hope that helps!</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>Many, many companies have tried, and failed, to re-invent IRC, usually within a proprietary walled garden. I offer my condolences if you find yourself using one of these.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-2">
+						<p>Email is great. If you hate it you might be <a href="https://useplaintext.email" target="_blank">using it wrong</a>.</p>
+						
+							<a class="footnote-backref" href="#fn-2-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-3">
+						<p>IRC terminology for mentioning someone’s name to get their attention. Some platforms call this “mentions”.</p>
+						
+							<a class="footnote-backref" href="#fn-3-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-4">
+						<p>I occasionally forget to… apologies to anyone I’ve annoyed by doing that.</p>
+						
+							<a class="footnote-backref" href="#fn-4-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-5">
+						<p>I have occasionally annoyed someone with this strategy. If they have desktop notifications enabled, they might see 10 notifications while I fill their message buffer with more and more details about my question. Sounds like a “you” problem, buddy 😉</p>
+						
+							<a class="footnote-backref" href="#fn-5-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Python-stop-screwing-distros-over/">
+					← Python: Please stop screwing over Linux distros
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/postmarketos/">
+					postmarketOS revolutionizes smartphone hacking →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

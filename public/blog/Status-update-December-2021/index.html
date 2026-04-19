@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, December 2021</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, December 2021
+		<small>
+			<span class="date">December 15, 2021</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			December 15, 2021. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Greetings! It has been a cold and wet month here in Amsterdam, much like the rest of them, as another period of FOSS progress rolls on by. I have been taking it a little bit easier this month, and may continue to take some time off in the coming weeks, so I can have a bit of a rest for the holidays. However, I do have some progress to report, so let’s get to it.</p><p>In programming language progress, we’ve continued to see improvement in cryptography, with more AES cipher modes and initial work on AES-NI support for Intel processors, as well as support for HMAC and blake2b. Improved support for linking with C libraries has also landed, which is the basis of a few third-party libraries which are starting to appear, such as bindings to <a href="https://github.com/andlabs/libui" target="_blank">libui</a>. I have also started working on bindings to SDL2, which I am using to make a little tetromino game (audio warning):</p><p><video src="https://redacted.moe/f/182e81ce.webm" controls></video></p><p>I am developing this to flesh out the SDL wrapper and get a feel for game development in the new language, but I also intend to take it on as a serious project to make a game which is fun to play. I also started working on an IRC protocol library for our language, but this does not link to C.</p><p>Also, the reflection support introduced a few months ago has been removed.</p><p>My other main focus has been SourceHut, where I have been working on todo.sr.ht’s GraphQL API. This one ended up being a lot of work. I expect to require another week or two to finish it.</p><p>visurf also enjoyed a handful of improvements this month, thanks to some contributors, the most prolific of whom was Pranjal Kole. Thanks Pranjal! Improvements landed this month include tab rearranging, next and previous page navigation, and an improvement to all of the new-tab logic, along with many bug fixes and smaller improvements. I also did some of the initial work on command completions, but there is a lot left to do in this respect.</p><p>That’s all for today. Thanks for your continued support! Until next time.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Linux-Mint-and-elementary-OS/">
+					← Impressions of Linux Mint &amp; elementary OS
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Commercial-forks-of-FOSS-projects/">
+					On commercial forks of FOSS projects →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

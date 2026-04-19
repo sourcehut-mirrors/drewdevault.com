@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, September 2019</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, September 2019
+		<small>
+			<span class="date">September 15, 2019</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			September 15, 2019. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Finally home again after a long series of travels! I spent almost a month in Japan, then visited my sister’s new home in Hawaii on the way eastwards, then some old friends in Seattle, and finally after 5½ long weeks, it’s home sweet home here in Philadelphia. At least until I leave for <a href="https://xdc2019.x.org/" target="_blank">XDC</a> in Montreal 2 weeks from now. Someday I’ll have some rest… throughout all of these wild travels, I’ve been hard at work on my free software projects. Let’s get started with this month’s status update!</p><p><img src="/l.sr.ht/iuDE.jpg"></p><p style="text-align: center">
+  <small>Great view from a hike on O'ahu</small>
+</p>
+<p>First, Wayland news. I’m happy to share with you that the Wayland book is now more than halfway complete, and I’ve made the drafts available online for a discounted price: <a href="https://wayland-book.com" target="_blank">The Wayland Protocol</a>. Thanks to all of my collaborators and readers who volunteered to provide feedback! There’s more Wayland-related news still, as this month marked the release of <a href="https://github.com/swaywm/sway/releases/tag/1.2" target="_blank">sway 1.2</a> and <a href="https://github.com/swaywm/wlroots/releases/tag/0.7.0" target="_blank">wlroots 0.7.0</a>. I like this release because it’s light on new features - showing that sway is maturing into a stable and reliable Wayland desktop. The features which were added are subtle and serve to improve sway’s status as a member of the broader ecosystem - sway 1.2 supports the new <a href="https://github.com/mate-desktop/mate-panel/pull/991" target="_blank">layer shell support in the MATE panel</a>, and the same improvements are already helping with the development of other software.</p><p><figure><img src="/l.sr.ht/9Oro.png">
+<figcaption>Screenshot of MATE panel running on sway</figcaption></figure></p><p style="text-align: center">
+  <small>Rest assured, the weird alignment issues were fixed</small>
+</p>
+<p>On the topic of <a href="https://aerc-mail.org" target="_blank">aerc</a>, I still haven’t gotten around to that write-up responding to <a href="http://www.kroah.com/log/blog/2019/08/14/patch-workflow-with-mutt-2019/" target="_blank">Greg KH’s post</a>… but I will. Travels have made it difficult to sit down for a while and do some serious long-term project planning. Regardless, the current plans have still been being executed well. Notmuch support continues to improve thanks to Reto Brunner’s help, completions are improving throughout, and heaps of little features - signatures, unread message counts, :prompt, forward-as-attachment - are now supported.</p><p>I also spent some time this month working on Simon Ser’s <a href="https://mrsh.sh" target="_blank">mrsh</a>. I cleaned up call frames, implemented the <code>return</code> builtin, finished the <code>pwd</code> builtin, improved readline support, fleshed out job control, and made many other small improvements. With mrsh nearing completion, I’ve started up another project: <a href="https://git.sr.ht/~sircmpwn/ctools" target="_blank">ctools</a>. This provides the rest of the POSIX commands required of a standard scripting environment (it replaces coreutils or busybox). I’m taking this one pretty seriously from the start - every command has full POSIX.1-2017 support with a conformance test and a man page, in one C source file and no dependencies. If you’re looking for a good afternoon project (or weekend, for some utilities), how about picking up your favorite <a href="https://pubs.opengroup.org/onlinepubs/9699919799/" target="_blank">POSIX</a> tool and sending along an implementation?</p><p><a href="https://builds.sr.ht/~sircmpwn/job/88955" target="_blank"><figure><img src="/l.sr.ht/DSxS.png">
+<figcaption>Screenshot of ctools test suite</figcaption></figure></a></p><p>With these projects, along with ~mcf’s <a href="https://git.sr.ht/~mcf/cproc" target="_blank">cproc</a>, we’re starting to see a simple and elegant operating system come together - exactly the kind I wish we already had. To track our progress towards this goal, I’ve put up <a href="https://arewesimpleyet.org" target="_blank">arewesimpleyet.org</a>. A day may soon come when computers become the again elegant and simple tools they were always meant to be! At least if we assume “within a few decades” as a valid definition of “soon”.</p><p>To cover SourceHut news briefly: we hit 10,000 users this month! And it’s continued to grow since, up to 10,649 users at the time of writing. On the subject of feature development, with Denis Laxalde’s help we’re starting to put together a Debian repository for installing the services on Debian hosts. On todo.sr.ht, users without accounts can now create and comment on tickets via email. I also redesigned <a href="https://sourcehut.org" target="_blank">sourcehut.org</a>, adding a blog with a greater breadth of topics than we’ll see on the sr.ht-announce mailing list.</p><p>That’s all for this month! I enjoyed my vacation and some much needed time away from work… though for me a “day off” is a day where I write less than 1,000 lines of code. Thank you again for your support - it means the world to me. I’ll see you next month!</p><p><img src="/l.sr.ht/1cuE.jpg"></p><p style="text-align: center">
+  <small>Had the best seats at a concert in Tokyo!</small>
+</p>
+
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Enough-to-decide/">
+					← How I decide between many programming languages
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/The-wrong-words-but-the-right-ideas/">
+					Don&apos;t sacrifice the right ideas to win the right words →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

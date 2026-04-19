@@ -1,0 +1,14 @@
+---
+.date = @date("2017-12-28"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+.title = "wlroots whitepaper available",
+.alternatives = [{
+  .name = "autoredirect",
+  .layout = "redirect.shtml",
+  .output = "/2017/12/28/wlroots-whitepaper-available.html",
+}],
+---
+
+[View PDF](https://sr.ht/jAFC.pdf)
+

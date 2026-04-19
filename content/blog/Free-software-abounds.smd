@@ -1,0 +1,34 @@
+---
+.title = "Free Software Abounds",
+.date = @date("2011-08-31"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+One thousand thanks to all the people that have given me free software!  It's
+always nice to be able to develop on the cheap.  Let's see who I can thank -
+first of all, [Microsoft Student Insiders](https://web.archive.org/web/20120305122548/http://blogs.msdn.com/b/techstudent/default.aspx?PageIndex=1) hooked me up with a free MSDN account,
+which is no small feat.  [MSDN](https://web.archive.org/web/20120305122548/http://msdn.microsoft.com/en-us/subscriptions/buy.aspx) gives me virtually all Microsoft software ever,
+for the lovely price of $11,899.  Thanks to the Student Insiders, I got it for
+$0.  I highly recommend getting it - perhaps a cheaper package, though - you
+get support from Microsoft, a ton of software, and more stuff that I could
+never list in full.  Things that I've used MSDN for: Visual Studio 2010
+Ultimate, Windows 7 Ultimate, Office 2010.
+
+In addition to free MSDN, [JetBrains](https://web.archive.org/web/20120305122548/http://www.jetbrains.com/) has given me a free license for [ReSharper](https://web.archive.org/web/20120305122548/http://www.jetbrains.com/resharper/),
+which is easily the best add-in for Visual Studio 2010 you could ever get.  It
+does everything you ever wanted Visual Studio to do, and again I highly
+recommend it.  JetBrains gives out free licenses for open source projects and
+was impressed by [tiDE](https://web.archive.org/web/20120305122548/http://tidenv.codeplex.com/).
+
+Finally, I'd like to do a call out to [Codeplex](https://web.archive.org/web/20120305122548/http://codeplex.com/).  All though they haven't done
+anything special for me as an individual, they provide a great service to the
+.NET community.  Codeplex provides hosting for many of my open source projects,
+including all sorts of source control - SVN, TFS, Mercurial, etc.  You can keep
+tabs on my [Codeplex account](https://web.archive.org/web/20120305122548/http://www.codeplex.com/site/users/view/sircmpwn) to see all sorts of new and exciting open source
+projects.  You can only see a couple of projects there now, but I promise that
+there are a few more projects that are hidden from view at the moment.
+
+In other news, I'll be picking Windows Phone 7 development back up again, and
+you can expect lots of information about Mango and all the cool, open-source
+apps you could ever want. 

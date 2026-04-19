@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>My unorthodox, branchless git workflow</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		My unorthodox, branchless git workflow
+		<small>
+			<span class="date">April 6, 2020</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			April 6, 2020. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I have been using git for a while, and I took the time to learn about it in great detail. Equipped with an understanding of its internals and a comfortable familiarity with tools like <a href="https://git-rebase.io" target="_blank">git rebase</a> — and a personal, intrinsic desire to strive for minimal and lightweight solutions — I have organically developed a workflow which is, admittedly, somewhat unorthodox.</p><p>In short, I use git branches very rarely, preferring to work on my local master branch almost every time. When I want to work on multiple tasks in the same repository (i.e. often), I just… work on all of them on master. I waste no time creating a new branch, or switching to another branch to change contexts; I just start writing code and committing changes, all directly on master, intermixing different workstreams freely.<sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup> This reduces my startup time to zero, both for starting new tasks and revisiting old work.</p><p>When I’m ready to present some or all of my changes to upstream, I grab git rebase and reorganize all of these into their respective features, bugfixes, and so on, forming a series of carefully organized, self-contained patchsets. When I receive feedback, I just start correcting the code right away, then fixup the old commits during the rebase. Often, I’ll bring the particular patchset I’m ready to present upstream to the front of my master branch at the same time, for convenient access with <a href="https://git-send-email.io" target="_blank">git send-email</a>.</p><p>I generally set my local master branch to track the remote master branch,<sup class="footnote-ref"><a href="#fn-2" id="fn-2-ref-1">2</a></sup> so I can update my branch with <code>git pull --rebase</code>.<sup class="footnote-ref"><a href="#fn-3" id="fn-3-ref-1">3</a></sup> Because all of my work-in-progress features are on the master branch, this allows me to quickly address any merge conflicts with upstream for <em>all</em> of my ongoing work at once. Additionally, by keeping them all on the same branch, I can be assured that my patches are mutually applicable and that there won’t be any surprise conflicts in feature B after feature A is merged upstream.</p><p>If I’m working on my own projects (where I can push to upstream master), I’ll still be working on master. If I end up with a few commits queued up and I need to review some incoming patches, I’ll just apply them to master, rebase them behind my WIP work, and then use <code>git push origin HEAD~5:refs/heads/master</code> to send them upstream, or something to that effect.<sup class="footnote-ref"><a href="#fn-4" id="fn-4-ref-1">4</a></sup> Bonus: this instantly rebases my WIP work on top of the new master branch.</p><p>This workflow saves me time in several ways:</p><ul><li>No time spent creating new branches for new features.</li><li>No time spent switching between branches to address feedback.</li><li>All of my features are guaranteed to be mutually applicable to master, saving me time addressing conflicts.</li><li>Any conflicts with upstream are addressed in all of my workstreams at once, without switching between branches or allowing any branch to get stale.</li></ul><p>I know that lightweight branches are one of git’s flagship features, but I don’t really use them. I know it’s weird, sue me.</p><p>Sometimes I do use branches, though, when I know that a workstream is going to be a lot of work — it involves lots of large-scale refactoring, or will take several weeks to complete. This isolates it from my normal workflow on small-to-medium patches, acknowledging that the large workstream is going to be more prone to conflicts. By addressing these separately, I don’t waste my time fixing up the error-prone branch all the time while I’m working on my smaller workstreams.</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>I will occasionally use <code>git add -p</code> or even just <code>git commit -p</code> to quickly separate any changes in my working directory into separate commits for their respective workstreams, to make my life easier later on. This is usually the case when, for example, I have to fix problem A before I can address problem B, and additional issues with problem A are revealed by my work on problem B. I just fix them right away, <code>git commit -p</code> the changes separately, then file each commit into their respective patchsets later.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-2">
+						<p>“What?” Okay, so in git, you have <em>local</em> branches and <em>remote</em> branches.  The default behavior is reasonably sane, so I would forgive you for not noticing. Your local branches can <em>track</em> remote branches, so that when you <code>git pull</code> it automatically updates any local <em>tracking branches</em>. <code>git pull</code> is actually equivalent to doing <code>git fetch</code> and then <code>git merge origin/master</code> assuming that the current branch (your <em>local</em> master) is <em>tracking</em> <code>origin/master</code>. <code>git pull --rebase</code> is the same thing, except it uses <code>git rebase</code> instead of <code>git merge</code> to update your local branch.</p>
+						
+							<a class="footnote-backref" href="#fn-2-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-3">
+						<p>In fact, I have <code>pull.rebase = true</code> in my git config, which makes <code>--rebase</code> the default behavior.</p>
+						
+							<a class="footnote-backref" href="#fn-3-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-4">
+						<p>“What?” Okay, so <code>git push</code> is shorthand for <code>git push origin master</code>, if you have a tracking branch set up for your local master branch to <code>origin/master</code>. But this itself is also shorthand, for <code>git push &lt;remote&gt; &lt;local&gt;:&lt;remote&gt;</code>, where <code>&lt;local&gt;</code> is the local branch you want to push, and <code>&lt;remote&gt;</code> is the remote branch you want to update. But, remember that branches are just references to commits. In git, there are other ways to reference commits. <code>HEAD~5</code>, for example, gets the commit which is 5 commits earlier than <code>HEAD</code>, which is the commit you have checked out right now. So <code>git push origin HEAD~5:refs/for/master</code> updates the <code>origin</code>‘s <code>refs/for/master</code> reference (i.e. the master branch) to the local commit at <code>HEAD~5</code>, pushing any commits that upstream master doesn’t also have in the process.</p>
+						
+							<a class="footnote-backref" href="#fn-4-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Designing-a-replacement-part-for-my-truck/">
+					← Designing and 3D printing a new part for my truck
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Status-update-April-2020/">
+					Status update, April 2020 →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

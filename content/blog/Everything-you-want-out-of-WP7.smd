@@ -1,0 +1,187 @@
+---
+.title = "Everything you want out of WP7",
+.date = @date("2010-12-11"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+The brand new Windows Phone 7 is a great device, and presents a great platform
+for developers to host applications in Silverlight and XNA, and comes with a
+lot of great stuff for developers.  But what great stuff does it come with?
+Well, here’s a list:
+
+* Accelerometer
+* GPS
+* Microphone
+* Camera (sort of)
+* User pictures (sort of)
+* Limited Internet Access
+* Modify "Live Tiles" (sort of)
+* Utilize "toast" notifications (sort of)
+* Multitouch
+* Maps (SL Only)
+* SMS Messaging
+* Email
+* Contacts
+* Silverlight Styles
+  * AppBar
+  * Pivot
+  * Panorama
+
+All of this stuff is really cool to play around with in an application.  Let’s
+see how we can use it.  This is intended to give you a quick and dirty overview
+of all the features so you can get a general view of how to use it in
+applications.
+
+## Accelerometer
+
+An accelerometer gives you information about the physical orientation of the
+phone. It could be used for a level application, for example.  In order to use
+it, you have to create a new Microsoft.Devices.Sensors.Accelerometer.  You have
+to hook up to the ReadingChanged event to get information back.  However, this
+returns a Vector3, which is an XNA class, so be sure to add XNA references to
+any Silverlight project you use it in.
+
+[More Info](https://web.archive.org/web/20120305160351/http://msdn.microsoft.com/en-us/library/ff431809%28VS.92%29.aspx)
+
+## GPS
+
+The phone’s GPS gives you access to the user’s physical location when you poll
+it for data.  There are also several other classes associated with it that give
+you useful methods, such as the ability to calculate distance between
+coordinates.  To access the GPS, you need to set up a
+System.Device.Location.GeoCoordinateWatcher, and hook up to the PositionChanged
+event.  This event returns a Location that includes the user’s spatial
+coordinates.
+
+[More Info](https://web.archive.org/web/20120305160351/http://msdn.microsoft.com/en-us/library/system.device.location.geocoordinatewatcher.aspx)
+
+## Microphone
+
+There are a number of interesting applications for the microphone, which can be
+accessed through Microsoft.Xna.Framework.Audio.Microphone.  Use
+Microphone.BufferLength to change the length of recording, and you can use
+Microphone.Start() and Microphone.Stop() to control recording.  The data is
+16-bit Mono PCM, which can be fed directly into DynamicSoundEffectInstance.
+
+[More Info](https://web.archive.org/web/20120305160351/http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.audio.microphone.aspx)
+
+## Camera/Pictures
+
+Accessing the camera is more complicated.  It is impossible for 3rd party
+developers to get a direct feed from the camera, but you can use tasks to get
+the user to take a static image.  Microsoft.Phone.Tasks.CameraCaptureClass
+provides the functionality to do this.  You can hook up to Completed to get the
+image back (JPG format), and call Show() to get the photo.
+
+The exact same goes for getting user photos.  The PhotoChooserTask allows the
+user to pick a picture to give to the application, and it is returned through
+the Completed event.
+
+[More Info](https://web.archive.org/web/20120305160351/http://msdn.microsoft.com/en-us/library/microsoft.phone.tasks.cameracapturetask%28VS.92%29.aspx)
+
+## Internet Access
+
+The Windows Phone 7 is locked down for quite a bit of internet access, but
+allows you to perform HTTP requests the same way you would on a desktop
+application.
+
+[More Info](https://web.archive.org/web/20120305160351/http://msdn.microsoft.com/en-us/library/system.net.aspx)
+
+## Live Tiles and Toast Notifications
+
+Because your application cannot run in the background, you have to use a
+different method for getting notifications to the user while they are not using
+your application.  This is done via an external service that pushes data to the
+phone, in the form of a Live Tile update, a Toast notification, or raw data.
+This is a complex procedure, and more info can be found here:
+
+http://msdn.microsoft.com/en-us/library/ff941124(VS.92).aspx
+
+## Multitouch
+
+The Windows Phone 7 provides a multitouch screen capable of detecting four
+points on the screen at once.  In Silverlight, multitouch support is built in.
+In XNA, however, you can get this information in the same way as the Zune HD:
+via the Microsoft.Xna.Framework.Input.TouchPanel class.  You can use
+GetState(), which returns a TouchCollection that you can enumerate to get all
+of the places on-screen that are currently being touched.
+
+[More Info](https://web.archive.org/web/20120305160351/http://msdn.microsoft.com/en-us/library/microsoft.xna.framework.input.touch.aspx)
+
+## Maps (Silverlight Only)
+
+In Silverlight, you can use the Bing Maps control to show the user a map.  You
+can customize this control with pins and more, and feed it GeoCoordinate data
+to change the location.  It is quite versatile, and can be used in a number of
+applications.
+
+[More Info](https://web.archive.org/web/20120305160351/http://msdn.microsoft.com/en-us/library/ee681884.aspx)
+
+## SMS Messaging (Texting)
+
+One of the primary uses for a cell phone is texting, and you can access this
+ability through your application.  Using the SmsComposeTask class in
+Microsoft.Phone.Tasks, you can send text messages to any phone number.
+
+[More Info](https://web.archive.org/web/20120305160351/http://msdn.microsoft.com/en-us/library/microsoft.phone.tasks.smscomposetask%28v=VS.92%29.aspx)
+
+## Email
+
+Along a similar idea is the EmailComposeTask, which can be used in a similar
+way to construct emails.  You can set the body of the email, the To, CCs, and
+the Subject, which the user will approve before sending.
+
+[More Info](https://web.archive.org/web/20120305160351/http://msdn.microsoft.com/en-us/library/microsoft.phone.tasks.emailcomposetask%28v=VS.92%29.aspx)
+
+## Tasks
+
+These tasks are not the only ones.  You can find information about all of the
+tasks here, including getting contact info:
+
+http://msdn.microsoft.com/en-us/library/microsoft.phone.tasks(VS.92).aspx
+
+## Silverlight Styles
+
+The Windows Phone 7 has some pretty stylin’ themes, and as a Silverlight
+developer, you can take advantage of that.  App Templates in Visual Studio 2010
+come pre-packaged as one of the following page types:
+
+* Application Page
+  * This is a simple page with no fancy bits or pieces.
+* Pivot Page
+  * This page is similar to the settings page in WP7, where you have several
+    headers, each with different content, to scroll through horizontally.
+* Panorama Page
+  * The panorama pages are like the Pictures app that comes with WP7, they have
+    a large scrolling picture in the background of a pivot page.
+
+## AppBar
+
+The last big feature of WP7 is the AppBar, which is a small bar at the bottom
+of the page users can interact with.  It can slide up to a larger menu, or
+collapse for a simple menu with icons.
+
+You can customize this appbar in your own Silverlight application, as described
+here:
+
+http://msdn.microsoft.com/en-us/library/ff431801(VS.92).aspx
+
+Hopefully this list will provide an easy to use reference to find anything you
+need to do on Windows Phone 7.  It isn’t intended to tell you everything you
+need to know, but it should give you a good idea of what WP7 is capable of, and
+provide easy access to more information.  Come back again later, I’ll be going
+over some of these items in more detail so that you can have your application
+on its feet in no time.
+
+## Windows Phone 7 for Students
+
+And finally, students who are interested in developing applications for Windows
+Phone 7 can do so - for free.  The Microsoft DreamSpark Program allows students
+to get free access to professional development tools - including Visual Studio
+2010 Professional.  With the release of WP7, Microsoft extended the program to
+waive the $100 WP7 Marketplace developer account fee for students through
+DreamSpark.  This means that students can submit 5 applications to the Windows
+Phone 7 Marketplace for free, and start making money from them without paying a
+penny.  But beware - you must be at least 18 to qualify for a developer
+account, so some high school students will be left out for a couple years.

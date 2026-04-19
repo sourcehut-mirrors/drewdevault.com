@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Porting Doom to Helios</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Porting Doom to Helios
+		<small>
+			<span class="date">July 1, 2022</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			July 1, 2022. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p><a href="https://en.wikipedia.org/wiki/Doom_(1993_video_game)" target="_blank">Doom</a> was an incredibly popular video game by Id software which, six years following its release, was made <a href="https://github.com/id-Software/DOOM" target="_blank">open source</a> under the GPLv2 license. Thanks to this release, combined with the solid software design and lasting legacy of backwards compatibility in C, Doom has been ported to countless platforms by countless programmers. And I recently added myself to this number :)</p><p><video src="https://redacted.moe/f/588e2fbd.webm" controls muted autoplay></video></p><p>I’m working on a new kernel called <a href="https://sr.ht/~sircmpwn/helios" target="_blank">Helios</a>, and I thought that porting Doom would present a good opportunity for proving the kernel design — you never know if you have a good design until you try to use it for real. Doom is a good target because it does not require much to get working, but it is a useful (and fun) program to port. It calls for the following features:</p><ol><li>A working C programming environment</li><li>Dynamic memory allocation</li><li>A place to draw the screen (a framebuffer)</li><li>Keyboard input</li></ol><p>As I was working, I gradually came to understand that Helios was pretty close to supporting all of these features, and thought that the time to give Doom a shot was coming soon. In my <a href="https://drewdevault.com/2022/06/15/Status-update-June-2022.html" target="_blank">last status update</a>, I shared a picture of a Helios userspace program utilizing the framebuffer provided by multiboot, ticking one box. We’ve had dynamic memory allocation in userspace working since June 8th. The last pieces were a keyboard driver and a C library.</p><p>I started with the keyboard driver, since that would let me continue to work on Hare for a little bit longer, providing a more direct benefit to the long-term goals (rather than the short-term goal of “get Doom to work”). Since Helios is a micro-kernel, the keyboard driver is implemented in userspace. A PS/2 keyboard driver requires two features which are reserved to ring 0: I/O ports and IRQ handling. To simplify the interface to the essentials for this use-case, pressing or releasing a key causes IRQ 1 to be fired on the PIC, then reading from port 0x60 provides a scancode. We already had support for working with I/O ports in userspace, so the blocker here was IRQ handling.</p><p>Helios implements IRQs similarly to seL4, by using a “notification” object (an IPC primitive) which is signalled by the kernel when an IRQ occurs. I was pleased to have this particular blocker, as developing out our IPC implementation further was a welcome task. The essential usage of a notification involves two operations: wait and signal. The former blocks until the notification is signalled, and the later signals the notification and unblocks any tasks which are waiting on it. Unlike sending messages to endpoints, signal never blocks.</p><p>After putting these pieces together, I was able to write a simple PS/2 keyboard driver which echos pressed keys to the kernel console:</p><pre><code class="hare"><span class="error type_qualifier">const</span><span class="error"> </span><span class="error constant variable">irq1_notify</span><span class="error"> </span><span class="error operator">=</span><span class="error"> </span><span class="error constant variable">helios</span><span class="error punctuation_delimiter">::</span><span class="error constant variable">newnotification</span><span class="error punctuation_bracket">(</span><span class="error punctuation_bracket">)</span><span class="error operator">?</span><span class="error punctuation_delimiter">;</span><span class="error">
+</span><span class="error type_qualifier">const</span><span class="error"> </span><span class="error constant variable">irq1</span><span class="error"> </span><span class="error operator">=</span><span class="error"> </span><span class="error constant variable">helios</span><span class="error punctuation_delimiter">::</span><span class="error constant variable">irqcontrol_issue</span><span class="error punctuation_bracket">(</span><span class="error constant variable">rt</span><span class="error punctuation_delimiter">::</span><span class="error constant variable">INIT_CAP_IRQCONTROL</span><span class="error punctuation_delimiter">,</span><span class="error"> </span><span class="error constant variable">irq1_notify</span><span class="error punctuation_delimiter">,</span><span class="error"> 1</span><span class="error punctuation_bracket">)</span><span class="error operator">?</span><span class="error punctuation_delimiter">;</span><span class="error">
+</span><span class="error type_qualifier">const</span><span class="error"> </span><span class="error constant variable">ps2</span><span class="error"> </span><span class="error operator">=</span><span class="error"> </span><span class="error constant variable">helios</span><span class="error punctuation_delimiter">::</span><span class="error constant variable">iocontrol_issue</span><span class="error punctuation_bracket">(</span><span class="error constant variable">rt</span><span class="error punctuation_delimiter">::</span><span class="error constant variable">INIT_CAP_IOCONTROL</span><span class="error punctuation_delimiter">,</span><span class="error"> 0x60</span><span class="error punctuation_delimiter">,</span><span class="error"> 0x64</span><span class="error punctuation_bracket">)</span><span class="error operator">?</span><span class="error punctuation_delimiter">;</span><span class="error">
+
+</span><span class="error repeat">for</span><span class="error"> </span><span class="error punctuation_bracket">(</span><span class="error">true</span><span class="error punctuation_bracket">)</span><span class="error"> </span><span class="error punctuation_bracket">{</span><span class="error">
+	</span><span class="error constant variable">helios</span><span class="error punctuation_delimiter">::</span><span class="error constant variable">wait</span><span class="error punctuation_bracket">(</span><span class="error constant variable">irq1_notify</span><span class="error punctuation_bracket">)</span><span class="error operator">?</span><span class="error punctuation_delimiter">;</span><span class="error">
+	</span><span class="error type_qualifier">const</span><span class="error"> </span><span class="error constant variable">scancode</span><span class="error"> </span><span class="error operator">=</span><span class="error"> </span><span class="error constant variable">helios</span><span class="error punctuation_delimiter">::</span><span class="error constant variable">ioport_in8</span><span class="error punctuation_bracket">(</span><span class="error constant variable">ps2</span><span class="error punctuation_delimiter">,</span><span class="error"> 0x60</span><span class="error punctuation_bracket">)</span><span class="error operator">?</span><span class="error punctuation_delimiter">;</span><span class="error">
+	</span><span class="error constant variable">helios</span><span class="error punctuation_delimiter">::</span><span class="error constant variable">irq_ack</span><span class="error punctuation_bracket">(</span><span class="constant variable">irq1</span><span class="punctuation_bracket">)</span><span class="operator">!</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>This creates a notification capability to wait on IRQs, then creates a capability for IRQ 1 registered for that notification. It also issues an I/O port capability for the PS/2 ports, 0x60-0x64 (inclusive). Then it loops, waiting until an interrupt occurs, reading the scancode from the port, and printing it. Simple!</p><p>I now turned my attention to a C library for Doom. The first step for writing userspace programs in C for a new operating system is to produce a suitable C cross-compiler toolchain. I adapted the instructions from <a href="https://wiki.osdev.org/GCC_Cross-Compiler" target="_blank">this OSdev wiki tutorial</a> for my needs and produced the working patches for <a href="https://git.sr.ht/~sircmpwn/binutils/commit/b104dee8b4d5f6fb57d585132775e22f0eba80df" target="_blank">binutils</a> and <a href="https://git.sr.ht/~sircmpwn/gcc/commit/20df2b4d99670f2db51f84dc57d2253fd71d0b2b" target="_blank">gcc</a>. I started on a simple C library that included <a href="https://git.sr.ht/~sircmpwn/mercury/tree/f80bb66373ab12a66a9a86894d212cbbdfcf53bf/item/libc/syscall.s" target="_blank">some assembly glue</a> for syscalls, <a href="https://git.sr.ht/~sircmpwn/mercury/tree/f80bb66373ab12a66a9a86894d212cbbdfcf53bf/item/libc/crt" target="_blank">an entry point</a>, and <a href="https://git.sr.ht/~sircmpwn/mercury/tree/1217b54b7bd09bebcd672d1e9cdae14f2e2e545f/item/libc/syscalls.c" target="_blank">a couple of syscall wrappers</a>. With great anticipation, I wrote the following C program and loaded it into Helios:</p><pre><code class="c"><span class="keyword">#include</span> <span class="string">&lt;helios/syscall.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;string.h&gt;</span>
+
+<span class="type">int</span> <span class="constant variable function">main</span>() {
+	<span class="keyword">const</span> <span class="type">char</span> <span class="operator">*</span><span class="constant variable">message</span> <span class="operator">=</span> <span class="string">&quot;Hello from userspace in C!\n&quot;</span><span class="delimiter">;</span>
+	<span class="constant variable function">sys_writecons</span>(<span class="constant variable">message</span>, <span class="constant variable function">strlen</span>(<span class="constant variable">message</span>))<span class="delimiter">;</span>
+	<span class="keyword">return</span> <span class="number">0</span><span class="delimiter">;</span>
+}
+</code></pre>
+<pre><code>$ qemu-system-x86_64 -m 1G -no-reboot -no-shutdown \
+	-drive file=boot.iso,format=raw \
+	-display none \
+	-chardev stdio,id=char0 \
+	-serial chardev:char0
+Booting Helios kernel
+Hello from userspace in C!
+</code></pre><p>Woohoo! After a little bit more work setting up the basics, I started rigging <a href="https://github.com/ozkl/doomgeneric" target="_blank">doomgeneric</a> (a Doom fork designed to be easy to port) up to my cross environment and seeing what would break.</p><p>As it turned out, a lot of stuff would break. doomgeneric is designed to be portable, but it actually depends on a lot of stuff to be available from the C environment: stdio, libmath, string.h stuff, etc. Not too much, but more than I cared to write from scratch. So, I started pulling in large swaths of <a href="https://musl.libc.org" target="_blank">musl libc</a>, trimming out as much as I could, and wriggling it into a buildable state. I also wrote a lot of shims to fake out having a real Unix system to run it in, like this code for defining stdout & stderr to just write to the kernel console:</p><pre><code class="c"><span class="keyword">static</span> <span class="type">size_t</span> <span class="constant variable function">writecons</span>(<span class="type">FILE</span> <span class="operator">*</span><span class="constant variable">f</span>, <span class="keyword">const</span> <span class="type">unsigned </span><span class="type">char</span> <span class="operator">*</span><span class="constant variable">buf</span>, <span class="type">size_t</span> <span class="constant variable">size</span>) {
+	<span class="constant variable function">sys_writecons</span>(<span class="constant variable">f</span><span class="operator">-&gt;</span><span class="property">wbase</span>, <span class="constant variable">f</span><span class="operator">-&gt;</span><span class="property">wpos</span> <span class="operator">-</span> <span class="constant variable">f</span><span class="operator">-&gt;</span><span class="property">wbase</span>)<span class="delimiter">;</span>
+	<span class="constant variable function">sys_writecons</span>(<span class="constant variable">buf</span>, <span class="constant variable">size</span>)<span class="delimiter">;</span>
+	<span class="constant variable">f</span><span class="operator">-&gt;</span><span class="property">wend</span> <span class="operator">=</span> <span class="constant variable">f</span><span class="operator">-&gt;</span><span class="property">buf</span> <span class="operator">+</span> <span class="constant variable">f</span><span class="operator">-&gt;</span><span class="property">buf_size</span><span class="delimiter">;</span>
+	<span class="constant variable">f</span><span class="operator">-&gt;</span><span class="property">wpos</span> <span class="operator">=</span> <span class="constant variable">f</span><span class="operator">-&gt;</span><span class="property">wbase</span> <span class="operator">=</span> <span class="constant variable">f</span><span class="operator">-&gt;</span><span class="property">buf</span><span class="delimiter">;</span>
+	<span class="keyword">return</span> <span class="constant variable">size</span><span class="delimiter">;</span>
+}
+
+<span class="keyword">#undef</span> stdout
+<span class="keyword">static</span> <span class="type">unsigned </span><span class="type">char</span> <span class="constant variable">stdoutbuf</span>[<span class="constant variable">BUFSIZ</span><span class="operator">+</span><span class="constant variable">UNGET</span>]<span class="delimiter">;</span>
+<span class="type">hidden</span> <span class="constant variable">FILE</span> <span class="constant variable">__stdout_FILE</span> <span class="operator">=</span> {
+	<span class="delimiter">.</span><span class="property">buf</span> <span class="operator">=</span> <span class="constant variable">stdoutbuf</span><span class="operator">+</span><span class="constant variable">UNGET</span>,
+	<span class="delimiter">.</span><span class="property">buf_size</span> <span class="operator">=</span> <span class="keyword">sizeof</span> <span class="constant variable">stdoutbuf</span><span class="operator">-</span><span class="constant variable">UNGET</span>,
+	<span class="delimiter">.</span><span class="property">fd</span> <span class="operator">=</span> <span class="number">1</span>,
+	<span class="delimiter">.</span><span class="property">flags</span> <span class="operator">=</span> <span class="constant variable">F_PERM</span> | <span class="constant variable">F_NORD</span>,
+	<span class="delimiter">.</span><span class="property">lbf</span> <span class="operator">=</span> <span class="number">&apos;\n&apos;</span>,
+	<span class="delimiter">.</span><span class="property">write</span> <span class="operator">=</span> <span class="operator">&amp;</span><span class="constant variable">writecons</span>,
+	<span class="delimiter">.</span><span class="property">seek</span> <span class="operator">=</span> <span class="constant">NULL</span>,
+	<span class="delimiter">.</span><span class="property">close</span> <span class="operator">=</span> <span class="constant">NULL</span>,
+	<span class="delimiter">.</span><span class="property">lock</span> <span class="operator">=</span> <span class="number">-1</span>,
+}<span class="delimiter">;</span>
+<span class="type">FILE</span> <span class="operator">*</span><span class="keyword">const</span> <span class="constant variable">stdout</span> <span class="operator">=</span> <span class="operator">&amp;</span><span class="constant variable">__stdout_FILE</span><span class="delimiter">;</span>
+<span class="type">FILE</span> <span class="operator">*</span><span class="keyword">volatile</span> <span class="constant variable">__stdout_used</span> <span class="operator">=</span> <span class="operator">&amp;</span><span class="constant variable">__stdout_FILE</span><span class="delimiter">;</span>
+
+<span class="keyword">#undef</span> stderr
+<span class="keyword">static</span> <span class="type">unsigned </span><span class="type">char</span> <span class="constant variable">stderrbuf</span>[<span class="constant variable">UNGET</span>]<span class="delimiter">;</span>
+<span class="type">hidden</span> <span class="constant variable">FILE</span> <span class="constant variable">__stderr_FILE</span> <span class="operator">=</span> {
+	<span class="delimiter">.</span><span class="property">buf</span> <span class="operator">=</span> <span class="constant variable">stderrbuf</span><span class="operator">+</span><span class="constant variable">UNGET</span>,
+	<span class="delimiter">.</span><span class="property">buf_size</span> <span class="operator">=</span> <span class="number">0</span>,
+	<span class="delimiter">.</span><span class="property">fd</span> <span class="operator">=</span> <span class="number">2</span>,
+	<span class="delimiter">.</span><span class="property">flags</span> <span class="operator">=</span> <span class="constant variable">F_PERM</span> | <span class="constant variable">F_NORD</span>,
+	<span class="delimiter">.</span><span class="property">lbf</span> <span class="operator">=</span> <span class="number">-1</span>,
+	<span class="delimiter">.</span><span class="property">write</span> <span class="operator">=</span> <span class="operator">&amp;</span><span class="constant variable">writecons</span>,
+	<span class="delimiter">.</span><span class="property">seek</span> <span class="operator">=</span> <span class="constant">NULL</span>,
+	<span class="delimiter">.</span><span class="property">close</span> <span class="operator">=</span> <span class="constant">NULL</span>,
+	<span class="delimiter">.</span><span class="property">lock</span> <span class="operator">=</span> <span class="number">-1</span>,
+}<span class="delimiter">;</span>
+<span class="type">FILE</span> <span class="operator">*</span><span class="keyword">const</span> <span class="constant variable">stderr</span> <span class="operator">=</span> <span class="operator">&amp;</span><span class="constant variable">__stderr_FILE</span><span class="delimiter">;</span>
+<span class="type">FILE</span> <span class="operator">*</span><span class="keyword">volatile</span> <span class="constant variable">__stderr_used</span> <span class="operator">=</span> <span class="operator">&amp;</span><span class="constant variable">__stderr_FILE</span><span class="delimiter">;</span>
+</code></pre>
+<p>The result of all of this hacking and slashing is quite a mess, and none of this is likely to be useful in the long term. I did this work over the course of a couple of afternoons just to get everything “working” enough to support Doom, but an actual useful C programming environment for Helios is likely some ways off. Much of the near-term work will be in Mercury, which will be a Hare environment for writing drivers, and we won’t see a serious look at better C support until we get to Luna, the POSIX compatibility layer a few milestones away.</p><p>Anyway, in addition to pulling in lots of musl libc, I had to write some original code to create C implementations of the userspace end for working with Helios kernel services. Some of this is pretty straightforward, such as the equivalent of the helios::ioport_issue code from the keyboard driver you saw earlier:</p><pre><code class="c"><span class="type">cap_t</span>
+<span class="constant variable function">iocontrol_issue</span>(<span class="type">cap_t</span> <span class="constant variable">ctrl</span>, <span class="type">uint16_t</span> <span class="constant variable">min</span>, <span class="type">uint16_t</span> <span class="constant variable">max</span>)
+{
+	<span class="type">uint64_t</span> <span class="constant variable">tag</span> <span class="operator">=</span> <span class="constant variable function">mktag</span>(<span class="constant variable">IO_ISSUE</span>, <span class="number">1</span>, <span class="number">1</span>)<span class="delimiter">;</span>
+	<span class="type">cap_t</span> <span class="constant variable">cap</span> <span class="operator">=</span> <span class="constant variable function">capalloc</span>()<span class="delimiter">;</span>
+	<span class="constant variable">ipc_buffer</span><span class="operator">-&gt;</span><span class="property">caddr</span> <span class="operator">=</span> <span class="constant variable">cap</span><span class="delimiter">;</span>
+	<span class="keyword">struct</span> <span class="type">sysret</span> <span class="constant variable">ret</span> <span class="operator">=</span> <span class="constant variable function">sys_send</span>(<span class="constant variable">ctrl</span>, <span class="constant variable">tag</span>, <span class="constant variable">min</span>, <span class="constant variable">max</span>, <span class="number">0</span>)<span class="delimiter">;</span>
+	<span class="constant variable function">assert</span>(<span class="constant variable">ret</span><span class="delimiter">.</span><span class="property">status</span> <span class="operator">==</span> <span class="number">0</span>)<span class="delimiter">;</span>
+	<span class="keyword">return</span> <span class="constant variable">cap</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>A more complex example is the code which maps a page of physical memory into the current process’s virtual address space. In Helios, similar to L4, userspace must allocate its own page tables. However, these page tables are semantically <em>owned</em> by userspace, but they’re not actually <em>reachable</em> by userspace — the page tables themselves are not mapped into their address space (for obvious reasons, I hope). A consequence of this is that the user cannot examine the page tables to determine which, if any, intermediate page tables have to be allocated in order to perform a desired memory mapping. The solution is to try the mapping anyway, and if the page tables are missing, the kernel will reply telling you which table it needs to complete the mapping request. You allocate the appropriate table and try again.</p><p>Some of this workload falls on userspace. I had already done this part in Hare, but I had to revisit it in C:</p><pre><code class="c"><span class="keyword">struct</span> <span class="type">sysret</span>
+<span class="constant variable function">page_map</span>(<span class="type">cap_t</span> <span class="constant variable">page</span>, <span class="type">cap_t</span> <span class="constant variable">vspace</span>, <span class="type">uintptr_t</span> <span class="constant variable">vaddr</span>)
+{
+	<span class="type">uint64_t</span> <span class="constant variable">tag</span> <span class="operator">=</span> <span class="constant variable function">mktag</span>(<span class="constant variable">PAGE_MAP</span>, <span class="number">1</span>, <span class="number">1</span>)<span class="delimiter">;</span>
+	<span class="constant variable">ipc_buffer</span><span class="operator">-&gt;</span><span class="property">caps</span>[<span class="number">0</span>] <span class="operator">=</span> <span class="constant variable">vspace</span><span class="delimiter">;</span>
+	<span class="keyword">return</span> <span class="constant variable function">sys_send</span>(<span class="constant variable">page</span>, <span class="constant variable">tag</span>, (<span class="type">uint64_t</span>)<span class="constant variable">vaddr</span>, <span class="number">0</span>, <span class="number">0</span>)<span class="delimiter">;</span>
+}
+
+<span class="keyword">static</span> <span class="type">void</span>
+<span class="constant variable function">map_table</span>(<span class="type">uintptr_t</span> <span class="constant variable">vaddr</span>, <span class="keyword">enum</span> <span class="type">pt_type</span> <span class="constant variable">kind</span>)
+{
+	<span class="type">int</span> <span class="constant variable">r</span><span class="delimiter">;</span>
+	<span class="type">cap_t</span> <span class="constant variable">table</span><span class="delimiter">;</span>
+	<span class="keyword">switch</span> (<span class="constant variable">kind</span>) {
+	<span class="keyword">case</span> <span class="constant variable">PT_PDPT</span>:
+		<span class="constant variable">r</span> <span class="operator">=</span> <span class="constant variable function">retype</span>(<span class="operator">&amp;</span><span class="constant variable">table</span>, <span class="constant variable">CT_PDPT</span>)<span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">case</span> <span class="constant variable">PT_PD</span>:
+		<span class="constant variable">r</span> <span class="operator">=</span> <span class="constant variable function">retype</span>(<span class="operator">&amp;</span><span class="constant variable">table</span>, <span class="constant variable">CT_PD</span>)<span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">case</span> <span class="constant variable">PT_PT</span>:
+		<span class="constant variable">r</span> <span class="operator">=</span> <span class="constant variable function">retype</span>(<span class="operator">&amp;</span><span class="constant variable">table</span>, <span class="constant variable">CT_PT</span>)<span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">default</span>:
+		<span class="constant variable function">assert</span>(<span class="number">0</span>)<span class="delimiter">;</span>
+	}
+	<span class="constant variable function">assert</span>(<span class="constant variable">r</span> <span class="operator">==</span> <span class="number">0</span>)<span class="delimiter">;</span>
+
+	<span class="keyword">struct</span> <span class="type">sysret</span> <span class="constant variable">ret</span> <span class="operator">=</span> <span class="constant variable function">page_map</span>(<span class="constant variable">table</span>, <span class="constant variable">INIT_CAP_VSPACE</span>, <span class="constant variable">vaddr</span>)<span class="delimiter">;</span>
+	<span class="keyword">if</span> (<span class="constant variable">ret</span><span class="delimiter">.</span><span class="property">status</span> <span class="operator">==</span> <span class="operator">-</span><span class="constant variable">MISSING_TABLES</span>) {
+		<span class="constant variable function">map_table</span>(<span class="constant variable">vaddr</span>, <span class="constant variable">ret</span><span class="delimiter">.</span><span class="property">value</span>)<span class="delimiter">;</span>
+		<span class="constant variable function">map_table</span>(<span class="constant variable">vaddr</span>, <span class="constant variable">kind</span>)<span class="delimiter">;</span>
+	}
+}
+
+<span class="type">void</span> <span class="operator">*</span>
+<span class="constant variable function">map</span>(<span class="type">cap_t</span> <span class="constant variable">page</span>, <span class="type">uintptr_t</span> <span class="constant variable">vaddr</span>)
+{
+	<span class="keyword">while</span> (<span class="number">1</span>) {
+		<span class="keyword">struct</span> <span class="type">sysret</span> <span class="constant variable">ret</span> <span class="operator">=</span> <span class="constant variable function">page_map</span>(<span class="constant variable">page</span>, <span class="constant variable">INIT_CAP_VSPACE</span>, <span class="constant variable">vaddr</span>)<span class="delimiter">;</span>
+		<span class="keyword">if</span> (<span class="constant variable">ret</span><span class="delimiter">.</span><span class="property">status</span> <span class="operator">==</span> <span class="operator">-</span><span class="constant variable">MISSING_TABLES</span>) {
+			<span class="constant variable function">map_table</span>(<span class="constant variable">vaddr</span>, <span class="constant variable">ret</span><span class="delimiter">.</span><span class="property">value</span>)<span class="delimiter">;</span>
+		} <span class="keyword">else</span> {
+			<span class="constant variable function">assert</span>(<span class="constant variable">ret</span><span class="delimiter">.</span><span class="property">status</span> <span class="operator">==</span> <span class="number">0</span>)<span class="delimiter">;</span>
+			<span class="keyword">break</span><span class="delimiter">;</span>
+		}
+	}
+	<span class="keyword">return</span> (<span class="type">void</span> <span class="operator">*</span>)<span class="constant variable">vaddr</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>Based on this work, I was able to implement a very stupid malloc, which rounds all allocations up to 4096 and never frees them. Hey! It works, okay?</p><pre><code class="c"><span class="type">uintptr_t</span> <span class="constant variable">base</span> <span class="operator">=</span> <span class="number">0x8000000000</span><span class="delimiter">;</span>
+
+<span class="keyword">static</span> <span class="type">cap_t</span>
+<span class="constant variable function">page_alloc</span>()
+{
+	<span class="type">cap_t</span> <span class="constant variable">page</span><span class="delimiter">;</span>
+	<span class="type">int</span> <span class="constant variable">r</span> <span class="operator">=</span> <span class="constant variable function">retype</span>(<span class="operator">&amp;</span><span class="constant variable">page</span>, <span class="constant variable">CT_PAGE</span>)<span class="delimiter">;</span>
+	<span class="constant variable function">assert</span>(<span class="constant variable">r</span> <span class="operator">==</span> <span class="number">0</span>)<span class="delimiter">;</span>
+	<span class="keyword">return</span> <span class="constant variable">page</span><span class="delimiter">;</span>
+}
+
+<span class="type">void</span> <span class="operator">*</span>
+<span class="constant variable function">malloc</span>(<span class="type">size_t</span> <span class="constant variable">n</span>)
+{
+	<span class="keyword">if</span> (<span class="constant variable">n</span> % <span class="number">4096</span> <span class="operator">!=</span> <span class="number">0</span>) {
+		<span class="constant variable">n</span> <span class="operator">+=</span> <span class="number">4096</span> <span class="operator">-</span> (<span class="constant variable">n</span> % <span class="number">4096</span>)<span class="delimiter">;</span>
+	}
+	<span class="type">uintptr_t</span> <span class="constant variable">ret</span> <span class="operator">=</span> <span class="constant variable">base</span><span class="delimiter">;</span>
+	<span class="keyword">while</span> (<span class="constant variable">n</span> <span class="operator">!=</span> <span class="number">0</span>) {
+		<span class="type">cap_t</span> <span class="constant variable">page</span> <span class="operator">=</span> <span class="constant variable function">page_alloc</span>()<span class="delimiter">;</span>
+		<span class="constant variable function">map</span>(<span class="constant variable">page</span>, <span class="constant variable">base</span>)<span class="delimiter">;</span>
+		<span class="constant variable">base</span> <span class="operator">+=</span> <span class="number">4096</span><span class="delimiter">;</span>
+		<span class="constant variable">n</span> <span class="operator">-=</span> <span class="number">4096</span><span class="delimiter">;</span>
+	}
+	<span class="keyword">return</span> (<span class="type">void</span> <span class="operator">*</span>)<span class="constant variable">ret</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>There is also <a href="https://git.sr.ht/~sircmpwn/mercury/tree/f80bb66373ab12a66a9a86894d212cbbdfcf53bf/item/libc/helios/device.c" target="_blank">devmap</a>, which you can read in your own time, which is used for mapping device memory into your address space. This is neccessary to map the framebuffer. It’s more complex because it has to allocate a <em>specific</em> physical page address into userspace, rather than whatever page happens to be free.</p><p>So, to revisit our progress, we have:</p><p>✓ A working C programming environment</p><p>✓ Dynamic memory allocation</p><p>✓ A place to draw the screen (a framebuffer)</p><p>✓ Keyboard input</p><p>It’s time for Doom, baby. Doomgeneric expects the porter to implement the following functions:</p><ul><li>DG_Init</li><li>DG_DrawFrame</li><li>DG_GetKey</li><li>DG_SetWindowTitle</li><li>DG_SleepMs</li><li>DG_GetTicksMs</li></ul><p>Easy peasy. Uh, except for that last one. I forgot that our requirements list should have included a means of sleeping for a specific period of time. Hopefully that won’t be a problem later.</p><p>I started with DG_Init, allocating the pieces that we’ll need and stashing the important bits in some globals.</p><pre><code class="c"><span class="type">int</span> <span class="constant variable">fb_width</span>, <span class="constant variable">fb_height</span>, <span class="constant variable">fb_pitch</span><span class="delimiter">;</span>
+<span class="type">uint8_t</span> <span class="operator">*</span><span class="constant variable">fb</span><span class="delimiter">;</span>
+<span class="type">cap_t</span> <span class="constant variable">irq1_notify</span><span class="delimiter">;</span>
+<span class="type">cap_t</span> <span class="constant variable">irq1</span><span class="delimiter">;</span>
+<span class="type">cap_t</span> <span class="constant variable">ps2</span><span class="delimiter">;</span>
+
+<span class="type">void</span> <span class="constant variable function">DG_Init</span>()
+{
+	<span class="type">uintptr_t</span> <span class="constant variable">vbeaddr</span> <span class="operator">=</span> <span class="constant variable">bootinfo</span><span class="operator">-&gt;</span><span class="property">arch</span><span class="operator">-&gt;</span><span class="property">vbe_mode_info</span><span class="delimiter">;</span>
+	<span class="type">uintptr_t</span> <span class="constant variable">vbepage</span> <span class="operator">=</span> <span class="constant variable">vbeaddr</span> / <span class="number">4096</span> <span class="operator">*</span> <span class="number">4096</span><span class="delimiter">;</span>
+	<span class="keyword">struct</span> <span class="type">vbe_mode_info</span> <span class="operator">*</span><span class="constant variable">vbe</span> <span class="operator">=</span> <span class="constant variable function">devmap</span>(<span class="constant variable">vbepage</span>, <span class="number">1</span>) <span class="operator">+</span> (<span class="constant variable">vbeaddr</span> % <span class="number">4096</span>)<span class="delimiter">;</span>
+	<span class="constant variable">fb_width</span> <span class="operator">=</span> <span class="constant variable">vbe</span><span class="operator">-&gt;</span><span class="property">width</span><span class="delimiter">;</span>
+	<span class="constant variable">fb_height</span> <span class="operator">=</span> <span class="constant variable">vbe</span><span class="operator">-&gt;</span><span class="property">height</span><span class="delimiter">;</span>
+	<span class="constant variable">fb_pitch</span> <span class="operator">=</span> <span class="constant variable">vbe</span><span class="operator">-&gt;</span><span class="property">pitch</span><span class="delimiter">;</span>
+	<span class="constant variable function">assert</span>(<span class="constant variable">vbe</span><span class="operator">-&gt;</span><span class="property">bpp</span> <span class="operator">==</span> <span class="number">32</span>)<span class="delimiter">;</span>
+	<span class="type">unsigned </span><span class="type">int</span> <span class="constant variable">npage</span> <span class="operator">=</span> (<span class="constant variable">vbe</span><span class="operator">-&gt;</span><span class="property">pitch</span> <span class="operator">*</span> <span class="constant variable">vbe</span><span class="operator">-&gt;</span><span class="property">height</span>) / <span class="number">4096</span><span class="delimiter">;</span>
+	<span class="constant variable">fb</span> <span class="operator">=</span> <span class="constant variable function">devmap</span>((<span class="type">uintptr_t</span>)<span class="constant variable">vbe</span><span class="operator">-&gt;</span><span class="property">framebuffer</span>, <span class="constant variable">npage</span>)<span class="delimiter">;</span>
+
+	<span class="constant variable">irq1_notify</span> <span class="operator">=</span> <span class="constant variable function">mknotification</span>()<span class="delimiter">;</span>
+	<span class="constant variable">irq1</span> <span class="operator">=</span> <span class="constant variable function">irqcontrol_issue</span>(<span class="constant variable">INIT_CAP_IRQCONTROL</span>, <span class="constant variable">irq1_notify</span>, <span class="number">1</span>)<span class="delimiter">;</span>
+	<span class="constant variable">ps2</span> <span class="operator">=</span> <span class="constant variable function">iocontrol_issue</span>(<span class="constant variable">INIT_CAP_IOCONTROL</span>, <span class="number">0x60</span>, <span class="number">0x64</span>)<span class="delimiter">;</span>
+}
+</code></pre>
+<p>If the multiboot loader is configured to set up a framebuffer, it gets handed off to the kernel, and Helios provides it to userspace as mappable device memory, so that saves us from doing all of the annoying VBE crap (or heaven forbid, write an actual video driver). This lets us map the framebuffer into our process. Second, we do the same notification+IRQ+IOControl thing we did from the keyboard driver you saw earlier, except in C, so that we can process scancodes later.</p><p>Next is DG_DrawFrame, which is pretty straightforward. We just copy scanlines from the internal buffer to the framebuffer whenever it asks us to.</p><pre><code class="c"><span class="type">void</span> <span class="constant variable function">DG_DrawFrame</span>()
+{
+  <span class="keyword">for</span> (<span class="type">int</span> <span class="constant variable">i</span> <span class="operator">=</span> <span class="number">0</span><span class="delimiter">;</span> <span class="constant variable">i</span> <span class="operator">&lt;</span> <span class="constant variable">DOOMGENERIC_RESY</span><span class="delimiter">;</span> <span class="operator">++</span><span class="constant variable">i</span>) {
+    <span class="constant variable function">memcpy</span>(<span class="constant variable">fb</span> <span class="operator">+</span> <span class="constant variable">i</span> <span class="operator">*</span> <span class="constant variable">fb_pitch</span>, <span class="constant variable">DG_ScreenBuffer</span> <span class="operator">+</span> <span class="constant variable">i</span> <span class="operator">*</span> <span class="constant variable">DOOMGENERIC_RESX</span>, <span class="constant variable">DOOMGENERIC_RESX</span> <span class="operator">*</span> <span class="number">4</span>)<span class="delimiter">;</span>
+  }
+}
+</code></pre>
+<p>Then we have DG_GetKey, similar to our earlier keyboard driver, plus actually interpeting the scancodes we get, plus making use of a new non-blocking wait syscall I added to Helios:</p><pre><code class="c"><span class="type">int</span> <span class="constant variable function">DG_GetKey</span>(<span class="type">int</span> <span class="operator">*</span><span class="constant variable">pressed</span>, <span class="type">unsigned </span><span class="type">char</span> <span class="operator">*</span><span class="constant variable">doomKey</span>)
+{
+	<span class="keyword">struct</span> <span class="type">sysret</span> <span class="constant variable">ret</span> <span class="operator">=</span> <span class="constant variable function">sys_nbwait</span>(<span class="constant variable">irq1_notify</span>)<span class="delimiter">;</span>
+	<span class="keyword">if</span> (<span class="constant variable">ret</span><span class="delimiter">.</span><span class="property">status</span> <span class="operator">!=</span> <span class="number">0</span>) {
+		<span class="keyword">return</span> <span class="number">0</span><span class="delimiter">;</span>
+	}
+
+	<span class="type">uint8_t</span> <span class="constant variable">scancode</span> <span class="operator">=</span> <span class="constant variable function">ioport_in8</span>(<span class="constant variable">ps2</span>, <span class="number">0x60</span>)<span class="delimiter">;</span>
+	<span class="constant variable function">irq_ack</span>(<span class="constant variable">irq1</span>)<span class="delimiter">;</span>
+
+	<span class="type">uint8_t</span> <span class="constant variable">mask</span> <span class="operator">=</span> (<span class="number">1</span> &lt;&lt; <span class="number">7</span>)<span class="delimiter">;</span>
+	<span class="operator">*</span><span class="constant variable">pressed</span> <span class="operator">=</span> (<span class="constant variable">scancode</span> <span class="operator">&amp;</span> <span class="constant variable">mask</span>) <span class="operator">==</span> <span class="number">0</span><span class="delimiter">;</span>
+	<span class="constant variable">scancode</span> <span class="operator">=</span> <span class="constant variable">scancode</span> <span class="operator">&amp;</span> ~<span class="constant variable">mask</span><span class="delimiter">;</span>
+	<span class="keyword">switch</span> (<span class="constant variable">scancode</span>) {
+	<span class="keyword">case</span> <span class="constant variable">K_AD05</span>:
+		<span class="operator">*</span><span class="constant variable">doomKey</span> <span class="operator">=</span> <span class="constant variable">KEY_ENTER</span><span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">case</span> <span class="constant variable">K_AE08</span>:
+		<span class="operator">*</span><span class="constant variable">doomKey</span> <span class="operator">=</span> <span class="constant variable">KEY_UPARROW</span><span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">case</span> <span class="constant variable">K_AD07</span>:
+		<span class="operator">*</span><span class="constant variable">doomKey</span> <span class="operator">=</span> <span class="constant variable">KEY_LEFTARROW</span><span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">case</span> <span class="constant variable">K_AD08</span>:
+		<span class="operator">*</span><span class="constant variable">doomKey</span> <span class="operator">=</span> <span class="constant variable">KEY_DOWNARROW</span><span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">case</span> <span class="constant variable">K_AD09</span>:
+		<span class="operator">*</span><span class="constant variable">doomKey</span> <span class="operator">=</span> <span class="constant variable">KEY_RIGHTARROW</span><span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">case</span> <span class="constant variable">K_AB03</span>:
+		<span class="operator">*</span><span class="constant variable">doomKey</span> <span class="operator">=</span> <span class="constant variable">KEY_FIRE</span><span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">case</span> <span class="constant variable">K_AB06</span>:
+		<span class="operator">*</span><span class="constant variable">doomKey</span> <span class="operator">=</span> <span class="constant variable">KEY_USE</span><span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	<span class="keyword">case</span> <span class="number">1</span>:
+		<span class="operator">*</span><span class="constant variable">doomKey</span> <span class="operator">=</span> <span class="constant variable">KEY_ESCAPE</span><span class="delimiter">;</span>
+		<span class="keyword">break</span><span class="delimiter">;</span>
+	}
+
+	<span class="keyword">return</span> <span class="operator">*</span><span class="constant variable">doomKey</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>Then, uh, we have a problem. Here’s what I ended up doing for DG_SleepMs:</p><pre><code class="c"><span class="type">uint32_t</span> <span class="constant variable">ticks</span> <span class="operator">=</span> <span class="number">0</span><span class="delimiter">;</span>
+
+<span class="type">void</span> <span class="constant variable function">DG_SleepMs</span>(<span class="type">uint32_t</span> <span class="constant variable">ms</span>)
+{
+	<span class="comment">// TODO: sleep properly</span>
+	<span class="type">int64_t</span> <span class="constant variable">_ms</span> <span class="operator">=</span> <span class="constant variable">ms</span><span class="delimiter">;</span>
+	<span class="keyword">while</span> (<span class="constant variable">_ms</span> <span class="operator">&gt;</span> <span class="number">0</span>) {
+		<span class="constant variable function">sys_yield</span>()<span class="delimiter">;</span>
+		<span class="constant variable">ticks</span> <span class="operator">+=</span> <span class="number">5</span><span class="delimiter">;</span>
+		<span class="constant variable">_ms</span> <span class="operator">-=</span> <span class="number">5</span><span class="delimiter">;</span>
+	}
+}
+
+<span class="type">uint32_t</span> <span class="constant variable function">DG_GetTicksMs</span>()
+{
+	<span class="keyword">return</span> <span class="constant variable">ticks</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>Some fellow on IRC said he’d implement a sleep syscall for Helios, but didn’t have time before I was ready to carry on with this port. So instead of trampling on his feet, I just yielded the thread (which immediately returns to the caller, since there are no other threads at this point) and pretend it took 5ms to do so, hoping for the best. It does not work! This port plays at wildly different speeds depending on the performance of the hardware you run it on.</p><p>I’m not too torn up about it, though. My goal was not to make a particularly nice or fully featured port of Doom. The speed is problematic, I hardcoded the shareware doom1.wad as the only supported level, you can’t save the game, and it crashes when you try to pick up the shotgun. But it does its job: it demonstrates the maturity of the kernel’s features thus far and provides good feedback on the API design and real-world utility.</p><p>If you’d like to try it, you can <a href="https://redacted.moe/f/0f2b716a.iso" target="_blank">download a bootable ISO</a>.</p><p>You can run it on qemu like so:</p><pre><code>$ qemu-system-x86_64 -m 1G -no-reboot -no-shutdown \
+		-drive file=doom.iso,format=raw \
+		-display sdl \
+		-chardev stdio,id=char0 \
+		-serial chardev:char0
+</code></pre><p>Enter to start, WASD to move, right shift to fire, space to open doors. It <em>might</em> work on real hardware, but the framebuffer stuff is pretty hacky and not guaranteed to work on most stuff, and the PS/2 keyboard driver will only work with a USB keyboard if you have legacy USB emulation configured in your BIOS, and even then it might not work well. YMMV. It works on my ThinkPad X230. Have fun!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Copilot-GPL-washing/">
+					← GitHub Copilot and open source laundering
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Fediverse-toxicity/">
+					The Fediverse can be pretty toxic →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

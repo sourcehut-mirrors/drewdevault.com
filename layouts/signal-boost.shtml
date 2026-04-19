@@ -1,0 +1,16 @@
+<extend template="base.shtml">
+<head id="head">
+</head>
+
+<body id="body">
+	<main>
+		<h1 :text="$page.title"></h1>
+		<article>
+				<p>🚀 Signal boost: someone else's article that I think you should read.</p>
+				<p>
+				<a href="$page.custom.get('external')" :text="$page.title"></a>
+				</p>
+				<ctx :html="$page.content()"></ctx>
+		</article>
+	</main>
+</body>

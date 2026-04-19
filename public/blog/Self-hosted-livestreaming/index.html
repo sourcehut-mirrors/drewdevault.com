@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>How to make a self-hosted video livestream</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		How to make a self-hosted video livestream
+		<small>
+			<span class="date">August 26, 2018</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			August 26, 2018. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I have seen some articles in the past which explain how to build the ecosystem <em>around</em> your video streaming, such as live chat and forums, but which leave the actual video streaming to Twitch.tv. I made a note the last time I saw one of these articles to write one of my own explaining the video bit. As is often the case with video, we’ll be using the excellent <a href="http://ffmpeg.org/" target="_blank">ffmpeg</a> tool for this. If it’s A/V-related, ffmpeg can probably do it.</p><p><em>Note: a demonstration video was previously shown here, but as traffic on this article died down I took it offline to reduce unnecessary load.</em></p><p>ffmpeg has a built-in <a href="https://dashif.org/" target="_blank">DASH</a> output format, which is the current industry standard for live streaming video to web browsers. It works by splitting the output up into discrete files and using an XML file (an MPD playlist) to tell the player where they are. Few browsers support DASH natively, but <a href="https://github.com/Dash-Industry-Forum/dash.js/wiki" target="_blank">dash.js</a> can polyfill it by periodically downloading the latest manifest and driving the video element itself.</p><p>Getting the source video into ffmpeg is a little bit beyond the scope of this article, but I know some readers won’t be familiar with ffmpeg so I’ll have mercy. Let’s say you want to play some static video files like I’m doing above:</p><pre><code class="sh"><span class="constant function">ffmpeg</span> \
+	<span class="constant">-re</span> \
+	<span class="constant">-stream_loop</span> <span class="constant">-1</span> \
+	<span class="constant">-i</span> <span class="constant">my-video.mkv</span> \
+</code></pre>
+<p>This will tell ffmpeg to read the input (-i) in real time (-re), and loop it indefinitely. If instead you want to, for example, use x11grab instead to capture your screen and pulse to capture desktop audio, try this:</p><pre><code class="sh">    <span class="constant function">-f</span> <span class="constant">x11grab</span> \
+    <span class="constant">-r</span> <span class="constant">30</span> \
+    <span class="constant">-video_size</span> <span class="constant">1920x1080</span> \
+    <span class="constant">-i</span> <span class="constant operator">$</span><span class="constant property">DISPLAY</span> \
+    <span class="constant">-f</span> <span class="constant">pulse</span> \
+    <span class="constant">-i</span> <span class="constant">alsa_input.usb-Blue_Microphones_Yeti_Stereo_Microphone_REV8-00.analog-stereo</span>
+</code></pre>
+<p>This sets the framerate to 30 FPS and the video resolution to 1080p, then reads from the X11 display <code>$DISPLAY</code> (usually :0). Then we add pulseaudio and use my microphone source name, which I obtained with <code>pactl list sources</code>.</p><p>Let’s add some arguments describing the output format. Your typical web browser is a finicky bitch and has some very specific demands from your output format if you want maximum compatability:</p><pre><code class="sh">    <span class="constant function">-codec:v</span> <span class="constant">libx264</span> \
+    <span class="constant">-profile:v</span> <span class="constant">baseline</span> \
+    <span class="constant">-level</span> <span class="constant">4</span> \
+    <span class="constant">-pix_fmt</span> <span class="constant">yuv420p</span> \
+    <span class="constant">-preset</span> <span class="constant">veryfast</span> \
+    <span class="constant">-codec:a</span> <span class="constant">aac</span> \
+</code></pre>
+<p>This specifices the libx264 video encoder with the baseline level 4 profile, the most broadly compatible x264 profile, with the yuv420p pixel format, the most broadly compatible pixel format, the veryfast preset to make sure we can encode it in realtime, the aac audio codec. Now that we’ve specified the parameters for the output, let’s configure the output format: DASH.</p><pre><code class="sh">	<span class="constant function">-f</span> <span class="constant">dash</span> \
+	<span class="constant">-window_size</span> <span class="constant">5</span> \
+	<span class="constant">-remove_at_exit</span> <span class="constant">1</span> \
+	<span class="constant">/tmp/dash/live.mpd</span>
+</code></pre>
+<p>The window_size specifies the maximum number of A/V segments to keep in the manifest at any time, and remove_at_exit will clean up all of the files when ffmpeg exits. The output file is the path to the playlist to write to disk, and the segments will be written next to it. The last step is to serve this with nginx:</p><pre><code>location /dash {
+        types {
+                application/dash+xml mpd;
+                video/mp4 m4v;
+                audio/mp4 m4a;
+        }
+        add_header Access-Control-Allow-Origin *;
+        root /tmp;
+}
+</code></pre><p>You can now point the <a href="http://reference.dashif.org/dash.js/nightly/samples/dash-if-reference-player/index.html" target="_blank">DASH reference player</a> at <code>http://your-server.org/dash/live.mpd</code> and see your video streaming there. Neato! You can add dash.js to your website and you know have a fully self-hosted video live streaming setup ready to rock.</p><p>Perhaps the ffmpeg swiss army knife isn’t your cup of tea. If you want to, for example, use <a href="https://obsproject.com/" target="_blank">OBS Studio</a>, you might want to take a somewhat different approach. The <a href="https://github.com/arut/nginx-rtmp-module" target="_blank">nginx-rtmp-module</a> provides an RTMP (real-time media protocol) server that integrates with nginx. After adding the DASH output, you’ll end up with something like this:</p><pre><code class="sh"><span class="constant function">rtmp</span> <span class="constant">{</span>
+    <span class="constant function">server</span> <span class="constant">{</span>
+        <span class="constant function">listen</span> <span class="constant">1935</span>;
+
+        <span class="constant function">application</span> <span class="constant">live</span> <span class="constant">{</span>
+            <span class="constant function">dash</span> <span class="constant">on</span>;
+            <span class="constant function">dash_path</span> <span class="constant">/tmp/dash</span>;
+            <span class="constant function">dash_fragment</span> <span class="constant">15s</span>;
+        <span class="constant function">}</span>
+    <span class="constant function">}</span>
+<span class="constant function">}</span>
+</code></pre>
+<p>Then you can stream to <code>rtmp://your-server.org/live</code> and your dash segments will show up in <code>/tmp/dash</code>. There’s no password protection here, so put it in the stream URL (e.g. <code>application R9AyTRfguLK8</code>) or use an IP whitelist:</p><pre><code>application live {
+    allow publish your-ip;
+    deny publish all;
+}
+</code></pre><p>If you want to get creative with it you can use <a href="https://github.com/arut/nginx-rtmp-module/wiki/Directives#on_publish" target="_blank"><code>on_publish</code></a> to hit an web service with some details and return a non-2xx code to forbid streaming. Have fun!</p><p>I learned all of this stuff by making a bot which livestreamed Google hangouts over the LAN to get around the participant limit at work. I’ll do a full writeup about that one later!</p><hr><p>Here’s the full script I’m using to generate the live stream on this page:</p><pre><code class="sh"><span class="comment">#!/bin/sh</span>
+<span class="constant function">rm</span> <span class="constant">-f</span> <span class="constant">/tmp/playlist</span>
+<span class="constant function">mkdir</span> <span class="constant">-p</span> <span class="constant">/tmp/dash</span>
+<span class="keyword">for</span> <span class="property">file</span> <span class="keyword">in</span> /var/www/mirror.sr.ht/hacksway-2018/*
+<span class="keyword">do</span>
+	<span class="constant function">echo</span> <span class="string constant">&quot;file &apos;</span><span class="string constant operator">$</span><span class="string constant property">file</span><span class="string constant">&apos;&quot;</span> <span class="operator">&gt;&gt;</span> /tmp/playlist
+<span class="keyword">done</span>
+
+<span class="constant function">ffmpeg</span> \
+	<span class="constant">-re</span> \
+	<span class="constant">-loglevel</span> <span class="constant">error</span> \
+	<span class="constant">-stream_loop</span> <span class="constant">-1</span> \
+	<span class="constant">-f</span> <span class="constant">concat</span> \
+	<span class="constant">-safe</span> <span class="constant">0</span> \
+	<span class="constant">-i</span> <span class="constant">/tmp/playlist</span> \
+	<span class="constant">-vf</span> <span class="string constant">&quot;drawtext=\
+			fontfile=/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-Bold.ttf:\
+			text=&apos;%{gmtime\:%Y-%m-%d %T} UTC&apos;:\
+			fontcolor=white:\
+			x=(w-text_w)/2:y=128:\
+			box=1:boxcolor=black:\
+			fontsize=72,
+		drawtext=\
+			fontfile=/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-Bold.ttf:\
+			text=&apos;REBROADCAST&apos;:\
+			fontcolor=white:\
+			x=(w-text_w)/2:y=16:\
+			box=1:boxcolor=black:\
+			fontsize=48&quot;</span> \
+	<span class="constant">-codec:v</span> <span class="constant">libx264</span> \
+	<span class="constant">-profile:v</span> <span class="constant">baseline</span> \
+	<span class="constant">-pix_fmt</span> <span class="constant">yuv420p</span> \
+	<span class="constant">-level</span> <span class="constant">4</span> \
+	<span class="constant">-preset</span> <span class="constant">veryfast</span> \
+	<span class="constant">-codec:a</span> <span class="constant">aac</span> \
+	<span class="constant">-f</span> <span class="constant">dash</span> \
+	<span class="constant">-window_size</span> <span class="constant">5</span> \
+	<span class="constant">-remove_at_exit</span> <span class="constant">1</span> \
+	<span class="constant">/tmp/dash/live.mpd</span>
+</code></pre>
+
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Commons-clause-will-destroy-open-source/">
+					← The Commons Clause will destroy open source
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Conservative-web-development/">
+					Conservative web development →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

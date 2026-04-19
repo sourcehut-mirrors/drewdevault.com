@@ -1,0 +1,10 @@
+<extend template="base.shtml">
+<head id="head">
+	<meta http-equiv="refresh" content="$page.link().prefix('0; url=')">
+	<link rel="canonical" href="$page.link()">
+</head>
+
+<body id="body">
+	This page redirects to its new URL:
+	<a href="$page.link()" :text="$page.title"></a>
+</body>

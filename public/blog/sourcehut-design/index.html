@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Sourcehut&apos;s spartan approach to web design</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Sourcehut&apos;s spartan approach to web design
+		<small>
+			<span class="date">March 4, 2019</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			March 4, 2019. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p><a href="https://sourcehut.org" target="_blank">Sourcehut</a> is known for its brutalist design, with its mostly shades-of-gray appearance, conservative color usage, and minimal distractions throughout. This article aims to share some insights into the philosophy that guides this design, both for the curious reader and for the new contributor to the open-source project.</p><p>The most important principle is that sr.ht is an engineering tool first and foremost, and when you’re there it’s probably because you’re in engineering mode. Therefore, it’s important to bring the information you’re there for to the forefront, and minimize distractions. In practice, this means that the first thing on any page to grab your attention should be the thing that brought you there. Consider <a href="https://git.sr.ht/~sircmpwn/git.sr.ht/tree/master/gitsrht/service.py" target="_blank">the source file view on git.sr.ht</a>. For reference, here are similar pages on <a href="https://github.com/torvalds/linux/blob/master/init/main.c" target="_blank">GitHub</a> and <a href="https://gitlab.freedesktop.org/libinput/libinput/blob/master/src/evdev.c" target="_blank">Gitlab</a>.</p><p><a href="https://git.sr.ht/~sircmpwn/git.sr.ht/tree/master/gitsrht/service.py" target="_blank"><figure><img src="/l.sr.ht/kkJm.png">
+<figcaption>Screenshot of git.sr.ht</figcaption></figure></a></p><p>The vast majority of the git.sr.ht page is dedicated to the source code we’re reading here, and it’s also where most of the colors are. Your eye is drawn straight to the content. Any additional information we show on this page is directly relevant to the content: breadcrumbs to other parts of the tree, file mode & size, links to other views on this repository. The nav can take you away from this page, but it’s colored a light grey to avoid being distracting and each link is another engineering tool - no marketing material or fluff. Contrast with GitHub: a large, dark, attention grabbing navbar with links to direct you away from the content and towards marketing pages. If you’re logged out, you get a giant sign-up box which pushes the content halfway off the page. Colors here are also distracting: note the large line of colorful avatars that catches your eye despite almost certainly being unrelated to your purpose on this page.</p><p><figure><img src="/l.sr.ht/1qdZ.png">
+<figcaption>Screenshot of builds.sr.ht</figcaption></figure></p><p>Colors are used much more conservatively on sourcehut. If you log into builds.sr.ht and visit the index page, you’re greeted with a large blue “submit manifest” button, and very little color besides. This is probably why you were here - so it’s made obvious and colorful so your eyes can quickly find it and get on with your work. Other pages are similar: the todo.sr.ht tracker page has a large form with a blue “submit” button for creating a new ticket, email views on lists.sr.ht have a large blue “reply to thread” button, and <a href="https://man.sr.ht" target="_blank">man.sr.ht</a> has a large green button enticing new users towards the tutorials. Red is also used throughout for dangerous actions, like deleting things.  Each button also is unambiguous and relies on the text within itself rather than the text nearby: the git.sr.ht repository deletion page uses “Delete $reponame”, rather than “Continue”.</p><p><figure><img src="/l.sr.ht/d6Vx.png">
+<figcaption>Screenshot of repo deletion UI</figcaption></figure></p><p>The last important point in sourcehut’s design is the use of icons, or rather the lack thereof. Icons are used extremely conservatively on sr.ht. Interactive icons (things you are expected to click) are never shown without text that clarifies what happens when you click them. Informational icons usually have a tooltip which explains their meaning, and are quite rare - only used in cases where real estate limits the use of text. Assigning an icon to every action or detail is not necessary and would add more distractions to the screen.</p><p>I’m not a particularly skilled UI designer, so keeping it simple like this also helps to make a reasonably nice UI attainable for an engineer-oriented developer like me. Adding new pages is generally easy and requires little thought by applying these basic principles throughout, and the simple design doesn’t take long to execute on. It’s not perfect, but I like it and I’ve received positive feedback from my users.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Using-git-with-discipline/">
+					← Tips for a disciplined git workflow
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Sway-1.0-released/">
+					Announcing the release of sway 1.0 →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

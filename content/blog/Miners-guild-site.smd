@@ -1,0 +1,26 @@
+---
+.title = "Miners' Guild Site",
+.date = @date("2011-12-01"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+As some of you may know, I'm a huge believer in OSS and doing awesome stuff for
+free.  Of course, I have to make a living, but outside of 9-5, I do a bunch of
+free stuff.  And when I started playing Minecraft, a friend of mine invited me
+to his server.  He had a pretty bland website with no domain (you'd get to it
+by IP).  To express my gratitude at his hosting of a great [Minecraft](https://web.archive.org/web/20120305114555/http://minecraft.net/) server, I
+offered to clean it up.  He gave me root access to his machines as I bought a
+domain, and I hopped on the web server (a linux machine) and set up LAMP
+(Linux/Apache2/MySQL/PHP).  I threw [Wordpress](https://web.archive.org/web/20120305114555/http://wordpress.com/) on it and got down to business
+customizing styles and writing custom PHP to drive some of the extra
+functionality.  We wanted a little more, so I also threw [SMF](https://web.archive.org/web/20120305114555/http://www.simplemachines.org/) on there.  The end
+result is a pretty nice website: [Miners' Guild](https://web.archive.org/web/20120305114555/http://minersguild.net/).  I'm definitely satisfied with
+the end result.
+
+In addition to this, I wrote a bunch of custom server mods.  We didn't really
+want to use [Bukkit](https://web.archive.org/web/20120305114555/http://bukkit.org/) (though it is great), so I instead wrote several custom mods
+myself that add some of the things we needed, such as better banning, item
+restrictions, chest protection, and - of course - exploding arrows (this can be
+toggled).  It was great contributing to help make my friend's server as awesome
+as possible.  Come visit sometime if you play Minecraft! 

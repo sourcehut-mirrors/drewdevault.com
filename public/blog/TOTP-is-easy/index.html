@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>TOTP for 2FA is incredibly easy to implement. So what&apos;s your excuse?</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		TOTP for 2FA is incredibly easy to implement. So what&apos;s your excuse?
+		<small>
+			<span class="date">October 18, 2022</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			October 18, 2022. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p><a href="https://en.wikipedia.org/wiki/Time-based_one-time_password" target="_blank">Time-based one-time passwords</a> are one of the more secure approaches to 2FA — certainly much better than SMS. And it’s much easier to implement than SMS as well. The algorithm is as follows:</p><ol><li>Divide the current Unix timestamp by 30</li><li>Encode it as a 64-bit big endian integer</li><li>Write the encoded bytes to a SHA-1 HMAC initialized with the TOTP shared key</li><li>Let offs = hmac[-1] & 0xF</li><li>Let hash = decode hmac[offs .. offs + 4] as a 32-bit big-endian integer</li><li>Let code = (hash & 0x7FFFFFFF) % 1000000</li><li>Compare this code with the user’s code</li></ol><p>You’ll need a little dependency to generate QR codes with the <a href="https://github.com/google/google-authenticator/wiki/Key-Uri-Format" target="_blank">otpauth:// URL scheme</a>, a little UI to present the QR code and store the shared secret in your database, and a quick update to your login flow, and then you’re good to go.</p><p>Here’s the implementation SourceHut uses in Python. I hereby release this code into the public domain, or creative commons zero, at your choice:</p><pre><code class="python"><span class="keyword">import</span> <span class="constructor constant variable">base64</span>
+<span class="keyword">import</span> <span class="constructor constant variable">hashlib</span>
+<span class="keyword">import</span> <span class="constructor constant variable">hmac</span>
+<span class="keyword">import</span> <span class="constructor constant variable">struct</span>
+<span class="keyword">import</span> <span class="constructor constant variable">time</span>
+
+<span class="keyword">def</span> <span class="constructor constant variable function">totp</span>(<span class="constructor constant variable">secret</span>, <span class="constructor constant variable">token</span>):
+    <span class="constructor constant variable">tm</span> <span class="operator">=</span> <span class="constructor function_builtin constant variable function">int</span>(<span class="constructor constant variable">time</span>.<span class="constructor property constant function_method variable">time</span>() <span class="operator">/</span> <span class="number">30</span>)
+    <span class="constructor constant variable">key</span> <span class="operator">=</span> <span class="constructor constant variable">base64</span>.<span class="constructor property constant function_method variable">b32decode</span>(<span class="constructor constant variable">secret</span>)
+
+    <span class="keyword">for</span> <span class="constructor constant variable">ix</span> <span class="operator">in</span> <span class="constructor function_builtin constant variable function">range</span>(<span class="operator">-</span><span class="number">2</span>, <span class="number">3</span>):
+        <span class="constructor constant variable">b</span> <span class="operator">=</span> <span class="constructor constant variable">struct</span>.<span class="constructor property constant function_method variable">pack</span>(<span class="string">&quot;&gt;q&quot;</span>, <span class="constructor constant variable">tm</span> <span class="operator">+</span> <span class="constructor constant variable">ix</span>)
+        <span class="constructor constant variable">hm</span> <span class="operator">=</span> <span class="constructor constant variable">hmac</span>.<span class="constructor property constant function_method variable">HMAC</span>(<span class="constructor constant variable">key</span>, <span class="constructor constant variable">b</span>, <span class="constructor constant variable">hashlib</span>.<span class="constructor property constant variable">sha1</span>).<span class="constructor property constant function_method variable">digest</span>()
+        <span class="constructor constant variable">offset</span> <span class="operator">=</span> <span class="constructor constant variable">hm</span>[<span class="operator">-</span><span class="number">1</span>] <span class="operator">&amp;</span> <span class="number">0x0F</span>
+        <span class="constructor constant variable">truncatedHash</span> <span class="operator">=</span> <span class="constructor constant variable">hm</span>[<span class="constructor constant variable">offset</span>:<span class="constructor constant variable">offset</span> <span class="operator">+</span> <span class="number">4</span>]
+        <span class="constructor constant variable">code</span> <span class="operator">=</span> <span class="constructor constant variable">struct</span>.<span class="constructor property constant function_method variable">unpack</span>(<span class="string">&quot;&gt;L&quot;</span>, <span class="constructor constant variable">truncatedHash</span>)[<span class="number">0</span>]
+        <span class="constructor constant variable">code</span> <span class="operator">&amp;=</span> <span class="number">0x7FFFFFFF</span>
+        <span class="constructor constant variable">code</span> <span class="operator">%=</span> <span class="number">1000000</span>
+        <span class="keyword">if</span> <span class="constructor constant variable">token</span> <span class="operator">==</span> <span class="constructor constant variable">code</span>:
+            <span class="keyword">return</span> <span class="constant_builtin">True</span>
+
+    <span class="keyword">return</span> <span class="constant_builtin">False</span>
+</code></pre>
+<p>This implementation has a bit of a tolerance added to make clock skew less of an issue, but that also means that the codes are longer-lived. Feel free to edit these tolerances if you so desire.</p><p>Here’s another one written in Hare, also public domain/CC-0.</p><pre><code class="hare"><span class="include">use</span> <span class="constant variable namespace">crypto</span><span class="punctuation_delimiter">::</span><span class="constant type variable namespace">hmac</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">crypto</span><span class="punctuation_delimiter">::</span><span class="constant type variable namespace">mac</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">crypto</span><span class="punctuation_delimiter">::</span><span class="constant type variable namespace">sha1</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">encoding</span><span class="punctuation_delimiter">::</span><span class="constant type variable namespace">base32</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">endian</span><span class="punctuation_delimiter">;</span>
+<span class="include">use</span> <span class="constant variable namespace">time</span><span class="punctuation_delimiter">;</span>
+
+<span class="comment spell">// Computes a TOTP code for a given time and key.</span>
+<span class="keyword">export</span> <span class="keyword_function">fn</span> <span class="constructor constant variable function">totp</span><span class="punctuation_bracket">(</span><span class="parameter constant variable">when</span><span class="punctuation_delimiter">:</span> <span class="constant type variable namespace">time</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">instant</span><span class="punctuation_delimiter">,</span> <span class="parameter constant variable">key</span><span class="punctuation_delimiter">:</span> <span class="punctuation_bracket type">[</span><span class="punctuation_bracket type">]</span><span class="type_builtin type">u8</span><span class="punctuation_bracket">)</span> <span class="type_builtin type">uint</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">now</span> <span class="operator">=</span> <span class="constant variable namespace">time</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">unix</span><span class="punctuation_bracket">(</span><span class="constant variable">when</span><span class="punctuation_bracket">)</span> <span class="operator">/</span> <span class="number">30</span><span class="punctuation_delimiter">;</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">hmac</span> <span class="operator">=</span> <span class="constant variable namespace">hmac</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">sha1</span><span class="punctuation_bracket">(</span><span class="constant variable">key</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword_return">defer</span> <span class="constant variable namespace">mac</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">finish</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">hmac</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+
+	<span class="keyword">let</span> <span class="constant variable">buf</span><span class="punctuation_delimiter">:</span> <span class="punctuation_bracket type">[</span><span class="type number">8</span><span class="punctuation_bracket type">]</span><span class="type_builtin type">u8</span> <span class="operator">=</span> <span class="punctuation_bracket">[</span><span class="number">0</span><span class="punctuation_special">...</span><span class="punctuation_bracket">]</span><span class="punctuation_delimiter">;</span>
+	<span class="constant variable namespace">endian</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">beputu64</span><span class="punctuation_bracket">(</span><span class="constant variable">buf</span><span class="punctuation_delimiter">,</span> <span class="constant variable">now</span><span class="punctuation_delimiter">:</span> <span class="type_builtin type">u64</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="constant variable namespace">mac</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">write</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">hmac</span><span class="punctuation_delimiter">,</span> <span class="constant variable">buf</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+
+	<span class="keyword">let</span> <span class="constant variable">mac</span><span class="punctuation_delimiter">:</span> <span class="punctuation_bracket type">[</span><span class="constant type variable namespace">sha1</span><span class="punctuation_delimiter type">::</span><span class="constant type variable">SIZE</span><span class="punctuation_bracket">]</span><span class="type_builtin type">u8</span> <span class="operator">=</span> <span class="punctuation_bracket">[</span><span class="number">0</span><span class="punctuation_special">...</span><span class="punctuation_bracket">]</span><span class="punctuation_delimiter">;</span>
+	<span class="constant variable namespace">mac</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">sum</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable">hmac</span><span class="punctuation_delimiter">,</span> <span class="constant variable">mac</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+
+	<span class="type_qualifier">const</span> <span class="constant variable">offs</span> <span class="operator">=</span> <span class="constant variable">mac</span><span class="punctuation_bracket">[</span><span class="constructor function_builtin constant function_call variable">len</span><span class="punctuation_bracket">(</span><span class="constant variable">mac</span><span class="punctuation_bracket">)</span> <span class="operator">-</span> <span class="number">1</span><span class="punctuation_bracket">]</span> <span class="operator">&amp;</span> <span class="number">0xF</span><span class="punctuation_delimiter">;</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">hash</span> <span class="operator">=</span> <span class="constant variable">mac</span><span class="punctuation_bracket">[</span><span class="constant variable">offs</span><span class="punctuation_special">..</span><span class="constant variable">offs</span><span class="operator">+</span><span class="number">4</span><span class="punctuation_bracket">]</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword_return">return</span> <span class="punctuation_bracket">(</span><span class="punctuation_bracket">(</span><span class="constant variable namespace">endian</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">begetu32</span><span class="punctuation_bracket">(</span><span class="constant variable">hash</span><span class="punctuation_bracket">)</span><span class="operator">&amp;</span> <span class="number">0x7FFFFFFF</span><span class="punctuation_bracket">)</span> <span class="operator">%</span> <span class="number">1000000</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">:</span> <span class="type_builtin type">uint</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+
+<span class="attribute">@test</span> <span class="keyword_function">fn</span> <span class="constructor constant variable function">totp</span><span class="punctuation_bracket">(</span><span class="punctuation_bracket">)</span> <span class="type_builtin type">void</span> <span class="operator">=</span> <span class="punctuation_bracket">{</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">secret</span> <span class="operator">=</span> <span class="string">&quot;3N2OTFHXKLR2E3WNZSYQ====&quot;</span><span class="punctuation_delimiter">;</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">key</span> <span class="operator">=</span> <span class="constant variable namespace">base32</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">decodestr</span><span class="punctuation_bracket">(</span><span class="operator">&amp;</span><span class="constant variable namespace">base32</span><span class="punctuation_delimiter">::</span><span class="constant type variable">std_encoding</span><span class="punctuation_delimiter">,</span> <span class="constant variable">secret</span><span class="punctuation_bracket">)</span><span class="operator">!</span><span class="punctuation_delimiter">;</span>
+	<span class="keyword_return">defer</span> <span class="constructor function_builtin constant function_call variable">free</span><span class="punctuation_bracket">(</span><span class="constant variable">key</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="type_qualifier">const</span> <span class="constant variable">now</span> <span class="operator">=</span> <span class="constant variable namespace">time</span><span class="punctuation_delimiter">::</span><span class="constant type method_call variable">from_unix</span><span class="punctuation_bracket">(</span><span class="number">1650183739</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+	<span class="constructor function_builtin constant function_call variable">assert</span><span class="punctuation_bracket">(</span><span class="constructor function_builtin constant function_call variable">totp</span><span class="punctuation_bracket">(</span><span class="constant variable">now</span><span class="punctuation_delimiter">,</span> <span class="constant variable">key</span><span class="punctuation_bracket">)</span> <span class="operator">==</span> <span class="number">29283</span><span class="punctuation_bracket">)</span><span class="punctuation_delimiter">;</span>
+<span class="punctuation_bracket">}</span><span class="punctuation_delimiter">;</span>
+</code></pre>
+<p>In any language, TOTP is just a couple of dozen lines of code even if there isn’t already a library — and there is probably already a library. You don’t have to store temporary SMS codes in the database, you don’t have to worry about phishing, you don’t have to worry about SIM swapping, and you don’t have to sign up for some paid SMS API like Twilio. It’s more secure and it’s trivial to implement — so implement it already! Please!</p><hr><p><strong>Update 2022-10-19 @ 07:45 UTC</strong>: A reader pointed out that it’s important to have rate limiting on your TOTP attempts, or else a brute force attack can be effective. Fair point!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Status-update-October-2022/">
+					← Status update, October 2022
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Kernel-hacking-with-Hare-part-3/">
+					Notes from kernel hacking in Hare, part 3: serial driver →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

@@ -1,0 +1,15 @@
+---
+.title = "LibMinecraft and Partycraft",
+.date = @date("2012-01-10"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+*This post was originally hosted on my old Blogspot blog. The approximate
+publication date and title are known but its contents are lost to time. This
+stub remains for posterity.*
+
+*LibMinecraft was a .NET library for writing Minecraft servers and clients.
+You can see what remains of it [archived here](https://web.archive.org/web/20120223233615/https://libminecraft.codeplex.com/).
+PartyCraft was a Minecraft server based on LibMinecraft. It's archived
+[here](https://github.com/ddevault/partycraft).*

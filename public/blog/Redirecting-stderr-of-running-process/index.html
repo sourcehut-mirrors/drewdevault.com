@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Redirecting stderr of a running process</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Redirecting stderr of a running process
+		<small>
+			<span class="date">May 4, 2018</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			May 4, 2018. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>During the KDE sprint in Berlin, <a href="http://www.subdiff.de/" target="_blank">Roman Gilg</a> leaned over to me and asked if I knew how to redirect the stderr of an already-running process to a file. I Googled it and found underwhelming answers using strace and trying to decipher the output by reading the write syscalls. Instead, I thought a gdb based approach would work better, and after putting the pieces together Roman insisted I wrote a blog post on the topic.</p><p>gdb, the GNU debugger, has two important features that make this possible:</p><ul><li>Attaching to running processes via <code>gdb -p</code></li><li>Executing arbitrary code in the target process space</li></ul><p>With this it’s actually quite straightforward. The process is the following:</p><ol><li>Attach gdb to the running process</li><li>Run <code>compile code -- dup2(open(&quot;/tmp/log&quot;, 65), 2)</code></li></ol><p>The magic 65 here is the value of <code>O_CREAT | O_WRONLY</code> on Linux, which is easily found with a little program like this:</p><pre><code class="c"><span class="keyword">#include</span> <span class="string">&lt;sys/stat.h&gt;</span>
+<span class="keyword">#include</span> <span class="string">&lt;fcntl.h&gt;</span>
+
+<span class="type">int</span> <span class="constant variable function">main</span>(<span class="type">int</span> <span class="constant variable">argc</span>, <span class="type">char</span> <span class="operator">*</span><span class="operator">*</span><span class="constant variable">argv</span>) {
+    <span class="constant variable function">printf</span>(<span class="string">&quot;%d\n&quot;</span>, <span class="constant variable">O_CREAT</span> | <span class="constant variable">O_WRONLY</span>)<span class="delimiter">;</span>
+    <span class="keyword">return</span> <span class="number">0</span><span class="delimiter">;</span>
+}
+</code></pre>
+<p>2 is always the file descriptor assigned to stderr. What happens here is:</p><ol><li>Via <a href="https://linux.die.net/man/3/open" target="_blank"><code>open</code></a>, the file you want to redirect to is created.</li><li>Via <a href="https://linux.die.net/man/3/dup2" target="_blank"><code>dup2</code></a>, stderr is overwritten with this new file.</li></ol><p>The <code>compile code</code> gdb command will compile some arbitrary C code and run the result in the target process, presumably by mapping some executable RAM and loading it in, then jumping to the blob. Closing gdb (control+d) will continue the process, and it should start writing out to the file you created.</p><p>There are lots of other cool (and hacky) things you can do with gdb. I once disconnected someone from an internet radio by attaching gdb to nginx and closing their file descriptor, for example. Thanks to Roman for giving me the chance to write an interesting blog post on the subject!</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Google-embraces-extends-extinguishes/">
+					← Google embraces, extends, and extinguishes
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/scdoc/">
+					Introducing scdoc, a man page generator →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

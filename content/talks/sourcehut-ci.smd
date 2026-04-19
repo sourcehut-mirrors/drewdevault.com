@@ -1,0 +1,25 @@
+---
+.title = "Opening up the SourceHut CI engine",
+.date = @date("2022-05-24"),
+.author = "Drew DeVault",
+.layout = "page.shtml",
+---
+
+**Abstract**
+
+> An overview of the architecture of SourceHut's CI engine, builds.sr.ht. We'll
+> be looking at how the system is laid out and at directions for future
+> improvement.
+
+**Events**
+
+[LOSTilburg](https://lostilburg.nl/post/017/)
+
+2022-05-24 @ 19:30
+
+Hendrikx ITC (conference room Spoorzicht013)
+
+Spoorlaan 21K
+
+5038 CB Tilburg
+

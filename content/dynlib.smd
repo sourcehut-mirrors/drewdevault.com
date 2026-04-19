@@ -1,0 +1,6 @@
+---
+.title = "Dynamic linking bad",
+.date = @date("2026-04-02"),
+.author = "Drew DeVault",
+.layout = "singletons/dynlib.shtml",
+--- 

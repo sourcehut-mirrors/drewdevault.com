@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Managing my dotfiles as a git repository</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Managing my dotfiles as a git repository
+		<small>
+			<span class="date">December 30, 2019</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			December 30, 2019. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>There are many tools for managing your dotfiles - user-specific configuration files. GNU stow is an example. I’ve tried a few solutions over the years, but I settled on a very simple system several years ago which has served me very well in the time since: my $HOME is a git repository. <a href="https://git.sr.ht/~sircmpwn/dotfiles" target="_blank">This repository</a>, in fact. This isn’t an original idea, but I’m not sure where I first heard it from either, and I’ve extended upon it somewhat since.</p><p>The key to making this work well is my one-byte <code>.gitignore</code> file:</p><pre><code>*
+</code></pre><p>With this line, and git will ignore all of the files in my $HOME directory, so I needn’t worry about leaving personal files, music, videos, other git repositories, and so on, in my public dotfiles repo. But, in order to track anything at all, we need to override the gitignore file on a case-by-case basis with <code>git add -f</code>, or <code>--force</code>. To add my vimrc, I used the following command:</p><pre><code>git add -f .vimrc
+</code></pre><p>Then I can commit and push normally, and .vimrc is tracked by git. The gitignore file does not apply to any files which are already being tracked by git, so any future changes to my vimrc show up in git status, git diff, etc, and can be easilly committed with <code>git commit -a</code>, or added to the staging area normally with <code>git add</code> — using <code>-f</code> is no longer necessary. Setting up a new machine is quite easy. After the installation, I run the following commands:</p><pre><code>cd ~
+git init
+git remote add origin git@git.sr.ht:~sircmpwn/dotfiles
+git fetch
+git checkout -f master
+</code></pre><p>A quick log-out and back in and I feel right at $HOME. Additionally, I have configured $HOME as a prefix, so that ~/bin is full of binaries, ~/lib has libraries, and so on; though I continue to use ~/.config rather than ~/etc. I put $HOME/bin ahead of anything else in my path, which allows me to shadow system programs with wrapper scripts as necessary. For example, ~/bin/xdg-open is as follows:</p><pre><code class="sh"><span class="comment">#!/bin/sh</span>
+<span class="keyword">case</span> <span class="string">&quot;</span><span class="string embedded">${</span><span class="string embedded property">1</span><span class="string embedded">%%:*}</span><span class="string">&quot;</span> <span class="keyword">in</span>
+	http<span class="operator">|</span>https<span class="operator">|</span>*.pdf)
+		<span class="constant function">exec</span> <span class="constant">qutebrowser</span> <span class="string constant">&quot;</span><span class="string constant operator">$</span><span class="string constant property">1</span><span class="string constant">&quot;</span>
+		;;
+	mailto)
+		<span class="constant function">exec</span> <span class="constant">aerc</span> <span class="string constant">&quot;</span><span class="string constant operator">$</span><span class="string constant property">1</span><span class="string constant">&quot;</span>
+		;;
+	*)
+		<span class="constant function">exec</span> <span class="constant">/usr/bin/xdg-open</span> <span class="string constant">&quot;</span><span class="string constant operator">$</span><span class="string constant">@&quot;</span>
+		;;
+<span class="keyword">esac</span>
+</code></pre>
+<p>Replacing the needlessly annoying-to-customize xdg-open with one that just does what I want, falling back to /usr/bin/xdg-open if necessary. Many other non-shadowed scripts and programs are found in ~/bin as well.</p><p>However, not all of my computers are configured equally. Some run different Linux (or non-Linux) distributions, or have different concerns being desktops, servers, laptops, phones, etc. It’s often useful for this reason to be able to customize my configuration for each host. For example, before $HOME/bin in my $PATH, I have $HOME/bin/$(hostname). I also run several machines on different architectures, so I include $HOME/bin/$(uname -m)<sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup> as well. To customize my sway configuration to consider the different device configurations of each host, I use the following directive in ~/.config/sway/config:</p><pre><code>include ~/.config/sway/`hostname`
+</code></pre><p>Then I have a host-specific configuration there, also tracked by git so I can conveniently update one machine from another. I take a similar approach to per-host configuration for many other pieces of software I use.</p><p>Rather than using (and learning) any specialized tools, I find my needs quite adequately satisfied by a simple composition of several Unix primitives with a tool I’m already very familiar with: git. Version controlling your configuration files is a desirable trait even with other systems, so why not ditch the middleman?</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p><code>uname -m</code> prints out the system architecture. Try it for yourself, I bet it’ll read “x86_64” or maybe “aarch64”.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/PinePhone-review/">
+					← PinePhone review
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Slow/">
+					Hello world →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

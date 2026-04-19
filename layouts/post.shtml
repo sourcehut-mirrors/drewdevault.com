@@ -1,0 +1,58 @@
+<extend template="base.shtml">
+<head id="head">
+</head>
+
+<body id="body">
+	<h1>
+		<ctx :text="$page.title"></ctx>
+		<small>
+			<span
+				class="date"
+				:text="$page.date.format('January 2, 2006')"
+			></span>
+			on
+			<span class="site">
+				<a
+					href="$site.page('').link()"
+					:text="$site.title"
+				></a>
+			</span>
+		</small>
+	</h1>
+	<ctx :if="$page.date.lt($build.generated.sub(1325, 'day'))">
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			<ctx :text="$page.date.format('January 2, 2006')"></ctx>. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	</ctx>
+	<main>
+		<article>
+			<ctx :html="$page.content()"></ctx>
+			<div :if="$page.footnotes?()" class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol :loop="$if">
+					<li id="$loop.it.def_id">
+						<ctx :html="$loop.it.html()"></ctx>
+						<ctx :loop="$loop.it.ref_ids">
+							<a class="footnote-backref" href="$loop.it.prefix('#')">Back ↩︎</a>
+						</ctx>
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div :if="$page.prevPage?()" class="prev">
+				<a href="$if.link()">
+					← <ctx :text="$if.title"></ctx>
+				</a>
+			</div>
+			<div :if="$page.nextPage?()" class="next">
+				<a href="$if.link()">
+					<ctx :text="$if.title"></ctx> →
+				</a>
+			</div>
+		</nav>
+	</main>
+</body>

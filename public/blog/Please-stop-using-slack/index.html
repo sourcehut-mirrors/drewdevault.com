@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Please don&apos;t use Slack for FOSS projects</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Please don&apos;t use Slack for FOSS projects
+		<small>
+			<span class="date">November 1, 2015</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			November 1, 2015. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>I’ve noticed that more and more projects are using things like Slack as the chat medium for their open source projects. In the past couple of days alone, I’ve been directed to Slack for Babel and Bootstrap. I’d like to try and curb this phenomenon before it takes off any more.</p><h2>Problems with Slack</h2><p>Slack…</p><ul><li>is closed source</li><li>has only one client (<em>update: errata at the bottom of this article</em>)</li><li>is a walled garden</li><li>requires users to have a different tab open for each project they want to be involved in</li><li>requires that Heroku hack to get open registration</li></ul><p>The last one is a real stinker. Slack is not a tool built for open source projects to use for communication with their userbase. It’s a tool built for teams and it is ill-suited to this use-case. In fact, Slack has gone on record as saying that it <em>cannot</em> support this sort of use-case: “it’s great that people are putting Slack to good use” but unfortunately “these communities are not something we have the capacity to support given the growth in our existing business.” <sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup></p><h2>What is IRC?</h2><p>IRC, or Internet Relay Chat…</p><ul><li>is a standardized and well-supported protocol <sup class="footnote-ref"><a href="#fn-2" id="fn-2-ref-1">2</a></sup></li><li>has hundreds of open source clients, servers, and bots <sup class="footnote-ref"><a href="#fn-3" id="fn-3-ref-1">3</a></sup></li><li>is a distributed design with several networks</li><li>allows several projects to co-exist on the same network</li><li>has no hacks for registration and is designed to be open</li></ul><h3>No, IRC is not dead</h3><p>I often hear that IRC is dead. Even my dad pokes fun at me for using a 30 year old protocol, but not after I pointed out that he still uses HTTP. Despite the usual shtick from the valley, old is not necessarily a synonym for bad.</p><p>IRC has been around since forever. You may think that it’s not popular anymore, but there are still tons of people using it. There are 87,762 users <em>currently online</em> (at time of writing) on Freenode. There are 10,293 people on OFTC. 22,384 people on Rizon. In other words, it’s still going strong, and I put a lot more faith in something that’s been going full speed ahead since the 80s than in a Silicon Valley fad startup.</p><h2>Problems with IRC that Slack solves</h2><p>There are several things Slack tries to solve about IRC. They are:</p><p><strong>Code snippets</strong>: Slack has built-in support for them. On IRC you’re just asked to use a pastebin like Gist.</p><p><strong>File transfers</strong>: Slack does them. IRC also does them through XDCC, but this can be difficult to get working.</p><p><strong>Persistent sessions</strong>: Slack makes it so that you can see what you missed when you return. With IRC, you don’t have this. If you want it, you can set up an IRC bouncer like <a href="http://znc.in/" target="_blank">ZNC</a>.</p><p><strong>Integrations</strong>: with things like build bots. This was never actually a problem with IRC. IRC has always been significantly better at this than Slack. There is <em>definitely</em> an IRC client library for your favorite programming language, and you can write your own client from scratch in a matter of minutes anyway. There’s an <a href="https://github.com/nandub/hubot-irc" target="_blank">IRC</a> backend for Hubot, too. GitHub has a built-in hook for announcing repository activity in an IRC channel.</p><h2>Other projects are using IRC</h2><p>Here’s a short, incomplete list of important FOSS projects using IRC:</p><ul><li>Debian</li><li>Docker</li><li>Django</li><li>jQuery</li><li>Angular</li><li>ReactJS</li><li>NeoVim</li><li>Node.js</li><li>everyone else</li></ul><p>The list goes on for a while. Just fill in another few hundred bullet points with your imagination. Seriously, just join <code>#&lt;project-name&gt;</code> on Freenode. It probably exists.</p><h2>IRC is better for your company, too</h2><p>We use IRC at <a href="https://www.linode.com/" target="_blank">Linode</a>, even for non-technical people. It works great. If you want to reduce the barrier to entry for non-technicals, set up something like <a href="https://github.com/erming/shout" target="_blank">shout</a> instead. You can also have a pretty no-brainer link to webchat on almost every network, <a href="http://webchat.esper.net/?nick=&channels=truecraft" target="_blank">like this</a>. If you need file hosting, you can deploy an instance of <a href="https://github.com/SirCmpwn/sr.ht/" target="_blank">sr.ht</a> or something like it. You can also host IRC servers on your own infrastructure, which avoids leaving sensitive conversations on someone else’s servers.</p><h2>Please use IRC</h2><p>In short, I’d really appreciate it if we all quit using Slack like this. It’s not appropriate for FOSS projects. I would much rather join your channel with the client I already have running. That way, I’m more likely to stick around after I get help with whatever issue I came to you for, and contribute back by helping others as I idle in your channel until the end of time. On Slack, I leave as soon as I’m done getting help because tabs in my browser are precious real estate.</p><p><a href="https://news.ycombinator.com/item?id=10486541" target="_blank">First discussion on Hacker News</a></p><p><a href="https://news.ycombinator.com/item?id=11013136" target="_blank">Second discussion on Hacker News</a></p><h2>Updates</h2><p>Addressing feedback on this article.</p><p><strong>Slack IRC bridge</strong>: Slack provides an IRC bridge that lets you connect to Slack with an IRC client. I’ve used it - it’s a bit of a pain in the ass to set up, and once you have it, it’s not ideal. They did put some effort into it, though, and it’s usable. I’m not suggesting that Slack as a product is worse than IRC - I’m just saying that it’s not better than IRC for FOSS projects, and probably not that much better for companies.</p><p><strong>Clients</strong>: Slack has several clients that use the API. That being said, there are fewer of them and for fewer platforms than IRC clients, and there are more libraries around IRC than there are for Slack. Also, the bigger issue is that I already have an IRC client, which I use for the hundreds of FOSS projects that use IRC, and I don’t want to add a Slack client for one or two projects.</p><p><strong>Gitter</strong>: Gitter is bad for many of the same reasons Slack is. Please don’t use it over IRC.</p><p><strong>ircv3</strong>: Check it out: <a href="http://ircv3.net" target="_blank">ircv3.net</a></p><p><strong>irccloud</strong>: Is really cool and solves all of the problems. <a href="https://www.irccloud.com/" target="_blank">irccloud.com</a></p><p><strong>2018-03-12</strong>: Slack is shutting down the IRC and XMPP gateways.</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p><a href="http://thenextweb.com/insider/2015/03/24/slack-is-quietly-unintentionally-killing-irc/" target="_blank">Slack is quietly, unintentionally killing IRC - The Next Web</a></p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-2">
+						<p><a href="https://www.rfc-editor.org/rfc/rfc1459.txt" target="_blank">RFC 1459</a></p>
+						
+							<a class="footnote-backref" href="#fn-2-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-3">
+						<p><a href="https://github.com/search?o=desc&q=irc&s=stars&type=Repositories&utf8=%E2%9C%93" target="_blank">Github search for IRC</a></p>
+						
+							<a class="footnote-backref" href="#fn-3-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/A-practical-understanding-of-Flux/">
+					← A practical understanding of Flux
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Bring-more-tor-into-your-life/">
+					Bring more Tor into your life →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

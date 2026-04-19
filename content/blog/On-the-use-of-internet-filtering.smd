@@ -1,0 +1,83 @@
+---
+.title = "On the Use of Internet Filtering",
+.date = @date("2011-07-23 12:00:00"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+Wow, it's been a long time since I've made a post.  Sorry about that.
+
+I recently had a conversation with some friends about internet filtering.  It's
+a terrible system that tempts parents, bosses, and more to restrict their
+underlings access to the internet - and it barely works.  There are numerous
+reasons why I don't like this system, and think that it poses a severe threat
+to the internet.
+
+## Filters are the Wrong Solution
+
+There may be legitimate reasons for a parent to want their children to avoid
+certain websites on the internet.  However, filters are the wrong way to do it.
+When a child leaves a filtered home as they come of age, they do not have any
+knowledge of the internet's more dangerous places, and certain websites can be
+very tempting for a young man to visit - the same websites that can be more
+dangerous.  They also don't learn about some very important things they should
+know about the filtered content.  A far better idea is to not block the
+content, and when the eventually find it, talk to them about it, explain the
+dangers, and use different means to keep them away.  That way, when they
+inevitably come out from behind the filter, they are prepared.
+
+## Filters Are Ineffective
+
+All filtering systems I've ever seen are not good at what they do.  They take
+an impossible task of filtering different parts of a system larger than any
+person can possibly imagine.  In my previous job, I was working under an
+internet filter, and every day I would be inhibited by it in my work.  At my
+current job, I do not have a filter, and I work more efficiently and still get
+things done.  My high school would filter all student internet, and there were
+constant complaints about not being able to get school work done around them.
+
+Not only do filters filter out the wrong things, but they also don't stop all
+of the right things.  It is easy to go behind a filter and find plenty of
+websites that are worthy of being blocked.  In addition to that, there are
+dozens of ways to get around filters.  I can think of 8 ways, off the top of my
+head, to get around every filter I've ever been behind.
+
+## Filters Slow Down Computers
+
+Upon starting to use a filter, you will notice an immediate increase in your
+computer's local resource usage, or the network usage (depending on the type of
+filter).  There is a lot more effort involved in filtering the internet than
+there is in accessing it.  A simple explanation of how they work:
+
+Without a filter, you can directly request information from a server.
+
+With a filter (depending on the filter): You try to request information from
+the server.  The filter interrupts you, and instead directs the request to it's
+own private server.  That server downloads the information you requested, and
+looks up information about what kind of filtering your software has enabled.
+Then it compares the information you've requested with an enormous blacklist of
+websites that fall into the kind of filters you have enabled.  Then, it looks
+at the actual information, and attempts to get an idea of what kind of content
+it has.  If it passes all of these tests, it's finally sent back to you.
+
+## Filtering is Just Plain Wrong
+
+Think about all the countries that filter their internet.  Ever hear of the
+Great Firewall of China?  Nearly all of the countries that filter their user's
+internet are dictatorships, or have some other hostile form of government.  If
+you've ever imposed a filter on someone, you haven't really thought twice about
+it.  But when you talk politics with your friends, you've probably expressed
+pity for the people who are restricted by their government.  If you haven't
+installed a filter - good for you, and you can see what my point is here.
+
+Filtering internet is just a bad idea - it is morally wrong and it doesn't work
+properly.  It stops the people under the filter from effectively using the
+internet, and it can be circumvented with moderate effort (ask my parents -
+they've used about 6 different filters after I got around each one, and I can
+still get around #6 if I tried).  When schools filter content, a lot of what
+gets filtered is games - but the kids who are off task should feel the
+repercussions when they see their report cards.  There are many perfectly
+legitimate times when a student would want to play games after finishing their
+assigned work.
+
+Don't use them. 

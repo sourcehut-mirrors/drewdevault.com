@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>The Abiopause</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		The Abiopause
+		<small>
+			<span class="date">March 3, 2020</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			March 3, 2020. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>The sun has an influence on its surroundings. One of these is in the form of small particles that are constantly ejected from the sun in all directions, which exerts an outward pressure, creating an expanding sphere of particles that moves away from the sun. These particles are the solar wind. As the shell of particles expands, the density (and pressure) falls. Eventually the solar wind reaches the <em>interstellar medium</em> — the space between the stars — which, despite not being very dense, is not empty. It exerts a pressure that pushes inwards, towards the sun.</p><p>Where the two pressures balance each other is an interesting place. The sphere up to this point is called the <em>heliosphere</em> — which can be roughly defined as the zone in which the influence of the sun is the dominant factor. The <em>termination shock</em> is where the change starts to occur. The plasma from the sun slows, compresses, and heats, among other changes. The physical interactions here are interesting, but aren’t important to the metaphor. At the termination shock begins the <em>heliosheath</em>. This is a turbulent place where particles from the sun and from the interstellar medium mix. The interactions in this area are complicated and interesting, you should read up about it later.</p><p><figure><img src="/l.sr.ht/_FIT.svg" alt="Picture of a faucet pouring into a sink">
+<figcaption>Yanpas via Wikimedia Commons, CC-BY-SA</figcaption></figure></p><p>Finally, we reach the <em>heliopause</em>, beyond which the influence of the interstellar medium is dominant. Once crossing this threshold, you are said to have left the solar system. The Voyager 1 space probe, the first man-made object to leave the solar system, crossed this point on August 25th, 2012. Voyager 2 completed the same milestone on November 12th, 2018<sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup>.</p><p>In the world of software, the C programming language clearly stands out as the single most important and influential programming language.  Everything forming the critical, foundational parts of your computer is written in it: kernels, drivers, compilers, interpreters, runtimes, hypervisors, databases, libraries, and more are almost all written in C.<sup class="footnote-ref"><a href="#fn-2" id="fn-2-ref-1">2</a></sup> For this reason, any programming language which wants to get anything useful done is certain to support a C FFI (foreign function interface), which will allow programmers to communicate with C code from the comfort of a high-level language. No other language has the clout or ubiquity to demand this level of deference from everyone else.</p><p>The way that an application passes information back and forth with its subroutines is called its <em>ABI</em>, or application binary interface. There are a number of ABIs for C, but the most common is the System-V ABI, which is used on most modern Unix systems. It specifies details like which function parameters to put in which registers, what goes on the stack, the structure and format of these values, and how the function returns a value to the caller. In order to interface with C programs, the FFI layers in other programs have to utilize this ABI to pass information to and from C functions.</p><p>Other languages often have their own ABIs. C, being a different programming language from $X, naturally has different semantics. The particular semantics of C don’t necessarily line up to the semantics the language designers want $X to have, so the typical solution is to define functions with C “linkage”, which means they’re called with the C ABI. It’s from this that we get keywords like <code>extern &quot;C&quot;</code> (C++, Rust), Go’s Cgo tooling, <code>[DllImport]</code> in C#, and so on. Naturally, these keywords come with a lot of constraints on how the function works, limiting the user to the mutually compatible subset of the two ABIs, or else using some kind of translation layer.</p><p>I like to think of the place where this happens as the “abiopause”, and draw comparisons with the solar system’s heliopause. Within the “abiosphere”, the programming language you’re using is the dominant influence. The idioms and features of the language are used to their fullest extent to write idiomatic code. However, the language’s sphere of influence is but a bubble in a sea of C code, and the interface between these two areas of influence is often quite turbulent. Directly using functions with C linkage from the abiosphere is not pleasant, as the design of good C APIs do not match the semantics of good $X APIs. Often there are layers to this transition, much like our solar system, where some attempt is made to wrap the C interface in a more idiomatic abstraction.</p><p>I don’t really like this boundary, and I think most programmers who have worked here would agree. If you like C, you’re stuck either writing bad C code or using poorly-suited tools to interface badly with an otherwise good API. If you like $X, you’re stuck writing very non-idiomatic $X code to interface with a foreign system. I don’t know how to fix this, but it’s interesting to me that the “abiopause” appears to be an interface full of a similar turbulence and complexity as we find in the heliopause.</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>It took longer because Voyager 2 went on to see Uranus and Neptune. Voyager 1 just swung around Saturn and was shot directly up and out of the solar system. Three other man-made objects are currently on trajectories which will leave the solar system.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-2">
+						<p>Even if you don’t like C, it would be ridiculous to dismiss its influence and importance.</p>
+						
+							<a class="footnote-backref" href="#fn-2-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Thoughts-on-performance/">
+					← Thoughts on performance &amp; optimization
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Open-letter-to-Senator-Casey/">
+					An open letter to Senator Bob Casey on end-to-end encryption →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

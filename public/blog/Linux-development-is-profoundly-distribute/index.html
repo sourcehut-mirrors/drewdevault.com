@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Linux development is distributed - profoundly so</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Linux development is distributed - profoundly so
+		<small>
+			<span class="date">September 2, 2020</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			September 2, 2020. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>The standard introduction to git starts with an explanation of what it means to use a “distributed” version control system. It’s pointed out that every developer has a complete local copy of the repository and can work independently and offline, often contrasting this design with systems like SVN and CVS.  The explanation usually stops here. If you want to learn more, consider git’s roots: it is the version control system purpose-built for Linux, the largest and most active open source project in the world. To learn more about the true nature of distributed development, we should observe Linux.</p><p>Pull up your local copy of the Linux source code (you have one of those, right?<sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup>) and open the MAINTAINERS file. Scroll down to line 150 or so and let’s start reading some of these entries.</p><p>Each of these represents a different individual or group which has some interest in the Linux kernel, often a particular driver. Most of them have an “F” entry, which indicates which files they’re responsible for in the source code. Most have an “L” entry, which has a mailing list you can post questions, bug reports, and patches to, as well as an individual maintainer (“M”) or maintainers who are known to have expertise and autonomy over this part of the kernel. Many of them — but, hmm, not all — also have a tree (“T”), which is a dedicated git repo with their copy of Linux, for staging changes to the kernel. This is common with larger drivers or with “meta” organizations, which oversee development of entire subsystems.</p><p>However, this presents a simplified view. Look carefully at the “DRM” drivers (<a href="https://en.wikipedia.org/wiki/Direct_Rendering_Manager" target="_blank">Direct Rendering Manager</a>); a group of drivers and maintainers who are collectively responsible for graphics on Linux. There are many drivers and many maintainers, but a careful eye will notice that there are many similarities as well. A lot of them use the same mailing list, <a href="mailto:dri-devel@lists.freedesktop.org" target="_blank">dri-devel@lists.freedesktop.org</a>, and many of them use the same git repository: <code>git://anongit.freedesktop.org/drm/drm-misc</code>. It’s not mentioned in this file, but many of them also shared the FreeDesktop bugzilla until recently, then moved to the FreeDesktop GitLab; and many of them share the <code>#dri-devel</code> IRC channel on Freenode. And again I’m simplifying — there are also many related IRC channels and git repos, and some larger drivers like AMDGPU have dedicated mailing lists and trees.</p><p>There’s more complexity to this system still. For example, not all of these subsystems are using git. The Intel TXT subsystem uses Mercurial. The Device Mapper team (one of the largest and most important Linux subsystems) uses <a href="https://savannah.nongnu.org/projects/quilt" target="_blank">Quilt</a>. And like Linux DRM is a meta-project for many DRM-related subsystems & drivers, there are higher-level meta projects still, such as driver-core, which manages code and subsystems common to <em>all</em> I/O drivers. There are also cross-cutting concerns, such as the interaction between linux-usb and various network driver teams.</p><p>Patches to any particular driver could first end up on a domain-specific mailing list, with a particular maintainer being responsible for reviewing and integrating the patch, with their own policies and workflows and tooling. Then it might flow upwards towards another subsystem with its own similar features, and then up again towards meta-meta trees like linux-staging, and eventually to Linus’ tree<sup class="footnote-ref"><a href="#fn-2" id="fn-2-ref-1">2</a></sup>. Along the way it might receive feedback from other projects if it has cross-cutting concerns, tracing out an ever growing and shrinking bubble of inclusion among the trees, ultimately ending up in every tree. And that’s <em>still</em> a simplification — for example, an important bug fix may sidestep all of this entirely and get applied on top of a downstream distribution kernel, ending up on end-user machines before it’s made much progress upstream at all.</p><p>This complex <em>graph</em> of Linux development has code flowing smoothly between hundreds of repositories, emails exchanging between hundreds of mailing lists, passing through the hands of dozens of maintainers, several bug trackers, various CI systems, all day, every day, ten-thousand fold. This is truly illustrative of <strong>distributed</strong> software development, well above and beyond the typical explanation given to a new git user. The profound potential of the distributed git system can be plainly seen in the project for which it was principally designed. It’s also plain to see how difficult it would be to adapt this system to something like GitHub pull requests, despite how easy many who are perplexed by the email-driven workflow wish it to be<sup class="footnote-ref"><a href="#fn-3" id="fn-3-ref-1">3</a></sup>. As a matter of fact, several Linux teams are already using GitHub and GitLab and even pull or merge requests on their respective platforms.  However, scaling this system up to the entire kernel would be a great challenge indeed.</p><p>By the way — that MAINTAINERS file? Scroll to the bottom. My copy is <em>19,000 lines long</em>.</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>Okay, just in case: <code>git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git</code></p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-2">
+						<p>That’s not the only destination; for example, some patches will end up in the LTS kernels as well.</p>
+						
+							<a class="footnote-backref" href="#fn-2-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-3">
+						<p>If you are among the perplexed, <a href="https://git-send-email.io" target="_blank">my interactive git send-email tutorial</a> takes about 10 minutes and is often recommended to new developers by Greg KH himself.</p>
+						
+							<a class="footnote-backref" href="#fn-3-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Microsoft-plays-their-hand/">
+					← Embrace, extend, and finally extinguish - Microsoft plays their hand
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Linux-development-is-profoundly-distributed/">
+					Linux development is distributed - profoundly so →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Git is already federated &amp; decentralized</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Git is already federated &amp; decentralized
+		<small>
+			<span class="date">July 23, 2018</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			July 23, 2018. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>There have always been murmurs about “replacing GitHub with something decentralized!”, but in the wake of the Microsoft acquisition these murmurs have become conversations. In particular, this blog post is a direct response to forge-net (formerly known as <a href="https://github.com/git-federation/gitpub" target="_blank">GitPub</a>). They want to federate and decentralize git using ActivityPub, the same technology leveraged by Mastodon and PeerTube. But get this: git is already federated <em>and</em> decentralized!</p><p>I already spoke at length about how a large minority of the git community uses email for collaboration in my <a href="https://drewdevault.com/2018/07/02/Email-driven-git.html" target="_blank">previous article</a> on the subject. Definitely give it a read if you haven’t already. In this article I want to focus on comparing this model with the possibilities afforded by ActivityPub and provide direction for new forge<sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup> projects to work towards embracing and improving git’s email-based collaboration tools.</p><p>The main issue with using ActivityPub for decentralized git forges boils down to email simply being a better choice. The advantages of email are numerous. It’s already standardized and has countless open source implementations, many in the standard libraries of almost every programming language. It’s decentralized and federated, and it’s <em>already</em> integrated with git. Has been since day one!  I don’t think that we should replace web forges with our email clients, not at all. Instead, web forges should embrace email to communicate with each other.</p><p>Let me give an example of how this could play out. On my platform, <a href="https://meta.sr.ht" target="_blank">sr.ht</a>, users can view their git repositories on the web (duh). One of my goals is to add some UI features here which let them select a range of commits and prepare a patchset for submission via <a href="https://www.git-scm.com/docs/git-send-email" target="_blank">git send-email</a>. They’ll enter an email address (or addresses) to send the patch(es) to, and we’ll send it along on their behalf.  This email address might be a mailing list on another sr.ht instance in the wild! If so, the email gets recognized as a patch and displayed on the web with a pretty diff and code review tools. Inline comments automatically get formatted as an email response. This shows up in the user’s inbox and sr.ht gets copied on it, showing it on the web again.</p><p>I think that workflow looks an awful lot like the workflow forge-net hopes to realize! Here’s where it gets good, though. What if the emails the user puts in are <code>linux-kernel@vger.kernel.org</code> and a handful of kernel maintainers? Now your git forge can suddenly be used to contribute to the Linux kernel! ActivityPub would build a <em>second</em>, incompatible federation of projects, while ignoring the already productive federation which powers many of our most important open source projects.</p><p>git over email is already supported by a tremendous amount of open source software. There’s tools like <a href="https://www.gnu.org/software/mailman/" target="_blank">mailman</a> which provide mailing lists and public archives, or <a href="https://public-inbox.org/" target="_blank">public-inbox</a>, which archives email in git, or <a href="http://jk.ozlabs.org/projects/patchwork/" target="_blank">patchworks</a> for facilitating code review over email. Some email clients have grown features which make them more suitable for git, such as <a href="http://mutt.org" target="_blank">mutt</a>. These are the nuts and bolts of hundreds of important projects, including Linux, *BSD, gcc, Clang, postgresql, MariaDb, emacs, vim, ffmpeg, Linux distributions like Debian, Fedora, Arch, Alpine, and countless other projects, including git itself! These projects are incredibly important, foundational projects upon which our open source empire is built, and the tools they use already provide an open, federated protocol for us to talk to.</p><p>Not only is email <em>better</em>, but it’s also <em>easier</em> to implement. Programming tools for email are very mature. I recently started experimenting with building an ActivityPub service, and it was crazy difficult. I had to write a whole lot of boilerplate and understand new and still-evolving specifications, not to mention setting up a public-facing server with a domain and HTTPs to test federation with other implementations. Email is comparatively easy, it’s built into the standard library. You can shell out to git and feed the patch to the nearest SMTP library in only a handful of lines of code. I bet every single person who reads this article already has an email address, so the setup time approaches zero.</p><p>Email also puts the power in the hands of the user right away. On Mastodon there are occasional problems of instance owners tearing down their instance on short notice, taking with them all of their user’s data. If everything is being conducted over email instead, all of the data already lives in the user’s inbox. Freely available tools can take their mail spool and publish a new archive if our services go down. Mail archives can be trivially made redundant across many services. This stuff is seriously resilient to failure. Email was designed when networks were measured in bits per second and often connected through a single unreliable route!</p><p>I’m not suggesting that the approach these projects use for collaboration is perfect. I’m suggesting that we should embrace it and solve these problems instead of throwing out the baby with the bathwater. Tools like <code>git send-email</code> can be confusing at first, which is why we should build tools like web forges that smooth over the process for novices, and write better docs to introduce people to the tools (I recently <a href="https://man.sr.ht/git.sr.ht/send-email.md" target="_blank">wrote a guide</a> for sr.ht users).</p><p>Additionally, many popular email clients have bastardized email to the point where the only way to use git+email for many people starts with abandoning the email client they’re used to using. This can also be solved by having forges send the emails for them, and process the replies. We can also support open source mail clients by building better tools to integrate our emails with them. Setting up the mail servers on the other end can be difficult, too, but we should invest in better mail server software, something which would definitely be valuable even setting aside the matter of project forges.</p><p>We need to figure out something for bugs as well, perhaps based on Debian’s work on <a href="https://www.debian.org/Bugs/" target="_blank">Debbugs</a>. Other areas of development, such as continuous integration, I find are less difficult problems. Many build services already support sending the build results by email, we just need to find a way to get our patches to them (something I’m working on with sr.ht). But we should take these problems one step at a time. Let’s focus on improving the patch workflow git endorses, and as our solutions shake out the best solutions to our other problems will become more and more apparent.</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>Forge refers to any software which provides comprehensive tools for project hosting. This originally referred to SourceForge but is now a category of software which includes GitHub, BitBucket, GitLab, Gogs/Gitea, etc.</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Input-handling-in-wlroots/">
+					← Input handling in wlroots
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Wayland-shells/">
+					Writing a Wayland compositor with wlroots: shells →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>The future of Wayland, and sway&apos;s role in it</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		The future of Wayland, and sway&apos;s role in it
+		<small>
+			<span class="date">October 9, 2017</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			October 9, 2017. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Today I’ve released sway <a href="https://github.com/swaywm/sway/releases/tag/0.15-rc1" target="_blank">0.15-rc1</a>, the first release candidate for the final 0.x release of sway. That’s right - after sway 0.15 will be sway 1.0. After today, no new features are being added to sway until we complete the migration to our new plumbing library, <a href="https://github.com/swaywm/wlroots" target="_blank">wlroots</a>. This has been a long time coming, and I would love to introduce you to wlroots and tell you what to expect from sway 1.0.</p><p><small class="text-muted"><a href="https://github.com/swaywm/sway">Sway</a> is a tiling Wayland compositor, if you didn’t know.</small></p><p>Before you can understand what wlroots is, you have to understand its predecessor: <a href="https://github.com/Cloudef/wlc" target="_blank">wlc</a>. The role of wlc is to manage a number of low-level plumbing components of a Wayland compositor. It essentially abstracts most of the hard work of Wayland compositing away from the compositor itself. It manages:</p><ul><li>The EGL (OpenGL) context</li><li>DRM (display) resources</li><li>libinput resources</li><li>Rendering windows to the display</li><li>Communicating with Wayland clients</li><li>Xwayland (X11) support</li></ul><p>It does a few other things, but these are the most important. When sway wants to render a window, it will be told about its existence through a hook from wlc. We’ll tell wlc where to put it and it will be rendered there. Most of the heavy lifting has been handled by wlc, and this has allowed us to develop sway into a powerful Wayland compositor very quickly.</p><p>However, wlc has some limitations, ones that sway has been hitting more and more often in the past several months. To address these limitations, we’ve been working very hard on a replacement for wlc called wlroots. The relationship between wlc and wlroots is similar to the relationship between Pango and Harfbuzz - wlroots is much more powerful, but at the cost of putting a lot more work on the shoulders of sway. By replacing wlc, we can customize the behavior of the low level components of our system.</p><p>I’m happy to announce that development on wlroots has been spectacular. Like libweston has Weston itself, wlroots has a reference compositor called Rootston - a simple floating compositor that lets us test and demonstrate the features of wlroots. It is from this compositor that I write this blog post today. The most difficult of our goals are behind us with wlroots, and we’re now beginning to plan the integration of wlroots and sway.</p><p>All of this work has been possible thanks to a contingent of highly motivated contributors who have done huge amounts of work for wlroots, writing and maintaining entire subsystems far faster than I could have done it alone. I really cannot overstate the importance of these contributors. Thanks to their contributions, most of my work is in organizing development and merging pull requests. From the bottom of my heart, <a href="https://github.com/swaywm/wlroots/graphs/contributors" target="_blank">thank you</a>.</p><p>And for all of this hard work, what are we going to get? Well, for some time now, there have been many features requests in sway that we could not address, and many long-standing bugs we could not fix. Thanks to wlroots, we can see many of these addressed within the next few months. Here are some of the things you can expect from the union of wlroots and sway:</p><ul><li>Rotated displays</li><li>Touchscreen bindings</li><li>Drawing tablet support</li><li>Mouse capture for games</li><li>Fractional display scaling</li><li>Display port daisy chaining</li><li>Multi-GPU support</li></ul><p>Some of these features are unique to sway even among Wayland <em>and</em> Xorg desktops combined! Others, like output rotation, have been requested by our users for a long time. I’m looking forward to the several dozen long-open GitHub issues that will be closed in the next couple of months. This is just the beginning, too - wlroots is such a radical change that I can’t even begin to imagine all of the features we’re going to be able to build.</p><p>We’re sharing these improvements with the greater Wayland community, too. wlroots is a platform upon which we intend to develop and promote open standards that will unify the extensibility of all Wayland desktops. We’ve also been working with other Wayland compositors, notably <a href="https://github.com/way-cooler/way-cooler" target="_blank">way-cooler</a>, which are preparing to move their own codebases to a wlroots-based solution.</p><p>My goal is to ship sway 1.0 before the end of the year. These are exciting times for Wayland, and I hope you’re looking forward to it.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Analyzing-HN/">
+					← Analyzing HN moderation &amp; censorship
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Fuck-you-nvidia/">
+					Nvidia sucks and I&apos;m sick of it →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

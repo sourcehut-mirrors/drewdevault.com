@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Status update, August 2022</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Status update, August 2022
+		<small>
+			<span class="date">August 16, 2022</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			August 16, 2022. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>It is a blessedly cool morning here in Amsterdam. I was busy moving house earlier this month, so this update is a bit quieter than most.</p><p>For a fun off-beat project this month, I started working on a <a href="https://git.sr.ht/~sircmpwn/hdmg" target="_blank">GameBoy emulator</a> written in Hare. No promises on when it will be functional or how much I plan on working on it – just doing it for fun. In more serious Hare news, I have implemented Thread-Local Storage (TLS) for qbe, our compiler backend. Hare’s standard library does not support multi-threading, but I needed this for Helios, whose driver library does support threads. It will also presumably be of use for cproc once it lands upstream.</p><p>Speaking of Helios, it received the runtime components for TLS support on x86_64, namely the handling of %fs and its base register MSR in the context switch, and updates to the ELF loader for handling .tdata/.tbss sections. I have also implemented support for moving and copying capabilities, which will be useful for creating new processes in userspace. Significant progress towards capability destructors was also made, with some capabilities — pages and page tables in particular — being reclaimable now. Next goal is to finish up all of this capability work so that you can freely create, copy, move, and destroy capabilities, then use all of these features to implement a simple shell. There is also some refactoring due at some point soon, so we’ll see about that.</p><p>Other Hare progress has been slow this month, as I’m currently looking at a patch queue 123 emails backed up. When I’m able to sit down and get through these, we can expect a bunch of updates in short order.</p><p>SourceHut news will be covered in the “what’s cooking” post later today. That’s all for now! Thanks for tuning in.</p>
+			<div class="footnotes" role="doc-endnotes"></div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/Organizing-my-thoughts/">
+					← How I wish I could organize my thoughts
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/PINE64-let-us-down/">
+					PINE64 has let its community down →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>

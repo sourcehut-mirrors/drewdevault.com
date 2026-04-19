@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head id="head">
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1">
+		<title>Killing ants with nuclear weapons</title>
+		<link type="text/css" rel="stylesheet" href="/style.css">
+		<link type="text/css" rel="stylesheet" href="/highlight.css">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="/blog/index.xml">
+		<link rel="icon" type="image/png" href="/avatar.png">
+		
+		
+
+	</head>
+	<body id="body">
+		
+	<h1>
+		Killing ants with nuclear weapons
+		<small>
+			<span class="date">September 8, 2017</span>
+			on
+			<span class="site">
+				<a href="/">Drew DeVault&apos;s blog</a>
+			</span>
+		</small>
+	</h1>
+	
+		<div class="alert alert-danger">
+			<strong>Notice</strong>: This blog post was published on
+			September 8, 2017. It might be out
+			of date, have broken images or links, or simply contain bad ideas and
+			opinions that didn't stand the test of time. Please read generously!
+		</div>
+	
+	<main>
+		<article>
+			<p>Complexity is quickly becoming an epidemic. In this developer’s opinion, complexity is the ultimate enemy - the final boss - of good software design. Complicated software generally has complicated bugs. Simple software generally has simple bugs. It’s as easy as that.</p><p>It’s for this reason that I strongly dislike many of the tools and architectures that have been proliferating over the past few years, particularly in web development. When I look at a tool like Gulp, I wonder if its success is largely attributable to people not bothering to learn how Makefiles work. Tools like Docker make me wonder if they’re an excuse to avoid learning how to do ops or how to use your distribution’s package manager. Chef makes me wonder if its users forgot that shell scripts can use SSH, too.</p><p>These tools offer a value add. But how does it compare to the cost of the additional complexity? In my opinion, in <em>every case</em><sup class="footnote-ref"><a href="#fn-1" id="fn-1-ref-1">1</a></sup> the value add is far outweighed by the massive complexity cost. This complexity cost shows itself when the system breaks (and it will - all systems break) and you have to dive into these overengineered tools. Don’t forget that dependencies are fallible, and never add a dependency you wouldn’t feel comfortable debugging. The time spent learning these complicated systems to fix the inevitable bugs is surely much less than the time spent learning the venerable tools that fill the same niche (or, in many cases, accepting that you don’t even need this particular shiny thing).</p><p>Reinventing the wheel is a favorite pastime of mine. There are many such wheels that I have reinvented or am currently reinventing. The problem isn’t in reinventing the wheel - it’s in doing so before you actually understand the wheel<sup class="footnote-ref"><a href="#fn-2" id="fn-2-ref-1">2</a></sup>. I wonder if many of these complicated tools are written by people who set out before they fully understood what they were replacing, and I’m <em>certain</em> that they’re mostly used by such people. I understand it may seem intimidating to learn venerable tools like make(1) or chroot(1), but they’re just a short man page away<sup class="footnote-ref"><a href="#fn-3" id="fn-3-ref-1">3</a></sup>.</p><p>It’s not just tools, though. I couldn’t explain the features of C++ in fewer than several thousand words (same goes for Rust). GNU continues to add proprietary extensions and unnecessary features to everything they work on. Every update shipped to your phone is making it slower to ensure you’ll buy the new one. Desktop applications are shipping entire web browsers into your disk and your RAM; server applications ship entire operating systems in glorified chroots; and hundreds of megabytes of JavaScript, ads, and spyware are shoved down the pipe on every web page you visit.</p><p>This is an epidemic. It’s time we cut this shit out. Please, design your systems with simplicity in mind. Moore’s law is running out<sup class="footnote-ref"><a href="#fn-4" id="fn-4-ref-1">4</a></sup>, the free lunch is coming to an end. We have heaps and heaps of complicated, fragile abstractions to dismantle.</p>
+			<div class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol>
+					<li id="fn-1">
+						<p>That I’ve seen (or heard of)</p>
+						
+							<a class="footnote-backref" href="#fn-1-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-2">
+						<p>“Those who don’t understand UNIX are doomed to reinvent it, poorly.”</p>
+						
+							<a class="footnote-backref" href="#fn-2-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-3">
+						<p>Of course, <a href="https://xkcd.com/912/" target="_blank"><em>”…full documentation for make is maintained as a GNU info page…”</em></a></p>
+						
+							<a class="footnote-backref" href="#fn-3-ref-1">Back ↩︎</a>
+						
+					</li>
+				
+					<li id="fn-4">
+						<p>Transistors are approaching a scale where quantum problems come into play, and we are limited by the speed of light without getting any smaller. The RAM bottleneck is another serious issue, for which innovation has been stagnant for some time now.</p>
+						
+							<a class="footnote-backref" href="#fn-4-ref-1">Back ↩︎</a>
+						
+					</li>
+				</ol>
+			</div>
+		</article>
+		<nav class="next-prev">
+			<div class="prev">
+				<a href="/blog/When-not-to-use-a-regex/">
+					← When not to use a regex
+				</a>
+			</div>
+			<div class="next">
+				<a href="/blog/Analyzing-HN/">
+					Analyzing HN moderation &amp; censorship →
+				</a>
+			</div>
+		</nav>
+	</main>
+
+	</body>
+	<footer>
+		The content for this site is
+		<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>.
+		The <a href="https://git.sr.ht/~sircmpwn/drewdevault.com">code for this site</a> is
+		<a href="https://opensource.org/licenses/MIT">MIT</a>.
+	</footer>
+</html>
