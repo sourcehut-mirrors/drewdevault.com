@@ -10,6 +10,7 @@ tasks:
     # TODO: Build from source (or install an Alpine package)
     curl https://redacted.moe/f/f4b9d9a6 > zine
     sudo cp zine /usr/bin/
+    sudo chmod +x /usr/bin/zine
 - build: |
     cd drewdevault.com
     zine release
