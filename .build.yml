@@ -1,16 +1,11 @@
-image: alpine/edge
+image: archlinux
 oauth: pages.sr.ht/PAGES:RW
 packages:
-- curl
-- zig
+- hut
+- zine-bin
 sources:
 - https://git.sr.ht/~sircmpwn/drewdevault.com
 tasks:
-- zine: |
-    # TODO: Build from source (or install an Alpine package)
-    curl https://redacted.moe/f/f4b9d9a6 > zine
-    sudo cp zine /usr/bin/
-    sudo chmod +x /usr/bin/zine
 - build: |
     cd drewdevault.com
     zine release
