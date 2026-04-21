@@ -10,6 +10,7 @@ tasks:
     cd drewdevault.com
     zine release
 - publish: |
+    cd drewdevault.com
     hut pages publish -d drewdevault.com public/
 triggers:
   - action: email
