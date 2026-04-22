@@ -20,7 +20,19 @@
         </ctx>
         <ctx :if="$loop.it.custom.has('external').not()">
           <title :text="$loop.it.title"></title>
-          <description :text="$loop.it.content()"></description>
+          <description>
+            <ctx :text="$loop.it.content()"></ctx>
+            <div :if="$page.footnotes?()" class="footnotes" role="doc-endnotes">
+              <ol :loop="$if">
+                <li id="$loop.it.def_id">
+                  <ctx :text="$loop.it.html()"></ctx>
+                  <ctx :loop="$loop.it.ref_ids">
+                    <a class="footnote-backref" href="$loop.it.prefix('#')">Back ↩︎</a>
+                  </ctx>
+                </li>
+              </ol>
+            </div>
+          </description>
           <link :text="$site.host_url.addPath($loop.it.link())"></link>
         </ctx>
         <pubDate :text="$loop.it.date.formatHTTP()"></pubDate>
