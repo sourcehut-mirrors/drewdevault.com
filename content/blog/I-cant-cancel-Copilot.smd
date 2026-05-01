@@ -1,0 +1,37 @@
+---
+.title = "I can't cancel GitHub Copilot",
+.date = @date("2026-05-01"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+Back when Copilot first came out, I immediately disliked it. But I decided to
+give it a fair shake and tried to evaulate it in good faith. I wasn't interested
+in paying for it, but they had a form for FOSS community members to apply for a
+free subscription, so I filled it out and gave it a shot. Once approved I spent
+15 minutes (successfully) convincing it to write a Python script that printed
+out the lyrics to "All Star" verbatim, and haven't touched it since.
+
+Since then, like clockwork I get an email every month informing me that my
+subscription has been automatically renewed.
+
+> Hi there,
+> 
+> Thank you for renewing your free access to GitHub Copilot. Your access to
+> GitHub Copilot will be reviewed on 2026-05-31. GitHub Copilot checks
+> eligibility monthly per our policy. No steps are needed on your end.
+> 
+> We hope you enjoy using GitHub Copilot and participating in the developer
+> community.
+
+I'm not being charged for it and so it's a matter of principle more than
+anything, but I ought to be able to turn this off. But I cannot find anything in
+the GitHub settings which would allow me to cancel this free "subscription".
+
+![](/copilot-settings.png "A screenshot of GitHub's copilot settings. Everything which can be disabled is disabled, but may features cannot be disabled. There is no obvious way to cancel the subscription.")
+
+GitHub support has been less than helpful:
+
+![](/copilot-support.png "A screenshot of a support ticket opened on March 26th asking for assistance in cancelling my Copilot subscription. I asked for an update on April 21st. There is no response from GitHub.")
+
+How do I get rid of this thing!
