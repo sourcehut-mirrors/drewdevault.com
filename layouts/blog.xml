@@ -6,7 +6,7 @@
     <generator>Zine -- https://zine-ssg.io</generator>
     <language>en-US</language>
     <lastBuildDate :text="$build.generated.formatHTTP()"></lastBuildDate>
-    <ctx :loop="$page.subpages()">
+    <ctx :loop="$page.subpages().slice(0, 32)">
       <item>
         <ctx :if="$loop.it.custom.get?('external')">
           <title :text="$loop.it.title.prefix('🚀 Signal boost: ')"></title>
