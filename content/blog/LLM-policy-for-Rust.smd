@@ -1,0 +1,17 @@
+---
+.title = "Add an LLM policy for rust-lang/rust",
+.date = @date("2026-05-15"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+> No comment on this PR may mention the following topics:
+> 
+> * Long-term social or economic impact of LLMs
+> * The environmental impact of LLMs
+> * Anything to do with the copyright status of LLM output
+> * Moral judgements about people who use LLMs
+> 
+> We have asked the moderation team to help us enforce these rules.
+
+-- [Add an LLM policy for rust-lang/rust, GitHub](https://github.com/rust-lang/rust-forge/pull/1040)
