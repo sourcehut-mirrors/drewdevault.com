@@ -152,6 +152,9 @@
 						<li>
 							<a href="$site.asset('publickey.txt').link()">PGP key</a>
 						</li>
+						<li>
+							<a href="https://social.freebitcoin.gay/@drew">Fediverse</a>
+						</li>
 					</ul>
 				</li>
 
