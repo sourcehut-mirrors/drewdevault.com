@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- vim: ts=2 sw=2 noet -->
+<!-- vim: set ts=2 sw=2 noet: -->
 <html>
 	<head id="head">
 		<meta charset="utf-8">
@@ -17,7 +17,7 @@
 		<super>
 	</head>
 	<body id="body">
-		<nav>
+		<nav class="site-nav">
 			<h1>
 				<a href="/">Drew's website</a>
 			</h1>

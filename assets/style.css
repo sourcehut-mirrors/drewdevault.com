@@ -1,3 +1,4 @@
+/* vim: set ts=2 sw=2 et: */
 :root {
   --toolbar: #d4d0c8;
   --background: #696969;
@@ -10,7 +11,18 @@ html, body {
   background: var(--background);
 }
 
+body {
+  margin: calc(24px + 1rem) 0 0 0;
+}
+
 * { box-sizing: border-box; }
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 
 nav {
   background: linear-gradient(to right, var(--toolbar) 80%, white);
@@ -305,30 +317,20 @@ figure {
   }
 }
 
-@media(max-width: 640px) {
-  nav {
-    background: var(--toolbar);
-
-    ul {
-    	display: none;
-		}
-  }
-}
-
 .articles {
-	display: grid;
-	grid-template-columns: auto 1fr;
+  display: grid;
+  grid-template-columns: auto 1fr;
 
-	.date {
-		text-align: right;
-		border-right: 4px groove #ccc;
-		margin-right: 15px;
-	}
+  .date {
+    text-align: right;
+    border-right: 4px groove #ccc;
+    margin-right: 15px;
+  }
 }
 
 .alert {
   .heading {
-  	display: block;
+    display: block;
     margin: 0;
     padding: 0 1rem;
     font-size: 20px;
@@ -339,22 +341,40 @@ figure {
   }
 
   p {
-  	margin: 0;
-  	padding: 1rem;
+    margin: 0;
+    padding: 1rem;
     border-bottom: 2px solid silver;
-	}
+  }
 }
 
 .profile {
-	float: right;
-	max-width: 256px;
-	margin: 0 !important;
-	border-left: 2px solid grey;
-	border-top: 2px solid grey;
-	border-bottom: 2px solid silver;
-	border-right: 2px solid silver;
+  float: right;
+  max-width: 256px;
+  margin: 0 !important;
+  border-left: 2px solid grey;
+  border-top: 2px solid grey;
+  border-bottom: 2px solid silver;
+  border-right: 2px solid silver;
 }
 
 .clearfix {
-	clear: both;
+  clear: both;
+}
+
+@media(max-width: 640px) {
+  nav {
+    background: var(--toolbar);
+  }
+
+  .site-nav {
+    position: inherit;
+
+    ul {
+      display: none;
+    }
+  }
+
+  body {
+    margin-top: 0;
+  }
 }
