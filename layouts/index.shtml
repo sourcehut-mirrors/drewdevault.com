@@ -8,7 +8,9 @@
 		<section class="articles" :loop="$site.page('blog').subpages()">
 			<ctx :if="$loop.it.custom.getOr('noindex', false).not()">
 				<div class="date" :text="$loop.it.date.format('January 02, 2006')"></div>
-				<a href="$loop.it.link()" :text="$loop.it.title"></a>
+				<div class="link">
+					<a href="$loop.it.link()" :text="$loop.it.title"></a>
+				</div>
 			</ctx>
 		</section>
 	</main>
