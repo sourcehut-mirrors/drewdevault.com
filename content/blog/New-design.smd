@@ -1,0 +1,10 @@
+---
+.title = "New blog design",
+.date = @date("2026-05-20"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+I redesigned my blog! I decided to put some more personality into it this time,
+after over a decade of the minimalist style. This short post is just an excuse
+to show up in your feed reader so you can go look at it. Cheers!
