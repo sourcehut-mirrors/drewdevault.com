@@ -1,0 +1,25 @@
+---
+.title = "About Drew DeVault",
+.date = @date("2026-05-19"),
+.author = "Drew DeVault",
+.layout = "page.shtml",
+---
+
+[]($image.siteAsset('profile.jpg').attrs('profile'))
+
+Welcome to my little website! I'm a hacker who writes here about software,
+especially open source, and politics, ethics, and philosophy.
+
+I like getting emails so if you have comments or feedback on anything you read
+here, feel free to [reach out directly] or to write to my [public inbox]. It
+might take me several days to get to your email.
+
+The content for this site is [CC-BY-SA] and the [source code] is [MIT].
+
+[public inbox]: https://lists.sr.ht/~sircmpwn/public-inbox
+[reach out directly]: mailto:drew@ddevault.org
+[CC-BY-SA]: https://creativecommons.org/licenses/by-sa/2.0/
+[source code]: https://git.sr.ht/~sircmpwn/drewdevault.com
+[MIT]: https://opensource.org/licenses/MIT
+
+> []($block.attrs('clearfix'))
