@@ -1,0 +1,16 @@
+---
+.title = "Vim Classic 8.3.0 released",
+.date = @date("2026-06-02"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+---
+
+Following up on my [earlier announcement][0] that I was forking Vim, I'm happy
+to announce the first release of my fork today: Vim Classic 8.3.0.
+
+[0]: Forking-vim
+
+I have written a release announcement for vim-classic.org, which you can read
+[here][1]. Happy editing!
+
+[1]: https://vim-classic.org/news/vim-8.3-released.html
