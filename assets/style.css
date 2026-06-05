@@ -378,3 +378,12 @@ figure {
     margin-top: 0;
   }
 }
+
+sup {
+  vertical-align: top;
+  font-size: 0.6rem;
+}
+
+summary {
+  cursor: pointer;
+}
