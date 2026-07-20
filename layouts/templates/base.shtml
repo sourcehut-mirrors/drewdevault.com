@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1">
 		<title :text="$page.title"></title>
-		<link type="text/css" rel="stylesheet" href="$site.asset('style.css').link()">
+		<link type="text/css" rel="stylesheet" href="$site.asset('main.css').link()">
 		<link
 			rel="alternate"
 			type="application/rss+xml"
