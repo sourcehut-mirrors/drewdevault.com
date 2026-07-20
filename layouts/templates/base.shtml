@@ -19,147 +19,19 @@
 	<body id="body">
 		<nav class="site-nav">
 			<h1>
-				<a href="/">Drew's website</a>
+				<a href="/">Drew DeVault</a>
 			</h1>
 			<ul>
-				<li tabindex="0">
-					Blog
-					<ul>
-						<li tabindex="0">
-							Recent articles <span class="icon-right">►</span>
-							<ul :loop="$site.page('blog').subpages().slice(0, 8)">
-								<ctx :if="$loop.it.custom.getOr('noindex', false).not()">
-									<ctx :if="$loop.it.custom.has('external').not()">
-										<li class="article">
-											<a href="$loop.it.link()" :text="$loop.it.title"></a>
-										</li>
-									</ctx>
-								</ctx>
-							</ul>
-						</li>
-						<li>
-							<a href="/">Read all</a>
-						</li>
-						<li>
-							<img class="icon" src="$site.asset('rss.png').link()">
-							<a href="$site.page('blog').alternative('rss').link()">Subscribe (RSS)</a>
-						</li>
-					</ul>
-				</li>
-
-				<li tabindex="0">
-					Projects
-					<ul style="width: 300px">
-						<span class="toolbar-heading">
-							Selected open source projects:
-						</span>
-						<li>
-							<a href="https://sourcehut.org">SourceHut</a>
-						</li>
-						<li>
-							<a href="https://harelang.org">Hare</a>
-						</li>
-						<li>
-							<a href="https://sr.ht/~sircmpwn/ares/">Ares OS</a>
-						</li>
-						<li>
-							<a href="https://himitsustore.org">Himitsu</a>
-						</li>
-						<li>
-							<a href="https://vim-classic.org/">Vim Classic</a>
-						</li>
-						<li>
-							<a href="https://sr.ht/~sircmpwn">More...</a>
-						</li>
-						<li class="divider">
-							<span class="note">
-								Started, but no longer maintain:
-							</span>
-						</li>
-						<li>
-							<a href="https://aerc-mail.org">Aerc</a>
-						</li>
-						<li>
-							<a href="https://swaywm.org">Sway</a>
-						</li>
-						<li>
-							<a href="https://gitlab.freedesktop.org/wlroots/wlroots">wlroots</a>
-						</li>
-					</ul>
-				</li>
-
-				<li tabindex="0">
-					Talks
-					<ul style="width: 300px">
-						<ctx :loop="$site.page('talks').subpages().slice(0, 8)">
-							<ctx :if="$loop.it.custom.getOr('noindex', false).not()">
-								<ctx :if="$loop.it.custom.has('external').not()">
-									<li class="article">
-										<a href="$loop.it.link()" :text="$loop.it.title"></a>
-									</li>
-								</ctx>
-							</ctx>
-						</ctx>
-						<li>
-							<a href="$site.page('talks').link()">Browse more</a>
-						</li>
-					</ul>
-				</li>
-
-				<li tabindex="0">
-					Solidarity
-					<ul>
-						<li>
-							<img class="icon" src="$site.asset('antifa.svg').link()">
-							Antifascism
-						</li>
-						<li>
-							<span class="icon">🇵🇸</span>
-							Free Palestine
-						</li>
-						<li>
-							<span class="icon">🏳️‍⚧️</span>
-							Trans rights
-						</li>
-						<li>
-							<span class="icon">♀</span>
-							Womens' rights
-						</li>
-					</ul>
-				</li>
-
-				<li tabindex="0">
-					Links
-					<ul>
-						<li>
-							<a href="https://sr.ht/~sircmpwn">SourceHut</a>
-						</li>
-						<li>
-							<a href="https://codeberg.org/ddevault">Codeberg</a>
-						</li>
-						<li>
-							<a href="https://liberapay.com/ddevault">Donate</a>
-						</li>
-					</ul>
+				<li>
+					<a href="$site.page('talks').link()">Talks</a>
 				</li>
 
 				<li>
-					Contact
-					<ul>
-						<li>
-							<a href="mailto:drew@ddevault.org">Email</a>
-						</li>
-						<li>
-							<a href="$site.asset('publickey.txt').link()">PGP key</a>
-						</li>
-						<li>
-							<a href="https://social.freebitcoin.gay/@drew">Fediverse</a>
-						</li>
-					</ul>
+					<a href="$site.page('about').link()">About</a>
 				</li>
 
-				<li tabindex="0">
-					<a href="$site.page('about').link()">About</a>
+				<li>
+					<a href="$site.page('blog').alternative('rss').link()">Subscribe (RSS)</a>
 				</li>
 			</ul>
 		</nav>

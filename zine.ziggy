@@ -4,5 +4,12 @@ Site {
     .content_dir_path = "content",
     .layouts_dir_path = "layouts",
     .assets_dir_path = "assets",
-    .static_assets = [],
+    .static_assets = [
+        "fonts/alegreya-sc-v28-latin_latin-ext-500.woff2",
+        "fonts/alegreya-sc-v28-latin_latin-ext-500italic.woff2",
+        "fonts/alegreya-sc-v28-latin_latin-ext-700italic.woff2",
+        "fonts/alegreya-sc-v28-latin_latin-ext-800.woff2",
+        "fonts/alegreya-sc-v28-latin_latin-ext-italic.woff2",
+        "fonts/alegreya-sc-v28-latin_latin-ext-regular.woff2",
+    ],
 }

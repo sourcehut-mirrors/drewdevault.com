@@ -4,3 +4,31 @@
 .author = "Drew DeVault",
 .layout = "index.shtml",
 --- 
+
+Hello! I'm a software engineer and I write here about free and open source
+software, politics, ethics, and philosophy. I'm the founder & maintainer of
+several open source projects, notably [SourceHut], the [Hare programming
+language], and [Vim Classic], and I started but no longer work on several more
+that you might have heard of, such as [sway], [wlroots], [aerc], and many
+others.
+
+[SourceHut]: https://sourcehut.org
+[Hare programming language]: https://harelang.org
+[Vim Classic]: https://vim-classic.org
+[Sway]: https://swaywm.org
+[wlroots]: https://gitlab.freedesktop.org/wlroots/wlroots
+[aerc]: https://aerc-mail.org
+
+## Find me online
+
+* SourceHut: [~sircmpwn](https://sr.ht/~sircmpwn)
+* Fediverse: [@drew@social.freebitcoin.gay](https://social.freebitcoin.gay/@drew)
+* Email me: [drew@ddevault.org](mailto:drew@ddevault.org) ([PGP key](https://drewdevault.com/publickey.txt))
+* IRC: ddevault on most networks
+
+## Solidarity with
+
+* []($image.siteAsset('antifa.svg').attrs('icon')) Antifascism
+* 🇵🇸 Free Palestine
+* 🏳️‍⚧️ Trans rights
+* ♀️ Women's rights

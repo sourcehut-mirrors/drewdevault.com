@@ -5,16 +5,33 @@
 .layout = "page.shtml",
 ---
 
-[]($image.siteAsset('profile.jpg').attrs('profile'))
+Hello! I'm a software engineer and I write here about free and open source
+software, politics, ethics, and philosophy. I'm the founder & maintainer of
+several open source projects, notably [SourceHut], the [Hare programming
+language], and [Vim Classic], and I started but no longer work on several more
+that you might have heard of, such as [sway], [wlroots], [aerc], and many
+others.
 
-Welcome to my little website! I'm a hacker who writes here about software,
-especially open source, and politics, ethics, and philosophy.
+[SourceHut]: https://sourcehut.org
+[Hare programming language]: https://harelang.org
+[Vim Classic]: https://vim-classic.org
+[Sway]: https://swaywm.org
+[wlroots]: https://gitlab.freedesktop.org/wlroots/wlroots
+[aerc]: https://aerc-mail.org
 
 I like getting emails so if you have comments or feedback on anything you read
 here, feel free to [reach out directly] or to write to my [public inbox]. It
 might take me several days to get to your email.
 
-The content for this site is [CC-BY-SA] and the [source code] is [MIT].
+The content for this site is [CC-BY-SA] and the [source code] is [MIT]. The
+theme is based on [The Proportional Web] by Oskar Wickström, modified to suit my
+personal preferences and the needs of this blog. Wickström's work uses the MIT
+license.
+
+[The Proportional Web]: https://owickstrom.github.io/the-proportional-web/
+
+**I do not use** large language models (LLMs) or other forms of generative AI,
+including anything on this website and all of my software projects.
 
 [public inbox]: https://lists.sr.ht/~sircmpwn/public-inbox
 [reach out directly]: mailto:drew@ddevault.org
@@ -22,4 +39,6 @@ The content for this site is [CC-BY-SA] and the [source code] is [MIT].
 [source code]: https://git.sr.ht/~sircmpwn/drewdevault.com
 [MIT]: https://opensource.org/licenses/MIT
 
-> []($block.attrs('clearfix'))
+---
+
+[A picture of yours truly.]($image.siteAsset('profile.jpg').attrs('profile'))

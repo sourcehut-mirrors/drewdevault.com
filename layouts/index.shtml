@@ -3,6 +3,8 @@
 </head>
 <body id="body">
 	<main>
+		<ctx :html="$page.content()"></ctx>
+
 		<h1 :text="$page.title"></h1>
 
 		<section class="articles" :loop="$site.page('blog').subpages()">
