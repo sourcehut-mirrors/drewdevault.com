@@ -1,8 +1,8 @@
-image: archlinux
+image: alpine/edge
 oauth: pages.sr.ht/PAGES:RW
 packages:
 - hut
-- zine-bin
+- zine
 sources:
 - https://git.sr.ht/~sircmpwn/drewdevault.com
 tasks:
