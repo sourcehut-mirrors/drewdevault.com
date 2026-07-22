@@ -7,6 +7,13 @@
 		<h1>
 			<ctx :text="$page.title"></ctx>
 		</h1>
+		<div class="byline">
+			<div :text="$page.date.format('January 2, 2006')"></div>
+			<div class="tags" :loop="$page.tags">
+				<!-- TODO: https://github.com/kristoff-it/zine/pull/197 -->
+				<span>#</span><span :text="$loop.it"></span>
+			</div>
+		</div>
 		<ctx :if="$page.date.lt($build.generated.sub(1325, 'day'))">
 			<div class="alert alert-danger">
 				<strong class="heading">Notice</strong>
@@ -17,9 +24,6 @@
 					opinions that didn't stand the test of time. Please read generously!
 				</p>
 			</div>
-		</ctx>
-		<ctx :if="$page.date.gt($build.generated.sub(1325, 'day'))">
-			<div class="date" :text="$page.date.format('January 2, 2006')"></div>
 		</ctx>
 		<article>
 			<ctx :html="$page.content()"></ctx>

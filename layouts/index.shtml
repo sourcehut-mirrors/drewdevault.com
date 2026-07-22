@@ -9,9 +9,17 @@
 
 		<section class="articles" :loop="$site.page('blog').subpages()">
 			<ctx :if="$loop.it.custom.getOr('noindex', false).not()">
-				<div class="date" :text="$loop.it.date.format('January 02, 2006')"></div>
-				<div class="link">
-					<a href="$loop.it.link()" :text="$loop.it.title"></a>
+				<div class="article">
+					<div class="byline">
+						<div class="date" :text="$loop.it.date.format('January 02, 2006')"></div>
+						<div class="tags" :loop="$loop.it.tags">
+							<!-- TODO: https://github.com/kristoff-it/zine/pull/197 -->
+							<small>#</small><small :text="$loop.it"></small>
+						</div>
+					</div>
+					<div class="link">
+						<a href="$loop.it.link()" :text="$loop.it.title"></a>
+					</div>
 				</div>
 			</ctx>
 		</section>

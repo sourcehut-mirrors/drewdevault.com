@@ -6,9 +6,17 @@
 	<main>
 		<h1 :text="$page.title"></h1>
 		<section class="articles" :loop="$page.subpages()">
-			<div class="date" :text="$loop.it.date.format('January 02, 2006')"></div>
-			<div class="link">
-				<a href="$loop.it.link()" :text="$loop.it.title"></a>
+			<div class="article">
+				<div class="byline">
+					<div class="date" :text="$loop.it.date.format('January 02, 2006')"></div>
+					<div class="tags" :loop="$loop.it.tags">
+						<!-- TODO: https://github.com/kristoff-it/zine/pull/197 -->
+						<small>#</small><small :text="$loop.it"></small>
+					</div>
+				</div>
+				<div class="link">
+					<a href="$loop.it.link()" :text="$loop.it.title"></a>
+				</div>
 			</div>
 		</section>
 	</main>

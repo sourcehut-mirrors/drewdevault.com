@@ -773,3 +773,30 @@ sup {
   top: -8px;
   vertical-align: baseline;
 }
+
+.byline {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.articles .article {
+  margin-bottom: 1rem;
+}
+
+.articles .byline {
+  margin-bottom: 0;
+}
+
+.byline .tags {
+  flex-grow: 1;
+  text-align: right;
+  color: #666;
+}
+
+iframe {
+  margin-top: 1rem;
+}
+
+small {
+  font-size: 0.8rem;
+}

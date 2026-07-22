@@ -31,7 +31,7 @@
 				</li>
 
 				<li>
-					<a href="$site.page('blog').alternative('rss').link()">Subscribe (RSS)</a>
+					<a href="$site.page('blog').alternative('rss').link()">RSS</a>
 				</li>
 			</ul>
 		</nav>
