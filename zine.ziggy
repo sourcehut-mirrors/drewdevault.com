@@ -11,5 +11,6 @@ Site {
         "fonts/alegreya-sc-v28-latin_latin-ext-800.woff2",
         "fonts/alegreya-sc-v28-latin_latin-ext-italic.woff2",
         "fonts/alegreya-sc-v28-latin_latin-ext-regular.woff2",
+        "publickey.txt",
     ],
 }
