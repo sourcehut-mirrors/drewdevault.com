@@ -800,3 +800,18 @@ iframe {
 small {
   font-size: 0.8rem;
 }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: #eee;
+    --background-color: #222;
+  }
+  a { color: #ddd; }
+  a:hover { color: #aaa; }
+  pre { background: #222; }
+  code, pre { background: #222; }
+  .site-nav { border-bottom-color: #ddd; }
+  .byline .tags { color: #aaa; }
+  hr:after { background: var(--background-color); }
+}
