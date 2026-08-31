@@ -86,7 +86,7 @@ qemu also holds a special place in my heart as one of the first projects I
 contributed to over email 🙂 And they still use email today, and even [recommend
 SourceHut][5] to make the process easier for novices.
 
-[5]: https://qemu.readthedocs.io/en/v6.2.0/devel/submitting-a-patch.html#if-you-cannot-send-patch-emails
+[5]: https://qemu.readthedocs.io/en/master/devel/submitting-a-patch.html#if-you-cannot-send-patch-emails
 
 So, to Fabrice, and the thousands of other contributors to qemu, I offer my
 thanks. qemu is one of my favorite pieces of software.
