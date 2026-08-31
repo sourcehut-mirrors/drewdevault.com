@@ -1,0 +1,8 @@
+---
+.date = @date("2026-08-26"),
+.author = "Drew DeVault",
+.layout = "post.shtml",
+.title = "My setup for PGP",
+---
+
+hi

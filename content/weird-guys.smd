@@ -1,0 +1,283 @@
+---
+.title = "Weird little guys of FOSS",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "page.shtml",
+---
+
+![](/weird-guys.png "A picture of a woman holding some birds in her hand up for inspection. She is not impressed.")
+
+This is a list of weird little guys in the free software movement and adjacent
+spaces. Request additions, removals, or changes [via
+email](mailto:drew@ddevault.org); patches welcome.
+
+> []($block.attrs('weird-guy'))
+>
+> ## Alex Gleason
+> ![](/gleason.png "Alex Gleason performing an interesting gesture")
+>
+> **Known for**: nostr stuff
+>
+> Alex is a prominent figure in the nostr community, and an antagonist on FOSS
+> social media platforms generally. He developed the software used for Truth
+> Social, Donald Trump's fediverse
+> thing,[[source]](https://www.reuters.com/technology/head-engineering-trumps-truth-social-app-resigns-2023-07-17/)
+> and was banned from the Mastodon instance he used back in 2023 for being
+> openly transphobic.[[source]](https://web.archive.org/web/20230330163111/https://blog.alexgleason.me/gab-block/)[[source]](https://web.archive.org/web/20230331173749/https://blog.alexgleason.me/trans/)
+>
+> This photo of him on the right is prominently displayed on his personal
+> website.
+
+> []($block.attrs('weird-guy'))
+>
+> ## [Andreas Kling]($heading.id("kling"))
+> ![](/akling.jpg "Andreas Kling")
+>
+> **Known for**: SerenityOS, Ladybird
+>
+> Andreas is the founder of SerenityOS and the Ladybird web browser. He posted
+> in support of Charlie Kirk after his assassination,[[source]](https://x.com/awesomekling/status/1966456391146606806),
+> gets triggered by the phrase "punch nazis",[[source]](https://x.com/awesomekling/status/1967178708852097278),
+> and the idea of using gender-neutral pronouns in documentation.[[source]](https://github.com/SerenityOS/serenity/pull/6814)
+> Andreas boosted [David Heinemeir Hansson](#dhh)'s tweets on DEI and
+> the white supremacist "white replacement" theory,[[source]](https://x.com/awesomekling/status/1874518295350837401)
+> and expressed solidarity with David's persecution for his "banal, mainstream"
+> positions, positions which include, for example, the forced expulsion of
+> non-white people from the
+> UK.[[source]](https://x.com/awesomekling/status/1969350008538370216)
+>
+> Ladybird and Andreas have received sponsorships from FUTO, Cloudflare, Shopify
+> and 37signals (i.e. David Heinemier Hansson), Proton, Jetbrains, Sourcegraph,
+> and others.[[source]](https://ladybird.org/#sponsors)
+
+> []($block.attrs('weird-guy'))
+>
+> ## [Brendan Eich]($heading.id("eich"))
+> ![](/eich.jpg "Brendan Eich")
+>
+> **Known for**: Mozilla co-founder, Brave browser
+>
+> Brendan got a lot of flack several years ago, resigning as Mozilla CEO, after
+> he donated a few thousand dollars to support California's Proposition 8, an
+> initiative that would have banned same-sex marriage in California.[[source]](https://web.archive.org/web/20200425070742/https://blogs.wsj.com/digits/2014/03/28/three-mozilla-board-members-resign-over-choice-of-new-ceo/)
+>
+> After Mozilla, he moved on to co-found and lead as CEO the Brave Browser,
+> which he used to push his own cryptocurrency micro-payments
+> system.[[source]](https://web.archive.org/web/20200725110058/https://techcrunch.com/2017/06/01/brave-ico-35-million-30-seconds-brendan-eich/)
+> He used Brave to support the hate website Kiwi Farms, which has been alleged
+> to have instigated several suicides as a result of their harassment, working
+> with their site admins to pose Brave as a safe and secure means for their
+> members to access the site and conduct their harassment.[[source]](https://samambreen.wordpress.com/2019/08/16/an-open-letter-to-brendan-eich/)
+> Kiwi Farms also took advantage of Brave's crypto scheme for funding, which was
+> brought to Eich's attention and never corrected.[[source]](https://www.change.org/p/brendan-eich-brave-software-stop-providing-a-revenue-stream-for-white-supremacist-paedophiles)
+
+> []($block.attrs('weird-guy'))
+>
+> ## [Bryan Lunduke]($heading.id("lunduke"))
+> ![](/lunduke.jpg "Bryan Lunduke")
+>
+> **Known for**: The Lunduke Journal, "Linux Sucks"
+>
+> Bryan is a prolific YouTube personality, maintains a personal blog, and
+> frequently tweets on his X account, using all of these platforms to push
+> "anti-woke" ideas and conspiracy theories, and harass anyone he views as too
+> progressive, trans, female, or black. Big fan of RedHat DEI conspiracy
+> theories.
+>
+> Has a huge problem with transgender people and goes out of his way to harass
+> them, misgender them, deadname them, the works.
+
+> []($block.attrs('weird-guy'))
+>
+> ## Daniel J. Bernstein
+> ![](/bernstein.jpg "Daniel J. Bernstein")
+>
+> **Known for**: Popular cryptographic algorithms, e.g. Salsa20, ed25519
+>
+> Daniel is an well-known and influential cryptographer and former visiting
+> professor at TU/Eindhoven,[[source]](https://www.researchgate.net/scientific-contributions/Daniel-J-Bernstein-69944562)
+> where he has worked with his wife, Tanja Lange, the chair of the coding theory
+> and cryptology group there.[[source]](https://cc.win.tue.nl/staff.html)
+>
+> Daniel and Tanja are associates of [Jacob Appelbaum](#jacob-appelbaum)
+> and served as his PhD advisors.[[source]](https://research.tue.nl/en/persons/jacob-r-appelbaum/supervised-student-theses/)[[source]](https://www.hyperelliptic.org/tanja/students.html)
+> One of the students under Bernstein and Lange at TU/e, Henry de Valence,
+> resigned from their PhD program in 2016 citing patterns of harassment, abuse,
+> and bullying at the hands of Jacob, Daniel, and Tanja.[[source]](https://medium.com/@hdevalence/when-hell-kept-on-payroll-somewhere-is-where-you-are-f419d3022d0)
+
+> []($block.attrs('weird-guy'))
+>
+> ## [David Heinemeier Hansson]($heading.id("dhh"))
+> ![](/d-hansson.jpg "David Heinemeier Hansson")
+>
+> **Known for**: Ruby on Rails, Omarchy (founder); 37signals (CTO); Shopify
+> (Board member)
+>
+> David, aka "DHH", is a multi-millionare who funds and boosts the "dark
+> enlightenment" in FOSS. His Linux distribution, Omarchy, is a loose collection
+> of vibe-coded scripts on top Arch Linux and a vehicle for soliciting
+> investments from large companies (e.g. Cloudflare, Framework, Dell, Block,
+> Dropbox)[[source]](https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million/)
+> to finance the projects of his weird little friends.
+>
+> He wrote a blog post, "As I remember London",[[source]](https://web.archive.org/web/20260401205851/https://world.hey.com/dhh/as-i-remember-london-e7d38e64)
+> in which he uses numerous racist, fascist, and ethno-nationalist dog-whistles
+> while calling for the ethnic cleansing via forced removal of non-white people
+> from the UK and other countries.
+>
+> The Ruby on Rails leadership stood by David in spite of numerous calls for his
+> removal from positions of power by members of the
+> community.[[source]](https://davidcel.is/articles/the-dhh-problem)[[source]](https://tekin.co.uk/2025/09/the-ruby-community-has-a-dhh-problem)
+
+> []($block.attrs('weird-guy'))
+>
+> ## [Eric S. Raymond]($heading.id("esr"))
+> ![](/esr.jpg "Eric S. Raymond")
+>
+> **Known for**: Open Source Initiative (disgraced co-founder); "The Cathedral
+> and the Bazaar" 
+>
+> Eric is a creepy weird guy who writes racist, homophobic, and misogynist
+> screeds everywhere he can. His uses his blog, "Armed and Dangerous; Sex,
+> software, politics, and firearms. Life's simple pleasures…", to advocate for
+> weird right-wing politics, such as strident support for Kyle
+> Rittenhouse[[source]](https://web.archive.org/web/20260313003028/http://esr.ibiblio.org/?p=8752)
+> and threatening to shoot
+> communists[[source]](https://web.archive.org/web/20260411015133/http://esr.ibiblio.org/?p=8685).
+> He said gay men deserved to get AIDS because of "unfettered
+> promiscuity",[[source]](https://web.archive.org/web/20061207053952/http://esr.ibiblio.org/?p=26)
+> quotes racist talking points about police
+> violence,[[source]](https://web.archive.org/web/20190217144805/http://esr.ibiblio.org/?p=7239)
+> and says organizations that try to get women more involved in FOSS are trying
+> to entrap men with rape
+> accusations.[[source]](https://web.archive.org/web/20170804102904/http://esr.ibiblio.org/?p=6907)
+>
+> Eric got kicked out of the OSI mailing lists for being a huge asshole back in
+> 2020.[[source]](https://lists.opensource.org/pipermail/license-discuss_lists.opensource.org/2020-February/021328.html)
+
+> []($block.attrs('weird-guy'))
+>
+> ## Enrico Weigelt
+> ![](/metux.jpg "Enrico Weigelt's avatar")
+>
+> **Known for**: Xlibre (founder)
+>
+> Enrico, aka "metux", is the founder of the Xlibre project, a fork of Xorg.
+> Took the Wayland/RedHat DEI conspiracy theory to its natural conclusion by
+> making an unwoke fork of the deprecated Xserver project to keep it alive. The
+> code of conduct is just "404" in a text file, and the README has been cleaned
+> up but was initially mostly just a rant about the RedHat DEI big-tech
+> conspiracy theory.[[source]](https://github.com/X11Libre/xserver/commit/4839966900d948c5793064b5dccbdb3fd35f558b)
+>
+> The Xlibre community is radically inclusive, which is to say, a huge
+> circlejerk of open Nazis and bigots with no moderation.
+
+> []($block.attrs('weird-guy'))
+>
+> ## Eron Wolf
+> ![](/ewolf.jpg "Eron Wolf")
+>
+> **Known for**: FUTO
+>
+> Eron is the modestly wealthy founder of FUTO, an organization that funds
+> software projects. He doesn't like the Open Source Definition[[source]](https://web.archive.org/web/20251022160356/https://futo.org/about/futo-statement-on-opensource/)
+> and cites other weird little guys like [Bryan Lunduke](#lunduke) and [Eric S.
+> Raymond](#esr) to make his case. Eron is friends with Curtis Yarvin, a notable
+> techno-fascist and influence on JD Vance, and invited Curtis onto FUTO's
+> platform for an interview in 2023.[[source]](https://peertube.futo.org/w/eSzKtjupL928QzxPXC5k2R)
+>
+> Associate of Louis Rossmann.
+
+> []($block.attrs('weird-guy'))
+>
+> ## [Jacob Appelbaum]($heading.id("jacob-appelbaum"))
+> ![](/appelbaum.jpg "Jacob Appelbaum")
+>
+> **Known for**: Tor (former contributor), Freedom of the Press Foundation
+> (former TAB member)
+>
+> Jacob is a cryptography and computer security researcher and disgraced
+> ex-member of the Tor project. In 2016 ten people came forward to present
+> serious accusations of sexual harassment, assault, and
+> rape,[[source]](https://web.archive.org/web/20160910001406/http://jacobappelbaum.net/)
+> ultimately leading this removal from the Tor project,[[source]](https://web.archive.org/web/20160623104201/http://www.itwire.com/business-it-news/open-source/73415-security-expert-appelbaum-no-longer-part-of-debian.html) Debian,[[source]](https://web.archive.org/web/20190820150807/https://www.nytimes.com/2016/07/28/technology/tor-project-jacob-appelbaum.html) and the
+> hackerspace he co-founded, Noisebridge.[[source]](https://blog.noisebridge.net/post/145728465358/noisebridge-statement-on-jacob-appelbaum)
+>
+> He still works quietly and mostly out of the public view at
+> TU/Eindhoven[[source]](https://cc.win.tue.nl/staff.html)
+> and has been rumoured to pop up at events around Berlin in recent years. He is
+> currently working on the Vula network encryption
+> scheme,[[source]](https://codeberg.org/vula/highctidh/commits/branch/main) which is funded by
+> NLnet.[[source]](https://nlnet.nl/project/Vula/)
+
+> []($block.attrs('weird-guy'))
+>
+> ## Justine Tunney
+> ![](/justine.jpg "Justine Tunney")
+>
+> **Known for**: Cosmopolitan libc
+>
+> A weird little gal, Justine is a Google employee in New York and the founder
+> of the Cosmopolitan libc project. She wants to give poor people Soylent (a
+> weird "food" drink) to solve starvation,[[source]](https://web.archive.org/web/20231102081020/https://twitter.com/JustineTunney/statuses/466271404963270656),
+> install a techno-aristocracy,[[source]](https://web.archive.org/web/20231102081020/https://twitter.com/JustineTunney/statuses/492661370140114944),
+> and kill herself in the event that Google hired her via their DEI
+> program.[[source]](https://web.archive.org/web/20231102081020/https://twitter.com/JustineTunney/statuses/490737586415992832)[[source]](https://web.archive.org/web/20231102081020/http://valleywag.gawker.com/why-does-google-employ-a-pro-slavery-lunatic-1612868507)
+
+> []($block.attrs('weird-guy'))
+>
+> ## Michael B. Paulson
+> ![](/primeagen.webp "Michael B. Paulson")
+>
+> **Known for**: ThePrimeagen Twitch/YouTube accounts
+>
+> Popular Twitch streamer and YouTube personality whose content isn't all that
+> weird, but who is publicly associated with a bunch of weirdos this list. He's
+> a speaker at Omacon 2026, [David Heinemeier Hansson](#dhh)'s conference for fashy
+> weirdos,[[source]](https://web.archive.org/web/20260810191341/https://www.omacon.org/)
+> and a donor to [Andreas Kling](#kling)'s
+> Ladybird,[[source]](https://ladybird.org/#sponsors) and otherwise maintains
+> associations with and financially supports people in a little network of
+> weirdos.
+
+> []($block.attrs('weird-guy'))
+>
+> ## [Richard M. Stallman]($heading.id("rms"))
+> ![](/rms.jpg "Richard M. Stallman")
+>
+> **Known for**: Free Software Foundation, GNU, GCC
+>
+> Founder of the Free Software Foundation and one of the most important figures
+> in getting this whole thing off of the ground. Also the subject of credible
+> rumors of harassing a lot of women over the years, and frequently writes on
+> his website in defense of rapists, sexual harassment, sexual exploitation of
+> minors, distribution of child sexual abuse material, and even bestiality and
+> necrophilia. Stallman's behavior is extensively covered in The Stallman
+> Report.[[source]](https://stallman-report.org/)
+
+> []($block.attrs('weird-guy'))
+>
+> ## Vaxry
+> ![](/vaxry.jpg "Vaxry")
+>
+> **Known for**: Hyprland
+>
+> Vaxry is the "edgy" founder and maintainer of the Hyprland Wayland compositor.
+> He oversees a toxic community and participates in hate and bigotry,
+> particularly towards LGBTQ+ folks.[[source]](https://web.archive.org/web/20250306212807/https://blog.vaxry.net/resource/articleFDO/RHMails.pdf) Downplayed an incident where moderators of
+> his Discord server changed the pronouns of a trans person to deliberately
+> misgender them, saying "on the Internet, let's be real, [he] is the
+> default".[[source]](https://youtube.com/watch?v=nskemNa_Kn4)
+>
+> Got banned from Free Desktop after losing his shit when they privately warned
+> him not to be a toxic jerk in their community spaces.[[source]](https://web.archive.org/web/20250306212807/https://blog.vaxry.net/resource/articleFDO/RHMails.pdf) Hates codes of conduct
+> and inclusively in FOSS.[[source]](https://blog.vaxry.net/articles/2023-inclusiveActivists)
+>
+> Funded by Framework,[[source]](https://frame.work/nl/en/blog/framework-sponsorships) speaker at [David Heinemeir Hansson](#dhh)'s Omacon
+> 2026.[[source]](https://web.archive.org/web/20260810191341/https://www.omacon.org/)
+
+## See also
+
+* [~rabbits/fashware](https://git.sr.ht/~rabbits/fashware)
+
+Artwork by [@p@hj.9fs.net](https://hj.9fs.net/p)

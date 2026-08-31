@@ -815,3 +815,32 @@ small {
   .byline .tags { color: #aaa; }
   hr:after { background: var(--background-color); }
 }
+
+.weird-guy {
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  img {
+    max-width: 30%;
+    float: right;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  a:not([href^="#"]) {
+    top: -0.3em;
+    font-size: 80%;
+    position: relative;
+    text-decoration: none;
+  }
+
+  a[href^="#"] {
+    text-decoration-style: dotted;
+  }
+}
+
+.weird-guy + * {
+  clear: both;
+}
