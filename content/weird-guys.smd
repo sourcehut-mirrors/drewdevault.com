@@ -232,21 +232,6 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 > []($block.attrs('weird-guy'))
 >
-> ## [Richard M. Stallman]($heading.id("rms"))
-> ![](/rms.jpg "Richard M. Stallman")
->
-> **Known for**: Free Software Foundation, GNU, GCC
->
-> Founder of the Free Software Foundation and one of the most important figures
-> in getting this whole thing off of the ground. Also the subject of credible
-> rumors of harassing a lot of women over the years, and frequently writes on
-> his website in defense of rapists, sexual harassment, sexual exploitation of
-> minors, distribution of child sexual abuse material, and even bestiality and
-> necrophilia. Stallman's behavior is extensively covered in The Stallman
-> Report.[[source]](https://stallman-report.org/)
-
-> []($block.attrs('weird-guy'))
->
 > ## Rafał Kucharski
 > ![](/vaxry.jpg "Rafał Kucharski")
 >
@@ -267,6 +252,21 @@ email](mailto:drew@ddevault.org); patches welcome.
 >
 > Funded by Framework,[[source]](https://frame.work/nl/en/blog/framework-sponsorships) speaker at [David Heinemeier Hansson](#dhh)'s Omacon
 > 2026.[[source]](https://web.archive.org/web/20260810191341/https://www.omacon.org/)
+
+> []($block.attrs('weird-guy'))
+>
+> ## [Richard M. Stallman]($heading.id("rms"))
+> ![](/rms.jpg "Richard M. Stallman")
+>
+> **Known for**: Free Software Foundation, GNU, GCC
+>
+> Founder of the Free Software Foundation and one of the most important figures
+> in getting this whole thing off of the ground. Also the subject of credible
+> rumors of harassing a lot of women over the years, and frequently writes on
+> his website in defense of rapists, sexual harassment, sexual exploitation of
+> minors, distribution of child sexual abuse material, and even bestiality and
+> necrophilia. Stallman's behavior is extensively covered in The Stallman
+> Report.[[source]](https://stallman-report.org/)
 
 ## See also
 
