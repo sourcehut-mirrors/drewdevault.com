@@ -38,18 +38,17 @@ email](mailto:drew@ddevault.org); patches welcome.
 > **Known for**: SerenityOS, Ladybird
 >
 > Andreas is the founder of SerenityOS and the Ladybird web browser. He posted
-> in support of Charlie Kirk after his assassination,[[source]](https://x.com/awesomekling/status/1966456391146606806),
-> gets triggered by the phrase "punch nazis",[[source]](https://x.com/awesomekling/status/1967178708852097278),
+> in support of Charlie Kirk after his assassination,[[source]](https://x.com/awesomekling/status/1966456391146606806)
+> gets triggered by the phrase "punch nazis",[[source]](https://x.com/awesomekling/status/1967178708852097278)
 > and the idea of using gender-neutral pronouns in documentation.[[source]](https://github.com/SerenityOS/serenity/pull/6814)
-> Andreas boosted [David Heinemeir Hansson](#dhh)'s tweets on DEI and
+> Andreas boosted [David Heinemeier Hansson](#dhh)'s tweets on DEI and
 > the white supremacist "white replacement" theory,[[source]](https://x.com/awesomekling/status/1874518295350837401)
 > and expressed solidarity with David's persecution for his "banal, mainstream"
 > positions, positions which include, for example, the forced expulsion of
-> non-white people from the
-> UK.[[source]](https://x.com/awesomekling/status/1969350008538370216)
+> non-white people from Europe.[[source]](https://x.com/awesomekling/status/1969350008538370216)
 >
 > Ladybird and Andreas have received sponsorships from FUTO, Cloudflare, Shopify
-> and 37signals (i.e. David Heinemier Hansson), Proton, Jetbrains, Sourcegraph,
+> and 37signals (i.e. David Heinemeier Hansson), Proton, Jetbrains, Sourcegraph,
 > and others.[[source]](https://ladybird.org/#sponsors)
 
 > []($block.attrs('weird-guy'))
@@ -94,7 +93,8 @@ email](mailto:drew@ddevault.org); patches welcome.
 > ## Daniel J. Bernstein
 > ![](/bernstein.jpg "Daniel J. Bernstein")
 >
-> **Known for**: Popular cryptographic algorithms, e.g. Salsa20, ed25519
+> **Known for**: Popular cryptographic algorithms, e.g. Salsa20, ed25519; qmail,
+> djbdns
 >
 > Daniel is an well-known and influential cryptographer and former visiting
 > professor at TU/Eindhoven,[[source]](https://www.researchgate.net/scientific-contributions/Daniel-J-Bernstein-69944562)
@@ -119,13 +119,15 @@ email](mailto:drew@ddevault.org); patches welcome.
 > enlightenment" in FOSS. His Linux distribution, Omarchy, is a loose collection
 > of vibe-coded scripts on top Arch Linux and a vehicle for soliciting
 > investments from large companies (e.g. Cloudflare, Framework, Dell, Block,
-> Dropbox)[[source]](https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million/)
+> Dropbox, 1password)[[source]](https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million/)[[source]](https://www.alilleybrinker.com/blog/1password-funds-ethnic-cleansing/)
 > to finance the projects of his weird little friends.
 >
 > He wrote a blog post, "As I remember London",[[source]](https://web.archive.org/web/20260401205851/https://world.hey.com/dhh/as-i-remember-london-e7d38e64)
 > in which he uses numerous racist, fascist, and ethno-nationalist dog-whistles
 > while calling for the ethnic cleansing via forced removal of non-white people
-> from the UK and other countries.
+> from the UK and other countries. Another of David's posts, "Wolves, sheep, and
+> gypsies"[[source]](https://world.hey.com/dhh/wolves-sheep-and-gypsies-ba44af6a)
+> compares Roma people to wolves and again calls for an ethnic cleansing.
 >
 > The Ruby on Rails leadership stood by David in spite of numerous calls for his
 > removal from positions of power by members of the
@@ -145,7 +147,7 @@ email](mailto:drew@ddevault.org); patches welcome.
 > weird right-wing politics, such as strident support for Kyle
 > Rittenhouse[[source]](https://web.archive.org/web/20260313003028/http://esr.ibiblio.org/?p=8752)
 > and threatening to shoot
-> communists[[source]](https://web.archive.org/web/20260411015133/http://esr.ibiblio.org/?p=8685).
+> communists.[[source]](https://web.archive.org/web/20260411015133/http://esr.ibiblio.org/?p=8685)
 > He said gay men deserved to get AIDS because of "unfettered
 > promiscuity",[[source]](https://web.archive.org/web/20061207053952/http://esr.ibiblio.org/?p=26)
 > quotes racist talking points about police
@@ -245,27 +247,30 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 > []($block.attrs('weird-guy'))
 >
-> ## Vaxry
-> ![](/vaxry.jpg "Vaxry")
+> ## Rafał Kucharski
+> ![](/vaxry.jpg "Rafał Kucharski")
 >
 > **Known for**: Hyprland
 >
-> Vaxry is the "edgy" founder and maintainer of the Hyprland Wayland compositor.
-> He oversees a toxic community and participates in hate and bigotry,
-> particularly towards LGBTQ+ folks.[[source]](https://web.archive.org/web/20250306212807/https://blog.vaxry.net/resource/articleFDO/RHMails.pdf) Downplayed an incident where moderators of
-> his Discord server changed the pronouns of a trans person to deliberately
-> misgender them, saying "on the Internet, let's be real, [he] is the
+> Rafał Kucharski, aka "vaxry", is the "edgy" founder and maintainer of the
+> Hyprland Wayland compositor. He oversees a toxic community and participates in
+> hate and bigotry, particularly towards LGBTQ+
+> folks.[[source]](https://web.archive.org/web/20250306212807/https://blog.vaxry.net/resource/articleFDO/RHMails.pdf)
+> Downplayed an incident where moderators of his Discord server changed the
+> pronouns of a trans person to deliberately misgender them, saying "on the
+> Internet, let's be real, [he] is the
 > default".[[source]](https://youtube.com/watch?v=nskemNa_Kn4)
 >
 > Got banned from Free Desktop after losing his shit when they privately warned
 > him not to be a toxic jerk in their community spaces.[[source]](https://web.archive.org/web/20250306212807/https://blog.vaxry.net/resource/articleFDO/RHMails.pdf) Hates codes of conduct
 > and inclusively in FOSS.[[source]](https://blog.vaxry.net/articles/2023-inclusiveActivists)
 >
-> Funded by Framework,[[source]](https://frame.work/nl/en/blog/framework-sponsorships) speaker at [David Heinemeir Hansson](#dhh)'s Omacon
+> Funded by Framework,[[source]](https://frame.work/nl/en/blog/framework-sponsorships) speaker at [David Heinemeier Hansson](#dhh)'s Omacon
 > 2026.[[source]](https://web.archive.org/web/20260810191341/https://www.omacon.org/)
 
 ## See also
 
+* ["Weird little guys"](https://www.iheart.com/podcast/1119-weird-little-guys-201395214/), a podcast hosted by Molly Conger that inspired the name of this list
 * [~rabbits/fashware](https://git.sr.ht/~rabbits/fashware)
 
 Artwork by [@p@hj.9fs.net](https://hj.9fs.net/p)
