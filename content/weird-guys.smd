@@ -11,11 +11,11 @@ This is a list of weird little guys in the free software movement and adjacent
 spaces. Request additions, removals, or changes [via
 email](mailto:drew@ddevault.org); patches welcome.
 
-**Don't harass these people**! Don't engage with them at all.
+**Don't harass these people!** Don't engage with them at all.
 
 > []($block.attrs('weird-guy'))
 >
-> ## Alex Gleason
+> ## [Alex Gleason]($heading.id("gleason"))
 > ![](/gleason.png "Alex Gleason performing an interesting gesture")
 >
 > **Known for**: nostr stuff
@@ -26,6 +26,8 @@ email](mailto:drew@ddevault.org); patches welcome.
 > thing,[[source]](https://www.reuters.com/technology/head-engineering-trumps-truth-social-app-resigns-2023-07-17/)
 > and was banned from the Mastodon instance he used back in 2023 for being
 > openly transphobic.[[source]](https://web.archive.org/web/20230330163111/https://blog.alexgleason.me/gab-block/)[[source]](https://web.archive.org/web/20230331173749/https://blog.alexgleason.me/trans/)
+> Alex is financially supported by [Jack Dorsey](#dorsey) via the
+> "andOtherStuff" collective.[[source]](https://techcrunch.com/2025/07/16/jack-dorsey-pumps-10m-into-a-nonprofit-focused-on-open-source-social-media/)
 >
 > This photo of him on the right is prominently displayed on his personal
 > website.
@@ -37,15 +39,20 @@ email](mailto:drew@ddevault.org); patches welcome.
 >
 > **Known for**: SerenityOS, Ladybird
 >
-> Andreas is the founder of SerenityOS and the Ladybird web browser. He posted
-> in support of Charlie Kirk after his assassination,[[source]](https://x.com/awesomekling/status/1966456391146606806)
-> gets triggered by the phrase "punch nazis",[[source]](https://x.com/awesomekling/status/1967178708852097278)
-> and the idea of using gender-neutral pronouns in documentation.[[source]](https://github.com/SerenityOS/serenity/pull/6814)
-> Andreas boosted [David Heinemeier Hansson](#dhh)'s tweets on DEI and
-> the white supremacist "white replacement" theory,[[source]](https://x.com/awesomekling/status/1874518295350837401)
-> and expressed solidarity with David's persecution for his "banal, mainstream"
+> Andreas, aka "AwesomeKling", is the founder of SerenityOS and the Ladybird web
+> browser. He posted in support of Charlie Kirk after his
+> assassination,[[source]](https://x.com/awesomekling/status/1966456391146606806)
+> gets triggered by the phrase "punch
+> nazis",[[source]](https://x.com/awesomekling/status/1967178708852097278) and
+> the idea of using gender-neutral pronouns in
+> documentation.[[source]](https://github.com/SerenityOS/serenity/pull/6814)
+> Andreas boosted [David Heinemeier Hansson](#dhh)'s tweets on DEI and the white
+> supremacist "white replacement"
+> theory,[[source]](https://x.com/awesomekling/status/1874518295350837401) and
+> expressed solidarity with David's persecution for his "banal, mainstream"
 > positions, positions which include, for example, the forced expulsion of
-> non-white people from Europe.[[source]](https://x.com/awesomekling/status/1969350008538370216)
+> non-white people from
+> Europe.[[source]](https://x.com/awesomekling/status/1969350008538370216)
 >
 > Ladybird and Andreas have received sponsorships from FUTO, Cloudflare, Shopify
 > and 37signals (i.e. David Heinemeier Hansson), Proton, Jetbrains, Sourcegraph,
@@ -90,14 +97,50 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 > []($block.attrs('weird-guy'))
 >
+> ## [Curtis Yarvin]($heading.id("yarvin"))
+> ![](/yarvin.jpg "Curtis Yarvin")
+>
+> **Known for**: Urbit
+>
+> Curtis is the founder and on-again-off-again leader of the Urbit networking
+> protocol project. He is also considered one of the founders of the mainstream
+> neo-reactionary "dark enlightenment" movement which explicitly and
+> deliberately aims to undermine democracy in Western countries.
+>
+> Curtis's work has set the playbook for the American Republican party and a
+> number of techno-fascists. Curtis is an associate of J.D. Vance, who cites him
+> as an influence and arguably has Curtis to thank, in part, for his position as Vice
+> President.[[source]](https://www.theguardian.com/us-news/2024/dec/21/curtis-yarvin-trump) Peter Thiel, a key figure in the right-wing mass-surveillance
+> company Palantir, known for enabling mass deportations in the United States,
+> was also influenced by Curtis.[[source]](https://www.vanityfair.com/news/2022/04/inside-the-new-right-where-peter-thiel-is-placing-his-biggest-bets)
+>
+> Curtis is an associate of [Eron Wolf](#ewolf).[[source]](https://peertube.futo.org/w/eSzKtjupL928QzxPXC5k2R)
+
+> []($block.attrs('weird-guy'))
+>
+> ## Daniel Berntsson
+> ![](/berntsson.webp "Daniel Berntsson")
+>
+> **Known for**: Mullvad VPN (co-founder, co-owner)
+>
+> Daniel is the co-founder of Mullvad VPN, alongside Fredrik Strömberg. In June
+> 2026, Daniel donated $5M Swedish Krona (~$500,000 USD) to the populist
+> left-conservative Örebro Party,[[source]](https://www.flamman.se/techprofil-ger-miljoner-till-orebropartiet/)
+> saying "it’s sad that it’s needed". The party supports the ethnic cleansing of
+> non-white people from Sweden, and Daniel's donation represented, at the time,
+> 72% of the party's revenue. Daniel cited immigration as a motivating factor
+> for his donation.
+
+> []($block.attrs('weird-guy'))
+>
 > ## Daniel J. Bernstein
 > ![](/bernstein.jpg "Daniel J. Bernstein")
 >
 > **Known for**: Popular cryptographic algorithms, e.g. Salsa20, ed25519; qmail,
 > djbdns
 >
-> Daniel is an well-known and influential cryptographer and former visiting
-> professor at TU/Eindhoven,[[source]](https://www.researchgate.net/scientific-contributions/Daniel-J-Bernstein-69944562)
+> Daniel, aka "djb", is an well-known and influential cryptographer and former
+> visiting professor at TU/Eindhoven,[[source]](https://www.researchgate.net/scientific-contributions/Daniel-J-Bernstein-69944562)
 > where he has worked with his wife, Tanja Lange, the chair of the coding theory
 > and cryptology group there.[[source]](https://cc.win.tue.nl/staff.html)
 >
@@ -141,10 +184,10 @@ email](mailto:drew@ddevault.org); patches welcome.
 > **Known for**: Open Source Initiative (disgraced co-founder); "The Cathedral
 > and the Bazaar" 
 >
-> Eric is a creepy weird guy who writes racist, homophobic, and misogynist
-> screeds everywhere he can. His uses his blog, "Armed and Dangerous; Sex,
-> software, politics, and firearms. Life's simple pleasures…", to advocate for
-> weird right-wing politics, such as strident support for Kyle
+> Eric, aka "esr", is a creepy weird guy who writes racist, homophobic, and
+> misogynist screeds everywhere he can. His uses his blog, "Armed and Dangerous;
+> Sex, software, politics, and firearms. Life's simple pleasures…", to advocate
+> for weird right-wing politics, such as strident support for Kyle
 > Rittenhouse[[source]](https://web.archive.org/web/20260313003028/http://esr.ibiblio.org/?p=8752)
 > and threatening to shoot
 > communists.[[source]](https://web.archive.org/web/20260411015133/http://esr.ibiblio.org/?p=8685)
@@ -178,7 +221,7 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 > []($block.attrs('weird-guy'))
 >
-> ## Eron Wolf
+> ## [Eron Wolf]($heading.id("ewolf"))
 > ![](/ewolf.jpg "Eron Wolf")
 >
 > **Known for**: FUTO
@@ -191,6 +234,40 @@ email](mailto:drew@ddevault.org); patches welcome.
 > platform for an interview in 2023.[[source]](https://peertube.futo.org/w/eSzKtjupL928QzxPXC5k2R)
 >
 > Associate of Louis Rossmann.
+
+> []($block.attrs('weird-guy'))
+>
+> ## [Fiatjaf]($heading.id("fiatjaf"))
+> ![](/fiatjaf.jpg "Fiatjaf")
+>
+> **Known for**: nostr maintainer
+>
+> Reclusive lead developer of the nostr protocol/social media thing,[[source]](https://www.forbes.com/sites/digital-assets/2023/05/30/bitcoin-social-network-nostr-creator-fiatjaf-/) and a
+> devotee of the late Brazilian far-right conspiracy theorist Olavo de
+> Carvalho.[[source]](https://fiatjaf.com/) Sponsored by [Jack
+> Dorsey](#dorsey).[[source]](https://www.businessinsider.com/jack-dorsey-fiatjaf-nostr-donation-2024-6)
+
+> []($block.attrs('weird-guy'))
+>
+> ## [Jack Dorsey]($heading.id("dorsey"))
+> ![](/dorsey.jpg "Jack Dorsey")
+>
+> **Known for**: Twitter (co-founder); Block, Inc. (Square, Cash App, etc);
+> nostr financial backer
+>
+> Jack is the billionaire financial supporter of nostr, and donated $10M to the
+> nostr foundation, of which [Alex Gleason](#gleason) is a member, and 14 BTC to
+> "[Fiatjaf](#fiatjaf)" directly.[[source]](https://www.businessinsider.com/jack-dorsey-fiatjaf-nostr-donation-2024-6)
+>
+> Jack joined the BlueSky board of directors in 2022, before pivoting to
+> nostr, leaving over the fact that Bluesky wanted to implement
+> centralized moderation tools.[[source]](https://www.piratewires.com/p/interview-with-jack-dorsey-mike-solana)
+> One of the main selling points of nostr is "censorship resistance", which
+> makes it particularly attractive for weirdos like those on this list who want
+> somewhere to say weird shit without getting moderated for it.
+>
+> He chickened out of doing a keynote at FOSDEM in 2025 when I organized a
+> protest action against his presence there.[[source]](https://drewdevault.com/blog/No-Billionares-at-FOSDEM-please/)
 
 > []($block.attrs('weird-guy'))
 >
@@ -260,13 +337,13 @@ email](mailto:drew@ddevault.org); patches welcome.
 >
 > **Known for**: Free Software Foundation, GNU, GCC
 >
-> Founder of the Free Software Foundation and one of the most important figures
-> in getting this whole thing off of the ground. Also the subject of credible
-> rumors of harassing a lot of women over the years, and frequently writes on
-> his website in defense of rapists, sexual harassment, sexual exploitation of
-> minors, distribution of child sexual abuse material, and even bestiality and
-> necrophilia. Stallman's behavior is extensively covered in The Stallman
-> Report.[[source]](https://stallman-report.org/)
+> Also known as "rms", Richard is the founder of the Free Software Foundation
+> and one of the most important figures in getting this whole thing off of the
+> ground. Also the subject of credible rumors of harassing a lot of women over
+> the years, and frequently writes on his website in defense of rapists, sexual
+> harassment, sexual exploitation of minors, distribution of child sexual abuse
+> material, and even bestiality and necrophilia. Stallman's behavior is
+> extensively covered in The Stallman Report.[[source]](https://stallman-report.org/)
 
 ## See also
 
