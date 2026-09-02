@@ -1,0 +1,28 @@
+<extend template="base.shtml">
+<head id="head">
+</head>
+<body id="body">
+	<main class="weirdos">
+		<h1>
+			<ctx :text="$page.title"></ctx>
+		</h1>
+		<article>
+			<details>
+				<summary>Table of contents</summary>
+				<ctx :html="$page.toc()"></ctx>
+			</details>
+			<ctx :html="$page.content()"></ctx>
+			<div :if="$page.footnotes?()" class="footnotes" role="doc-endnotes">
+				<hr>
+				<ol :loop="$if">
+					<li id="$loop.it.def_id">
+						<ctx :html="$loop.it.html()"></ctx>
+						<ctx :loop="$loop.it.ref_ids">
+							<a class="footnote-backref" href="$loop.it.prefix('#')">Back ↩︎</a>
+						</ctx>
+					</li>
+				</ol>
+			</div>
+		</article>
+	</main>
+</body>

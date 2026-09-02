@@ -2,7 +2,7 @@
 .title = "Weird little guys of FOSS",
 .date = @date("2026-08-31"),
 .author = "Drew DeVault",
-.layout = "page.shtml",
+.layout = "weirdos.shtml",
 ---
 
 ![](/weird-guys.png "A picture of a woman holding some birds in her hand up for inspection. She is not impressed.")
@@ -15,9 +15,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Alex Gleason]($heading.id("gleason"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Alex Gleason]($heading.id("gleason"))
 > ![](/gleason.png "Alex Gleason performing an interesting gesture")
 >
 > **Known for**: nostr stuff
@@ -36,9 +36,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Andreas Kling]($heading.id("kling"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Andreas Kling]($heading.id("kling"))
 > ![](/akling.jpg "Andreas Kling")
 >
 > **Known for**: SerenityOS, Ladybird
@@ -66,9 +66,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Brendan Eich]($heading.id("eich"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Brendan Eich]($heading.id("eich"))
 > ![](/eich.jpg "Brendan Eich")
 >
 > **Known for**: Mozilla co-founder, Brave browser, creator of JavaScript
@@ -89,9 +89,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Bryan Lunduke]($heading.id("lunduke"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Bryan Lunduke]($heading.id("lunduke"))
 > ![](/lunduke.jpg "Bryan Lunduke")
 >
 > **Known for**: The Lunduke Journal, "Linux Sucks"
@@ -107,9 +107,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Curtis Yarvin]($heading.id("yarvin"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Curtis Yarvin]($heading.id("yarvin"))
 > ![](/yarvin.jpg "Curtis Yarvin")
 >
 > **Known for**: Urbit
@@ -132,9 +132,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Daniel Berntsson]($heading.id("berntsson"))
+
 > []($block.attrs('weird-guy'))
->
-> ## Daniel Berntsson
 > ![](/berntsson.webp "Daniel Berntsson")
 >
 > **Known for**: Mullvad VPN (co-founder, co-owner)
@@ -149,9 +149,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Daniel J. Bernstein]($heading.id("djb"))
+
 > []($block.attrs('weird-guy'))
->
-> ## Daniel J. Bernstein
 > ![](/bernstein.jpg "Daniel J. Bernstein")
 >
 > **Known for**: Popular cryptographic algorithms, e.g. Salsa20, ed25519; qmail,
@@ -164,7 +164,7 @@ email](mailto:drew@ddevault.org); patches welcome.
 > where he has worked with his wife, Tanja Lange, the chair of the coding theory
 > and cryptology group there.[[source]](https://cc.win.tue.nl/staff.html)
 >
-> Daniel and Tanja are associates of [Jacob Appelbaum](#jacob-appelbaum)
+> Daniel and Tanja are associates of [Jacob Appelbaum](#appelbaum)
 > and served as his PhD advisors.[[source]](https://research.tue.nl/en/persons/jacob-r-appelbaum/supervised-student-theses/)[[source]](https://www.hyperelliptic.org/tanja/students.html)
 > One of the students under Bernstein and Lange at TU/e, Henry de Valence,
 > resigned from their PhD program in 2016 citing patterns of harassment, abuse,
@@ -172,9 +172,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [David Heinemeier Hansson]($heading.id("dhh"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [David Heinemeier Hansson]($heading.id("dhh"))
 > ![](/d-hansson.jpg "David Heinemeier Hansson")
 >
 > **Known for**: Ruby on Rails, Omarchy (founder); 37signals (CTO); Shopify
@@ -202,9 +202,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Eric S. Raymond]($heading.id("esr"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Eric S. Raymond]($heading.id("esr"))
 > ![](/esr.jpg "Eric S. Raymond")
 >
 > **Known for**: Open Source Initiative (disgraced co-founder); "The Cathedral
@@ -233,9 +233,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Enrico Weigelt]($heading.id("metux"))
+
 > []($block.attrs('weird-guy'))
->
-> ## Enrico Weigelt
 > ![](/metux.jpg "Enrico Weigelt's avatar")
 >
 > **Known for**: Xlibre (founder)
@@ -254,9 +254,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Eron Wolf]($heading.id("ewolf"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Eron Wolf]($heading.id("ewolf"))
 > ![](/ewolf.jpg "Eron Wolf")
 >
 > **Known for**: FUTO
@@ -273,9 +273,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Fiatjaf]($heading.id("fiatjaf"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Fiatjaf]($heading.id("fiatjaf"))
 > ![](/fiatjaf.jpg "Fiatjaf")
 >
 > **Known for**: nostr maintainer
@@ -287,9 +287,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Guillermo Rauch]($heading.id("rauch"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Guillermo Rauch]($heading.id("rauch"))
 > ![](/rauch.jpg "Guillermo Rauch")
 >
 > **Known for**: Vercel, Next.js
@@ -305,9 +305,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Jack Dorsey]($heading.id("dorsey"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Jack Dorsey]($heading.id("dorsey"))
 > ![](/dorsey.jpg "Jack Dorsey")
 >
 > **Known for**: Twitter (co-founder); Block, Inc. (Square, Cash App, etc);
@@ -329,9 +329,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Jacob Appelbaum]($heading.id("appelbaum"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Jacob Appelbaum]($heading.id("jacob-appelbaum"))
 > ![](/appelbaum.jpg "Jacob Appelbaum")
 >
 > **Known for**: Tor (former contributor), Freedom of the Press Foundation
@@ -355,9 +355,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Louis Rossmann]($heading.id("rossmann"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Louis Rossmann]($heading.id("rossmann"))
 > ![](/rossmann.png "Louis Rossmann")
 >
 > **Known for**: Louis Rossmann YouTube channel, FUTO, right to repair
@@ -380,9 +380,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Michael B. Paulson]($heading.id("primeagen"))
+
 > []($block.attrs('weird-guy'))
->
-> ## Michael B. Paulson
 > ![](/primeagen.webp "Michael B. Paulson")
 >
 > **Known for**: ThePrimeagen Twitch/YouTube accounts
@@ -400,9 +400,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Rafał Kucharski]($heading.id("vaxry"))
+
 > []($block.attrs('weird-guy'))
->
-> ## Rafał Kucharski
 > ![](/vaxry.jpg "Rafał Kucharski")
 >
 > **Known for**: Hyprland
@@ -427,9 +427,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Richard M. Stallman]($heading.id("rms"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Richard M. Stallman]($heading.id("rms"))
 > ![](/rms.jpg "Richard M. Stallman")
 >
 > **Known for**: Free Software Foundation, GNU, GCC
@@ -446,9 +446,9 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Tobias Lütke]($heading.id("lutke"))
+
 > []($block.attrs('weird-guy'))
->
-> ## [Tobias Lütke]($heading.id("lutke"))
 > ![](/lutke.jpg "Tobias Lütke")
 >
 > **Known for**: Shopify (co-founder & CEO), Ruby on Rails (core team)
@@ -464,7 +464,7 @@ email](mailto:drew@ddevault.org); patches welcome.
 > for Shopify clients. He also endorsed a proposal to strip retirees of voting
 > rights and make votes proportional to wealth.[[source]](https://www.cbc.ca/news/canada/shopify-ceo-endorses-idea-to-give-more-votes-to-wealthy-canadians-9.7286688)
 
-## See also
+# [See also]($heading.id("see-also"))
 
 * ["Weird little guys"](https://www.iheart.com/podcast/1119-weird-little-guys-201395214/), a podcast hosted by Molly Conger that inspired the name of this list
 * [~rabbits/fashware](https://git.sr.ht/~rabbits/fashware)
