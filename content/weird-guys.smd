@@ -66,6 +66,22 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 ---
 
+# [Andy Yen]($heading.id("yen"))
+
+> []($block.attrs('weird-guy'))
+> ![](/andy-yen.avif "Andy Yen")
+>
+> **Known for**: Proton founder (ProtonMail, Proton VPN, etc)
+>
+> Proton claims to be politically neutral, but in early 2025 Andy praised the
+> Republican party on
+> X,[[source]](https://x.com/andyyen/status/1864436449942110660) and Proton
+> issued an "official response" on Mastodon and Reddit (later deleted as "not
+> actually official") re-enforcing that Proton and/or Andy threw their hat in
+> with Trump and the Republican party.[[source]](https://theintercept.com/2025/01/28/proton-mail-andy-yen-trump-republicans/)
+
+---
+
 # [Brendan Eich]($heading.id("eich"))
 
 > []($block.attrs('weird-guy'))
@@ -288,8 +304,8 @@ email](mailto:drew@ddevault.org); patches welcome.
 > UK.[[source]](https://x.com/epoberezkin/status/1966954490377978098)
 >
 > On X, Evgeny frequently boosts far-right politicians, COVID-19 conspiracy
-> theories, and transphobic and otherwise bigoted
-> rhetoric.[[source]](https://x.com/epoberezkin)
+> theories, climate change denial, and transphobic and otherwise bigoted
+> rhetoric.[[source]](https://x.com/epoberezkin)[[source]](https://x.com/epoberezkin/status/1870950830654030109)
 >
 > SimpleX has received a $1M donation from [Jack Dorsey](#dorsey)[[source]](https://www.theguardian.com/technology/2024/oct/04/telegram-simplex-far-right)
 > in the wake of changes to Telegram that promised to crack down on far-right
@@ -483,10 +499,24 @@ email](mailto:drew@ddevault.org); patches welcome.
 > He has a 40% controlling interest in Shopify.[[source]](https://www.yorku.ca/laps/newsroom/2026/07/31/shopify-ceo-tobi-lutke-calls-pensioners-dependents-who-shouldnt-get-to-vote-then-agreed-those-who-pay-500000-in-tax-should-get-5-votes/)
 >
 > Tobias defended Shopify's choice to platform (and therefore directly
-> financially support) far-right tabloid Brietbart in 2017,[[source]](https://corporateknights.com/issues/2025-04-spring-issue/how-shopify-went-from-canadas-tech-darling-to-anti-dei/)
+> financially support) far-right tabloid Breitbart in 2017,[[source]](https://corporateknights.com/issues/2025-04-spring-issue/how-shopify-went-from-canadas-tech-darling-to-anti-dei/)
 > citing freedom of speech and resisting the idea of implementing a "moral code"
 > for Shopify clients. He also endorsed a proposal to strip retirees of voting
 > rights and make votes proportional to wealth.[[source]](https://www.cbc.ca/news/canada/shopify-ceo-endorses-idea-to-give-more-votes-to-wealthy-canadians-9.7286688)
+
+# [Vincent Canfield]($heading.id("cockli"))
+
+> []($block.attrs('weird-guy'))
+> ![](/cockli-guy.jpg "Vincent Canfield")
+>
+> **Known for**: cock.li
+>
+> Vincent is the owner of the "cock.li" email provider, which provides
+> intentionally "edgy" email addresses to its users and targets bigots and
+> extremists who would be marginalized elsewhere with its free speech absolutist
+> principles. The domain names available include options such as "@n\*gge.rs"
+> and "@rape.lol", as well as a number of more covert domain names such as
+> "@airmail.cc" which are more likely to fly under the radar.
 
 # [See also]($heading.id("see-also"))
 
