@@ -809,11 +809,19 @@ small {
   }
   a { color: #ddd; }
   a:hover { color: #aaa; }
-  pre { background: #222; }
-  code, pre { background: #222; }
+  code, pre { background: #222; color: white; }
   .site-nav { border-bottom-color: #ddd; }
   .byline .tags { color: #aaa; }
   hr:after { background: var(--background-color); }
+
+  .include,
+  .keyword, .repeat, .type_qualifier, .keyword_function,
+  .type, .type, .type,
+  .string,
+  .comment,
+  .gi, .gd, .gu, .variable, .function_builtin {
+    filter: invert(100%);
+  }
 }
 
 .weird-guy {
