@@ -1,0 +1,30 @@
+---
+.title = "Brendan Eich",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "eich",
+	"profile": "eich.jpg",
+}
+---
+
+**Known for**: Mozilla co-founder, Brave browser, creator of JavaScript
+
+Brendan got a lot of flack several years ago, resigning as Mozilla CEO, after
+he donated a few thousand dollars to support California's Proposition 8, an
+initiative that would have banned same-sex marriage in California.[[source]][0]
+
+After Mozilla, he moved on to co-found and lead as CEO the Brave Browser, which
+he used to push his own cryptocurrency micro-payments system.[[source]][1] He
+used Brave to support the hate website Kiwi Farms, which has been alleged to
+have instigated several suicides as a result of their harassment, working with
+their site admins to pose Brave as a safe and secure means for their members to
+access the site and conduct their harassment.[[source]][2] Kiwi Farms also took
+advantage of Brave's crypto scheme for funding, which was brought to Eich's
+attention and never corrected.[[source]][3]
+
+[0]: $link.url('https://web.archive.org/web/20200425070742/https://blogs.wsj.com/digits/2014/03/28/three-mozilla-board-members-resign-over-choice-of-new-ceo/').attrs('source')
+[1]: $link.url('https://web.archive.org/web/20200725110058/https://techcrunch.com/2017/06/01/brave-ico-35-million-30-seconds-brendan-eich/').attrs('source')
+[2]: $link.url('https://samambreen.wordpress.com/2019/08/16/an-open-letter-to-brendan-eich/').attrs('source')
+[3]: $link.url('https://www.change.org/p/brendan-eich-brave-software-stop-providing-a-revenue-stream-for-white-supremacist-paedophiles').attrs('source')

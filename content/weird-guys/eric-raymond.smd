@@ -1,0 +1,37 @@
+---
+.title = "Eric S. Raymond",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "esr",
+	"profile": "esr.jpg",
+}
+---
+
+**Known for**: Open Source Initiative (disgraced co-founder); "The Cathedral
+and the Bazaar" 
+
+**Alias**: esr
+
+Eric is a creepy weird guy who writes racist, homophobic, and misogynist
+screeds everywhere he can. His uses his blog, "Armed and Dangerous; Sex,
+software, politics, and firearms. Life's simple pleasures…", to advocate for
+weird right-wing politics, such as strident support for Kyle
+Rittenhouse[[source]][0] and threatening to shoot communists.[[source]][1] He
+said gay men deserved to get AIDS because of "unfettered
+promiscuity",[[source]][2] quotes racist talking points about police
+violence,[[source]][3] and says organizations that try to get women more
+involved in FOSS are trying to entrap men with rape accusations.[[source]][4]
+See also Eric's essay on "Preventing visceral racism".[[source]][5]
+
+Eric got kicked out of the OSI mailing lists for being a huge asshole back in
+2020.[[source]][6]
+
+[0]: $link.url('https://web.archive.org/web/20260313003028/http://esr.ibiblio.org/?p=8752').attrs('source')
+[1]: $link.url('https://web.archive.org/web/20260411015133/http://esr.ibiblio.org/?p=8685').attrs('source')
+[2]: $link.url('https://web.archive.org/web/20061207053952/http://esr.ibiblio.org/?p=26').attrs('source')
+[3]: $link.url('https://web.archive.org/web/20190217144805/http://esr.ibiblio.org/?p=7239').attrs('source')
+[4]: $link.url('https://web.archive.org/web/20170804102904/http://esr.ibiblio.org/?p=6907').attrs('source')
+[5]: $link.url('http://esr.ibiblio.org/?p=5001').attrs('source')
+[6]: $link.url('https://lists.opensource.org/pipermail/license-discuss_lists.opensource.org/2020-February/021328.html').attrs('source')

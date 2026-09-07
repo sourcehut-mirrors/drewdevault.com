@@ -1,0 +1,35 @@
+---
+.title = "Andreas Kling",
+.date = @date("2026-09-01"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "kling",
+	"profile": "akling.jpg",
+}
+---
+
+**Known for**: SerenityOS, Ladybird
+
+**Alias**: AwesomeKling
+
+Andreas is the founder of SerenityOS and the Ladybird web browser. He posted in
+support of Charlie Kirk after his assassination,[[source]][0] gets triggered by
+the phrase "punch nazis",[[source]][1] and the idea of using gender-neutral
+pronouns in documentation.[[source]][2] Andreas boosted [David Heinemeier
+Hansson]($link.page('weird-guys').unsafeRef('dhh'))'s tweets on DEI and the
+white supremacist "white replacement" theory,[[source]][3] and expressed
+solidarity with David's persecution for his "banal, mainstream" positions,
+positions which include, for example, the forced expulsion of non-white people
+from Europe.[[source]][4]
+
+Ladybird and Andreas have received sponsorships from FUTO, Cloudflare, Shopify
+and 37signals (i.e. David Heinemeier Hansson), Proton, Jetbrains, Sourcegraph,
+and others.[[source]][5]
+
+[0]: $link.url('https://x.com/awesomekling/status/1966456391146606806').attrs('source')
+[1]: $link.url('https://x.com/awesomekling/status/1967178708852097278').attrs('source')
+[2]: $link.url('https://github.com/SerenityOS/serenity/pull/6814').attrs('source')
+[3]: $link.url('https://x.com/awesomekling/status/1874518295350837401').attrs('source')
+[4]: $link.url('https://x.com/awesomekling/status/1969350008538370216').attrs('source')
+[5]: $link.url('https://ladybird.org/#sponsors').attrs('source')

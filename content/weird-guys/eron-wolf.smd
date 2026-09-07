@@ -1,0 +1,26 @@
+---
+.title = "Eron Wolf",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "ewolf",
+	"profile": "ewolf.jpg",
+}
+---
+
+**Known for**: FUTO
+
+Eron is the modestly wealthy founder of FUTO, an organization that funds
+software projects. He doesn't like the Open Source Definition[[source]][0] and
+cites other weird little guys like [Bryan
+Lunduke]($link.page('weird-guys').unsafeRef('lunduke')) and [Eric S.
+Raymond]($link.page('weird-guys').unsafeRef('esr')) to make his case. Eron is
+friends with [Curtis Yarvin]($link.page('weird-guys').unsafeRef('yarvin')), a
+notable techno-fascist and influence on JD Vance, and invited Curtis onto
+FUTO's platform for an interview in 2023.[[source]][1]
+
+Associate of [Louis Rossmann]($link.page('weird-guys').unsafeRef('rossmann')).
+
+[0]: $link.url('https://web.archive.org/web/20251022160356/https://futo.org/about/futo-statement-on-opensource/').attrs('source')
+[1]: $link.url('https://peertube.futo.org/w/eSzKtjupL928QzxPXC5k2R').attrs('source')

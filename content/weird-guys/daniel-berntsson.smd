@@ -1,0 +1,21 @@
+---
+.title = "Daniel Berntsson",
+.date = @date("2026-09-01"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "berntsson",
+	"profile": "berntsson.webp",
+}
+---
+
+**Known for**: Mullvad VPN (co-founder, co-owner)
+
+Daniel is the co-founder of Mullvad VPN, alongside Fredrik Strömberg. In June
+2026, Daniel donated 5M Swedish Krona (~$500,000 USD) to the populist
+anti-immigration Örebro Party,[[source]][0] saying "it’s sad that it’s needed".
+The party supports the ethnic cleansing of non-white people from Sweden, and
+Daniel's donation represented, at the time, 72% of the party's revenue. Daniel
+cited immigration as a motivating factor for his donation.
+
+[0]: $link.url('https://www.flamman.se/techprofil-ger-miljoner-till-orebropartiet/').attrs('source')

@@ -1,0 +1,21 @@
+---
+.title = "Fiatjaf",
+.date = @date("2026-09-01"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "fiatjaf",
+	"profile": "fiatjaf.jpg",
+}
+---
+
+**Known for**: nostr maintainer
+
+Reclusive lead developer of the nostr protocol/social media thing,[[source]][0]
+and a devotee of the late Brazilian far-right conspiracy theorist Olavo de
+Carvalho.[[source]][1] Sponsored by
+[Jack Dorsey]($link.page('weird-guys').unsafeRef('dorsey')).[[source]][2]
+
+[0]: $link.url('https://www.forbes.com/sites/digital-assets/2023/05/30/bitcoin-social-network-nostr-creator-fiatjaf-/').attrs('source')
+[1]: $link.url('https://fiatjaf.com/').attrs('source')
+[2]: $link.url('https://www.businessinsider.com/jack-dorsey-fiatjaf-nostr-donation-2024-6').attrs('source')

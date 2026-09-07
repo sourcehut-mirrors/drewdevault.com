@@ -1,0 +1,33 @@
+---
+.title = "Louis Rossmann",
+.date = @date("2026-09-02"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "rossmann",
+	"profile": "rossmann.png",
+}
+---
+
+**Known for**: Louis Rossmann YouTube channel, FUTO, right to repair
+
+**Alias**: larossmann
+
+Louis is a prominent right to repair activist who runs a popular YouTube
+channel on the subject. He worked with FUTO, [Eron
+Wolf]($link.page('weird-guys').unsafeRef('ewolf')), from August 2022 to
+February 2025, and his right-to-repair non-profit received a $1M donation from
+Wolf.[[source]][0][[source]][1]
+
+On August 3rd, 2026, Louis posted a video about openly transgender Colorado
+state representative Brianna Titone, and in the YouTube comments posted a
+remark explaining his position on transgender issues, which can be paraphrased
+as "I think transgender women are men but I'm willing to overlook it if we have
+common cause".[[source]][2]
+
+Louis has been a regular poster on the hate and harassment website Kiwi Farms,
+posting there from 2023 to the present under the username "larossmann".
+
+[0]: $link.url('https://www.youtube.com/watch?v=tca6xsBEuGw').attrs('source')
+[1]: $link.url('https://www.youtube.com/watch?v=iFn5t4etqNg&lc=Ugx7ba2sI30CGEylY_R4AaABAg').attrs('source')
+[2]: $link.url('https://www.youtube.com/watch?v=OI2ZogP8KzA&lc=UgyAz6SdngjMNAYNcTx4AaABAg.A_2rRJEyWvWA_33KfFWL6c').attrs('source')

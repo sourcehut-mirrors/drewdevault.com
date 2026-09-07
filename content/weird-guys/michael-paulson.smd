@@ -1,0 +1,26 @@
+---
+.title = "Michael B. Paulson",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "primeagen",
+	"profile": "primeagen.webp",
+}
+---
+
+**Known for**: ThePrimeagen Twitch/YouTube accounts
+
+**Alias**: ThePrimeagen 
+
+Popular Twitch streamer and YouTube personality whose content isn't all that
+weird, but who is publicly associated with a bunch of weirdos in this list.
+He's a speaker at Omacon 2026,
+[David Heinemeier Hansson]($link.page('weird-guys').unsafeRef('dhh'))'s
+conference for fashy weirdos,[[source]][0] and a donor to
+[Andreas Kling]($link.page('weird-guys').unsafeRef('kling'))'s
+Ladybird,[[source]][1] and otherwise maintains associations with and
+financially supports people in a little network of weirdos.
+
+[0]: $link.url('https://web.archive.org/web/20260810191341/https://www.omacon.org/').attrs('source')
+[1]: $link.url('https://ladybird.org/#sponsors').attrs('source')

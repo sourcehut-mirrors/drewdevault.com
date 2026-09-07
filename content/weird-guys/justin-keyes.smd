@@ -1,0 +1,34 @@
+---
+.title = "Justin M. Keyes",
+.date = @date("2026-09-07"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "justinmk",
+	"profile": "justinmk.jpg",
+}
+---
+
+**Known for**: NeoVim maintainer
+
+The NeoVim website quoted an endorsement from
+[David Heinemeier Hansson]($link.page('weird-guys').unsafeRef('dhh'))
+until August of 2026. When an issue was opened on GitHub to complain about
+using an endorsement from a facsist,[[source]][0] Justin had a bit of a crash
+out, ultimately removing the quote and ending the discussion by calling those
+who protested "a drive-by mob, swirling from one mindless vomit-party to
+another, like the pacific garbage patch".
+
+Justin had a YouTube playlist[[source]][1] full of right-wing propaganda up
+until the DHH debate on GitHub, including sources from [Curtis
+Yarvin]($link.page('weird-guys').unsafeRef('yarvin')) and Peter Thiel. One of
+Justin's co-maintainers for NeoVim, TJ DeVries, also spoke at David's Omacon in
+2026.[[source]][2]
+
+Fun fact: during the GitHub debacle over the DHH quote, Justin said "I don't
+care if I end up on Drew's list", which inspired me to make this list in the
+first place.
+
+[0]: $link.url('https://github.com/neovim/neovim.github.io/issues/501').attrs('source')
+[1]: $link.url('https://web.archive.org/web/20260827210617/https://www.youtube.com/playlist?list=PLvTJMxH60GZ8lPamsoVW__89TrRIkJJvX').attrs('source')
+[2]: $link.url('https://www.omacon.org/#speakers').attrs('source')

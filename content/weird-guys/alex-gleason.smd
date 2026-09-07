@@ -1,0 +1,29 @@
+---
+.title = "Alex Gleason",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "gleason",
+	"profile": "gleason.png",
+	"profile-alt": "Alex Gleason performing an interesting gesture"
+}
+---
+
+**Known for**: nostr stuff
+
+Alex is a prominent figure in the nostr community, and an antagonist on FOSS
+social media platforms generally. He developed the software used for Truth
+Social, Donald Trump's fediverse thing,[[source]][0] and was banned from the
+Mastodon instance he used back in 2023 for being openly
+transphobic.[[source]][1][[source]][2] Alex is financially supported by [Jack
+Dorsey]($link.page('weird-guys').unsafeRef('dorsey')) via the "andOtherStuff"
+collective.[[source]][3]
+
+This photo of him on the right is prominently displayed on his personal
+website.
+
+[0]: $link.url('https://www.reuters.com/technology/head-engineering-trumps-truth-social-app-resigns-2023-07-17/').attrs('source')
+[1]: $link.url('https://web.archive.org/web/20230330163111/https://blog.alexgleason.me/gab-block/').attrs('source')
+[2]: $link.url('https://web.archive.org/web/20230331173749/https://blog.alexgleason.me/trans/').attrs('source')
+[3]: $link.url('https://techcrunch.com/2025/07/16/jack-dorsey-pumps-10m-into-a-nonprofit-focused-on-open-source-social-media/').attrs('source')

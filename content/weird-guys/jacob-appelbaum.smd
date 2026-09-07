@@ -1,0 +1,35 @@
+---
+.title = "Jacob Appelbaum",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "appelbaum",
+	"profile": "appelbaum.jpg",
+}
+---
+
+**Known for**: Tor (former contributor), Freedom of the Press Foundation
+(former TAB member)
+
+**Alias**: io, ioerror
+
+Jacob is a cryptography and computer security researcher and disgraced
+ex-member of the Tor project. In 2016 ten people came forward to present
+serious accusations of sexual harassment, assault, and rape,[[source]][0]
+ultimately leading to his removal from the Tor project,[[source]][1]
+Debian,[[source]][2] and the hackerspace he co-founded,
+Noisebridge.[[source]][3]
+
+He still works quietly and mostly out of the public view at
+TU/Eindhoven[[source]][4] and has been rumoured to pop up at events around
+Berlin in recent years. He is currently working on the Vula network encryption
+scheme,[[source]][5] which is funded by NLnet.[[source]][6]
+
+[0]: $link.url('https://web.archive.org/web/20160910001406/http://jacobappelbaum.net/').attrs('source')
+[1]: $link.url('https://web.archive.org/web/20160623104201/http://www.itwire.com/business-it-news/open-source/73415-security-expert-appelbaum-no-longer-part-of-debian.html').attrs('source')
+[2]: $link.url('https://web.archive.org/web/20190820150807/https://www.nytimes.com/2016/07/28/technology/tor-project-jacob-appelbaum.html').attrs('source')
+[3]: $link.url('https://blog.noisebridge.net/post/145728465358/noisebridge-statement-on-jacob-appelbaum').attrs('source')
+[4]: $link.url('https://cc.win.tue.nl/staff.html').attrs('source')
+[5]: $link.url('https://codeberg.org/vula/highctidh/commits/branch/main').attrs('source')
+[6]: $link.url('https://nlnet.nl/project/Vula/').attrs('source')

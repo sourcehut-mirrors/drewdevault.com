@@ -1,0 +1,37 @@
+---
+.title = "Jack Dorsey",
+.date = @date("2026-09-01"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "dorsey",
+	"profile": "dorsey.jpg",
+}
+---
+
+**Known for**: Twitter (co-founder); Block, Inc (Square, Cash App, etc);
+nostr financial backer
+
+Jack is the billionaire financial supporter of nostr, and donated $10M to the
+nostr foundation, of which [Alex Gleason]($link.unsafeRef('gleason')) is a
+member, and 14 BTC to "[Fiatjaf]($link.page('weird-guys').unsafeRef('fiatjaf'))"
+directly.[[source]][0]
+
+Jack joined the BlueSky board of directors in 2022, before pivoting to
+nostr, leaving over the fact that Bluesky wanted to implement
+centralized moderation tools.[[source]][1]
+One of the main selling points of nostr is "censorship resistance", which
+makes it particularly attractive for weirdos like those on this list who want
+somewhere to say weird shit without getting moderated for it.
+
+Jack also financially supports
+[Andreas Kling]($link.page('weird-guys').unsafeRef('kling')),
+[David Heinemeier Hansson]($link.page('weird-guys').unsafeRef('dhh')),
+and [Evgeny Poberezkin]($link.page('weird-guys').unsafeRef('poberezkin')).
+
+He chickened out of doing a keynote at FOSDEM in 2025 when I organized a
+protest action against his presence there.[[source]][2]
+
+[0]: $link.url('https://www.businessinsider.com/jack-dorsey-fiatjaf-nostr-donation-2024-6').attrs('source')
+[1]: $link.url('https://www.piratewires.com/p/interview-with-jack-dorsey-mike-solana').attrs('source')
+[2]: $link.url('https://drewdevault.com/blog/No-Billionares-at-FOSDEM-please/').attrs('source')

@@ -1,0 +1,23 @@
+---
+.title = "Andy Yen",
+.date = @date("2026-09-04"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "yen",
+	"profile": "andy-yen.avif",
+}
+---
+
+**Known for**: Proton founder (ProtonMail, Proton VPN, etc)
+
+Proton claims to be politically neutral, but in early 2025 Andy praised the
+Republican party on X,[[source]][0] and Proton issued an "official response" on
+Mastodon and Reddit (later deleted as "not actually official") re-enforcing
+that Proton and/or Andy threw their hat in with Trump and the Republican
+party.[[source]][1]
+
+Proton financially supports [Andreas Kling]($link.page('weird-guys').unsafeRef('kling')).
+
+[0]: $link.url('https://x.com/andyyen/status/1864436449942110660').attrs('source')
+[1]: $link.url('https://theintercept.com/2025/01/28/proton-mail-andy-yen-trump-republicans/').attrs('source')

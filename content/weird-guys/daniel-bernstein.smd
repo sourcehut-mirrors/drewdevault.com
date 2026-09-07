@@ -1,0 +1,32 @@
+---
+.title = "Daniel J. Bernstein",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "djb",
+	"profile": "bernstein.jpg",
+}
+---
+
+**Known for**: Popular cryptographic algorithms, e.g. Salsa20, ed25519; qmail,
+djbdns
+
+**Alias**: djb
+
+Daniel is an well-known and influential cryptographer and former visiting
+professor at TU/Eindhoven,[[source]][0] where he has worked with his wife,
+Tanja Lange, the chair of the coding theory and cryptology group
+there.[[source]](https://cc.win.tue.nl/staff.html)
+
+Daniel and Tanja are associates of
+[Jacob Appelbaum]($link.page('weird-guys').unsafeRef('appelbaum')) and served
+as his PhD advisors.[[source]][1][[source]][2] One of the students under
+Bernstein and Lange at TU/e, Henry de Valence, resigned from their PhD program
+in 2016 citing patterns of harassment, abuse, and bullying at the hands of
+Jacob, Daniel, and Tanja.[[source]][3]
+
+[0]: $link.url('https://www.researchgate.net/scientific-contributions/Daniel-J-Bernstein-69944562').attrs('source')
+[1]: $link.url('https://research.tue.nl/en/persons/jacob-r-appelbaum/supervised-student-theses/').attrs('source')
+[2]: $link.url('https://www.hyperelliptic.org/tanja/students.html').attrs('source')
+[3]: $link.url('https://medium.com/@hdevalence/when-hell-kept-on-payroll-somewhere-is-where-you-are-f419d3022d0').attrs('source')

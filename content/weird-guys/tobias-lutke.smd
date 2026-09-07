@@ -1,0 +1,28 @@
+---
+.title = "Tobias Lütke",
+.date = @date("2026-09-04"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "lutke",
+	"profile": "lutke.jpg",
+}
+---
+
+**Known for**: Shopify (co-founder & CEO), Ruby on Rails (core team)
+
+Tobias is a billionaire and personal friend of
+[David Heinemeier Hansson]($link.page('weird-guys').unsafeRef('dhh')), and
+raced as part of his team for Era Motorsport.[[source]][0] He has a 40%
+controlling interest in Shopify.[[source]][1]
+
+Tobias defended Shopify's choice to platform (and therefore directly
+financially support) far-right tabloid Breitbart in 2017,[[source]][2] citing
+freedom of speech and resisting the idea of implementing a "moral code" for
+Shopify clients. He also endorsed a proposal to strip retirees of voting rights
+and make votes proportional to wealth.[[source]][3]
+
+[0]: $link.url('https://www.eramotorsport.com/post/era-motorsport-announces-chatin-dalziel-hansson-and-l%C3%BCtke-for-rolex-24-lineup').attrs('source')
+[1]: $link.url('https://www.yorku.ca/laps/newsroom/2026/07/31/shopify-ceo-tobi-lutke-calls-pensioners-dependents-who-shouldnt-get-to-vote-then-agreed-those-who-pay-500000-in-tax-should-get-5-votes/').attrs('source')
+[2]: $link.url('https://corporateknights.com/issues/2025-04-spring-issue/how-shopify-went-from-canadas-tech-darling-to-anti-dei/').attrs('source')
+[3]: $link.url('https://www.cbc.ca/news/canada/shopify-ceo-endorses-idea-to-give-more-votes-to-wealthy-canadians-9.7286688').attrs('source')

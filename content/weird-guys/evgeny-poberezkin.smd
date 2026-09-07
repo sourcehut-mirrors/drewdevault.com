@@ -1,0 +1,33 @@
+---
+.title = "Evgeny Poberezkin",
+.date = @date("2026-09-04"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "poberezkin",
+	"profile": "poberezkin.jpg",
+}
+---
+
+**Known for**: SimpleX chat
+
+Evgeny is a supporter of the far-right populust Reform UK party, and the Donald
+Trump administration. In 2024, he donated to the Reform UK party on behalf of
+SimpleX chat,[[source]][0] and boosted Tommy Robinson, a far-right, anti-Islam
+activist and convicted violent criminal, and his support of violent far-right
+riots in the UK.[[source]][1]
+
+On X, Evgeny frequently boosts far-right politicians, COVID-19 conspiracy
+theories, climate change denial, and transphobic and otherwise bigoted
+rhetoric.[[source]][2][[source]][3]
+
+SimpleX has received a $1M donation from
+[Jack Dorsey]($link.page('weird-guys').unsafeRef('dorsey'))[[source]][4] in the
+wake of changes to Telegram that promised to crack down on far-right extremism
+on the app.
+
+[0]: $link.url('https://x.com/epoberezkin/status/1862108747310436676').attrs('source')
+[1]: $link.url('https://x.com/epoberezkin/status/1966954490377978098').attrs('source')
+[2]: $link.url('https://x.com/epoberezkin').attrs('source')
+[3]: $link.url('https://x.com/epoberezkin/status/1870950830654030109').attrs('source')
+[4]: $link.url('https://www.theguardian.com/technology/2024/oct/04/telegram-simplex-far-right').attrs('source')

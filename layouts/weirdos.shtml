@@ -3,26 +3,33 @@
 </head>
 <body id="body">
 	<main class="weirdos">
-		<h1>
-			<ctx :text="$page.title"></ctx>
-		</h1>
+		<h1 :text="$page.title"></h1>
 		<article>
 			<details>
 				<summary>Table of contents</summary>
-				<ctx :html="$page.toc()"></ctx>
+				<ul :loop="$page.subpagesAlphabetic()">
+					<li>
+						<a href="$loop.it.custom.get('id').prefix('#')"
+						   :text="$loop.it.title"></a>
+					</li>
+				</ul>
 			</details>
 			<ctx :html="$page.content()"></ctx>
-			<div :if="$page.footnotes?()" class="footnotes" role="doc-endnotes">
+			<ctx :loop="$page.subpagesAlphabetic()">
+				<div id="$loop.it.custom.get('id')" class="weird-guy">
+					<h1>
+						<span :text="$loop.it.title"></span>
+					</h1>
+					<img
+						src="$site.asset($loop.it.custom.get('profile')).link()"
+						alt="$loop.it.custom.getOr('profile-alt', $loop.it.title)">
+					<ctx :html="$loop.it.content()"></ctx>
+					<p>
+						<em>Added <ctx :text="$loop.it.date.format('January 02, 2006')"></ctx></em>
+					</p>
+				</div>
 				<hr>
-				<ol :loop="$if">
-					<li id="$loop.it.def_id">
-						<ctx :html="$loop.it.html()"></ctx>
-						<ctx :loop="$loop.it.ref_ids">
-							<a class="footnote-backref" href="$loop.it.prefix('#')">Back ↩︎</a>
-						</ctx>
-					</li>
-				</ol>
-			</div>
+			</ctx>
 		</article>
 	</main>
 </body>

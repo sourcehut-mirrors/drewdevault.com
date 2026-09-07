@@ -1,0 +1,24 @@
+---
+.title = "Richard M. Stallman",
+.date = @date("2026-09-02"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "rms",
+	"profile": "rms.jpg",
+}
+---
+
+**Known for**: Free Software Foundation, GNU, GCC
+
+**Alias**: rms
+
+Richard is the founder of the Free Software Foundation and one of the most
+important figures in getting this whole thing off of the ground. Also the
+subject of credible rumors of harassing a lot of women over the years, and
+frequently writes on his website in defense of rapists, sexual harassment,
+sexual exploitation of minors, distribution of child sexual abuse material, and
+even bestiality and necrophilia. Stallman's behavior is extensively covered in
+The Stallman Report.[[source]][0]
+
+[0]: $link.url('https://stallman-report.org/').attrs('source')

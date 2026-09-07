@@ -837,14 +837,14 @@ small {
     padding-bottom: 1rem;
   }
 
-  a:not([href^="#"]) {
+  .source {
     top: -0.3em;
     font-size: 80%;
     position: relative;
     text-decoration: none;
   }
 
-  a[href^="#"] {
+  a:not(.source) {
     text-decoration-style: dotted;
   }
 }

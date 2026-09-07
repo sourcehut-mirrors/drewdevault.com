@@ -1,0 +1,33 @@
+---
+.title = "Curtis Yarvin",
+.date = @date("2026-09-02"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "yarvin",
+	"profile": "yarvin.jpg",
+}
+---
+
+**Known for**: Urbit
+
+**Alias**: moldbug
+
+Curtis is the founder and on-again-off-again leader of the Urbit networking
+protocol project. He is also considered one of the founders of the mainstream
+neo-reactionary "dark enlightenment" movement which explicitly and
+deliberately aims to undermine democracy in Western countries.
+
+Curtis's work has set the playbook for the American Republican party and a
+number of techno-fascists. Curtis is an associate of J.D. Vance, who cites him
+as an influence and arguably has Curtis to thank, in part, for his position as
+Vice President.[[source]][0] Peter Thiel, a key figure in the right-wing
+mass-surveillance company Palantir, known for enabling mass deportations in the
+United States, was also influenced by Curtis.[[source]][1]
+
+Curtis is an associate of [Eron
+Wolf]($link.page('weird-guys').unsafeRef('ewolf')).[[source]][2]
+
+[0]: $link.url('https://www.theguardian.com/us-news/2024/dec/21/curtis-yarvin-trump').attrs('source')
+[1]: $link.url('https://www.vanityfair.com/news/2022/04/inside-the-new-right-where-peter-thiel-is-placing-his-biggest-bets').attrs('source')
+[2]: $link.url('https://peertube.futo.org/w/eSzKtjupL928QzxPXC5k2R').attrs('source')

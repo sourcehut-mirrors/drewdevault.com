@@ -1,0 +1,19 @@
+---
+.title = "Vincent Canfield",
+.date = @date("2026-09-04"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "cockli",
+	"profile": "cockli-guy.jpg",
+}
+---
+
+**Known for**: cock.li
+
+Vincent is the owner of the "cock.li" email provider, which provides
+intentionally "edgy" email addresses to its users and targets bigots and
+extremists who would be marginalized elsewhere with its free speech absolutist
+principles. The domain names available include options such as "@n\*gge.rs" and
+"@rape.lol", as well as a number of more covert domain names such as
+"@airmail.cc" which are more likely to fly under the radar.

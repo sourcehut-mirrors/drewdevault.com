@@ -1,0 +1,41 @@
+---
+.title = "David Heinemeier Hansson",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "dhh",
+	"profile": "d-hansson.png",
+}
+---
+
+**Known for**: Ruby on Rails, Omarchy (founder); 37signals (CTO); Shopify
+(Board member)
+
+**Alias**: DHH
+
+David is a multi-millionare who funds and boosts the "dark enlightenment" in
+FOSS. His Linux distribution, Omarchy, is a loose collection of vibe-coded
+scripts on top Arch Linux and a vehicle for soliciting investments from large
+companies (e.g. Cloudflare, Framework, Dell, Block
+([Jack Dorsey]($link.page('weird-guys').unsafeRef('dorsey'))), Dropbox,
+1password)[[source]][0][[source]][1] to finance the projects of his weird
+little friends.
+
+He wrote a blog post, "As I remember London",[[source]][2] in which he uses
+numerous racist, fascist, and ethno-nationalist dog-whistles while calling for
+the ethnic cleansing via forced removal of non-white people from the UK and
+other countries. Another of David's posts, "Wolves, sheep, and
+gypsies"[[source]][3] compares Roma people to wolves and again calls for an
+ethnic cleansing.
+
+The Ruby on Rails leadership stood by David in spite of numerous calls for his
+removal from positions of power by members of the
+community.[[source]][4][[source]][5]
+
+[0]: $link.url('https://omarchy.org/news/2026/08/omacom-foundation-launches-with-8-million/').attrs('source')
+[1]: $link.url('https://www.alilleybrinker.com/blog/1password-funds-ethnic-cleansing/').attrs('source')
+[2]: $link.url('https://web.archive.org/web/20260401205851/https://world.hey.com/dhh/as-i-remember-london-e7d38e64').attrs('source')
+[3]: $link.url('https://world.hey.com/dhh/wolves-sheep-and-gypsies-ba44af6a').attrs('source')
+[4]: $link.url('https://davidcel.is/articles/the-dhh-problem').attrs('source')
+[5]: $link.url('https://tekin.co.uk/2025/09/the-ruby-community-has-a-dhh-problem').attrs('source')

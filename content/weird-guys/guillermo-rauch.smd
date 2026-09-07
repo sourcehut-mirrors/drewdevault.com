@@ -1,0 +1,25 @@
+---
+.title = "Guillermo Rauch",
+.date = @date("2026-09-02"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "rauch",
+	"profile": "rauch.jpg",
+}
+---
+
+**Known for**: Vercel, Next.js
+
+Guillermo is the founder and CEO of Vercel, a company valued at $9.3
+billion,[[source]][0] and is pictured here during a meeting with wanted war
+criminal Benjamin Netanyahu, to whom he wished "greatness for
+Israel".[[source]][1]
+
+Guillermo is a public supporter of X, Elon Musk's far-right bastardization of
+Twitter,[[source]][2] and often boosts Musk's posts there.[[source]][3]
+
+[0]: $link.url('https://finance.yahoo.com/news/vercel-closes-series-f-9-150000846.html').attrs('source')
+[1]: $link.url('https://x.com/rauchg/status/1972669025525158031').attrs('source')
+[2]: $link.url('https://x.com/rauchg/status/2093803989578170404').attrs('source')
+[3]: $link.url('https://x.com/rauchg/status/2094242622642782696').attrs('source')

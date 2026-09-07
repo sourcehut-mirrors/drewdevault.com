@@ -1,0 +1,23 @@
+<rss version="2.0">
+  <channel>
+    <title>Weird Little Guys of FOSS</title>
+    <link>https://drewdevault.com/weird-guys/</link>
+    <description>A list of weird little guys working in free software</description>
+    <language>en-US</language>
+    <lastBuildDate :text="$build.generated.formatHTTP()"></lastBuildDate>
+    <ctx :loop="$page.subpages()">
+      <item>
+        <title :text="$loop.it.title"></title>
+        <ctx :loop="$loop.it.tags">
+          <category :text="$loop.it"></category>
+        </ctx>
+        <description>
+          <ctx :text="$loop.it.content()"></ctx>
+        </description>
+        <link :text="$site.host_url.addPath($loop.it.link())"></link>
+        <pubDate :text="$loop.it.date.formatHTTP()"></pubDate>
+        <guid :text="$site.host_url.addPath($loop.it.link())"></guid>
+      </item>
+    </ctx>
+  </channel>
+</rss>

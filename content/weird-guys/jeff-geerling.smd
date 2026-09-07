@@ -1,0 +1,33 @@
+---
+.title = "Jeff Geerling",
+.date = @date("2026-09-07"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "geerling",
+	"profile": "geerling.jpg",
+}
+---
+
+**Known for**: JeffGeerling YouTube channel, blogger
+
+Jeff hosts a reasonably successful YouTube channel where he often posts videos
+about FOSS, open hardware, and Linux, and a blog with supplementary materials.
+
+Jeff is a Catholic anti-abortion and anti-contraception advocate, and has
+written several blog posts on the subject between 2011 and 2013.[[source]][0]
+Popular YouTube channel Practical Engineering aimed to collaborate with him in
+2025, but retracted his support after the community pointed out Jeff's
+politics.[[source]][1] Jeff was informed of the reason why Practical
+Engineering did not wish to collaborate with him, but has not issued any
+apologies or retractions for his earlier statements.
+
+Jeff did delete two blog posts following the call-out, one where he re-iterated
+his anti-abortion position in the cases of rape and incest,[[source]][2] and
+another where he argued that a "genetic disposition to homosexuality" was not
+"okay".[[source]][3]
+
+[0]: $link.url('https://www.jeffgeerling.com/tags/abortion/').attrs('source')
+[1]: $link.url('https://www.jeffgeerling.com/tags/abortion/').attrs('source')
+[2]: $link.url('https://web.archive.org/web/20250726182322/https://www.jeffgeerling.com/articles/religion/abortion-cases-of-rape').attrs('source')
+[3]: $link.url('https://www.reddit.com/r/Nebula/comments/1nvzjpx/grady_from_practical_engineering_shouts_out/').attrs('source')

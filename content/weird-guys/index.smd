@@ -1,0 +1,29 @@
+---
+.title = "Weird little guys of FOSS",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdos.shtml",
+.alternatives = [{
+  .name = "rss",
+  .type = "application/rss+xml",
+  .layout = "weirdos.xml",
+  .output = "index.xml",
+}],
+---
+
+![](/weird-guys.png "A picture of a woman holding some birds in her hand up for inspection. She is not impressed.")
+
+This is a list of weird little guys in the free software movement and adjacent
+spaces. Request additions, removals, or changes [via
+email](mailto:drew@ddevault.org); patches welcome.
+
+**Don't harass these people!** Don't engage with them at all.
+
+[An RSS feed for this page is available]($link.page('weird-guys').alternative('rss')).
+
+# [See also]($heading.id("see-also"))
+
+* ["Weird little guys"](https://www.iheart.com/podcast/1119-weird-little-guys-201395214/), a podcast hosted by Molly Conger that inspired the name of this list
+* [~rabbits/fashware](https://git.sr.ht/~rabbits/fashware)
+
+Artwork by [@p@hj.9fs.net](https://hj.9fs.net/p)
