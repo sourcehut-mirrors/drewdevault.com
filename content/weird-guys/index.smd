@@ -21,9 +21,29 @@ email](mailto:drew@ddevault.org); patches welcome.
 
 [An RSS feed for this page is available]($link.page('weird-guys').alternative('rss')).
 
+Artwork by [@p@hj.9fs.net](https://hj.9fs.net/p)
+
+# FAQ
+
+**What is the criteria for being on this list?**
+
+1. Weird, public politics, as judged by yours truly
+2. Leader in their community or otherwise powerful/influential
+3. Involved in free and open source software
+
+**But that guy does good work!**
+
+A lot of people on this list have done good work. A lot of people not on this
+list have done good work, too.
+
+**Will you write a "cool people" list, too?**
+
+No. Who's on the list or off the list will introduce weird social dynamics, and
+risks creating a kind of popularity contest. Also, if I published a list like
+that, it would paint a target on the backs of everyone on the list for
+harassment or worse.
+
 # [See also]($heading.id("see-also"))
 
 * ["Weird little guys"](https://www.iheart.com/podcast/1119-weird-little-guys-201395214/), a podcast hosted by Molly Conger that inspired the name of this list
 * [~rabbits/fashware](https://git.sr.ht/~rabbits/fashware)
-
-Artwork by [@p@hj.9fs.net](https://hj.9fs.net/p)

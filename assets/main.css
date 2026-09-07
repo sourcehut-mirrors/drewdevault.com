@@ -517,9 +517,6 @@ code {
   font-size: .95em;
   letter-spacing: -0.025em;
 }
-ol {
-  counter-reset: item;
-}
 li::marker {
   line-height: 0;
 }
