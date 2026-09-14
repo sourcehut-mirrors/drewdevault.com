@@ -1,0 +1,30 @@
+---
+.title = "Laslo Hunhold",
+.date = @date("2026-09-04"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "hunhold",
+	"profile": "laslo.webp",
+}
+---
+
+**Known for**: suckless.org
+
+Laslo is the first chair of the suckless board of directors, alongside Jan
+Klemkow and Anselm R Garbe. He, and many members of suckless, are covert
+Neo-Nazis. Laslo's laptop is named "wolfsschanze", after one of the Nazi's
+World War II military headquarters.[[source]][0] In their 2017 hackathon,
+hosted in Germany and attended mostly by Germans, they hosted a torchlit march,
+which in Germany is of course historically coded as a Nazi
+action.[[source]][1][[source]][2] Laslo posted on Lobsters about it at some
+length, calling the backlash to this event "cultural marxism" (a common
+dog-whistle for "the Jews").[[source]][3]
+
+They all do a decent job of maintaining plausible deniability, but it falls
+apart on closer inspection.
+
+[0]: $link.url('https://web.archive.org/web/20190404160024/https://twitter.com/pid_eins/status/1113738764797534208').attrs('source')
+[1]: $link.url('https://suckless.org/conferences/2017/').attrs('source')
+[2]: $link.url('https://de.wikipedia.org/wiki/Fackelzug').attrs('source')
+[3]: $link.url('https://lobste.rs/s/nf3xgg/i_am_leaving_llvm#c_yoghmo').attrs('source')
