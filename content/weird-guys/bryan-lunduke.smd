@@ -15,7 +15,9 @@ Bryan is a prolific YouTube personality, maintains a personal blog, and
 frequently tweets on his X account, using all of these platforms to push
 "anti-woke" ideas and conspiracy theories, and harass anyone he views as too
 progressive, trans, female, or black. Big fan of RedHat DEI conspiracy
-theories.
+theories.[[source]][0]
 
 Has a huge problem with transgender people and goes out of his way to harass
 them, misgender them, deadname them, the works.
+
+[0]: $link.url('https://www.youtube.com/watch?v=mhqeuO9RKKk').attrs('source')
