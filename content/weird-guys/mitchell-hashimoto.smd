@@ -1,0 +1,39 @@
+---
+.title = "Mitchell Hashimoto",
+.date = @date("2026-09-14"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "hashimoto",
+	"profile": "hashimoto.webp"
+}
+---
+
+**Known for**: Hashicorp (co-founder), Terraform, Vagrant, etc; Ghosttty; Superlogical
+
+Mitchell is the wealthy co-founder of Hashicorp and is currently in vogue for
+his vibe-coded terminal emulator Ghostty, and has many personal and financial
+relationships with rich weird little guys.
+
+Mitchell is on the board of directors at Vercel, where [Guillermo Rauch][rauch]
+is CEO.[[source]][0] Guilleremo is also an investor in Mitchell's latest
+venture, Superlogical, where Mitchell works with associates and alumni of
+Hashicorp, Vercel, and Shopify.[[source]][1]
+
+Other investors in Superlogical include [Tobias Lütke][lutke], CEO of Shopify,
+as well as various sponsors of [David Heinemeier Hansson][dhh]'s Omarchy
+project, including Patrick Collision, CEO of Stripe. Paul Coppelstone, CEO of
+Supabase, also sponsors both Superlogical and [Andreas Kling][kling]'s Ladybird
+project. Mitchell is an associate of David Heinemeier
+Hansson,[[source]][2][[source]][3] and he uses and regularly promotes
+Omarchy.[[source]][4]
+
+[0]: $link.url('https://x.com/mitchellh/status/2034353376939614719').attrs('source')
+[1]: $link.url('https://www.superlogical.com/').attrs('source')
+[2]: $link.url('https://x.com/mitchellh/status/2088491648309428715').attrs('source')
+[3]: $link.url('https://x.com/mitchellh/status/1940075937397412107').attrs('source')
+[4]: $link.url('https://x.com/mitchellh/status/1943737627087450141?lang=en').attrs('source')
+[lutke]: $link.page('weird-guys').unsafeRef('lutke')
+[dhh]: $link.page('weird-guys').unsafeRef('dhh')
+[rauch]: $link.page('weird-guys').unsafeRef('rauch')
+[kling]: $link.page('weird-guys').unsafeRef('kling')
