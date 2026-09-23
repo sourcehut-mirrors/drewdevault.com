@@ -122,9 +122,16 @@ proactively. Once a comment or post is gone, it generally stays gone.
 
 The moderators tend to view the automated moderation and the flagging mechanism
 as neutral, and use it to deflect responsibility for moderation decisions onto
-the tools or the users who use them, i.e. the "community" in the abstract.
-However, ultimately the moderators are in control of these tools and are aware
-of their biases and the outcomes they produce.
+the tools or the users who use them, i.e. the "community" in the
+abstract.[^case-in-point] However, ultimately the moderators are in control of
+these tools and are aware of their biases and the outcomes they produce.
+
+[^case-in-point]: Case in point: this very article was
+[submitted to Hacker News](https://news.ycombinator.com/item?id=49817280) and
+quickly flagged off of the front page. Daniel Gackle replied in the thread about
+this, "I'm not going to remove the flags, because they are clearly an authentic
+community reaction". Classic example of HN's deflection of responsibility for
+moderation.
 
 So... why is Hacker News like this?
 
