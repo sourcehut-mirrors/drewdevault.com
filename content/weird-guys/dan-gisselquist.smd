@@ -1,6 +1,6 @@
 ---
 .title = "Dan Gisselquist",
-.date = @date("2026-08-31"),
+.date = @date("2026-09-28"),
 .author = "Drew DeVault",
 .layout = "weirdo.shtml",
 .custom = {
