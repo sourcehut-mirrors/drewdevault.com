@@ -1,0 +1,27 @@
+---
+.title = "Dan Gisselquist",
+.date = @date("2026-08-31"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "zipcpu",
+	"profile": "gisselquist.jpg",
+}
+---
+
+Dan is the founder of ZipCPU, a project organized under his small business,
+Gisselquist Technology. He is well known in the open source Electronic Design
+Automation (EDA) community for his work, including the open source ZipCPU FPGA
+core, as well as his many FPGA and Verilog tutorials and blog posts about FPGAs.
+
+Dan publicly professes his Christian values and his company (and its projects)
+are "Christian based".[[source]][0] His "values" were put on display when ZipCPU
+was rejected for NLNet funding on the basis that Dan refused to agree to adopt
+the IEEE Code of Ethics.[[source]][1] In his public statement on the matter, he
+elaborates on these "values", revealing with pride his well-devloped
+transphobia, homophobia, and ableism, reserving the right to discriminate based
+on "good moral character". Undocumented immigrants catch some strays as well in
+his screed.
+
+[0]: $link.url('https://zipcpu.com/about/gisselquist-technology.html').attrs('source')
+[1]: $link.url('https://zipcpu.com/blog/2026/07/18/ieee-ethics.html').attrs('source')
