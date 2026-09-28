@@ -22,5 +22,9 @@ conference for fashy weirdos,[[source]][0] and a donor to
 Ladybird,[[source]][1] and otherwise maintains associations with and
 financially supports people in a little network of weirdos.
 
+As of September 2026, Michael is the "head of Agentic QA" for
+Omarchy.[[source]][2]
+
 [0]: $link.url('https://web.archive.org/web/20260810191341/https://www.omacon.org/').attrs('source')
 [1]: $link.url('https://ladybird.org/#sponsors').attrs('source')
+[2]: $link.url('https://omarchy.org/news/2026/09/theprimeagen-joins-omarchy-core/').attrs('source')
