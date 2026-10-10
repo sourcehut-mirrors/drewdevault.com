@@ -17,7 +17,21 @@ Mastodon and Reddit (later deleted as "not actually official") re-enforcing
 that Proton and/or Andy threw their hat in with Trump and the Republican
 party.[[source]][1]
 
+Proton also sponsored a far-right French YouTube creator, later admitting it was
+a mistake,[[source]][2] but of course Andy took the opportunity to downplay the
+fascism and drop a bunch of enlightened centrism when people took
+offense.[[source]][3] Andy explained that Proton cannot have a "moral purity
+test" that would have prevented them from funding fascists or (Andy's own
+hypothetical example) Holocaust deniers. Elaborating on the subject of Holocaust
+denial, Andy seems to imply that Proton's stance on Holocaust denial relies on
+the fact that it's illegal in Switzerland, and deftly avoiding stating outright
+that Holocaust denial is wrong in and of itself, even when pressed to by
+commenters.[[source]][4]
+
 Proton financially supports [Andreas Kling]($link.page('weird-guys').unsafeRef('kling')).
 
 [0]: $link.url('https://x.com/andyyen/status/1864436449942110660').attrs('source')
 [1]: $link.url('https://theintercept.com/2025/01/28/proton-mail-andy-yen-trump-republicans/').attrs('source')
+[2]: $link.url('https://www.reddit.com/r/ProtonMail/comments/1u05xs2/can_someone_from_protonmail_clarify_this_matter/').attrs('source')
+[3]: $link.url('https://www.reddit.com/r/ProtonMail/comments/1u2uore/explaining_how_proton_works_with_creators/').attrs('source')
+[4]: $link.url('https://www.reddit.com/r/ProtonMail/comments/1u2uore/comment/or8a1qw/').attrs('source')
