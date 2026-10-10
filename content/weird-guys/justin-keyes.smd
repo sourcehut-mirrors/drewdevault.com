@@ -21,7 +21,8 @@ another, like the pacific garbage patch".
 
 Justin had a YouTube playlist full of right-wing propaganda up until the DHH
 debate on GitHub, including sources from [Curtis
-Yarvin]($link.page('weird-guys').unsafeRef('yarvin')) and Peter Thiel. One of
+Yarvin]($link.page('weird-guys').unsafeRef('yarvin')) and Peter
+Thiel.[[source]][3][[source]][4] One of
 Justin's co-maintainers for NeoVim, TJ DeVries, also spoke at David's Omacon in
 2026.[[source]][2]
 
@@ -31,6 +32,5 @@ first place.
 
 [0]: $link.url('https://github.com/neovim/neovim.github.io/issues/501').attrs('source')
 [2]: $link.url('https://www.omacon.org/#speakers').attrs('source')
-
-*Note: this page previously included a citation for Justin's YouTube playlist,
-but the citation was removed after the page was purged from the Internet Archive.*
+[3]: $link.url('https://redacted.moe/f/c2f6714c.png').attrs('source')
+[4]: $link.url('https://redacted.moe/f/70cfd6b8.png').attrs('source')
