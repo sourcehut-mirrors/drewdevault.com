@@ -1,0 +1,36 @@
+---
+.title = "Eli Zaretskii",
+.date = @date("2026-11-13"),
+.author = "Drew DeVault",
+.layout = "weirdo.shtml",
+.custom = {
+	"id": "zaretskii",
+	"profile": "emacs.png",
+}
+---
+
+**Known for**: maintainer of GNU emacs
+
+Eli has been the maintainer of GNU emacs since roughly 2016, a position he
+currently shares with Stefan Kangas and Andrea Corallo. In 2023, Eli received
+the Free Software Foundation Award for the Advancement of Free Software, and on
+the whole he largely conducts his maintainership work diligently and without
+controversey.
+
+Until late 2026, that is, when a discussion about the use of LLMs to contribute
+to emacs was brought forward for discussion on the emacs mailing lists. A
+participant in that discussion posed to Eli a hypothetical: "if i live in a
+territory that permits slavery, and by law i am granted sole ownership of the
+products of that forced labor, and then i use that to create contributions to
+gnu emacs, complete with copyright assignment, and it is technically correct,
+and, above all, you, the emacs maintainers are aware of how this was produced,
+would it be ethical to accept those contributions?"
+
+Eli's answer was "Our answer must be YES."[[source]][0] He goes on to elaborate
+that political and ideological "divides" have "nothing to do with software
+freedom". Eli therefore easily earns a spot as a weird little guy for his
+emphatic belief that free software not only can, not only should, but *must* be
+built on slave labor, because taking a position against slavery would be too
+political and therefore undermines the free software mission.
+
+[0]: $link.url('https://lists.gnu.org/archive/html/emacs-devel/2026-11/msg00128.html').attrs('source')
