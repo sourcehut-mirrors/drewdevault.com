@@ -193,6 +193,7 @@ table {
   font-style: normal;
   font-variant-numeric: oldstyle-nums;
   font-feature-settings: "onum";
+  font-size: 13pt;
 }
 * {
   box-sizing: border-box;
