@@ -28,6 +28,14 @@ the fact that it's illegal in Switzerland, and deftly avoiding stating outright
 that Holocaust denial is wrong in and of itself, even when pressed to by
 commenters.[[source]][4]
 
+In October 2026, internal discussions at Proton were leaked where Andy responded
+to staff concerns about the security risks of rushing AI-generated code into
+production as "bullshit and loser thinking", calling the more cautious members
+of his staff "losers" multiple times.[[source]][5] Around this time Proton also
+informed staff that they would be "re-interviewing" everyone through a lens of
+AI, with the subtext that anyone not sufficiently AI-pilled could be fired. This
+particular initiative was ultimately cancelled due to the backlash.[[source]][6]
+
 Proton financially supports [Andreas Kling]($link.page('weird-guys').unsafeRef('kling')).
 
 [0]: $link.url('https://x.com/andyyen/status/1864436449942110660').attrs('source')
@@ -35,3 +43,5 @@ Proton financially supports [Andreas Kling]($link.page('weird-guys').unsafeRef('
 [2]: $link.url('https://www.reddit.com/r/ProtonMail/comments/1u05xs2/can_someone_from_protonmail_clarify_this_matter/').attrs('source')
 [3]: $link.url('https://www.reddit.com/r/ProtonMail/comments/1u2uore/explaining_how_proton_works_with_creators/').attrs('source')
 [4]: $link.url('https://www.reddit.com/r/ProtonMail/comments/1u2uore/comment/or8a1qw/').attrs('source')
+[5]: $link.url('https://www.404media.co/manifestos-fear-and-loser-thinking-inside-protons-ai-reckoning/').attrs('source')
+[6]: $link.url('https://www.404media.co/proton-to-re-interview-staff-about-ai-to-see-who-gets-to-keep-their-job/').attrs('source')
